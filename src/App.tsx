@@ -137,6 +137,7 @@ const App = () => (
           <Route path="/indoor-infrared-sauna-rental" element={<IndoorInfraredLanding />} />
           <Route path="/pre-fab-sauna-installation" element={<PrefabSaunaInstallation />} />
           <Route path="/pre-fab-sauna-installation-form" element={<PrefabSaunaInstallationForm />} />
+          <Route path="/electric-checklist" element={<ElectricChecklist />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
