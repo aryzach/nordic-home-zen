@@ -35,7 +35,7 @@ const Header = () => {
             }}
             className="font-heading text-xl md:text-2xl font-semibold text-white hover:text-accent transition-colors"
           >
-            SF Sauna
+            The Anywhere Sauna
           </button>
 
           {/* Desktop Nav */}
@@ -46,14 +46,11 @@ const Header = () => {
             <Link to="/how-it-started" className="text-white/70 hover:text-white transition-colors">
               How It Started
             </Link>
-            <Link to="/pricing" className="text-white/70 hover:text-white transition-colors">
-              Pricing
-            </Link>
             <Link to="/service-areas" className="text-white/70 hover:text-white transition-colors">
               Service Areas
             </Link>
-            <Link to="/media" className="text-white/70 hover:text-white transition-colors">
-              Media
+            <Link to="/electric-checklist" className="text-white/70 hover:text-white transition-colors">
+              Electric Checklist
             </Link>
             <button onClick={() => scrollToSection("faq")} className="text-white/70 hover:text-white transition-colors">
               FAQ
@@ -62,7 +59,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <Button asChild className="hidden md:flex font-sans font-medium bg-accent hover:bg-accent/90 text-white">
-            <Link to="/reserve-your-sauna">Reserve Your Sauna</Link>
+            <Link to="/reservation-payment-or-schedule-call">Buy Now</Link>
           </Button>
 
           {/* Mobile Menu Button */}
@@ -84,20 +81,17 @@ const Header = () => {
               <Link to="/how-it-started" className="text-left text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 How It Started
               </Link>
-              <Link to="/pricing" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Pricing
-              </Link>
               <Link to="/service-areas" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 Service Areas
               </Link>
-              <Link to="/media" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Media
+              <Link to="/electric-checklist" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                Electric Checklist
               </Link>
               <button onClick={() => scrollToSection("faq")} className="text-left text-white/70 hover:text-white transition-colors">
                 FAQ
               </button>
               <Button asChild className="w-full font-sans font-medium bg-accent hover:bg-accent/90 text-white">
-                <Link to="/reserve-your-sauna" onClick={() => setIsMobileMenuOpen(false)}>Reserve Your Sauna</Link>
+                <Link to="/reservation-payment-or-schedule-call" onClick={() => setIsMobileMenuOpen(false)}>Buy Now</Link>
               </Button>
             </div>
           </nav>
