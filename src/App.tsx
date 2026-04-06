@@ -36,6 +36,7 @@ import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrSchedu
 import IndoorInfraredLanding from "./pages/IndoorInfraredLanding";
 import PrefabSaunaInstallation from "./pages/PrefabSaunaInstallation";
 import PrefabSaunaInstallationForm from "./pages/PrefabSaunaInstallationForm";
+import ElectricChecklist from "./pages/ElectricChecklist";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
