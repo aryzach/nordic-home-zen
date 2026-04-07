@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
+import SaunaZipEstimator from "@/components/sauna-estimator/SaunaZipEstimator";
 import ClimateMapPage from "@/components/climate-map/ClimateMapPage";
 
 const ServiceAreas = () => {
@@ -19,9 +20,13 @@ const ServiceAreas = () => {
             <p className="text-lg md:text-xl text-muted-foreground mb-4 leading-relaxed">
               The plug-in Anywhere Sauna works best when ambient temperatures are <strong className="text-foreground">50°F or above</strong>. You can put this anywhere — results may vary when the ambient temperature is under 50°F.
             </p>
-            <p className="text-muted-foreground mb-8">
+            <p className="text-muted-foreground mb-12">
               Explore average monthly temperatures across the continental US. Use the controls to see how your area stacks up throughout the year.
             </p>
+
+            <SaunaZipEstimator />
+
+            <div className="border-t border-border my-16" />
 
             <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-2 text-heading">
               Average U.S. Temperatures by Month
