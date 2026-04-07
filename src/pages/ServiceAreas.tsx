@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
+import SaunaZipEstimator from "@/components/sauna-estimator/SaunaZipEstimator";
 import ClimateMapPage from "@/components/climate-map/ClimateMapPage";
 
 const ServiceAreas = () => {
