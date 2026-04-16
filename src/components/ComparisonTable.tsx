@@ -13,7 +13,7 @@ import {
 type Row = { label: string; anywhere: string; barrel: string; nordica: string };
 
 const mainRows: Row[] = [
-  { label: "Plug into Wall (120V)", anywhere: "✅", barrel: "❌ (240V required)", nordica: "❌ (240V required)" },
+  { label: "Plug into Wall (120V)", anywhere: "✅", barrel: "❌", nordica: "❌" },
   { label: "Full Body Heat", anywhere: "✅", barrel: "❌ (feet stay cold)", nordica: "✅" },
   { label: "Renter Friendly", anywhere: "✅", barrel: "❌", nordica: "❌" },
   { label: "Permits / Landlord Approval", anywhere: "✅ Not needed", barrel: "⚠️ Usually required", nordica: "⚠️ Usually required" },
