@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
-type Cell = string;
+type Row = { label: string; anywhere: string; barrel: string; nordica: string };
 
-const mainRows: { label: string; anywhere: Cell; barrel: Cell; nordica: Cell }[] = [
+const mainRows: Row[] = [
   { label: "Plug into Wall (120V)", anywhere: "✅ Yes", barrel: "❌ No (240V required)", nordica: "❌ No (240V required)" },
   { label: "Full Body Heat", anywhere: "✅ Yes", barrel: "❌ No (feet stay cold)", nordica: "✅ Yes" },
   { label: "Renter Friendly", anywhere: "✅ Yes", barrel: "❌ No", nordica: "❌ No" },
@@ -14,8 +22,8 @@ const mainRows: { label: string; anywhere: Cell; barrel: Cell; nordica: Cell }[]
   { label: "All-in Cost", anywhere: "$4,599", barrel: "$5,399–$7,000+", nordica: "~$4,949" },
 ];
 
-const specRows: { label: string; anywhere: Cell; barrel: Cell; nordica: Cell }[] = [
-  { label: "Exterior Dimensions", anywhere: "TBD", barrel: '72" x 72" x 78"', nordica: '54" x 52" x 82"' },
+const specRows: Row[] = [
+  { label: "Exterior Dimensions", anywhere: "TBD", barrel: '72" × 72" × 78"', nordica: '54" × 52" × 82"' },
   { label: "Heated Space", anywhere: "57 cu ft", barrel: "147 cu ft", nordica: "93 cu ft" },
   { label: "Wood Type", anywhere: "Red Cedar", barrel: "Red Cedar", nordica: "Spruce" },
   { label: "Longevity", anywhere: "~30 years", barrel: "~30 years", nordica: "~15 years" },
@@ -23,58 +31,47 @@ const specRows: { label: string; anywhere: Cell; barrel: Cell; nordica: Cell }[]
   { label: "Compatible with SuperHotSuperFast Heater", anywhere: "✅ Yes", barrel: "❌ No", nordica: "❌ No" },
 ];
 
+const ComparisonBlock = ({ rows }: { rows: Row[] }) => (
+  <div className="overflow-x-auto rounded-lg border border-border bg-card">
+    <Table className="min-w-[640px]">
+      <TableHeader>
+        <TableRow className="hover:bg-transparent border-b border-border">
+          <TableHead className="w-[34%] text-foreground font-medium" />
+          <TableHead className="text-center font-semibold text-foreground bg-accent/10">
+            Anywhere Sauna
+          </TableHead>
+          <TableHead className="text-center font-medium text-muted-foreground">
+            Barrel Sauna (Costco)
+          </TableHead>
+          <TableHead className="text-center font-medium text-muted-foreground">
+            Nordica SaunaLife
+          </TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {rows.map((row) => (
+          <TableRow key={row.label} className="hover:bg-transparent">
+            <TableCell className="font-medium text-foreground align-middle">
+              {row.label}
+            </TableCell>
+            <TableCell className="text-center text-foreground bg-accent/10 align-middle">
+              {row.anywhere}
+            </TableCell>
+            <TableCell className="text-center text-muted-foreground align-middle">
+              {row.barrel}
+            </TableCell>
+            <TableCell className="text-center text-muted-foreground align-middle">
+              {row.nordica}
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </div>
+);
+
 const ComparisonTable = () => {
   const [showSpecs, setShowSpecs] = useState(false);
-
-  const renderTable = (
-    rows: { label: string; anywhere: Cell; barrel: Cell; nordica: Cell }[],
-  ) => (
-    <div className="min-w-[640px] grid grid-cols-[1.4fr_1fr_1fr_1fr]">
-      {/* Header */}
-      <div className="p-4 border-b border-border" />
-      <div
-        className={cn(
-          "p-4 border-b border-border text-center font-medium text-foreground",
-          "bg-accent/8 border-x border-t border-accent/40 rounded-t-lg",
-        )}
-      >
-        Anywhere Sauna
-      </div>
-      <div className="p-4 border-b border-border text-center font-medium text-muted-foreground">
-        Barrel Sauna (Costco)
-      </div>
-      <div className="p-4 border-b border-border text-center font-medium text-muted-foreground">
-        Nordica SaunaLife
-      </div>
-
-      {/* Rows */}
-      {rows.map((row, i) => {
-        const last = i === rows.length - 1;
-        return (
-          <div key={row.label} className="contents">
-            <div className={cn("p-4 font-medium text-foreground", !last && "border-b border-border/60")}>
-              {row.label}
-            </div>
-            <div
-              className={cn(
-                "p-4 text-center text-sm text-foreground bg-accent/8 border-x border-accent/40",
-                last && "rounded-b-lg border-b border-accent/40",
-                !last && "border-b border-accent/20",
-              )}
-            >
-              {row.anywhere}
-            </div>
-            <div className={cn("p-4 text-center text-sm text-muted-foreground", !last && "border-b border-border/60")}>
-              {row.barrel}
-            </div>
-            <div className={cn("p-4 text-center text-sm text-muted-foreground", !last && "border-b border-border/60")}>
-              {row.nordica}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
 
   return (
     <section className="py-16 md:py-24 bg-cedar-section">
@@ -86,9 +83,7 @@ const ComparisonTable = () => {
           Most saunas require expensive electrical work. This one doesn't.
         </p>
 
-        <div className="bg-card rounded-lg border border-border p-2 md:p-4 overflow-x-auto">
-          {renderTable(mainRows)}
-        </div>
+        <ComparisonBlock rows={mainRows} />
 
         <div className="mt-6 flex justify-center">
           <button
@@ -98,16 +93,13 @@ const ComparisonTable = () => {
             aria-expanded={showSpecs}
           >
             {showSpecs ? "Hide full specs" : "See full specs"}
-            <ChevronDown
-              size={16}
-              className={cn("transition-transform", showSpecs && "rotate-180")}
-            />
+            <ChevronDown size={16} className={cn("transition-transform", showSpecs && "rotate-180")} />
           </button>
         </div>
 
         {showSpecs && (
-          <div className="mt-6 bg-card rounded-lg border border-border p-2 md:p-4 overflow-x-auto animate-in fade-in slide-in-from-top-2 duration-300">
-            {renderTable(specRows)}
+          <div className="mt-6 animate-in fade-in slide-in-from-top-2 duration-300">
+            <ComparisonBlock rows={specRows} />
           </div>
         )}
       </div>
