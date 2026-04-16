@@ -13,9 +13,9 @@ import {
 type Row = { label: string; anywhere: string; barrel: string; nordica: string };
 
 const mainRows: Row[] = [
-  { label: "Plug into Wall (120V)", anywhere: "✅ Yes", barrel: "❌ No (240V required)", nordica: "❌ No (240V required)" },
-  { label: "Full Body Heat", anywhere: "✅ Yes", barrel: "❌ No (feet stay cold)", nordica: "✅ Yes" },
-  { label: "Renter Friendly", anywhere: "✅ Yes", barrel: "❌ No", nordica: "❌ No" },
+  { label: "Plug into Wall (120V)", anywhere: "✅", barrel: "❌ (240V required)", nordica: "❌ (240V required)" },
+  { label: "Full Body Heat", anywhere: "✅", barrel: "❌ (feet stay cold)", nordica: "✅" },
+  { label: "Renter Friendly", anywhere: "✅", barrel: "❌", nordica: "❌" },
   { label: "Permits / Landlord Approval", anywhere: "✅ Not needed", barrel: "⚠️ Usually required", nordica: "⚠️ Usually required" },
   { label: "Setup Time", anywhere: "~2 hours", barrel: "~8 hours + electrician", nordica: "~8 hours + electrician" },
   { label: "Where You Can Put It", anywhere: "Indoor or outdoor, any level surface", barrel: "Outdoor only (deck/gravel/concrete)", nordica: "Indoor or outdoor" },
@@ -27,8 +27,8 @@ const specRows: Row[] = [
   { label: "Heated Space", anywhere: "57 cu ft", barrel: "147 cu ft", nordica: "93 cu ft" },
   { label: "Wood Type", anywhere: "Red Cedar", barrel: "Red Cedar", nordica: "Spruce" },
   { label: "Longevity", anywhere: "~30 years", barrel: "~30 years", nordica: "~15 years" },
-  { label: "Heater Included", anywhere: "❌ No", barrel: "✅ Yes", nordica: "❌ No" },
-  { label: "Compatible with SuperHotSuperFast Heater", anywhere: "✅ Yes", barrel: "❌ No", nordica: "❌ No" },
+  { label: "Heater Included", anywhere: "❌", barrel: "✅", nordica: "❌" },
+  { label: "Compatible with SuperHotSuperFast Heater", anywhere: "✅", barrel: "❌", nordica: "❌" },
 ];
 
 const ComparisonBlock = ({ rows }: { rows: Row[] }) => (
