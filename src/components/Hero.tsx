@@ -36,7 +36,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center max-w-[1100px] flex flex-col">
         <h1 className="font-heading text-[36px] md:text-[52px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.01em] order-3">
-          The first real sauna that can plug into a normal outlet.
+          The first real sauna that uses a standard outlet.
         </h1>
         <div className="flex items-center justify-center gap-2 text-white/90 font-sans text-[14px] font-normal mb-8 -mt-16 order-1">
           <a href="https://share.google/bqGJ8MiXfwNgvigwm" target="_blank" rel="noopener noreferrer" className="hover:underline">Loved by 22+ San Franciscans</a>
