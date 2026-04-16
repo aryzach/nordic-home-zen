@@ -13,7 +13,7 @@ import {
 type Row = { label: string; anywhere: string; barrel: string; nordica: string };
 
 const mainRows: Row[] = [
-  { label: "Plug into Wall (120V)", anywhere: "✅", barrel: "❌", nordica: "❌" },
+  { label: "Standard Outlet (120V, 20A circuit breaker)", anywhere: "✅", barrel: "❌", nordica: "❌" },
   { label: "Full Body Heat", anywhere: "✅", barrel: "❌ (feet stay cold)", nordica: "✅" },
   { label: "Renter Friendly", anywhere: "✅", barrel: "❌", nordica: "❌" },
   { label: "Permits / Landlord Approval", anywhere: "✅ Not needed", barrel: "⚠️ Usually required", nordica: "⚠️ Usually required" },
@@ -28,7 +28,11 @@ const specRows: Row[] = [
   { label: "Wood Type", anywhere: "Red Cedar", barrel: "Red Cedar", nordica: "Spruce" },
   { label: "Longevity", anywhere: "~30 years", barrel: "~30 years", nordica: "~15 years" },
   { label: "Heater Included", anywhere: "❌", barrel: "✅", nordica: "❌" },
-  { label: "Compatible with SuperHotSuperFast Heater", anywhere: "✅", barrel: "❌", nordica: "❌" },
+  { label: "Compatible with SuperHotSuperFast Heater (shipping 2027)", anywhere: "✅", barrel: "❌", nordica: "❌" },
+  { label: "Unit Cost", anywhere: "$4,599", barrel: "$4,399", nordica: "$3,999" },
+  { label: "Shipping Cost", anywhere: "$0", barrel: "$0", nordica: "$950" },
+  { label: "Electrician Cost", anywhere: "$0", barrel: "$1–3k", nordica: "$1–3k" },
+  { label: "Total Cost", anywhere: "$4,599", barrel: "$5,399+", nordica: "$5,949" },
 ];
 
 const ComparisonBlock = ({ rows }: { rows: Row[] }) => (
