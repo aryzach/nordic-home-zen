@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
@@ -19,14 +20,17 @@ const timelineEvents = [
     year: "2026",
     items: [
       "Launch the Anywhere Sauna nationwide to enable anyone to have a sauna, no matter if they rent or own their home or apartment.",
-      "Develop the Insta-Hot sauna heater.",
     ],
   },
   {
     year: "2027",
     items: [
-      "Launch the Insta-Hot sauna heater, compatible with the Anywhere Sauna.",
+      "Launch the SuperHotSuperFast sauna heater, compatible with the Anywhere Sauna.",
     ],
+    subtext: {
+      text: "Learn about the SuperHotSuperFast sauna heater",
+      href: "/superhotsuperfast",
+    },
   },
 ];
 
@@ -82,6 +86,16 @@ const History = () => {
                             {item}
                           </p>
                         ))}
+                        {event.subtext && (
+                          <p className="text-sm mt-2">
+                            <Link
+                              to={event.subtext.href}
+                              className="text-accent hover:underline"
+                            >
+                              {event.subtext.text}
+                            </Link>
+                          </p>
+                        )}
                       </div>
 
                       {/* Spacer for the other side */}
@@ -98,11 +112,11 @@ const History = () => {
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 max-w-3xl space-y-6">
             <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-8">
-              A little about the history of this design and how it came to be
+              How the Anywhere Sauna came to be
             </h2>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              A normal wall outlet is severely underpowered for a sauna. In Europe, where saunas are everywhere, and most of the rest of the world, they have 2x the power compared to the US for all their outlets. This makes installing a sauna heater very easy.
+              A normal wall outlet in the US is severely underpowered for a sauna. In Europe, saunas are everywhere, and they can do this because the standard outlet in Europe delivers 2x the power compared to the US. This makes installing a sauna in Europe very easy.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -110,23 +124,23 @@ const History = () => {
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I started with an infrared sauna, which can plug into a normal outlet, but this didn't satiate my desire for real dry heat of the good saunas I've been to.
+              I started with an infrared sauna, which can plug into a standard US outlet, but this didn't satiate my desire for the real dry and hot heat of the good saunas I've used at spas and gyms.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I bought a 120V heater to put in my infrared sauna and see if it would get to temps that were satisfying. While it got warmer, my legs were still cold and the sauna seemed to be losing a lot of heat.
+              I wanted a hotter sauna, so I bought a 120V heater to put in my infrared sauna and see I could get it hotter. While it got warmer, my legs were still cold and the sauna seemed to be losing a lot of heat.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              From there, I spent months iterating on the design, and trying countless modifications to get the heat I wanted.
+              From there, I spent months iterating on the design and trying countless modifications to get the heat I wanted.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I raised the bench and the floor to create more even heat, I insulated the ceiling, walls, and glass, I sealed the cracks around the door. Some of this helped and some didn't. But I ended up with a design that worked, and got just as hot as the good saunas I've used at the spa or my gym.
+              I raised the bench and the floor to create more even, full-body heat, I insulated the ceiling, walls, and glass, I sealed the cracks around the door. Some of this helped and some didn't. But I ended up with a design that worked, and got just as hot as the good saunas I've used at the spa or my gym.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              So here it is, the Anywhere Sauna. The sauna that can go anywhere, fits most places, inside or out, and can plug into (almost) any standard American outlet.
+              So here it is, the Anywhere Sauna. The sauna that can go anywhere, fits most places, inside or out, and can use a heater that uses (almost) any standard American outlet.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
