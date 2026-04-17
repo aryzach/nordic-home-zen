@@ -1,101 +1,167 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Calendar } from "lucide-react";
 
 const faqs = [
   {
-    question: "What's the difference between infrared and steam saunas?",
-    answer: "Infrared heats your body directly for a gentler sweat at 150°F. Steam saunas heat the air with a traditional heater and rocks, running 160–194°F for a more classic feel.",
+    question: "Will this actually work in my home?",
+    answer:
+      "Yes — it's specifically designed for standard 120V outlets. About ~98% of homes and apartments already have the setup needed.\n\nIf you're unsure, book a free 5-minute video consult and we'll check your outlet + breaker together.",
   },
   {
-    question: "What power do they need? Will this overload my apartment?",
-    answer: "All units use standard 120V household outlets, same load class as a hair dryer. No special wiring, panel upgrades, or electrician.",
+    question: "I thought a standard outlet couldn't get a sauna hot?",
+    answer:
+      "Normally, it can't.\n\nTraditional saunas assume a large space and a 240V heater. This sauna is designed differently:\n\n• smaller air volume\n• elevated seating (so your whole body sits in the heat zone)\n• high-efficiency insulation\n\nThat combination allows a 120V heater to reach ~160–194°F in real use.",
   },
   {
-    question: "How much space do I need?",
-    answer: "Indoor: 48\" W × 42\" D × 76\" H. Outdoor: 58\" W × 46\" D × 85\" H.",
+    question: "Why doesn't it come with a heater?",
+    answer:
+      "Three reasons:\n\n• lower cost (no forced bundle markup)\n• flexibility (choose your own heater based on budget or preference)\n• easy replacement (no vendor lock-in)\n\nWe can recommend options during a free consult.",
   },
   {
-    question: "Can these go indoors or outdoors?",
-    answer: "Yes. We have dedicated models for each.",
+    question: "What heater should I get?",
+    answer:
+      "Look for:\n\n• 1.5–2.0kW power\n• fits within 13″ × 22″ × 9″\n• wall-mount compatible\n\nWe can suggest specific models based on your setup.",
   },
   {
-    question: "Will a sauna overheat my apartment?",
-    answer: "No. They're heavily insulated, so heat stays inside the cabin with negligible spillover.",
+    question: "Do I need an electrician or special installation?",
+    answer:
+      "No.\n\nIt runs on a standard outlet. No permits, no wiring, no contractor coordination.",
   },
   {
-    question: "How long does setup take?",
-    answer: "About 1–2 hours. We position it, plug it in, test it, and walk you through everything.",
+    question: "Will this overload my apartment?",
+    answer:
+      "No — when used on a proper 20A circuit.\n\nWe'll confirm your setup during the free consult to make sure everything is safe.",
+  },
+  {
+    question: "How hot does it actually get?",
+    answer:
+      "Up to ~194°F (the practical/legal max).\n\nTypical ranges:\n\n• cooler environments → ~150–170°F\n• moderate → ~170–185°F\n• warm → ~185–194°F",
   },
   {
     question: "How long does it take to heat up?",
-    answer: "Infrared reaches ~150°F in ~30-40 minutes. Steam saunas hit 160–194°F in 20–60 minutes depending on the heaters you choose.",
+    answer: "~40–60 minutes depending on ambient temperature and heater.",
   },
   {
-    question: "Do I need to leave it running?",
-    answer: "No. Just turn it on 20–60 minutes before using. Most people heat it once a day for about an hour.",
+    question: "Can I use it indoors?",
+    answer:
+      "Yes.\n\nIt's designed for indoor or outdoor use — apartments, garages, patios, and backyards all work.",
   },
   {
-    question: "Is this landlord-friendly?",
-    answer: "Yes. Saunas are free-standing appliances that plug into a normal outlet. No drilling, venting, hardwiring, or modifications. Almost no one needs permission, but follow your lease rules.",
+    question: "Will it damage my floors or space?",
+    answer:
+      "No, with normal use.\n\nIt sits on a flat surface and doesn't require permanent installation. For extra protection, you can place a mat underneath.",
   },
   {
-    question: "Will this damage my floors?",
-    answer: "No. The base stays cool enough for wood, and humidity stays inside the cabin. Just avoid spilling water outside the unit.",
+    question: "Is this renter-friendly?",
+    answer:
+      "Yes.\n\nNo electrical work, no permanent modifications, and easy to remove if you move.",
   },
   {
-    question: "What if I move during my rental?",
-    answer: "This is part of the service, we move the sauna to your new place.",
+    question: "How much space do I need?",
+    answer:
+      "Roughly a 63\" × 49\" footprint.\n\nFits in most rooms, patios, or garage spaces. We can help sanity-check your space on a quick call.",
   },
   {
-    question: "What happens after my initial lease term?",
-    answer: "Your plan switches to month-to-month. Keep it as long as you want; when you're done, we pick it up within 30 days.",
+    question: "Can it go outside?",
+    answer:
+      "Yes.\n\nWorks indoors or outdoors on any level surface. Performance may vary slightly with weather.",
   },
   {
-    question: "How much does it add to my electric bill?",
-    answer: "Usually $0.50–$1.50 per session. SF electricity is ~$0.30/kWh, and sessions run 40–90 minutes total.",
+    question: "How much electricity does it use?",
+    answer:
+      "About 1.5–2.0 kWh per hour.\n\nTypical cost: ~$0.50 – $2 per session depending on your local electricity rates.",
   },
   {
-    question: "Can I buy out the sauna later?",
-    answer: "Yes.\n\nAfter your lease term, you can purchase the unit with 30% of your rental payments credited.\n\nHere is our pricing structure (tax exclusive):\n• Indoor infrared sauna: $2,399\n• Outdoor infrared sauna: $2,978\n• Indoor steam sauna: $7,499\n• Outdoor steam sauna: $8,299",
+    question: "Do I need to leave it running all the time?",
+    answer:
+      "No.\n\nTurn it on ~40–60 minutes before use, then turn it off when you're done.",
   },
   {
-    question: "Who handles maintenance?",
-    answer: "We handle all normal maintenance, repairs, parts, and troubleshooting for the sauna, no charge. If something fails under normal use, we fix it or replace the unit.",
+    question: "Is it safe?",
+    answer:
+      "Yes, when used properly with a compatible heater.\n\nFollow standard sauna safety:\n\n• don't leave it unattended\n• follow heater clearance guidelines\n• use a proper circuit",
+  },
+  {
+    question: "Why not just get a traditional sauna?",
+    answer:
+      "You can — if you're okay with:\n\n• hiring an electrician\n• running a 240V line\n• permits or landlord approval\n• higher install costs\n\nThis sauna is designed to avoid all of that.",
+  },
+  {
+    question: "What's the catch?",
+    answer:
+      "It's smaller than traditional saunas.\n\nThat's intentional — the reduced volume is what allows it to heat efficiently on a standard outlet.",
   },
 ];
+
+const ConsultCallout = ({
+  heading,
+  body,
+}: {
+  heading: string;
+  body: string;
+}) => (
+  <div className="rounded-xl bg-card border border-border/60 p-6 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div>
+      <h3 className="text-lg md:text-xl font-semibold text-foreground mb-1">
+        {heading}
+      </h3>
+      <p className="text-muted-foreground text-sm md:text-base">{body}</p>
+    </div>
+    <Link to="/reserve-your-sauna" className="shrink-0">
+      <Button size="lg" className="w-full md:w-auto">
+        <Calendar className="h-4 w-4" />
+        Book Free Consult
+      </Button>
+    </Link>
+  </div>
+);
 
 const FAQ = () => {
   return (
     <section id="faq" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 max-w-3xl">
-        <h2 className="text-3xl md:text-5xl font-semibold text-center mb-4 text-foreground">
+        <h2 className="text-3xl md:text-5xl font-semibold text-center mb-3 text-foreground">
           Frequently Asked Questions
         </h2>
-        <p className="text-center text-muted-foreground mb-12">
-          Everything you need to know about renting a sauna
+        <p className="text-center text-muted-foreground mb-8 md:mb-10">
+          Everything you need to know before getting your own sauna
         </p>
 
-        <Accordion type="single" collapsible className="mb-8">
+        <div className="mb-8">
+          <ConsultCallout
+            heading="Not sure if it'll work in your home?"
+            body="Book a free 5-minute video consultation and we'll check your setup together."
+          />
+        </div>
+
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue="item-0"
+          className="mb-10 divide-y divide-border/60 border-y border-border/60"
+        >
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left text-foreground hover:text-primary">
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="border-b-0"
+            >
+              <AccordionTrigger className="text-left text-foreground hover:text-primary font-semibold text-base md:text-lg py-5">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground whitespace-pre-line">
+              <AccordionContent className="text-muted-foreground whitespace-pre-line text-base leading-relaxed">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
 
-        <div className="text-center">
-          <Link to="/install-power">
-            <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              View Full Installation Guide
-            </Button>
-          </Link>
-        </div>
+        <ConsultCallout
+          heading="Still unsure?"
+          body="We'll tell you in 5 minutes if this will work in your space."
+        />
       </div>
     </section>
   );
