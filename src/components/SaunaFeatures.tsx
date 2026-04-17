@@ -3,7 +3,7 @@ import { Flame, Droplets, ThermometerSun } from "lucide-react";
 const features = [
   {
     icon: ThermometerSun,
-    text: "Reaches 160–180°F in one hour",
+    text: "Reaches 160–194°F in under an hour",
   },
   {
     icon: Flame,

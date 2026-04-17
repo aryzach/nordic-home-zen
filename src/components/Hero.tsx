@@ -56,11 +56,11 @@ const Hero = () => {
           </div>
           <div className="flex items-center gap-2 text-white/90 font-sans text-[16px] md:text-[17px] leading-[1.6] mb-2">
             <Check className="text-[hsl(var(--color-accent))] flex-shrink-0" size={18} />
-            <span>Real heater + stones — pour water, get steam</span>
+            <span>Real heater + stones, pour water, get steam</span>
           </div>
           <div className="flex items-start gap-2 text-white/90 font-sans text-[16px] md:text-[17px] leading-[1.6]">
             <Check className="text-[hsl(var(--color-accent))] flex-shrink-0 mt-0.5" size={18} />
-            <span>Reaches 160–180°F in one hour</span>
+            <span>Reaches 160–194°F in under an hour</span>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto w-full order-5">
