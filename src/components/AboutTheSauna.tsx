@@ -120,13 +120,13 @@ const advancedSpecs: Spec[] = [
 ];
 
 const SpecRow = ({ spec }: { spec: Spec }) => (
-  <div className="py-4 border-b border-border/60 last:border-b-0">
-    <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-1 md:gap-8">
-      <div className="text-sm md:text-base font-medium text-foreground">{spec.label}</div>
-      <div className="text-sm md:text-base text-muted-foreground">{spec.value}</div>
+  <div className="py-2 border-b border-border/50 last:border-b-0">
+    <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-0.5 md:gap-6">
+      <div className="text-sm font-medium text-foreground">{spec.label}</div>
+      <div className="text-sm text-muted-foreground">{spec.value}</div>
     </div>
     {spec.helper && (
-      <p className="mt-2 text-xs md:text-sm text-muted-foreground/80 italic md:pl-0 md:max-w-2xl">
+      <p className="mt-1 text-xs text-muted-foreground/80 italic md:max-w-2xl">
         {spec.helper}
       </p>
     )}
@@ -137,11 +137,11 @@ const GroupBlock = ({ group }: { group: SpecGroup }) => (
   <div
     className={
       group.highlight
-        ? "rounded-lg border border-accent/40 bg-accent/5 p-6 md:p-8"
-        : "py-2"
+        ? "rounded-lg border border-accent/40 bg-accent/5 px-4 py-3 md:px-5 md:py-4"
+        : ""
     }
   >
-    <h3 className="text-xs md:text-sm font-semibold tracking-[0.15em] uppercase text-accent mb-4">
+    <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-accent mb-1.5">
       {group.title}
     </h3>
     <div>
@@ -156,24 +156,44 @@ const AboutTheSauna = () => {
   return (
     <section id="about-the-sauna" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 max-w-[900px]">
-        <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-12 text-heading text-center">
-          Specifications
+        <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-8 text-heading text-center">
+          About the Anywhere Sauna
         </h2>
 
-        <div className="space-y-8 md:space-y-10">
+        {/* Image placeholders */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          {[1, 2, 3, 4].map((i) => (
+            <div
+              key={i}
+              className="aspect-square bg-muted rounded-lg flex items-center justify-center border border-border"
+            >
+              <span className="text-muted-foreground text-sm">Photo {i}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Schematic placeholder */}
+        <div className="bg-muted rounded-lg p-8 mb-10 flex items-center justify-center min-h-[260px] border border-border">
+          <div className="text-center text-muted-foreground">
+            <p className="text-lg font-medium mb-2">Sauna Schematic — Placeholder</p>
+            <p className="text-sm">Detailed measurements coming soon</p>
+          </div>
+        </div>
+
+        <div className="space-y-5">
           {groups.map((group) => (
             <GroupBlock key={group.title} group={group} />
           ))}
         </div>
 
-        <div className="mt-10">
+        <div className="mt-6">
           <Accordion type="single" collapsible>
             <AccordionItem value="advanced" className="border-t border-b border-border">
-              <AccordionTrigger className="text-xs md:text-sm font-semibold tracking-[0.15em] uppercase text-accent hover:no-underline">
+              <AccordionTrigger className="text-xs font-semibold tracking-[0.15em] uppercase text-accent hover:no-underline py-3">
                 Advanced Specs
               </AccordionTrigger>
               <AccordionContent>
-                <div className="pt-2">
+                <div>
                   {advancedSpecs.map((spec) => (
                     <SpecRow key={spec.label} spec={spec} />
                   ))}
