@@ -9,6 +9,7 @@ import Pricing from "./pages/Pricing";
 import HowItWorksPage from "./pages/HowItWorksPage";
 import HowItStarted from "./pages/HowItStarted";
 import History from "./pages/History";
+import SuperHotSuperFast from "./pages/SuperHotSuperFast";
 import InstallPower from "./pages/InstallPower";
 import Policies from "./pages/Policies";
 import LearnHub from "./pages/LearnHub";
@@ -111,6 +112,7 @@ const App = () => (
           <Route path="/how-it-works" element={<HowItWorksPage />} />
           <Route path="/how-it-started" element={<HowItStarted />} />
           <Route path="/history" element={<History />} />
+          <Route path="/superhotsuperfast" element={<SuperHotSuperFast />} />
           <Route path="/install-power" element={<InstallPower />} />
           <Route path="/policies" element={<Policies />} />
           <Route path="/learn" element={<LearnHub />} />
