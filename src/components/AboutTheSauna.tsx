@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import standardOutlet from "@/assets/standard-outlet.png";
 
 type Spec = {
   label: string;
@@ -18,15 +19,23 @@ type SpecGroup = {
   highlight?: boolean;
 };
 
-const groups: SpecGroup[] = [
-  {
-    title: "Overview",
-    specs: [
-      { label: "Capacity", value: "2 person" },
-      { label: "Max Temperature", value: "~194°F (legal limit dependent)" },
-      { label: "Heat Type", value: "Traditional dry/steam sauna (electric heater)" },
-    ],
-  },
+const overviewGroup: SpecGroup = {
+  title: "Overview",
+  highlight: true,
+  specs: [
+    { label: "Capacity", value: "2 person" },
+    { label: "Max Temperature", value: "~194°F (legal limit dependent)" },
+    { label: "Heat Type", value: "Traditional dry/steam sauna (electric heater)" },
+    {
+      label: "Power Requirement",
+      value: "Standard 120V outlet with 20A breaker",
+      helper:
+        "Book a free video consultation to confirm your setup — ~98% of homes and apartments already have what's needed.",
+    },
+  ],
+};
+
+const moreGroups: SpecGroup[] = [
   {
     title: "Dimensions & Weight",
     specs: [
@@ -38,14 +47,7 @@ const groups: SpecGroup[] = [
   },
   {
     title: "Electrical & Power",
-    highlight: true,
     specs: [
-      {
-        label: "Power Requirement",
-        value: "Standard 120V outlet with 20A breaker",
-        helper:
-          "Book a free video consultation to confirm your setup — ~98% of homes and apartments already have what's needed.",
-      },
       { label: "Plug Type", value: "NEMA 5-15 or 5-20 compatible" },
       { label: "Extension Cords", value: "Not recommended (if needed: 10 AWG, max 50 ft)" },
       { label: "Electrical Setup Needed", value: "None in most homes (~98% compatible)" },
@@ -62,12 +64,12 @@ const groups: SpecGroup[] = [
           "The sauna does not come with a heater — choose one that fits your budget from Amazon or any retailer. We can help you pick during a free video consultation.",
       },
       { label: "Maximum Heater Dimensions", value: "13″ × 22″ × 9″" },
-      { label: "Recommended Power Range", value: "1.5kW – 2.0kW (for standard outlet use)" },
+      { label: "Recommended Power Range", value: "1.8kW – 2.0kW (for standard outlet use)" },
       {
         label: "Compatible with SuperHotSuperFast Heater",
         value: (
           <Link to="/superhotsuperfast" className="text-accent hover:underline">
-            Yes
+            Yes (shipping 2027)
           </Link>
         ),
       },
@@ -109,18 +111,20 @@ const groups: SpecGroup[] = [
       { label: "Landlord Approval", value: "Typically not required" },
     ],
   },
-];
-
-const advancedSpecs: Spec[] = [
-  { label: "Interior Volume", value: "57 cu ft" },
-  { label: "Energy Usage", value: "~1.5–2.0 kWh per hour" },
-  { label: "Estimated Energy Cost", value: "$0.50 – $2 per use" },
-  { label: "Shipping", value: "Flat-packed modular panels, fits through standard doorways" },
-  { label: "Expected Lifespan", value: "~30 years with proper care" },
+  {
+    title: "Advanced Specs",
+    specs: [
+      { label: "Interior Volume", value: "57 cu ft" },
+      { label: "Energy Usage", value: "~1.5–2.0 kWh per hour" },
+      { label: "Estimated Energy Cost", value: "$0.50 – $2 per use" },
+      { label: "Shipping", value: "Flat-packed modular panels, fits through standard doorways" },
+      { label: "Expected Lifespan", value: "~30 years with proper care" },
+    ],
+  },
 ];
 
 const SpecRow = ({ spec }: { spec: Spec }) => (
-  <div className="py-2 border-b border-border/50 last:border-b-0">
+  <div className="py-1.5 border-b border-border/50 last:border-b-0">
     <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-0.5 md:gap-6">
       <div className="text-sm font-medium text-foreground">{spec.label}</div>
       <div className="text-sm text-muted-foreground">{spec.value}</div>
@@ -141,7 +145,7 @@ const GroupBlock = ({ group }: { group: SpecGroup }) => (
         : ""
     }
   >
-    <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-accent mb-1.5">
+    <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-accent mb-1">
       {group.title}
     </h3>
     <div>
@@ -160,9 +164,9 @@ const AboutTheSauna = () => {
           About the Anywhere Sauna
         </h2>
 
-        {/* Image placeholders */}
+        {/* Image placeholders + outlet photo */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          {[1, 2, 3, 4].map((i) => (
+          {[1, 2, 3].map((i) => (
             <div
               key={i}
               className="aspect-square bg-muted rounded-lg flex items-center justify-center border border-border"
@@ -170,32 +174,36 @@ const AboutTheSauna = () => {
               <span className="text-muted-foreground text-sm">Photo {i}</span>
             </div>
           ))}
+          <div className="aspect-square rounded-lg overflow-hidden border border-border bg-muted">
+            <img
+              src={standardOutlet}
+              alt="Standard 120V wall outlet — what's needed to power the Anywhere Sauna"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
         </div>
 
         {/* Schematic placeholder */}
-        <div className="bg-muted rounded-lg p-8 mb-10 flex items-center justify-center min-h-[260px] border border-border">
+        <div className="bg-muted rounded-lg p-8 mb-8 flex items-center justify-center min-h-[260px] border border-border">
           <div className="text-center text-muted-foreground">
             <p className="text-lg font-medium mb-2">Sauna Schematic — Placeholder</p>
             <p className="text-sm">Detailed measurements coming soon</p>
           </div>
         </div>
 
-        <div className="space-y-5">
-          {groups.map((group) => (
-            <GroupBlock key={group.title} group={group} />
-          ))}
-        </div>
+        <GroupBlock group={overviewGroup} />
 
-        <div className="mt-6">
+        <div className="mt-4">
           <Accordion type="single" collapsible>
-            <AccordionItem value="advanced" className="border-t border-b border-border">
+            <AccordionItem value="more" className="border-t border-b border-border">
               <AccordionTrigger className="text-xs font-semibold tracking-[0.15em] uppercase text-accent hover:no-underline py-3">
-                Advanced Specs
+                More Specs
               </AccordionTrigger>
               <AccordionContent>
-                <div>
-                  {advancedSpecs.map((spec) => (
-                    <SpecRow key={spec.label} spec={spec} />
+                <div className="space-y-4 pt-2">
+                  {moreGroups.map((group) => (
+                    <GroupBlock key={group.title} group={group} />
                   ))}
                 </div>
               </AccordionContent>
