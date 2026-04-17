@@ -96,7 +96,7 @@ const ComparisonTable = () => {
             className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
             aria-expanded={showSpecs}
           >
-            {showSpecs ? "Hide full specs" : "See full specs"}
+            {showSpecs ? "Hide full comparison" : "See full comparison"}
             <ChevronDown size={16} className={cn("transition-transform", showSpecs && "rotate-180")} />
           </button>
         </div>

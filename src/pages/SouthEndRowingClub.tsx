@@ -15,10 +15,10 @@ const SouthEndRowingClub = () => {
           <div className="container mx-auto px-4 max-w-3xl">
             <div className="mb-8 space-y-2">
               <Link
-                to="/sauna-directory"
+                to="/"
                 className="inline-flex items-center text-[hsl(var(--color-accent))] hover:text-[hsl(var(--color-accent-dark))]"
               >
-                ← Back to Directory
+                ← Back to Home
               </Link>
               <div>
                 <a

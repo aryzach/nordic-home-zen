@@ -17,11 +17,8 @@ import Contact from "./pages/Contact";
 import ContactPage from "./pages/ContactPage";
 import Media from "./pages/Media";
 import LearnMore from "./pages/LearnMore";
-import SaunaSanFrancisco from "./pages/SaunaSanFrancisco";
 import InHomeSaunaSF from "./pages/InHomeSaunaSF";
-import InfraredSaunaSF from "./pages/InfraredSaunaSF";
 import FinnishSaunaSF from "./pages/FinnishSaunaSF";
-import SaunaRentalSF from "./pages/SaunaRentalSF";
 import SaunaRentalSanFrancisco from "./pages/SaunaRentalSanFrancisco";
 import SaunaRentalOakland from "./pages/SaunaRentalOakland";
 import SaunaRentalBerkeley from "./pages/SaunaRentalBerkeley";
@@ -29,14 +26,12 @@ import SaunaRentalMarin from "./pages/SaunaRentalMarin";
 import SaunaRentalPaloAlto from "./pages/SaunaRentalPaloAlto";
 import SaunaRentalMountainView from "./pages/SaunaRentalMountainView";
 import ServiceAreas from "./pages/ServiceAreas";
-import SaunaDirectory from "./pages/SaunaDirectory";
 import SouthEndRowingClub from "./pages/SouthEndRowingClub";
 import FitnessSFFillmore from "./pages/FitnessSFFillmore";
 import EmailMoreInfo from "./pages/EmailMoreInfo";
 import ThankYou from "./pages/ThankYou";
 import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrScheduleCall";
 import IndoorInfraredLanding from "./pages/IndoorInfraredLanding";
-import PrefabSaunaInstallation from "./pages/PrefabSaunaInstallation";
 import PrefabSaunaInstallationForm from "./pages/PrefabSaunaInstallationForm";
 import ElectricChecklist from "./pages/ElectricChecklist";
 import NotFound from "./pages/NotFound";
@@ -120,11 +115,8 @@ const App = () => (
           <Route path="/learn-more" element={<LearnMore />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/media" element={<Media />} />
-          <Route path="/sauna-san-francisco" element={<SaunaSanFrancisco />} />
           <Route path="/in-home-sauna-san-francisco" element={<InHomeSaunaSF />} />
-          <Route path="/infrared-sauna-san-francisco" element={<InfraredSaunaSF />} />
           <Route path="/finnish-sauna-san-francisco" element={<FinnishSaunaSF />} />
-          <Route path="/sauna-rental-sf" element={<SaunaRentalSF />} />
           <Route path="/sauna-rental-san-francisco" element={<SaunaRentalSanFrancisco />} />
           <Route path="/sauna-rental-oakland" element={<SaunaRentalOakland />} />
           <Route path="/sauna-rental-berkeley" element={<SaunaRentalBerkeley />} />
@@ -132,14 +124,12 @@ const App = () => (
           <Route path="/sauna-rental-palo-alto" element={<SaunaRentalPaloAlto />} />
           <Route path="/sauna-rental-mountain-view" element={<SaunaRentalMountainView />} />
           <Route path="/service-areas" element={<ServiceAreas />} />
-          <Route path="/sauna-directory" element={<SaunaDirectory />} />
           <Route path="/sauna-review/south-end-rowing-club" element={<SouthEndRowingClub />} />
           <Route path="/sauna-review/fitness-sf-fillmore" element={<FitnessSFFillmore />} />
           <Route path="/email-more-info" element={<EmailMoreInfo />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/reservation-payment-or-schedule-call" element={<ReservationPaymentOrScheduleCall />} />
           <Route path="/indoor-infrared-sauna-rental" element={<IndoorInfraredLanding />} />
-          <Route path="/pre-fab-sauna-installation" element={<PrefabSaunaInstallation />} />
           <Route path="/pre-fab-sauna-installation-form" element={<PrefabSaunaInstallationForm />} />
           <Route path="/electric-checklist" element={<ElectricChecklist />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

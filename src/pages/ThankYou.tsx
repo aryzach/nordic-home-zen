@@ -38,8 +38,8 @@ const ThankYou = () => {
                 size="lg"
                 className="bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-white font-sans font-medium"
               >
-                <Link to="/sauna-directory">
-                  Browse Bay Area Sauna Directory
+                <Link to="/">
+                  Back to Home
                 </Link>
               </Button>
             </div>
