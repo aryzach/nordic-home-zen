@@ -52,7 +52,7 @@ const Hero = () => {
         <div className="flex flex-col items-start text-left max-w-md mx-auto mb-8 order-4">
           <div className="flex items-center gap-2 text-white/90 font-sans text-[16px] md:text-[17px] leading-[1.6] mb-2">
             <Check className="text-[hsl(var(--color-accent))] flex-shrink-0" size={18} />
-            <span>99% of homes already have the right outlet</span>
+            <span>98% of homes already have the right outlet</span>
           </div>
           <div className="flex items-center gap-2 text-white/90 font-sans text-[16px] md:text-[17px] leading-[1.6] mb-2">
             <Check className="text-[hsl(var(--color-accent))] flex-shrink-0" size={18} />
