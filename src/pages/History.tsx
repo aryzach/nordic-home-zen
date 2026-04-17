@@ -45,65 +45,84 @@ const History = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow pt-20">
-        {/* Timeline */}
-        <section className="py-16 md:py-24 bg-muted/30">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-semibold mb-12 text-foreground text-center">
+        {/* Horizontal Timeline */}
+        <section className="pt-10 pb-12 md:pt-12 md:pb-14 bg-muted/30">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h1 className="text-3xl md:text-4xl font-semibold mb-8 md:mb-10 text-foreground text-center">
               History
             </h1>
 
-            <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
+            {/* Desktop: horizontal */}
+            <div className="hidden md:block relative">
+              {/* Horizontal line */}
+              <div className="absolute left-0 right-0 top-3 h-px bg-border" />
 
-              <div className="space-y-12">
-                {timelineEvents.map((event, i) => {
-                  const isLeft = i % 2 === 0;
-                  return (
-                    <div
-                      key={event.year}
-                      className={`relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 ${
-                        isLeft ? "md:flex-row" : "md:flex-row-reverse"
-                      }`}
-                    >
-                      {/* Dot */}
-                      <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-accent border-2 border-background -translate-x-1.5 md:-translate-x-1.5 mt-1.5 md:mt-0 z-10" />
-
-                      {/* Content */}
-                      <div
-                        className={`ml-10 md:ml-0 md:w-[calc(50%-2rem)] ${
-                          isLeft ? "md:text-right md:pr-0" : "md:text-left md:pl-0"
-                        }`}
-                      >
-                        <span className="inline-block text-2xl font-semibold text-accent mb-2">
-                          {event.year}
-                        </span>
-                        {event.items.map((item, j) => (
-                          <p
-                            key={j}
-                            className="text-muted-foreground leading-relaxed mt-1"
+              <div className="grid grid-cols-4 gap-6">
+                {timelineEvents.map((event) => (
+                  <div key={event.year} className="relative flex flex-col items-start">
+                    {/* Dot */}
+                    <div className="w-3 h-3 rounded-full bg-accent border-2 border-background z-10" />
+                    <div className="mt-4">
+                      <span className="block text-lg font-semibold text-accent mb-1.5">
+                        {event.year}
+                      </span>
+                      {event.items.map((item, j) => (
+                        <p
+                          key={j}
+                          className="text-sm text-muted-foreground leading-relaxed"
+                        >
+                          {item}
+                        </p>
+                      ))}
+                      {event.subtext && (
+                        <p className="text-xs mt-2">
+                          <Link
+                            to={event.subtext.href}
+                            className="text-accent hover:underline"
                           >
-                            {item}
-                          </p>
-                        ))}
-                        {event.subtext && (
-                          <p className="text-sm mt-2">
-                            <Link
-                              to={event.subtext.href}
-                              className="text-accent hover:underline"
-                            >
-                              {event.subtext.text}
-                            </Link>
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Spacer for the other side */}
-                      <div className="hidden md:block md:w-[calc(50%-2rem)]" />
+                            {event.subtext.text}
+                          </Link>
+                        </p>
+                      )}
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
+            </div>
+
+            {/* Mobile: vertical */}
+            <div className="md:hidden relative">
+              <div className="absolute left-1.5 top-0 bottom-0 w-px bg-border" />
+              <div className="space-y-6">
+                {timelineEvents.map((event) => (
+                  <div key={event.year} className="relative pl-8">
+                    <div className="absolute left-0 top-1.5 w-3 h-3 rounded-full bg-accent border-2 border-background z-10" />
+                    <span className="block text-lg font-semibold text-accent mb-1">
+                      {event.year}
+                    </span>
+                    {event.items.map((item, j) => (
+                      <p key={j} className="text-sm text-muted-foreground leading-relaxed">
+                        {item}
+                      </p>
+                    ))}
+                    {event.subtext && (
+                      <p className="text-xs mt-2">
+                        <Link to={event.subtext.href} className="text-accent hover:underline">
+                          {event.subtext.text}
+                        </Link>
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Peek at next section */}
+            <div className="mt-10 md:mt-12 text-center">
+              <h2 className="text-xl md:text-2xl font-semibold text-foreground">
+                How the Anywhere Sauna came to be
+              </h2>
+              <p className="text-sm text-muted-foreground mt-2">↓ Read the story</p>
             </div>
           </div>
         </section>
@@ -111,10 +130,6 @@ const History = () => {
         {/* Writeup */}
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 max-w-3xl space-y-6">
-            <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-8">
-              How the Anywhere Sauna came to be
-            </h2>
-
             <p className="text-lg text-muted-foreground leading-relaxed">
               A normal wall outlet in the US is severely underpowered for a sauna. In Europe, saunas are everywhere, and they can do this because the standard outlet in Europe delivers 2x the power compared to the US. This makes installing a sauna in Europe very easy.
             </p>
