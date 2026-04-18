@@ -15,9 +15,9 @@ const GoogleReviews = () => {
   }, []);
 
   return (
-    <section className="w-full py-2 md:py-4">
+    <section className="w-full pt-2 pb-0">
       <div className="container mx-auto px-4">
-        <div className="min-h-[500px] md:min-h-[600px]">
+        <div>
           <div className="elfsight-app-8e4c426b-67fd-4565-8145-975c8d5acc74" data-elfsight-app-lazy></div>
         </div>
       </div>
