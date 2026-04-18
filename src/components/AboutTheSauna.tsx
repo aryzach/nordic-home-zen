@@ -10,7 +10,7 @@ import standardOutlet from "@/assets/standard-outlet.png";
 type Spec = {
   label: string;
   value: React.ReactNode;
-  helper?: string;
+  helper?: React.ReactNode;
 };
 
 type SpecGroup = {
@@ -29,8 +29,17 @@ const overviewGroup: SpecGroup = {
     {
       label: "Power Requirement",
       value: "Standard 120V outlet with 20A breaker",
-      helper:
-        "Book a free video consultation to confirm your setup — ~98% of homes and apartments already have what's needed.",
+      helper: (
+        <>
+          Book a free video consultation to confirm your setup
+          <br />
+          ~98% of homes and apartments already have what's needed.
+          <br />
+          <Link to="/electric-checklist" className="text-accent hover:underline not-italic font-medium">
+            Book Free Electrical Consult
+          </Link>
+        </>
+      ),
     },
   ],
 };
@@ -130,9 +139,9 @@ const SpecRow = ({ spec }: { spec: Spec }) => (
       <div className="text-sm text-muted-foreground">{spec.value}</div>
     </div>
     {spec.helper && (
-      <p className="mt-1 text-xs text-muted-foreground/80 italic md:max-w-2xl">
+      <div className="mt-1 text-xs text-muted-foreground/80 italic md:max-w-2xl">
         {spec.helper}
-      </p>
+      </div>
     )}
   </div>
 );
