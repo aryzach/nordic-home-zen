@@ -137,7 +137,7 @@ export const seoData = {
   reservationPayment: {
     title: "Complete Your Reservation | SF Sauna Rental",
     description: "Complete your sauna reservation with a reservation fee or schedule a video call to discuss your options.",
-    canonical: "https://sfsaunarental.com/reservation-payment-or-schedule-call"
+    canonical: "https://sfsaunarental.com/buy-your-anywhere-sauna"
   },
 
   // Utility Pages

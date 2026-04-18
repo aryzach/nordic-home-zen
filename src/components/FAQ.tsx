@@ -7,7 +7,7 @@ const faqs = [
   {
     question: "Will this actually work in my home?",
     answer:
-      "Yes — it's specifically designed for standard 120V outlets. About ~98% of homes and apartments already have the setup needed.\n\nIf you're unsure, book a free 5-minute video consult and we'll check your outlet + breaker together.",
+      "Yes — it's specifically designed for standard 120V outlets. About ~98% of homes and apartments already have the setup needed.\n\nIf you're unsure, book a free 15-minute video consult and we'll check your outlet + breaker together.",
   },
   {
     question: "I thought a standard outlet couldn't get a sauna hot?",
@@ -132,14 +132,13 @@ const FAQ = () => {
         <div className="mb-8">
           <ConsultCallout
             heading="Not sure if it'll work in your home?"
-            body="Book a free 5-minute video consultation and we'll check your setup together."
+            body="Book a free 15-minute video consultation and we'll check your setup together."
           />
         </div>
 
         <Accordion
           type="single"
           collapsible
-          defaultValue="item-0"
           className="mb-10 divide-y divide-border/60 border-y border-border/60"
         >
           {faqs.map((faq, index) => (

@@ -26,7 +26,7 @@ const ReservationPaymentOrScheduleCall = () => {
               Buy Your Anywhere Sauna
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              A cheap sauna built to make you sweat. That's it.
+              A sauna built for the standard home outlet that can make you sweat. That's it.
             </p>
 
             {/* Acknowledgement checkboxes */}
@@ -61,7 +61,7 @@ const ReservationPaymentOrScheduleCall = () => {
                   className="mt-0.5"
                 />
                 <span className="text-foreground">
-                  I understand setup takes <strong>~3 hours with two people</strong> —{" "}
+                  I understand setup takes <strong>~2 hours with two people</strong> —{" "}
                   <Link to="/how-it-works" className="text-accent hover:underline">see the setup video</Link>.
                 </span>
               </label>
