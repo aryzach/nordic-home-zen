@@ -29,8 +29,17 @@ const overviewGroup: SpecGroup = {
     {
       label: "Power Requirement",
       value: "Standard 120V outlet with 20A breaker",
-      helper:
-        "Book a free video consultation to confirm your setup — ~98% of homes and apartments already have what's needed.",
+      helper: (
+        <>
+          Book a free video consultation to confirm your setup
+          <br />
+          ~98% of homes and apartments already have what's needed.
+          <br />
+          <Link to="/electric-checklist" className="text-accent hover:underline not-italic font-medium">
+            Book Free Electrical Consult
+          </Link>
+        </>
+      ),
     },
   ],
 };
