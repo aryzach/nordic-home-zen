@@ -15,14 +15,12 @@ const ElectricChecklist = () => {
             </h1>
             
             <div className="bg-card p-8 rounded-lg border border-border mb-8">
-              <div className="bg-accent/10 rounded-lg p-6 border border-accent/20">
-                <p className="text-2xl font-heading font-semibold text-heading mb-2">
-                  98% of US homes and apartments already have what's needed.
-                </p>
-                <p className="text-muted-foreground">
-                  Book a quick 15-minute electrical consult to make sure you're good to go.
-                </p>
-              </div>
+              <p className="text-2xl font-heading font-semibold text-heading mb-2">
+                98% of US homes and apartments already have what's needed.
+              </p>
+              <p className="text-muted-foreground">
+                Book a quick 15-minute electrical consult to make sure you're good to go.
+              </p>
             </div>
 
             <div className="bg-card p-8 rounded-lg border border-border mb-8">
