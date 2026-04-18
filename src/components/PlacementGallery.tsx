@@ -4,16 +4,17 @@ const placements = [
   { label: "Backyards", placeholder: "Backyard sauna photo" },
   { label: "Garages", placeholder: "Garage sauna photo" },
   { label: "Decks", placeholder: "Deck sauna photo" },
+  { label: "Bedrooms", placeholder: "Bedroom sauna photo" },
 ];
 
 const PlacementGallery = () => {
   return (
-    <section className="py-16 md:py-24 bg-cedar-section">
+    <section className="py-8 md:py-12 bg-cedar-section">
       <div className="container mx-auto px-4 max-w-[1100px]">
         <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-12 text-heading text-center">
           Put It Anywhere
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {placements.map((p) => (
             <div key={p.label} className="flex flex-col items-center">
               <div className="aspect-[4/3] w-full bg-muted rounded-lg flex items-center justify-center border border-border mb-3">

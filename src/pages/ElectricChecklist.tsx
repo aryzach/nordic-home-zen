@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, Check, Plug, Video, Home } from "lucide-react";
+import { Calendar, Check, Video, Home } from "lucide-react";
 
 const ElectricChecklist = () => {
   return (
@@ -15,15 +15,6 @@ const ElectricChecklist = () => {
             </h1>
             
             <div className="bg-card p-8 rounded-lg border border-border mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <Plug className="text-accent" size={28} />
-                <h2 className="text-2xl font-heading font-semibold text-heading">
-                  Designed for Standard Home Electrical
-                </h2>
-              </div>
-              <p className="text-lg text-muted-foreground mb-6">
-                The Anywhere Sauna plugs into a standard household outlet. No 240V, no electrician, no permits.
-              </p>
               <div className="bg-accent/10 rounded-lg p-6 border border-accent/20">
                 <p className="text-2xl font-heading font-semibold text-heading mb-2">
                   98% of US homes and apartments already have what's needed.
