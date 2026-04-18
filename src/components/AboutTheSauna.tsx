@@ -10,7 +10,7 @@ import standardOutlet from "@/assets/standard-outlet.png";
 type Spec = {
   label: string;
   value: React.ReactNode;
-  helper?: string;
+  helper?: React.ReactNode;
 };
 
 type SpecGroup = {
@@ -139,9 +139,9 @@ const SpecRow = ({ spec }: { spec: Spec }) => (
       <div className="text-sm text-muted-foreground">{spec.value}</div>
     </div>
     {spec.helper && (
-      <p className="mt-1 text-xs text-muted-foreground/80 italic md:max-w-2xl">
+      <div className="mt-1 text-xs text-muted-foreground/80 italic md:max-w-2xl">
         {spec.helper}
-      </p>
+      </div>
     )}
   </div>
 );
