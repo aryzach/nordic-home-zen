@@ -130,27 +130,27 @@ const History = () => {
         <section className="pt-6 pb-16 md:pt-8 md:pb-24">
           <div className="container mx-auto px-4 max-w-3xl space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              A normal wall outlet in the US is severely underpowered for a sauna. In Europe, saunas are everywhere, and they can do this because the standard outlet in Europe delivers 2x the power compared to the US. This makes installing a sauna in Europe very easy.
+              A normal wall outlet (120V) in the US is severely underpowered for a sauna. In Europe, saunas are everywhere, and they can do this because the standard outlet in Europe delivers twice the power compared to the US. This makes installing a sauna in Europe very easy.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I severely wanted a sauna, but found there weren't any good options that didn't require expensive electrical modifications that all other saunas need, and my landlord wouldn't have approved that anyway.
+              I desperately wanted a sauna, but found there weren't any good options that didn't require expensive electrical modifications that all other saunas need, and my landlord wouldn't have approved that anyway.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I started with an infrared sauna, which can plug into a standard US outlet, but this didn't satiate my desire for the real dry and hot heat of the good saunas I've used at spas and gyms.
+              I decided to buy an infrared sauna, which can plug into a standard US outlet, but this didn't satiate my desire for the real dry and hot heat of the good saunas I've used at spas and gyms.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I wanted a hotter sauna, so I bought a 120V heater to put in my infrared sauna and see I could get it hotter. While it got warmer, my legs were still cold and the sauna seemed to be losing a lot of heat.
+              I wanted a hotter sauna, so I bought a 120V heater to try out. I put in my infrared sauna and see I could get it hotter. While it got warmer, my legs were still cold and the sauna seemed to be losing a lot of heat.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              From there, I spent months iterating on the design and trying countless modifications to get the heat I wanted.
+              From there, I spent months modifying the sauna enclosure, trying countless improvements to get the heat I wanted, while still only using the 120V sauna heater.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I raised the bench and the floor to create more even, full-body heat, I insulated the ceiling, walls, and glass, I sealed the cracks around the door. Some of this helped and some didn't. But I ended up with a design that worked, and got just as hot as the good saunas I've used at the spa or my gym.
+              I raised the bench and the floor to create more even, full-body heat. I insulated the ceiling, walls, and glass. I sealed the cracks around the door. Some of this helped and some didn't. But I ended up with a sauna enclosure design that worked, and got just as hot as the good saunas I've used at the spa or my gym.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
