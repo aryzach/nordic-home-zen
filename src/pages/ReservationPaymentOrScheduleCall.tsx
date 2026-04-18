@@ -139,14 +139,10 @@ const ReservationPaymentOrScheduleCall = () => {
                 size="lg"
                 className="w-full"
               >
-                <a 
-                  href="https://calendar.app.google/tn9D96XCvg1sYfZGA" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
+                <Link to="/electric-checklist">
                   <Calendar className="mr-2" size={18} />
                   Schedule Electrical Consult
-                </a>
+                </Link>
               </Button>
             </div>
           </div>

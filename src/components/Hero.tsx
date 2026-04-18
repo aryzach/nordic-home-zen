@@ -79,7 +79,7 @@ const Hero = () => {
           <form
             action="https://api.web3forms.com/submit"
             method="POST"
-            className="flex gap-2 w-full"
+            className="flex gap-2 w-full items-stretch"
           >
             <input type="hidden" name="access_key" value="0d3fcf2f-c3a3-49ec-9106-7ab3f8a35cf6" />
             <input type="hidden" name="subject" value="New Hero Email Signup" />
@@ -88,15 +88,14 @@ const Hero = () => {
               type="email"
               name="email"
               required
-              placeholder="sign up to learn more"
-              className="flex-1 bg-white/95 text-charcoal placeholder:text-charcoal/60 border-0"
+              placeholder="Enter your email"
+              className="flex-1 h-11 bg-white/95 text-charcoal placeholder:text-charcoal/60 border-0"
             />
             <Button
               type="submit"
-              size="lg"
-              className="bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-[hsl(var(--color-white))] font-sans font-medium"
+              className="h-11 bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-[hsl(var(--color-white))] font-sans font-medium"
             >
-              Join
+              Learn More
             </Button>
           </form>
         </div>
