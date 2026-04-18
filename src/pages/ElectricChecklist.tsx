@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, Check, Plug, Video, Home } from "lucide-react";
+import { Calendar, Check, Video, Home } from "lucide-react";
 
 const ElectricChecklist = () => {
   return (
