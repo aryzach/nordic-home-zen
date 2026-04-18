@@ -119,16 +119,15 @@ const History = () => {
 
             {/* Peek at next section */}
             <div className="mt-10 md:mt-12 text-center">
-              <h2 className="text-xl md:text-2xl font-semibold text-foreground">
+              <h2 className="text-3xl md:text-4xl font-semibold text-foreground">
                 How the Anywhere Sauna came to be
               </h2>
-              <p className="text-sm text-muted-foreground mt-2">↓ Read the story</p>
             </div>
           </div>
         </section>
 
         {/* Writeup */}
-        <section className="py-16 md:py-24">
+        <section className="pt-6 pb-16 md:pt-8 md:pb-24">
           <div className="container mx-auto px-4 max-w-3xl space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
               A normal wall outlet in the US is severely underpowered for a sauna. In Europe, saunas are everywhere, and they can do this because the standard outlet in Europe delivers 2x the power compared to the US. This makes installing a sauna in Europe very easy.

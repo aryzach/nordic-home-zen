@@ -39,7 +39,7 @@ const Contact = () => {
               className="space-y-6"
             >
               <input type="hidden" name="access_key" value="c69ea9bb-1c41-4a04-9948-6cf7aa7f09ef" />
-              <input type="hidden" name="redirect" value="https://sfsaunarental.com/reservation-payment-or-schedule-call" />
+              <input type="hidden" name="redirect" value="https://sfsaunarental.com/buy-your-anywhere-sauna" />
               <input type="hidden" name="sauna_type" value={saunaType} />
               <input type="hidden" name="location" value={location} />
               <input type="hidden" name="region" value={region} />

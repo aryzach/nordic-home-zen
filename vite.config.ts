@@ -33,7 +33,7 @@ export const routes = [
   '/sauna-review/fitness-sf-fillmore',
   '/email-more-info',
   '/thank-you',
-  '/reservation-payment-or-schedule-call',
+  '/buy-your-anywhere-sauna',
   '/indoor-infrared-sauna-rental',
 ];
 

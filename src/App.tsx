@@ -128,7 +128,8 @@ const App = () => (
           <Route path="/sauna-review/fitness-sf-fillmore" element={<FitnessSFFillmore />} />
           <Route path="/email-more-info" element={<EmailMoreInfo />} />
           <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/reservation-payment-or-schedule-call" element={<ReservationPaymentOrScheduleCall />} />
+          <Route path="/buy-your-anywhere-sauna" element={<ReservationPaymentOrScheduleCall />} />
+          <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
           <Route path="/indoor-infrared-sauna-rental" element={<IndoorInfraredLanding />} />
           <Route path="/pre-fab-sauna-installation-form" element={<PrefabSaunaInstallationForm />} />
           <Route path="/electric-checklist" element={<ElectricChecklist />} />

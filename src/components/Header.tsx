@@ -59,7 +59,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <Button asChild className="hidden md:flex font-sans font-medium bg-accent hover:bg-accent/90 text-white">
-            <Link to="/reservation-payment-or-schedule-call">Buy Now</Link>
+            <Link to="/buy-your-anywhere-sauna">Buy Now</Link>
           </Button>
 
           {/* Mobile Menu Button */}
@@ -91,7 +91,7 @@ const Header = () => {
                 FAQ
               </button>
               <Button asChild className="w-full font-sans font-medium bg-accent hover:bg-accent/90 text-white">
-                <Link to="/reservation-payment-or-schedule-call" onClick={() => setIsMobileMenuOpen(false)}>Buy Now</Link>
+                <Link to="/buy-your-anywhere-sauna" onClick={() => setIsMobileMenuOpen(false)}>Buy Now</Link>
               </Button>
             </div>
           </nav>

@@ -36,7 +36,7 @@ const routes = [
   '/sauna-review/fitness-sf-fillmore',
   '/email-more-info',
   '/thank-you',
-  '/reservation-payment-or-schedule-call',
+  '/buy-your-anywhere-sauna',
 ];
 
 const PORT = 5173;
