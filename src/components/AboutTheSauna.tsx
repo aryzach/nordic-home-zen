@@ -167,7 +167,7 @@ const GroupBlock = ({ group }: { group: SpecGroup }) => (
 
 const AboutTheSauna = () => {
   return (
-    <section id="about-the-sauna" className="pt-6 md:pt-8 pb-16 md:pb-24 bg-background">
+    <section id="about-the-sauna" className="pt-0 pb-8 md:pb-12 bg-background">
       <div className="container mx-auto px-4 max-w-[900px]">
         <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-8 text-heading text-center">
           About the Anywhere Sauna
