@@ -96,16 +96,8 @@ const ContactPage = () => {
                   <div className="flex items-start gap-3">
                     <MapPin className="text-accent mt-1 flex-shrink-0" size={20} />
                     <div>
-                      <p className="font-medium text-heading">Address</p>
-                      <a 
-                        href="https://share.google/veQFqIFODS6dBdPmM"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-text hover:text-accent transition-colors"
-                      >
-                        1618 McAllister St<br />
-                        San Francisco, CA 94115
-                      </a>
+                      <p className="font-medium text-heading">Service Area</p>
+                      <p className="text-text">San Francisco Bay Area, CA</p>
                     </div>
                   </div>
 
