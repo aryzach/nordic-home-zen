@@ -21,9 +21,6 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl font-semibold mb-1 text-accent">The Anywhere Sauna</h3>
             <p className="text-white/60 text-xs mb-4">by SF Sauna</p>
-            <p className="text-white/70 text-sm">
-              Premium in-home sauna rentals in the San Francisco Bay Area
-            </p>
           </div>
 
           {/* Contact */}
