@@ -1,20 +1,13 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { ExternalLink, Calendar } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ReservationPaymentOrScheduleCall = () => {
   useSEO(seoData.reservationPayment);
-  const [noHeater, setNoHeater] = useState(false);
-  const [tempAck, setTempAck] = useState(false);
-  const [setupAck, setSetupAck] = useState(false);
-
-  const allChecked = noHeater && tempAck && setupAck;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -26,46 +19,8 @@ const ReservationPaymentOrScheduleCall = () => {
               Buy Your Anywhere Sauna
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              A sauna built for the standard home outlet that can make you sweat. That's it.
+              A sauna built for a standard outlet that makes you sweat. That's it.
             </p>
-
-            {/* Acknowledgement checkboxes */}
-            <div className="bg-card p-6 rounded-lg border border-border mb-8 space-y-4">
-              <h2 className="text-xl font-heading font-semibold text-heading mb-2">Before you buy, please confirm:</h2>
-              
-              <label className="flex items-start gap-3 cursor-pointer">
-                <Checkbox
-                  checked={noHeater}
-                  onCheckedChange={(v) => setNoHeater(v === true)}
-                  className="mt-0.5"
-                />
-                <span className="text-foreground">I understand the sauna <strong>does not include a heater</strong>. I will source my own (max dimensions: 13″ × 22″ × 9″).</span>
-              </label>
-
-              <label className="flex items-start gap-3 cursor-pointer">
-                <Checkbox
-                  checked={tempAck}
-                  onCheckedChange={(v) => setTempAck(v === true)}
-                  className="mt-0.5"
-                />
-                <span className="text-foreground">
-                  I understand the sauna works best in <strong>50°F and above</strong> —{" "}
-                  <Link to="/service-areas" className="text-accent hover:underline">see the Service Areas</Link>.
-                </span>
-              </label>
-
-              <label className="flex items-start gap-3 cursor-pointer">
-                <Checkbox
-                  checked={setupAck}
-                  onCheckedChange={(v) => setSetupAck(v === true)}
-                  className="mt-0.5"
-                />
-                <span className="text-foreground">
-                  I understand setup takes <strong>~2 hours with two people</strong> —{" "}
-                  <Link to="/how-it-works" className="text-accent hover:underline">see the setup video</Link>.
-                </span>
-              </label>
-            </div>
 
             {/* Buy options */}
             <div className="space-y-6 mb-8">
@@ -81,13 +36,11 @@ const ReservationPaymentOrScheduleCall = () => {
                   asChild 
                   size="lg"
                   className="w-full"
-                  disabled={!allChecked}
                 >
                   <a 
-                    href={allChecked ? "https://buy.stripe.com/eVqdR999Z8xo98w0Lh6Vq0i" : undefined}
+                    href="https://buy.stripe.com/eVqdR999Z8xo98w0Lh6Vq0i"
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className={!allChecked ? "pointer-events-none opacity-50" : ""}
                   >
                     Buy Cedar Sauna
                     <ExternalLink className="ml-2" size={18} />
@@ -107,13 +60,11 @@ const ReservationPaymentOrScheduleCall = () => {
                   asChild 
                   size="lg"
                   className="w-full"
-                  disabled={!allChecked}
                 >
                   <a 
-                    href={allChecked ? "https://buy.stripe.com/eVqdR999Z8xo98w0Lh6Vq0i" : undefined}
+                    href="https://buy.stripe.com/eVqdR999Z8xo98w0Lh6Vq0i"
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className={!allChecked ? "pointer-events-none opacity-50" : ""}
                   >
                     Buy Fir Sauna
                     <ExternalLink className="ml-2" size={18} />

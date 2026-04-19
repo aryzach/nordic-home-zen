@@ -69,8 +69,15 @@ const moreGroups: SpecGroup[] = [
       {
         label: "Heater Included",
         value: "No",
-        helper:
-          "The sauna does not come with a heater — choose one that fits your budget from Amazon or any retailer. We can help you pick during a free video consultation.",
+        helper: (
+          <>
+            The sauna does not come with a heater. There are a few options that range from $200 - $800. We can help you pick during the free video electrical consultation.{" "}
+            <Link to="/electric-checklist" className="text-accent hover:underline not-italic font-medium">
+              Click here to schedule a free electrical consultation
+            </Link>
+            .
+          </>
+        ),
       },
       { label: "Maximum Heater Dimensions", value: "13″ × 22″ × 9″" },
       { label: "Recommended Power Range", value: "1.8kW – 2.0kW (for standard outlet use)" },
