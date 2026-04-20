@@ -1,27 +1,29 @@
 
-# Fix FAQ Scroll Position When Navigating From Other Pages
+The user is asking for the full list of specs used in the comparison chart on the homepage. This is a research/Q&A request, not an implementation task — no plan needed. Pulling directly from `src/components/ComparisonTable.tsx`.
 
-## Problem
-When clicking "FAQ" from a non-homepage route, the app navigates to `/#faq` and scrolls down. But the Elfsight review widgets (GoogleReviews and SocialProof) load dynamically and expand the page height *after* the scroll calculation runs. This means the scroll lands too high -- by the time the reviews finish loading and push content down, the FAQ section has shifted further down the page.
+## Comparison Chart — Full List of Specs
 
-## Solution (Two-Part Fix)
+The chart compares three saunas: **Anywhere Sauna**, **Barrel Sauna (Costco)**, and **Nordica SaunaLife**.
 
-### 1. Reserve space for dynamically-loaded review widgets
-Add a `min-height` to the GoogleReviews component container so the page layout is stable before the widget loads. The SocialProof component already has `min-h-[400px]` but GoogleReviews has no height reservation at all.
+### Main Table (always visible)
+1. Standard Outlet (120V, 20A circuit breaker)
+2. Full Body Heat
+3. Renter Friendly
+4. Permits / Landlord Approval
+5. Setup Time
+6. Where You Can Put It
+7. All-in Cost
 
-- **GoogleReviews.tsx**: Add `min-h-[300px] md:min-h-[400px]` to the widget container div so the browser reserves vertical space upfront.
+### Full Specs Table (shown when "See full comparison" expanded)
+1. Exterior Dimensions
+2. Heated Space
+3. Wood Type
+4. Longevity
+5. Heater Included
+6. Compatible with SuperHotSuperFast Heater (shipping 2027)
+7. Unit Cost
+8. Shipping Cost
+9. Electrician Cost
+10. Total Cost
 
-### 2. Improve ScrollToHash to retry after dynamic content loads
-The current `ScrollToHash` component in `App.tsx` only scrolls once after a 200ms delay. This is not enough time for the Elfsight widgets to load and render. Instead of guessing a single delay, implement a retry mechanism that re-scrolls a couple of times over a longer window (e.g., at 200ms, 1s, and 2s) to account for late-loading content. Each retry will only scroll if the element's position has shifted from the last attempt.
-
-- **App.tsx (ScrollToHash)**: Add additional delayed scroll attempts at ~1000ms and ~2000ms after navigation, checking if the element position has changed before re-scrolling.
-
----
-
-### Technical Details
-
-**GoogleReviews.tsx change:**
-Add `min-h-[300px] md:min-h-[400px]` to the Elfsight widget div to reserve layout space.
-
-**App.tsx ScrollToHash change:**
-Replace the single `setTimeout` with multiple staggered timeouts (200ms, 1000ms, 2000ms). Each timeout scrolls to the target element, which naturally accounts for layout shifts from dynamically loaded content. The later timeouts act as corrections if the page height changed.
+Source: `src/components/ComparisonTable.tsx` (`mainRows` and `specRows` arrays).
