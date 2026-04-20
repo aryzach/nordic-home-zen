@@ -194,7 +194,7 @@ const AboutTheSauna = () => {
           {aboutPhotos.map((photo, i) => (
             <div
               key={i}
-              className="aspect-square rounded-lg overflow-hidden border border-border bg-muted flex items-center justify-center"
+              className="aspect-square rounded-lg overflow-hidden flex items-center justify-center"
             >
               <img
                 src={photo.src}
