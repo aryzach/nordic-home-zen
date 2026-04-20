@@ -16,7 +16,7 @@ const mainRows: Row[] = [
   { label: "Standard Outlet (120V, 20A circuit breaker)", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
   { label: "Full Body Heat", anywhere: "✅", barrel: "❌ (feet stay cold)", nordica: "✅", plunge: "✅" },
   { label: "Renter Friendly", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
-  { label: "Permits / Landlord Approval", anywhere: "✅ Not needed", barrel: "⚠️ Usually required", nordica: "⚠️ Usually required", plunge: "⚠️ Usually required" },
+  { label: "Install Without Permits or Approval", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
   { label: "Setup Time", anywhere: "~2 hours", barrel: "~8 hours + electrician", nordica: "~8 hours + electrician", plunge: "~2 hours" },
   { label: "Where You Can Put It", anywhere: "Indoor or outdoor, any level surface", barrel: "Outdoor only (deck/gravel/concrete)", nordica: "Indoor or outdoor", plunge: "Indoor or outdoor" },
   { label: "All-in Cost", anywhere: "$4,599", barrel: "$5,399–$7,000+", nordica: "~$4,949", plunge: "$11,089" },
