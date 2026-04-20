@@ -119,7 +119,8 @@ const App = () => (
           <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
           <Route path="/indoor-infrared-sauna-rental" element={<IndoorInfraredLanding />} />
           <Route path="/pre-fab-sauna-installation-form" element={<PrefabSaunaInstallationForm />} />
-          <Route path="/electric-checklist" element={<ElectricChecklist />} />
+          <Route path="/sauna-electrical-fit-consultation" element={<ElectricChecklist />} />
+          <Route path="/electric-checklist" element={<Navigate to="/sauna-electrical-fit-consultation" replace />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
