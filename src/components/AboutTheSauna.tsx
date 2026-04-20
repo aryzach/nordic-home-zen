@@ -71,7 +71,7 @@ const moreGroups: SpecGroup[] = [
         value: "No",
         helper: (
           <>
-            The sauna does not come with a heater. There are a few options that range from $200 - $800. We can help you pick during the free video electrical consultation.{" "}
+            The sauna does not come with a heater. There are a few options that range from $200 - $900. We can help you pick during the free video electrical consultation.{" "}
             <Link to="/electric-checklist" className="text-accent hover:underline not-italic font-medium">
               Click here to schedule a free electrical consultation
             </Link>
