@@ -194,12 +194,12 @@ const AboutTheSauna = () => {
           {aboutPhotos.map((photo, i) => (
             <div
               key={i}
-              className="aspect-square rounded-lg overflow-hidden border border-border bg-muted"
+              className="aspect-square rounded-lg overflow-hidden border border-border bg-muted flex items-center justify-center"
             >
               <img
                 src={photo.src}
                 alt={photo.alt}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 loading="lazy"
               />
             </div>
