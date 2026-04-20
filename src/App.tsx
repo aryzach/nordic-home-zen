@@ -123,7 +123,8 @@ const App = () => (
           <Route path="/sauna-rental-marin" element={<SaunaRentalMarin />} />
           <Route path="/sauna-rental-palo-alto" element={<SaunaRentalPaloAlto />} />
           <Route path="/sauna-rental-mountain-view" element={<SaunaRentalMountainView />} />
-          <Route path="/service-areas" element={<ServiceAreas />} />
+          <Route path="/climate-performance" element={<ServiceAreas />} />
+          <Route path="/service-areas" element={<Navigate to="/climate-performance" replace />} />
           <Route path="/sauna-review/south-end-rowing-club" element={<SouthEndRowingClub />} />
           <Route path="/sauna-review/fitness-sf-fillmore" element={<FitnessSFFillmore />} />
           <Route path="/email-more-info" element={<EmailMoreInfo />} />
