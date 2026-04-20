@@ -13,8 +13,9 @@ import {
 type Row = { label: string; anywhere: string; barrel: string; nordica: string; plunge: string };
 
 const mainRows: Row[] = [
-  { label: "Full Body Heat (incl. legs and feet)", anywhere: "✅", barrel: "❌", nordica: "✅", plunge: "✅" },
+  { label: "Traditional Finnish Temps (~176°F)", anywhere: "✅", barrel: "✅", nordica: "✅", plunge: "✅" },
   { label: "Standard Outlet (120V, 20A circuit breaker)", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
+  { label: "Full Body Heat (incl. legs and feet)", anywhere: "✅", barrel: "❌", nordica: "✅", plunge: "✅" },
   { label: "Renter Friendly", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
   { label: "Install Without Permits or Landlord Approval", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
   { label: "Works on Any Level Surface (No Site Prep)", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
