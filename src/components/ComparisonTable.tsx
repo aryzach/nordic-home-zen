@@ -48,10 +48,10 @@ const ComparisonBlock = ({ rows }: { rows: Row[] }) => (
             Anywhere Sauna
           </TableHead>
           <TableHead className="text-center font-medium text-muted-foreground">
-            Barrel Sauna (Costco)
+            Nordica SaunaLife
           </TableHead>
           <TableHead className="text-center font-medium text-muted-foreground">
-            Nordica SaunaLife
+            Barrel Sauna (Costco)
           </TableHead>
           <TableHead className="text-center font-medium text-muted-foreground">
             Plunge Sauna Mini
@@ -68,10 +68,10 @@ const ComparisonBlock = ({ rows }: { rows: Row[] }) => (
               {row.anywhere}
             </TableCell>
             <TableCell className="text-center text-muted-foreground align-middle">
-              {row.barrel}
+              {row.nordica}
             </TableCell>
             <TableCell className="text-center text-muted-foreground align-middle">
-              {row.nordica}
+              {row.barrel}
             </TableCell>
             <TableCell className="text-center text-muted-foreground align-middle">
               {row.plunge}
