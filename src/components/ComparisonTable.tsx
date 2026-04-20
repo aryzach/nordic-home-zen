@@ -13,11 +13,12 @@ import {
 type Row = { label: string; anywhere: string; barrel: string; nordica: string; plunge: string };
 
 const mainRows: Row[] = [
-  { label: "Full Body Heat (incl. legs and feet)", anywhere: "✅", barrel: "❌", nordica: "✅", plunge: "✅" },
+  { label: "Traditional Finnish Temps (~176°F)", anywhere: "✅", barrel: "✅", nordica: "✅", plunge: "✅" },
   { label: "Standard Outlet (120V, 20A circuit breaker)", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
+  { label: "Full Body Heat (incl. legs and feet)", anywhere: "✅", barrel: "❌", nordica: "✅", plunge: "✅" },
   { label: "Renter Friendly", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
   { label: "Install Without Permits or Landlord Approval", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
-  { label: "Works on Any Level Surface (No Site Prep)", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
+  { label: "Works on Any Level Surface (No Site Prep)", anywhere: "✅", barrel: "❌", nordica: "✅", plunge: "❌" },
   { label: "No electrician required", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
   { label: "Setup Time", anywhere: "~2 hours", barrel: "~8 hours", nordica: "~8 hours", plunge: "~2 hours" },
   { label: "All-in Cost", anywhere: "$4,599", barrel: "$5,399–$7,000+", nordica: "~$4,949", plunge: "$11,089" },
@@ -93,8 +94,8 @@ const ComparisonTable = () => {
         <p className="text-base md:text-lg text-muted-foreground text-center mb-2 max-w-2xl mx-auto">
           Most saunas require expensive electrical work. This one doesn't.
         </p>
-        <p className="text-sm md:text-base text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
-          Compare the Anywhere Sauna to the other affordable saunas on the market
+        <p className="text-base md:text-lg text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+          Compare the Anywhere Sauna to the other affordable steam saunas on the market
         </p>
 
         <ComparisonBlock rows={mainRows} />
