@@ -21,7 +21,7 @@ export const routes = [
   { path: '/sauna-rental-marin', priority: 0.8, changefreq: 'weekly' },
   { path: '/sauna-rental-palo-alto', priority: 0.8, changefreq: 'weekly' },
   { path: '/sauna-rental-mountain-view', priority: 0.8, changefreq: 'weekly' },
-  { path: '/service-areas', priority: 0.7, changefreq: 'monthly' },
+  { path: '/climate-performance', priority: 0.7, changefreq: 'monthly' },
   { path: '/sauna-review/south-end-rowing-club', priority: 0.7, changefreq: 'monthly' },
   { path: '/sauna-review/fitness-sf-fillmore', priority: 0.7, changefreq: 'monthly' },
   { path: '/email-more-info', priority: 0.5, changefreq: 'monthly' },
