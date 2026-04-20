@@ -15,7 +15,7 @@ const ServiceAreas = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-semibold mb-6 text-heading tracking-tight leading-tight">
-              Where Does It Work?
+              Climate &amp; Performance
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-4 leading-relaxed">
               The plug-in Anywhere Sauna works best when ambient temperatures are <strong className="text-foreground">50°F or above</strong>. You can put this anywhere — results may vary when the ambient temperature is under 50°F.
@@ -41,8 +41,8 @@ const ServiceAreas = () => {
               <h3 className="text-2xl font-heading font-semibold mb-4 text-heading">
                 Not sure about your climate?
               </h3>
-              <p className="text-lg text-muted-foreground">
-                The sauna works everywhere — it just heats up faster in warmer ambient temps. If your area is regularly below 50°F in winter, expect longer heat-up times during those months.
+            <p className="text-lg text-muted-foreground">
+                The sauna works everywhere — it just heats up faster and gets hotter in warmer ambient temps. If your area is regularly below 50°F in winter, expect longer heat-up times and lower max temps during those months.
               </p>
             </div>
           </div>
