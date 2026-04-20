@@ -6,6 +6,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import standardOutlet from "@/assets/standard-outlet.png";
+import saunaPhoto1 from "@/assets/sauna-exterior-front.png";
+import saunaPhoto2 from "@/assets/sauna-interior-back.png";
+import saunaPhoto3 from "@/assets/sauna-interior-floor.png";
+
+const aboutPhotos = [
+  { src: saunaPhoto1, alt: "Anywhere Sauna exterior front view with glass door" },
+  { src: saunaPhoto2, alt: "Anywhere Sauna interior back wall with cedar paneling" },
+  { src: saunaPhoto3, alt: "Anywhere Sauna interior floor and bench view" },
+];
 
 type Spec = {
   label: string;
@@ -182,12 +191,17 @@ const AboutTheSauna = () => {
 
         {/* Image placeholders + outlet photo */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          {[1, 2, 3].map((i) => (
+          {aboutPhotos.map((photo, i) => (
             <div
               key={i}
-              className="aspect-square bg-muted rounded-lg flex items-center justify-center border border-border"
+              className="aspect-square rounded-lg overflow-hidden border border-border bg-muted"
             >
-              <span className="text-muted-foreground text-sm">Photo {i}</span>
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
           ))}
           <div className="aspect-square rounded-lg overflow-hidden border border-border bg-muted">
