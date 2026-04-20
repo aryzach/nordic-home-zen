@@ -13,11 +13,6 @@ export const seoData = {
     description: "View monthly pricing for infrared and steam sauna rentals in San Francisco. Indoor and outdoor options starting at $169/mo. Free installation on 6+ month leases.",
     canonical: "https://sfsaunarental.com/pricing"
   },
-  howItWorks: {
-    title: "How It Works | SF Sauna Rental",
-    description: "Learn how SF Sauna Rental delivers, installs, and maintains your home sauna. 120V plug-in saunas with professional setup in 45 minutes. No permits or contractors needed.",
-    canonical: "https://sfsaunarental.com/how-it-works"
-  },
   howItStarted: {
     title: "How It Started | SF Sauna Rental",
     description: "Meet Zach, founder of SF Sauna. After 3 years of chronic pain and discovering sauna therapy, he started SF Sauna to bring convenient sauna access to Bay Area renters.",
