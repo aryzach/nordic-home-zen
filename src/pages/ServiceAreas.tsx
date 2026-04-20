@@ -18,7 +18,7 @@ const ServiceAreas = () => {
               Climate &amp; Performance
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-4 leading-relaxed">
-              The plug-in Anywhere Sauna works best when ambient temperatures are <strong className="text-foreground">50°F or above</strong>. You can put this anywhere — results may vary when the ambient temperature is under 50°F.
+              The Anywhere Sauna works best when ambient temperatures are <strong className="text-foreground">50°F or above</strong>. You can put this anywhere — results may vary when the ambient temperature is under 50°F.
             </p>
             <p className="text-muted-foreground mb-12">
               Explore average monthly temperatures across the continental US. Use the controls to see how your area stacks up throughout the year.

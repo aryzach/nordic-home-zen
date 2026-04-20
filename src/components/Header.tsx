@@ -43,8 +43,8 @@ const Header = () => {
             <Link to="/history" className="text-white/70 hover:text-white transition-colors">
               History
             </Link>
-            <Link to="/service-areas" className="text-white/70 hover:text-white transition-colors">
-              Service Areas
+            <Link to="/climate-performance" className="text-white/70 hover:text-white transition-colors">
+              Climate &amp; Performance
             </Link>
             <Link to="/electric-checklist" className="text-white/70 hover:text-white transition-colors">
               Electric Checklist
@@ -75,8 +75,8 @@ const Header = () => {
               <Link to="/history" className="text-left text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 History
               </Link>
-              <Link to="/service-areas" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Service Areas
+              <Link to="/climate-performance" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                Climate &amp; Performance
               </Link>
               <Link to="/electric-checklist" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 Electric Checklist
