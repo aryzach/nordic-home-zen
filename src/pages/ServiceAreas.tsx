@@ -41,8 +41,8 @@ const ServiceAreas = () => {
               <h3 className="text-2xl font-heading font-semibold mb-4 text-heading">
                 Not sure about your climate?
               </h3>
-              <p className="text-lg text-muted-foreground">
-                The sauna works everywhere — it just heats up faster in warmer ambient temps. If your area is regularly below 50°F in winter, expect longer heat-up times during those months.
+            <p className="text-lg text-muted-foreground">
+                The sauna works everywhere — it just heats up faster and gets hotter in warmer ambient temps. If your area is regularly below 50°F in winter, expect longer heat-up times and lower max temps during those months.
               </p>
             </div>
           </div>
