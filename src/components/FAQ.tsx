@@ -41,7 +41,7 @@ const faqs = [
   },
   {
     question: "How long does it take to heat up?",
-    answer: "~40–60 minutes depending on ambient temperature and heater.",
+    answer: "~40–60 minutes depending on the ambient temperature.",
   },
   {
     question: "Can I use it indoors?",
@@ -56,7 +56,7 @@ const faqs = [
   {
     question: "Is this renter-friendly?",
     answer:
-      "Yes.\n\nNo electrical work, no permanent modifications, and easy to remove if you move.",
+      "Yes.\n\nNo electrical work and easy to remove if you move.",
   },
   {
     question: "How much space do I need?",
@@ -66,7 +66,7 @@ const faqs = [
   {
     question: "Can it go outside?",
     answer:
-      "Yes.\n\nWorks indoors or outdoors on any level surface. Performance may vary slightly with weather.",
+      "Yes.\n\nWorks indoors or outdoors on any level surface. The sauna performs best when the ambient temperature is >50°F",
   },
   {
     question: "How much electricity does it use?",
@@ -77,11 +77,6 @@ const faqs = [
     question: "Do I need to leave it running all the time?",
     answer:
       "No.\n\nTurn it on ~40–60 minutes before use, then turn it off when you're done.",
-  },
-  {
-    question: "Is it safe?",
-    answer:
-      "Yes, when used properly with a compatible heater.\n\nFollow standard sauna safety:\n\n• don't leave it unattended\n• follow heater clearance guidelines\n• use a proper circuit",
   },
   {
     question: "Why not just get a traditional sauna?",
