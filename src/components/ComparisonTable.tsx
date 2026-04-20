@@ -21,7 +21,7 @@ const mainRows: Row[] = [
   { label: "Works on Any Level Surface (No Site Prep)", anywhere: "✅", barrel: "❌", nordica: "✅", plunge: "❌" },
   { label: "No electrician required", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
   { label: "Setup Time", anywhere: "~2 hours", barrel: "~8 hours", nordica: "~8 hours", plunge: "~2 hours" },
-  { label: "All-in Cost", anywhere: "$4,599", barrel: "$5,399–$7,000+", nordica: "~$4,949", plunge: "$11,089" },
+  { label: "All-in Cost", anywhere: "$4,799", barrel: "$5,399+", nordica: "$6,149", plunge: "$11,089" },
 ];
 
 const specRows: Row[] = [
@@ -32,9 +32,10 @@ const specRows: Row[] = [
   { label: "Heater Included", anywhere: "❌", barrel: "✅", nordica: "❌", plunge: "✅" },
   { label: "Compatible with SuperHotSuperFast Heater (shipping 2027)", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
   { label: "Unit Cost", anywhere: "$4,599", barrel: "$4,399", nordica: "$3,999", plunge: "$9,590" },
+  { label: "Heater Cost", anywhere: "$200 – $900", barrel: "$0", nordica: "$200 – $900", plunge: "$0" },
   { label: "Shipping Cost", anywhere: "$0", barrel: "$0", nordica: "$950", plunge: "$499" },
   { label: "Electrician Cost", anywhere: "$0", barrel: "$1–3k", nordica: "$1–3k", plunge: "$1–3k" },
-  { label: "Total Cost", anywhere: "$4,599", barrel: "$5,399+", nordica: "$5,949", plunge: "$11,089" },
+  { label: "All-in Cost", anywhere: "$4,799", barrel: "$5,399+", nordica: "$6,149", plunge: "$11,089" },
 ];
 
 const ComparisonBlock = ({ rows }: { rows: Row[] }) => (
