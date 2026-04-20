@@ -7,7 +7,7 @@ import { componentTagger } from "lovable-tagger";
 export const routes = [
   '/',
   '/pricing',
-  '/how-it-works',
+  
   '/how-it-started',
   '/install-power',
   '/policies',

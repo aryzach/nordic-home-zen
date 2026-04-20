@@ -4,7 +4,7 @@
 export const routes = [
   { path: '/', priority: 1.0, changefreq: 'weekly' },
   { path: '/pricing', priority: 0.9, changefreq: 'weekly' },
-  { path: '/how-it-works', priority: 0.8, changefreq: 'monthly' },
+  
   { path: '/how-it-started', priority: 0.6, changefreq: 'yearly' },
   { path: '/install-power', priority: 0.7, changefreq: 'monthly' },
   { path: '/policies', priority: 0.4, changefreq: 'yearly' },

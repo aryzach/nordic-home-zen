@@ -10,7 +10,7 @@ const distDir = path.resolve(__dirname, '../dist');
 const routes = [
   '/',
   '/pricing',
-  '/how-it-works',
+  
   '/how-it-started',
   '/install-power',
   '/policies',

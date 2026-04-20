@@ -6,7 +6,7 @@ import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-route
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import Pricing from "./pages/Pricing";
-import HowItWorksPage from "./pages/HowItWorksPage";
+
 import HowItStarted from "./pages/HowItStarted";
 import History from "./pages/History";
 import SuperHotSuperFast from "./pages/SuperHotSuperFast";
@@ -104,7 +104,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/how-it-works" element={<HowItWorksPage />} />
+          
           <Route path="/how-it-started" element={<HowItStarted />} />
           <Route path="/history" element={<History />} />
           <Route path="/superhotsuperfast" element={<SuperHotSuperFast />} />

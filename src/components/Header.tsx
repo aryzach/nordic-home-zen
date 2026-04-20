@@ -40,9 +40,6 @@ const Header = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8 font-sans">
-            <Link to="/how-it-works" className="text-white/70 hover:text-white transition-colors">
-              How It Works
-            </Link>
             <Link to="/history" className="text-white/70 hover:text-white transition-colors">
               History
             </Link>
@@ -75,9 +72,6 @@ const Header = () => {
         {isMobileMenuOpen && (
           <nav className="md:hidden py-4 border-t border-white/10 font-sans">
             <div className="flex flex-col gap-4">
-              <Link to="/how-it-works" className="text-left text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                How It Works
-              </Link>
               <Link to="/history" className="text-left text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 History
               </Link>
