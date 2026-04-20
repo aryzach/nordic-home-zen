@@ -11,7 +11,7 @@ const ElectricChecklist = () => {
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 max-w-2xl">
             <h1 className="text-4xl md:text-5xl font-heading font-semibold mb-6 text-heading">
-              Home Electric Checklist
+              Electrical Fit Consultation
             </h1>
             
             <div className="bg-card p-8 rounded-lg border border-border mb-8">

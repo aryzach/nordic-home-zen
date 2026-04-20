@@ -46,8 +46,8 @@ const Header = () => {
             <Link to="/climate-performance" className="text-white/70 hover:text-white transition-colors">
               Climate &amp; Performance
             </Link>
-            <Link to="/electric-checklist" className="text-white/70 hover:text-white transition-colors">
-              Electric Checklist
+            <Link to="/sauna-electrical-fit-consultation" className="text-white/70 hover:text-white transition-colors">
+              Electrical Consult
             </Link>
             <button onClick={() => scrollToSection("faq")} className="text-white/70 hover:text-white transition-colors">
               FAQ
@@ -78,8 +78,8 @@ const Header = () => {
               <Link to="/climate-performance" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 Climate &amp; Performance
               </Link>
-              <Link to="/electric-checklist" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Electric Checklist
+              <Link to="/sauna-electrical-fit-consultation" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                Electrical Consult
               </Link>
               <button onClick={() => scrollToSection("faq")} className="text-left text-white/70 hover:text-white transition-colors">
                 FAQ

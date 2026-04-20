@@ -26,9 +26,9 @@ const ReservationPaymentOrScheduleCall = () => {
             <div className="space-y-6 mb-8">
               <div className="bg-card p-8 rounded-lg border-2 border-accent">
                 <h2 className="text-2xl font-heading font-semibold mb-2 text-heading">
-                  Cedar Sauna
+                  Anywhere Sauna
                 </h2>
-                <p className="text-3xl font-heading font-semibold text-accent mb-4">$7,499</p>
+                <p className="text-3xl font-heading font-semibold text-accent mb-4">$4,599</p>
                 <p className="text-muted-foreground mb-6">
                   Premium cedar construction with natural aroma and durability.
                 </p>
@@ -42,31 +42,7 @@ const ReservationPaymentOrScheduleCall = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
-                    Buy Cedar Sauna
-                    <ExternalLink className="ml-2" size={18} />
-                  </a>
-                </Button>
-              </div>
-
-              <div className="bg-card p-8 rounded-lg border border-border">
-                <h2 className="text-2xl font-heading font-semibold mb-2 text-heading">
-                  Fir Sauna
-                </h2>
-                <p className="text-3xl font-heading font-semibold text-accent mb-4">$4,499</p>
-                <p className="text-muted-foreground mb-6">
-                  Affordable fir construction. Note: waterproof coating has a strong pine smell for the first ~2 months.
-                </p>
-                <Button 
-                  asChild 
-                  size="lg"
-                  className="w-full"
-                >
-                  <a 
-                    href="https://buy.stripe.com/eVqdR999Z8xo98w0Lh6Vq0i"
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    Buy Fir Sauna
+                    Buy Anywhere Sauna
                     <ExternalLink className="ml-2" size={18} />
                   </a>
                 </Button>
@@ -90,7 +66,7 @@ const ReservationPaymentOrScheduleCall = () => {
                 size="lg"
                 className="w-full"
               >
-                <Link to="/electric-checklist">
+                <Link to="/sauna-electrical-fit-consultation">
                   <Calendar className="mr-2" size={18} />
                   Schedule Electrical Consult
                 </Link>
