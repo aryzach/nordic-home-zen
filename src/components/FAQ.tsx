@@ -91,7 +91,7 @@ const faqs = [
   {
     question: "What's the catch?",
     answer:
-      "It's smaller than traditional saunas.\n\nThat's intentional — the reduced volume is what allows it to heat efficiently on a standard outlet.",
+      "It's smaller than traditional saunas, while still comfortably fitting two people.\n\nThat's intentional.\n\nThe reduced volume is what allows it to heat efficiently on standard 120V power. \n\nAnd like any sauna, colder outdoor conditions mean longer heat-up times and lower peak temperatures.\n\nIndoors and in climates >50°F, it performs like a traditional sauna.",
   },
 ];
 
