@@ -19,15 +19,8 @@ import Media from "./pages/Media";
 import LearnMore from "./pages/LearnMore";
 import InHomeSaunaSF from "./pages/InHomeSaunaSF";
 import FinnishSaunaSF from "./pages/FinnishSaunaSF";
-import SaunaRentalSanFrancisco from "./pages/SaunaRentalSanFrancisco";
-import SaunaRentalOakland from "./pages/SaunaRentalOakland";
-import SaunaRentalBerkeley from "./pages/SaunaRentalBerkeley";
-import SaunaRentalMarin from "./pages/SaunaRentalMarin";
 import SaunaRentalPaloAlto from "./pages/SaunaRentalPaloAlto";
-import SaunaRentalMountainView from "./pages/SaunaRentalMountainView";
 import ServiceAreas from "./pages/ServiceAreas";
-import SouthEndRowingClub from "./pages/SouthEndRowingClub";
-import FitnessSFFillmore from "./pages/FitnessSFFillmore";
 import EmailMoreInfo from "./pages/EmailMoreInfo";
 import ThankYou from "./pages/ThankYou";
 import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrScheduleCall";
@@ -117,16 +110,9 @@ const App = () => (
           <Route path="/media" element={<Media />} />
           <Route path="/in-home-sauna-san-francisco" element={<InHomeSaunaSF />} />
           <Route path="/finnish-sauna-san-francisco" element={<FinnishSaunaSF />} />
-          <Route path="/sauna-rental-san-francisco" element={<SaunaRentalSanFrancisco />} />
-          <Route path="/sauna-rental-oakland" element={<SaunaRentalOakland />} />
-          <Route path="/sauna-rental-berkeley" element={<SaunaRentalBerkeley />} />
-          <Route path="/sauna-rental-marin" element={<SaunaRentalMarin />} />
           <Route path="/sauna-rental-palo-alto" element={<SaunaRentalPaloAlto />} />
-          <Route path="/sauna-rental-mountain-view" element={<SaunaRentalMountainView />} />
           <Route path="/climate-performance" element={<ServiceAreas />} />
           <Route path="/service-areas" element={<Navigate to="/climate-performance" replace />} />
-          <Route path="/sauna-review/south-end-rowing-club" element={<SouthEndRowingClub />} />
-          <Route path="/sauna-review/fitness-sf-fillmore" element={<FitnessSFFillmore />} />
           <Route path="/email-more-info" element={<EmailMoreInfo />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/buy-your-anywhere-sauna" element={<ReservationPaymentOrScheduleCall />} />
