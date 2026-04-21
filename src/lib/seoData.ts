@@ -5,8 +5,8 @@ export const seoData = {
   // Main Pages
   home: {
     title: "SF Sauna — The Anywhere Sauna",
-    description: "Monthly sauna rentals for SF Bay Area homes and backyards. Steam and infrared saunas on 120V power with fast delivery, setup, and ongoing support.",
-    canonical: "https://sfsaunarental.com/"
+    description: "The only real sauna that uses a standard home outlet.",
+    canonical: "https://getanywheresauna.com/"
   },
   pricing: {
     title: "Sauna Rental Pricing | SF Sauna Rental",
