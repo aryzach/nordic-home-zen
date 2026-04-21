@@ -50,12 +50,12 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="mailto:sfsaunarental@gmail.com" 
+                  href="mailto:info@sf-sauna.com" 
                   className="text-white/70 hover:text-white transition-colors flex items-center gap-2"
                   itemProp="email"
                 >
                   <Mail size={14} />
-                  sfsaunarental@gmail.com
+                  info@sf-sauna.com
                 </a>
               </li>
             </ul>

@@ -30,7 +30,7 @@ const ReservationPaymentOrScheduleCall = () => {
                 </h2>
                 <p className="text-3xl font-heading font-semibold text-accent mb-4">$4,599</p>
                 <p className="text-muted-foreground mb-6">
-                  Premium cedar construction with natural aroma and durability.
+                  Pay a $500 deposit now, and the remainder once shipped. Your sauna will be delivered within 45 days.
                 </p>
                 <Button 
                   asChild 
@@ -38,11 +38,11 @@ const ReservationPaymentOrScheduleCall = () => {
                   className="w-full"
                 >
                   <a 
-                    href="https://buy.stripe.com/eVqdR999Z8xo98w0Lh6Vq0i"
+                    href="https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B"
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
-                    Buy Anywhere Sauna
+                    Pay $500 deposit
                     <ExternalLink className="ml-2" size={18} />
                   </a>
                 </Button>
