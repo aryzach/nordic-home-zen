@@ -33,9 +33,10 @@ const Header = () => {
               navigate("/");
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="font-heading text-xl md:text-2xl font-semibold text-white hover:text-accent transition-colors"
+            className="text-left font-heading text-xl md:text-2xl font-semibold text-white hover:text-accent transition-colors leading-tight"
           >
-            The Anywhere Sauna
+            <div>The Anywhere Sauna</div>
+            <div className="text-white/60 text-xs font-normal font-sans">by SF Sauna</div>
           </button>
 
           {/* Desktop Nav */}
