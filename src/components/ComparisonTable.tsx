@@ -21,7 +21,7 @@ const mainRows: Row[] = [
   { label: "Works on Any Level Surface (No Site Prep)", anywhere: "✅", barrel: "❌", nordica: "✅", plunge: "❌" },
   { label: "No electrician required", anywhere: "✅", barrel: "❌", nordica: "❌", plunge: "❌" },
   { label: "Setup Time", anywhere: "~2 hours", barrel: "~8 hours", nordica: "~8 hours", plunge: "~2 hours" },
-  { label: "All-in Cost", anywhere: "$4,799", barrel: "$5,399+", nordica: "$6,149", plunge: "$11,089" },
+{ label: "All-in Cost", anywhere: "$4,799", barrel: "$5,399+", nordica: "$6,149+", plunge: "$11,089+" },
 ];
 
 const specRows: Row[] = [
