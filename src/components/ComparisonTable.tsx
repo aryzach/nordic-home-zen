@@ -35,7 +35,7 @@ const specRows: Row[] = [
   { label: "Heater Cost", anywhere: "$200 – $900", barrel: "$0", nordica: "$200 – $900", plunge: "$0" },
   { label: "Shipping Cost", anywhere: "$0", barrel: "$0", nordica: "$950", plunge: "$499" },
   { label: "Electrician Cost", anywhere: "$0", barrel: "$1–3k", nordica: "$1–3k", plunge: "$1–3k" },
-  { label: "All-in Cost", anywhere: "$4,799", barrel: "$5,399+", nordica: "$6,149", plunge: "$11,089" },
+  { label: "All-in Cost", anywhere: "$4,799", barrel: "$5,399+", nordica: "$6,149+", plunge: "$11,089+" },
 ];
 
 const ComparisonBlock = ({ rows }: { rows: Row[] }) => (
