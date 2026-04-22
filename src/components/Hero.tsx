@@ -39,7 +39,7 @@ const Hero = () => {
         <h1 className="font-heading text-[36px] md:text-[52px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.01em] order-3">
           190°F sauna. Standard outlet. No electrician.
         </h1>
-        <div className="flex items-center justify-center gap-2 text-white/90 font-sans text-[14px] font-normal mb-8 -mt-16 order-1">
+        <div className="flex items-center justify-center gap-2 text-white/90 font-sans text-[14px] font-normal mb-4 -mt-24 order-1">
           <a href="https://share.google/bqGJ8MiXfwNgvigwm" target="_blank" rel="noopener noreferrer" className="hover:underline">Enjoyed by 26+ Saunojat</a>
           <div className="flex">
             {[...Array(5)].map((_, i) => (
