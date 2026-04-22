@@ -96,7 +96,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={cn("md:hidden", transparent ? "text-white" : "text-foreground")}
+            className={cn("md:hidden", transparent ? "text-white" : "text-[hsl(var(--color-heading))]")}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
