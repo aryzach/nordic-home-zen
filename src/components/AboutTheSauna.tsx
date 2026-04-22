@@ -9,6 +9,7 @@ import standardOutlet from "@/assets/standard-outlet.png";
 import saunaPhoto1 from "@/assets/sauna-exterior-front.png";
 import saunaPhoto2 from "@/assets/sauna-interior-back.png";
 import saunaPhoto3 from "@/assets/sauna-interior-floor.png";
+import saunaSchematic from "@/assets/sauna-schematic.png";
 
 const aboutPhotos = [
   { src: saunaPhoto1, alt: "Anywhere Sauna exterior front view with glass door" },
@@ -215,11 +216,13 @@ const AboutTheSauna = () => {
         </div>
 
         {/* Schematic placeholder */}
-        <div className="bg-muted rounded-lg p-8 mb-8 flex items-center justify-center min-h-[260px] border border-border">
-          <div className="text-center text-muted-foreground">
-            <p className="text-lg font-medium mb-2">Sauna Schematic — Placeholder</p>
-            <p className="text-sm">Detailed measurements coming soon</p>
-          </div>
+        <div className="rounded-lg overflow-hidden mb-8 border border-border">
+          <img
+            src={saunaSchematic}
+            alt="Anywhere Sauna schematic with front, side, rear elevations, top plan, door, and roof profile dimensions in inches"
+            className="w-full h-auto block"
+            loading="lazy"
+          />
         </div>
 
         <GroupBlock group={overviewGroup} />
