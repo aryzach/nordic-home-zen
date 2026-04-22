@@ -66,18 +66,9 @@ const Footer = () => {
             <h4 className="font-medium mb-4 text-accent">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li><Link to="/pricing" className="text-white/70 hover:text-white transition-colors">Pricing</Link></li>
-              <li><Link to="/service-areas" className="text-white/70 hover:text-white transition-colors">Service Areas</Link></li>
+              <li><Link to="/climate-performance" className="text-white/70 hover:text-white transition-colors">Climate &amp; Performance</Link></li>
               <li><Link to="/install-power" className="text-white/70 hover:text-white transition-colors">Installation Guide</Link></li>
               <li><Link to="/contact" className="text-white/70 hover:text-white transition-colors">Contact</Link></li>
-            </ul>
-          </div>
-
-          {/* Blog */}
-          <div>
-            <h4 className="font-medium mb-4 text-accent">Blog</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link to="/in-home-sauna-san-francisco" className="text-white/70 hover:text-white transition-colors">In-Home Sauna SF</Link></li>
-              <li><Link to="/finnish-sauna-san-francisco" className="text-white/70 hover:text-white transition-colors">Steam Sauna SF</Link></li>
             </ul>
           </div>
 

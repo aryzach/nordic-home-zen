@@ -13,13 +13,10 @@ export const routes = [
   { path: '/learn-more', priority: 0.7, changefreq: 'monthly' },
   { path: '/contact', priority: 0.8, changefreq: 'monthly' },
   { path: '/media', priority: 0.6, changefreq: 'monthly' },
-  { path: '/in-home-sauna-san-francisco', priority: 0.9, changefreq: 'weekly' },
-  { path: '/finnish-sauna-san-francisco', priority: 0.9, changefreq: 'weekly' },
   { path: '/sauna-rental-san-francisco', priority: 0.9, changefreq: 'weekly' },
   { path: '/sauna-rental-oakland', priority: 0.8, changefreq: 'weekly' },
   { path: '/sauna-rental-berkeley', priority: 0.8, changefreq: 'weekly' },
   { path: '/sauna-rental-marin', priority: 0.8, changefreq: 'weekly' },
-  { path: '/sauna-rental-palo-alto', priority: 0.8, changefreq: 'weekly' },
   { path: '/sauna-rental-mountain-view', priority: 0.8, changefreq: 'weekly' },
   { path: '/climate-performance', priority: 0.7, changefreq: 'monthly' },
   { path: '/sauna-review/south-end-rowing-club', priority: 0.7, changefreq: 'monthly' },
@@ -28,7 +25,6 @@ export const routes = [
   { path: '/thank-you', priority: 0.3, changefreq: 'monthly' },
   { path: '/buy-your-anywhere-sauna', priority: 0.6, changefreq: 'monthly' },
   { path: '/indoor-infrared-sauna-rental', priority: 0.8, changefreq: 'monthly' },
-  { path: '/pre-fab-sauna-installation-form', priority: 0.6, changefreq: 'monthly' },
 ] as const;
 
 export const routePaths = routes.map(r => r.path);
