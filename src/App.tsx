@@ -17,15 +17,11 @@ import Contact from "./pages/Contact";
 import ContactPage from "./pages/ContactPage";
 import Media from "./pages/Media";
 import LearnMore from "./pages/LearnMore";
-import InHomeSaunaSF from "./pages/InHomeSaunaSF";
-import FinnishSaunaSF from "./pages/FinnishSaunaSF";
-import SaunaRentalPaloAlto from "./pages/SaunaRentalPaloAlto";
 import ServiceAreas from "./pages/ServiceAreas";
 import EmailMoreInfo from "./pages/EmailMoreInfo";
 import ThankYou from "./pages/ThankYou";
 import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrScheduleCall";
 import IndoorInfraredLanding from "./pages/IndoorInfraredLanding";
-import PrefabSaunaInstallationForm from "./pages/PrefabSaunaInstallationForm";
 import ElectricChecklist from "./pages/ElectricChecklist";
 import LeaveReview from "./pages/LeaveReview";
 import NotFound from "./pages/NotFound";
@@ -109,17 +105,12 @@ const App = () => (
           <Route path="/learn-more" element={<LearnMore />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/media" element={<Media />} />
-          <Route path="/in-home-sauna-san-francisco" element={<InHomeSaunaSF />} />
-          <Route path="/finnish-sauna-san-francisco" element={<FinnishSaunaSF />} />
-          <Route path="/sauna-rental-palo-alto" element={<SaunaRentalPaloAlto />} />
           <Route path="/climate-performance" element={<ServiceAreas />} />
-          <Route path="/service-areas" element={<Navigate to="/climate-performance" replace />} />
           <Route path="/email-more-info" element={<EmailMoreInfo />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/buy-your-anywhere-sauna" element={<ReservationPaymentOrScheduleCall />} />
           <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
           <Route path="/indoor-infrared-sauna-rental" element={<IndoorInfraredLanding />} />
-          <Route path="/pre-fab-sauna-installation-form" element={<PrefabSaunaInstallationForm />} />
           <Route path="/sauna-electrical-fit-consultation" element={<ElectricChecklist />} />
           <Route path="/electric-checklist" element={<Navigate to="/sauna-electrical-fit-consultation" replace />} />
           <Route path="/leave-review" element={<LeaveReview />} />
