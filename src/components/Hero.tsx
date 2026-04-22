@@ -54,40 +54,41 @@ const Hero = () => {
           <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-8 font-normal">
             Hot stones. Pour water. Get steam.
           </p>
-        <div className="flex flex-col gap-3 max-w-md mx-auto w-full order-5">
-          <Button
-            asChild
-            size="lg"
-            className="w-full bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-[hsl(var(--color-white))] font-sans font-medium"
-          >
-            <Link to="/electric-checklist">
-              Book Electrical Consult
-              <ArrowRight className="ml-2" size={20} />
-            </Link>
-          </Button>
-          <div className="text-white/70 text-xs font-sans">or</div>
-          <form
-            action="https://api.web3forms.com/submit"
-            method="POST"
-            className="flex gap-2 w-full items-stretch"
-          >
-            <input type="hidden" name="access_key" value="0d3fcf2f-c3a3-49ec-9106-7ab3f8a35cf6" />
-            <input type="hidden" name="subject" value="New Hero Email Signup" />
-            <input type="hidden" name="redirect" value={`${window.location.origin}/thank-you`} />
-            <Input
-              type="email"
-              name="email"
-              required
-              placeholder="Enter your email"
-              className="flex-1 h-11 bg-white/95 text-charcoal placeholder:text-charcoal/60 border-0"
-            />
+          <div className="flex flex-col gap-3 max-w-md mx-auto w-full">
             <Button
-              type="submit"
-              className="h-11 bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-[hsl(var(--color-white))] font-sans font-medium"
+              asChild
+              size="lg"
+              className="w-full bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-[hsl(var(--color-white))] font-sans font-medium"
             >
-              Learn More
+              <Link to="/electric-checklist">
+                Book Electrical Consult
+                <ArrowRight className="ml-2" size={20} />
+              </Link>
             </Button>
-          </form>
+            <div className="text-white/70 text-xs font-sans">or</div>
+            <form
+              action="https://api.web3forms.com/submit"
+              method="POST"
+              className="flex gap-2 w-full items-stretch"
+            >
+              <input type="hidden" name="access_key" value="0d3fcf2f-c3a3-49ec-9106-7ab3f8a35cf6" />
+              <input type="hidden" name="subject" value="New Hero Email Signup" />
+              <input type="hidden" name="redirect" value={`${window.location.origin}/thank-you`} />
+              <Input
+                type="email"
+                name="email"
+                required
+                placeholder="Enter your email"
+                className="flex-1 h-11 bg-white/95 text-charcoal placeholder:text-charcoal/60 border-0"
+              />
+              <Button
+                type="submit"
+                className="h-11 bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-[hsl(var(--color-white))] font-sans font-medium"
+              >
+                Learn More
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
