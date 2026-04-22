@@ -46,13 +46,10 @@ const Hero = () => {
         </div>
         <div className="flex-1 flex flex-col justify-center">
           <h1 className="font-heading text-[36px] md:text-[52px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.01em]">
-            190°F sauna. Standard outlet. No electrician.
+            The 190°F sauna for everyone.
           </h1>
-          <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-3 font-normal">
-            Made for all types of homes and apartments.
-          </p>
           <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-8 font-normal">
-            Hot stones. Pour water. Get steam.
+            Standard outlet. No electrician. Made for any home or apartment.
           </p>
           <div className="flex flex-col gap-3 max-w-md mx-auto w-full">
             <Button
@@ -60,8 +57,8 @@ const Hero = () => {
               size="lg"
               className="w-full bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-[hsl(var(--color-white))] font-sans font-medium"
             >
-              <Link to="/electric-checklist">
-                Book Electrical Consult
+              <Link to="/buy-your-anywhere-sauna">
+                Buy now for $4,599
                 <ArrowRight className="ml-2" size={20} />
               </Link>
             </Button>
