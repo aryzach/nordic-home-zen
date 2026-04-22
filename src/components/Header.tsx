@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,51 +10,80 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Only use transparent-over-hero treatment on the homepage
+  const isHome = location.pathname === "/";
+  const transparent = isHome && !isScrolled && !isMobileMenuOpen;
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    setIsMobileMenuOpen(false);
-    navigate(`/#${id}`);
-  };
-
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-charcoal/95 backdrop-blur-sm border-b border-white/10"
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
+        transparent
+          ? "bg-transparent border-b border-transparent"
+          : "bg-background/95 backdrop-blur-sm border-b border-border"
+      )}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <button 
+          <button
             onClick={() => {
               navigate("/");
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="text-left font-heading text-xl md:text-2xl font-semibold text-white hover:text-accent transition-colors leading-tight"
+            className={cn(
+              "text-left font-heading text-xl md:text-2xl font-semibold transition-colors leading-tight",
+              transparent ? "text-white hover:text-accent" : "text-foreground hover:text-accent"
+            )}
           >
             <div>The Anywhere Sauna</div>
-            <div className="text-white/60 text-xs font-normal font-sans">by SF Sauna</div>
+            <div className={cn("text-xs font-normal font-sans", transparent ? "text-white/60" : "text-muted-foreground")}>
+              by SF Sauna
+            </div>
           </button>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex flex-1 justify-center items-center gap-8 font-sans">
-            <Link to="/history" className="text-white/70 hover:text-white transition-colors">
-              History
-            </Link>
-            <Link to="/climate-performance" className="text-white/70 hover:text-white transition-colors">
-              Climate &amp; Performance
-            </Link>
-            <Link to="/sauna-electrical-fit-consultation" className="text-white/70 hover:text-white transition-colors">
-              Electrical Consult
-            </Link>
-            <button onClick={() => scrollToSection("about-the-sauna")} className="text-white/70 hover:text-white transition-colors">
+            {[
+              { to: "/history", label: "History" },
+              { to: "/climate-performance", label: "Climate & Performance" },
+              { to: "/sauna-electrical-fit-consultation", label: "Electrical Consult" },
+            ].map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={cn(
+                  "transition-colors",
+                  transparent ? "text-white/80 hover:text-white" : "text-foreground/70 hover:text-foreground"
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <button
+              onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }}
+              className={cn(
+                "transition-colors",
+                transparent ? "text-white/80 hover:text-white" : "text-foreground/70 hover:text-foreground"
+              )}
+            >
               Specs
             </button>
-            <button onClick={() => scrollToSection("faq")} className="text-white/70 hover:text-white transition-colors">
+            <button
+              onClick={() => { setIsMobileMenuOpen(false); navigate("/#faq"); }}
+              className={cn(
+                "transition-colors",
+                transparent ? "text-white/80 hover:text-white" : "text-foreground/70 hover:text-foreground"
+              )}
+            >
               FAQ
             </button>
           </nav>
@@ -66,7 +96,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white"
+            className={cn("md:hidden", transparent ? "text-white" : "text-foreground")}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -74,21 +104,21 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-white/10 font-sans">
+          <nav className="md:hidden py-4 border-t border-border font-sans">
             <div className="flex flex-col gap-4">
-              <Link to="/history" className="text-left text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link to="/history" className="text-left text-foreground/70 hover:text-foreground transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 History
               </Link>
-              <Link to="/climate-performance" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link to="/climate-performance" className="text-foreground/70 hover:text-foreground transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 Climate &amp; Performance
               </Link>
-              <Link to="/sauna-electrical-fit-consultation" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link to="/sauna-electrical-fit-consultation" className="text-foreground/70 hover:text-foreground transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 Electrical Consult
               </Link>
-              <button onClick={() => scrollToSection("about-the-sauna")} className="text-left text-white/70 hover:text-white transition-colors">
+              <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }} className="text-left text-foreground/70 hover:text-foreground transition-colors">
                 Specs
               </button>
-              <button onClick={() => scrollToSection("faq")} className="text-left text-white/70 hover:text-white transition-colors">
+              <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#faq"); }} className="text-left text-foreground/70 hover:text-foreground transition-colors">
                 FAQ
               </button>
               <Button asChild className="w-full font-sans font-medium bg-accent hover:bg-accent/90 text-white">
