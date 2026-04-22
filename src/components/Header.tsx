@@ -41,11 +41,11 @@ const Header = () => {
             }}
             className={cn(
               "text-left font-heading text-xl md:text-2xl font-semibold transition-colors leading-tight",
-              transparent ? "text-white hover:text-accent" : "text-foreground hover:text-accent"
+              transparent ? "text-white hover:text-accent" : "text-[hsl(var(--color-heading))] hover:text-accent"
             )}
           >
             <div>The Anywhere Sauna</div>
-            <div className={cn("text-xs font-normal font-sans", transparent ? "text-white/60" : "text-muted-foreground")}>
+            <div className={cn("text-xs font-normal font-sans", transparent ? "text-white/60" : "text-[hsl(var(--color-text))]")}>
               by SF Sauna
             </div>
           </button>
