@@ -86,7 +86,7 @@ const faqs = [
   {
     question: "What's the catch?",
     answer:
-      "It's smaller than traditional saunas, while still comfortably fitting two people.\n\nThat's intentional.\n\nThe reduced volume is what allows it to heat efficiently on standard 120V power. \n\nAnd like any sauna, colder outdoor conditions mean longer heat-up times and lower peak temperatures.\n\nIndoors and in climates >50°F, it performs like a traditional sauna.",
+      "It's smaller than traditional saunas, while still comfortably fitting two people.\n\nThat's intentional.\n\nThe reduced volume is what allows it to heat efficiently using just a standard home outlet.\n\nAnd like any sauna, colder outdoor conditions mean longer heat-up times and lower peak temperatures.\n\nThe Anywhere Sauna performs best in climates >50°F or indoors.",
   },
 ];
 
