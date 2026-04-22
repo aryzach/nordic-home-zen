@@ -27,6 +27,7 @@ import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrSchedu
 import IndoorInfraredLanding from "./pages/IndoorInfraredLanding";
 import PrefabSaunaInstallationForm from "./pages/PrefabSaunaInstallationForm";
 import ElectricChecklist from "./pages/ElectricChecklist";
+import LeaveReview from "./pages/LeaveReview";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -121,6 +122,7 @@ const App = () => (
           <Route path="/pre-fab-sauna-installation-form" element={<PrefabSaunaInstallationForm />} />
           <Route path="/sauna-electrical-fit-consultation" element={<ElectricChecklist />} />
           <Route path="/electric-checklist" element={<Navigate to="/sauna-electrical-fit-consultation" replace />} />
+          <Route path="/leave-review" element={<LeaveReview />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
