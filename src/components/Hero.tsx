@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Star, Check } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
@@ -37,7 +37,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center max-w-[1100px] flex flex-col">
         <h1 className="font-heading text-[36px] md:text-[52px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.01em] order-3">
-          The only traditional steam sauna that uses a standard home outlet.
+          190°F sauna. Standard outlet. No electrician.
         </h1>
         <div className="flex items-center justify-center gap-2 text-white/90 font-sans text-[14px] font-normal mb-8 -mt-16 order-1">
           <a href="https://share.google/bqGJ8MiXfwNgvigwm" target="_blank" rel="noopener noreferrer" className="hover:underline">Enjoyed by 26+ Saunojat</a>
@@ -48,22 +48,11 @@ const Hero = () => {
           </div>
         </div>
         <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-3 font-normal order-2">
-          No electrician. No permits. Works in apartments, homes, or backyards.
+          Made for all types of homes and apartments.
         </p>
-        <div className="flex flex-col items-start text-left max-w-md mx-auto mb-8 order-4">
-          <div className="flex items-center gap-2 text-white/90 font-sans text-[16px] md:text-[17px] leading-[1.6] mb-2">
-            <Check className="text-[hsl(var(--color-accent))] flex-shrink-0" size={18} />
-            <span>98% of homes already have the right outlet</span>
-          </div>
-          <div className="flex items-center gap-2 text-white/90 font-sans text-[16px] md:text-[17px] leading-[1.6] mb-2">
-            <Check className="text-[hsl(var(--color-accent))] flex-shrink-0" size={18} />
-            <span>Real heater + stones, pour water, get steam</span>
-          </div>
-          <div className="flex items-start gap-2 text-white/90 font-sans text-[16px] md:text-[17px] leading-[1.6]">
-            <Check className="text-[hsl(var(--color-accent))] flex-shrink-0 mt-0.5" size={18} />
-            <span>Reaches 160–194°F in under an hour</span>
-          </div>
-        </div>
+        <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-8 font-normal order-4">
+          Hot stones. Pour water. Get steam.
+        </p>
         <div className="flex flex-col gap-3 max-w-md mx-auto w-full order-5">
           <Button
             asChild
