@@ -26,10 +26,10 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out",
         transparent
           ? "bg-transparent border-b border-transparent"
-          : "bg-background/95 backdrop-blur-sm border-b border-border"
+          : "bg-[hsl(var(--color-bg))]/95 backdrop-blur-sm border-b border-border"
       )}
     >
       <div className="container mx-auto px-4">
