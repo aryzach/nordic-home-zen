@@ -56,33 +56,35 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 30 38% 94%;
-    --foreground: 0 0% 10%;
-    
-    --color-accent: 28 45% 56%;
-    --color-bg: 30 38% 94%;
-    --color-text: 0 0% 10%;
-    --color-heading: 0 0% 5%;
+    --background: 34 36% 90%;
+    --foreground: 28 14% 48%;
+
+    --color-accent: 19 56% 42%;
+    --color-accent-amber: 28 45% 56%;
+    --color-bg: 34 36% 90%;
+    --color-cream: 36 53% 96%;
+    --color-text: 28 14% 48%;
+    --color-heading: 22 51% 12%;
     --color-white: 0 0% 100%;
     --color-ui: 33 17% 83%;
-    --color-accent-dark: 28 45% 46%;
+    --color-accent-dark: 19 56% 34%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card: 36 53% 96%;
+    --card-foreground: 22 51% 12%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 36 53% 96%;
+    --popover-foreground: 22 51% 12%;
 
-    --primary: 28 45% 56%;
+    --primary: 19 56% 42%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 33 17% 83%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary-foreground: 22 51% 12%;
 
     --muted: 33 17% 83%;
-    --muted-foreground: 0 0% 10%;
+    --muted-foreground: 28 14% 48%;
 
-    --accent: 28 45% 56%;
+    --accent: 19 56% 42%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -90,26 +92,26 @@ All colors MUST be HSL.
 
     --border: 33 17% 83%;
     --input: 33 17% 83%;
-    --ring: 28 45% 56%;
+    --ring: 19 56% 42%;
 
     --radius: 0.375rem;
 
-    --cedar: 28 45% 56%;
-    --cedar-dark: 28 45% 46%;
+    --cedar: 22 51% 12%;
+    --cedar-dark: 22 51% 8%;
     --cedar-light: 28 45% 70%;
-    --warm-orange: 28 45% 56%;
-    --charcoal: 0 0% 10%;
-    --cream: 30 38% 94%;
-    --cedar-section: 30 38% 94%;
+    --warm-orange: 19 56% 42%;
+    --charcoal: 22 51% 12%;
+    --cream: 36 53% 96%;
+    --cedar-section: 34 36% 90%;
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 0 0% 10%;
-    --sidebar-primary: 28 45% 56%;
+    --sidebar-background: 36 53% 96%;
+    --sidebar-foreground: 28 14% 48%;
+    --sidebar-primary: 19 56% 42%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 33 17% 83%;
-    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-accent-foreground: 22 51% 12%;
     --sidebar-border: 33 17% 83%;
-    --sidebar-ring: 28 45% 56%;
+    --sidebar-ring: 19 56% 42%;
   }
 
   .dark {
