@@ -35,11 +35,8 @@ const Hero = () => {
       <div className="absolute inset-0 bg-charcoal/60" />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center max-w-[1100px] flex flex-col">
-        <h1 className="font-heading text-[36px] md:text-[52px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.01em] order-3">
-          190°F sauna. Standard outlet. No electrician.
-        </h1>
-        <div className="flex items-center justify-center gap-2 text-white/90 font-sans text-[14px] font-normal mb-4 -mt-24 order-1">
+      <div className="relative z-10 container mx-auto px-4 text-center max-w-[1100px] flex flex-col h-full">
+        <div className="flex items-center justify-center gap-2 text-white/90 font-sans text-[14px] font-normal pt-4">
           <a href="https://share.google/bqGJ8MiXfwNgvigwm" target="_blank" rel="noopener noreferrer" className="hover:underline">Enjoyed by 26+ Saunojat</a>
           <div className="flex">
             {[...Array(5)].map((_, i) => (
@@ -47,12 +44,16 @@ const Hero = () => {
             ))}
           </div>
         </div>
-        <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-3 font-normal order-2">
-          Made for all types of homes and apartments.
-        </p>
-        <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-8 font-normal order-4">
-          Hot stones. Pour water. Get steam.
-        </p>
+        <div className="flex-1 flex flex-col justify-center">
+          <h1 className="font-heading text-[36px] md:text-[52px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.01em]">
+            190°F sauna. Standard outlet. No electrician.
+          </h1>
+          <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-3 font-normal">
+            Made for all types of homes and apartments.
+          </p>
+          <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-8 font-normal">
+            Hot stones. Pour water. Get steam.
+          </p>
         <div className="flex flex-col gap-3 max-w-md mx-auto w-full order-5">
           <Button
             asChild
