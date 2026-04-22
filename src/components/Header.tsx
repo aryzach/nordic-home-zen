@@ -50,6 +50,9 @@ const Header = () => {
             <Link to="/sauna-electrical-fit-consultation" className="text-white/70 hover:text-white transition-colors">
               Electrical Consult
             </Link>
+            <button onClick={() => scrollToSection("about-the-sauna")} className="text-white/70 hover:text-white transition-colors">
+              Specs
+            </button>
             <button onClick={() => scrollToSection("faq")} className="text-white/70 hover:text-white transition-colors">
               FAQ
             </button>
@@ -82,6 +85,9 @@ const Header = () => {
               <Link to="/sauna-electrical-fit-consultation" className="text-white/70 hover:text-white transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 Electrical Consult
               </Link>
+              <button onClick={() => scrollToSection("about-the-sauna")} className="text-left text-white/70 hover:text-white transition-colors">
+                Specs
+              </button>
               <button onClick={() => scrollToSection("faq")} className="text-left text-white/70 hover:text-white transition-colors">
                 FAQ
               </button>

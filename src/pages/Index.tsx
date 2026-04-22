@@ -19,8 +19,8 @@ const Index = () => {
       <main>
         <Hero />
         <GoogleReviews />
-        <AboutTheSauna />
         <PlacementGallery />
+        <AboutTheSauna />
         <SaunaFeatures />
         <ComparisonTable />
         <FAQ />
