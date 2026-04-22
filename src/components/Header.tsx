@@ -26,10 +26,10 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out",
         transparent
           ? "bg-transparent border-b border-transparent"
-          : "bg-background/95 backdrop-blur-sm border-b border-border"
+          : "bg-[hsl(var(--color-bg))]/95 backdrop-blur-sm border-b border-border"
       )}
     >
       <div className="container mx-auto px-4">
@@ -41,11 +41,11 @@ const Header = () => {
             }}
             className={cn(
               "text-left font-heading text-xl md:text-2xl font-semibold transition-colors leading-tight",
-              transparent ? "text-white hover:text-accent" : "text-foreground hover:text-accent"
+              transparent ? "text-white hover:text-accent" : "text-[hsl(var(--color-heading))] hover:text-accent"
             )}
           >
             <div>The Anywhere Sauna</div>
-            <div className={cn("text-xs font-normal font-sans", transparent ? "text-white/60" : "text-muted-foreground")}>
+            <div className={cn("text-xs font-normal font-sans", transparent ? "text-white/60" : "text-[hsl(var(--color-text))]")}>
               by SF Sauna
             </div>
           </button>
@@ -62,7 +62,7 @@ const Header = () => {
                 to={item.to}
                 className={cn(
                   "transition-colors",
-                  transparent ? "text-white/80 hover:text-white" : "text-foreground/70 hover:text-foreground"
+                  transparent ? "text-white/80 hover:text-white" : "text-[hsl(var(--color-text))] hover:text-[hsl(var(--color-heading))]"
                 )}
               >
                 {item.label}
@@ -72,7 +72,7 @@ const Header = () => {
               onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }}
               className={cn(
                 "transition-colors",
-                transparent ? "text-white/80 hover:text-white" : "text-foreground/70 hover:text-foreground"
+                transparent ? "text-white/80 hover:text-white" : "text-[hsl(var(--color-text))] hover:text-[hsl(var(--color-heading))]"
               )}
             >
               Specs
@@ -81,7 +81,7 @@ const Header = () => {
               onClick={() => { setIsMobileMenuOpen(false); navigate("/#faq"); }}
               className={cn(
                 "transition-colors",
-                transparent ? "text-white/80 hover:text-white" : "text-foreground/70 hover:text-foreground"
+                transparent ? "text-white/80 hover:text-white" : "text-[hsl(var(--color-text))] hover:text-[hsl(var(--color-heading))]"
               )}
             >
               FAQ
@@ -96,7 +96,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={cn("md:hidden", transparent ? "text-white" : "text-foreground")}
+            className={cn("md:hidden", transparent ? "text-white" : "text-[hsl(var(--color-heading))]")}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
