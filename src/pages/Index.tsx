@@ -14,7 +14,7 @@ const Index = () => {
   useSEO(seoData.home);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
       <main>
         <Hero />

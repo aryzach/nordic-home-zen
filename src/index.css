@@ -167,11 +167,12 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-sans;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.7;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Clash Grotesk', sans-serif;
+    font-family: 'Playfair Display', serif;
     color: hsl(var(--color-heading));
   }
   
@@ -189,5 +190,6 @@ All colors MUST be HSL.
   
   p {
     @apply text-body;
+    line-height: 1.7;
   }
 }

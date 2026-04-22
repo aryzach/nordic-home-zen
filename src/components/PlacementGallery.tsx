@@ -1,26 +1,37 @@
 const placements = [
-  { label: "Apartments", placeholder: "Apartment sauna photo" },
-  { label: "Rentals", placeholder: "Rental home sauna photo" },
-  { label: "Backyards", placeholder: "Backyard sauna photo" },
-  { label: "Garages", placeholder: "Garage sauna photo" },
-  { label: "Decks", placeholder: "Deck sauna photo" },
-  { label: "Bedrooms", placeholder: "Bedroom sauna photo" },
+  { label: "Apartments", placeholder: "Apartment" },
+  { label: "Rentals", placeholder: "Rental" },
+  { label: "Backyards", placeholder: "Backyard" },
+  { label: "Garages", placeholder: "Garage" },
+  { label: "Decks", placeholder: "Deck" },
+  { label: "Bedrooms", placeholder: "Bedroom" },
 ];
 
 const PlacementGallery = () => {
   return (
-    <section className="py-8 md:py-12 bg-cedar-section">
+    <section className="py-16 md:py-24 bg-cedar-section">
       <div className="container mx-auto px-4 max-w-[1100px]">
-        <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-12 text-heading text-center">
+        <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-heading text-center">
           Put It Anywhere
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <p className="text-base md:text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto leading-relaxed">
+          Apartments, rentals, backyards, garages — if there's an outlet, there's a sauna.
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {placements.map((p) => (
             <div key={p.label} className="flex flex-col items-center">
-              <div className="aspect-[4/3] w-full bg-muted rounded-lg flex items-center justify-center border border-border mb-3">
-                <span className="text-muted-foreground text-sm text-center px-2">{p.placeholder}</span>
+              <div
+                className="aspect-[3/4] w-full rounded-2xl flex items-end justify-center p-5 border border-border/60"
+                style={{
+                  background:
+                    "linear-gradient(160deg, hsl(30 38% 92%) 0%, hsl(33 25% 86%) 100%)",
+                }}
+              >
+                <span className="font-heading text-lg md:text-xl text-foreground/50 italic">
+                  {p.placeholder}
+                </span>
               </div>
-              <span className="text-foreground font-medium">{p.label}</span>
+              <span className="text-foreground font-medium mt-4 font-sans">{p.label}</span>
             </div>
           ))}
         </div>

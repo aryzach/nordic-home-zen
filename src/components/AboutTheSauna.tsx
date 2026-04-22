@@ -215,14 +215,17 @@ const AboutTheSauna = () => {
           </div>
         </div>
 
-        {/* Schematic placeholder */}
-        <div className="rounded-lg overflow-hidden mb-8 border border-border">
-          <img
-            src={saunaSchematic}
-            alt="Anywhere Sauna schematic with front, side, rear elevations, top plan, door, and roof profile dimensions in inches"
-            className="w-full h-auto block"
-            loading="lazy"
-          />
+        {/* Schematic placeholder — warm linen until real diagram available */}
+        <div
+          className="rounded-2xl overflow-hidden mb-8 border border-border aspect-[16/7] flex items-center justify-center"
+          style={{
+            background:
+              "linear-gradient(160deg, hsl(30 38% 92%) 0%, hsl(33 25% 86%) 100%)",
+          }}
+        >
+          <span className="font-heading italic text-lg md:text-xl text-foreground/50">
+            Schematic coming soon
+          </span>
         </div>
 
         <GroupBlock group={overviewGroup} />
