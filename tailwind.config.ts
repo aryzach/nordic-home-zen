@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Clash Grotesk', 'sans-serif'],
+        sans: ['DM Sans', 'sans-serif'],
+        heading: ['Playfair Display', 'serif'],
       },
       fontSize: {
         'h1-desktop': ['56px', { lineHeight: '1.1', letterSpacing: '-0.01em', fontWeight: '600' }],
