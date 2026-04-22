@@ -72,7 +72,7 @@ const Header = () => {
               onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }}
               className={cn(
                 "transition-colors",
-                transparent ? "text-white/80 hover:text-white" : "text-foreground/70 hover:text-foreground"
+                transparent ? "text-white/80 hover:text-white" : "text-[hsl(var(--color-text))] hover:text-[hsl(var(--color-heading))]"
               )}
             >
               Specs
