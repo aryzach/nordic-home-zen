@@ -105,8 +105,7 @@ const ConsultCallout = ({
       <p className="text-muted-foreground text-sm md:text-base">{body}</p>
     </div>
     <Link to="/electric-checklist" className="shrink-0">
-      <Button size="lg" className="w-full md:w-auto">
-        <Calendar className="h-4 w-4" />
+      <Button size="lg" shape="card" className="w-full md:w-auto">
         Book Free Consult
       </Button>
     </Link>
