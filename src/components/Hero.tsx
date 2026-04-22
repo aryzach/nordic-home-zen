@@ -40,7 +40,7 @@ const Hero = () => {
           The only traditional steam sauna that uses a standard home outlet.
         </h1>
         <div className="flex items-center justify-center gap-2 text-white/90 font-sans text-[14px] font-normal mb-8 -mt-16 order-1">
-          <a href="https://share.google/bqGJ8MiXfwNgvigwm" target="_blank" rel="noopener noreferrer" className="hover:underline">Enjoyed by 26+ Sauna Lovers</a>
+          <a href="https://share.google/bqGJ8MiXfwNgvigwm" target="_blank" rel="noopener noreferrer" className="hover:underline">Saunojat</a>
           <div className="flex">
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="fill-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))]" size={14} />
