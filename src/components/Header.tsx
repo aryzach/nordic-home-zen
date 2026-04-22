@@ -89,7 +89,7 @@ const Header = () => {
           </nav>
 
           {/* CTA Button */}
-          <Button asChild className="hidden md:flex font-sans font-medium bg-accent hover:bg-accent/90 text-white">
+          <Button asChild shape="pill" className="hidden md:flex font-sans font-medium bg-accent text-white">
             <Link to="/buy-your-anywhere-sauna">Buy Now</Link>
           </Button>
 
@@ -121,7 +121,7 @@ const Header = () => {
               <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#faq"); }} className="text-left text-foreground/70 hover:text-foreground transition-colors">
                 FAQ
               </button>
-              <Button asChild className="w-full font-sans font-medium bg-accent hover:bg-accent/90 text-white">
+              <Button asChild shape="pill" className="w-full font-sans font-medium bg-accent text-white">
                 <Link to="/buy-your-anywhere-sauna" onClick={() => setIsMobileMenuOpen(false)}>Buy Now</Link>
               </Button>
             </div>

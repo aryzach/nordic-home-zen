@@ -51,15 +51,15 @@ const Hero = () => {
           <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-8 font-normal">
             Standard outlet. No electrician. Made for any home or apartment.
           </p>
-          <div className="flex flex-col gap-3 max-w-md mx-auto w-full">
+          <div className="flex flex-col items-center gap-3 max-w-md mx-auto w-full">
             <Button
               asChild
-              size="lg"
-              className="w-full bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-[hsl(var(--color-white))] font-sans font-medium"
+              shape="pill"
+              className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
             >
               <Link to="/buy-your-anywhere-sauna">
                 Buy now for $4,599
-                <ArrowRight className="ml-2" size={20} />
+                <ArrowRight className="ml-1" size={20} />
               </Link>
             </Button>
             <div className="text-white/70 text-xs font-sans">or</div>
