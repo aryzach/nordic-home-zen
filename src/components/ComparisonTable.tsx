@@ -93,7 +93,7 @@ const ComparisonTable = () => {
           Why The Anywhere Sauna?
         </h2>
         <p className="text-base md:text-lg text-muted-foreground text-center mb-2 max-w-2xl mx-auto">
-          Most saunas require expensive electrical work. This one doesn't.
+          Other saunas require expensive electrical work. This one doesn't.
         </p>
         <p className="text-base md:text-lg text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
           Compare the Anywhere Sauna to the other affordable steam saunas on the market
