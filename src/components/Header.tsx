@@ -40,7 +40,7 @@ const Header = () => {
           </button>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8 font-sans">
+          <nav className="hidden md:flex flex-1 justify-center items-center gap-8 font-sans">
             <Link to="/history" className="text-white/70 hover:text-white transition-colors">
               History
             </Link>
