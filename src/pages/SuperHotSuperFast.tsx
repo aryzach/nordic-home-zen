@@ -20,9 +20,13 @@ const SuperHotSuperFast = () => {
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               The SuperHotSuperFast heater is the next step in making real sauna
-              heat accessible to everyone. Designed from the ground up to deliver
-              fast, intense heat from a standard American outlet — no electrical
-              upgrades, no electrician required.
+              heat accessible to everyone. A new type of battery-augmented sauna
+              heater designed from the ground up to deliver fast, intense heat
+              from a standard American outlet.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+              We're targeting 170°F in under 5 minutes, and over 190°F in under
+              10 minutes.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Built to be fully compatible with the Anywhere Sauna.
