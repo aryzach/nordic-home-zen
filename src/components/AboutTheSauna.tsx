@@ -182,6 +182,9 @@ const GroupBlock = ({ group }: { group: SpecGroup }) => (
 );
 
 const AboutTheSauna = () => {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [startIndex, setStartIndex] = useState(0);
+
   return (
     <section id="about-the-sauna" className="pt-0 pb-8 md:pb-12 bg-background">
       <div className="container mx-auto px-4 max-w-[900px]">
@@ -192,17 +195,20 @@ const AboutTheSauna = () => {
         {/* Image placeholders + outlet photo */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {aboutPhotos.map((photo, i) => (
-            <div
+            <button
               key={i}
-              className="aspect-square rounded-lg overflow-hidden flex items-center justify-center"
+              type="button"
+              onClick={() => { setStartIndex(i); setLightboxOpen(true); }}
+              className="aspect-square rounded-lg overflow-hidden flex items-center justify-center cursor-zoom-in group"
+              aria-label={`Expand photo ${i + 1}`}
             >
               <img
                 src={photo.src}
                 alt={photo.alt}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
-            </div>
+            </button>
           ))}
           <div className="aspect-square rounded-lg overflow-hidden border border-border bg-muted">
             <img
