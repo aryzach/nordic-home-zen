@@ -38,7 +38,7 @@ const overviewGroup: SpecGroup = {
     { label: "Heat Type", value: "Traditional dry/steam sauna (electric heater)" },
     {
       label: "Power Requirement",
-      value: "Standard 120V outlet with 20A breaker",
+      value: "Standard 110/120V outlet with 20A breaker",
       helper: (
         <>
           Book a free video consultation to confirm your setup
@@ -101,6 +101,7 @@ const moreGroups: SpecGroup[] = [
       },
       { label: "Heater Mount Compatibility", value: "Wall-mounted" },
       { label: "Heat-Up Time", value: "~40–60 minutes depending on ambient temperature" },
+      { label: "Sauna Heater Stones", value: "Any stones made for sauna, available on Amazon" },
     ],
   },
   {
@@ -208,7 +209,7 @@ const AboutTheSauna = () => {
           <div className="aspect-square rounded-lg overflow-hidden border border-border bg-muted">
             <img
               src={standardOutlet}
-              alt="Standard 120V wall outlet — what's needed to power the Anywhere Sauna"
+              alt="Standard 110/120V wall outlet — what's needed to power the Anywhere Sauna"
               className="w-full h-full object-cover"
               loading="lazy"
             />

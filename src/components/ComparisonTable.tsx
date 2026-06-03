@@ -14,7 +14,7 @@ type Cell = string | "yes" | "no" | "yes-anywhere";
 type Row = { label: string; anywhere: Cell; nordica: Cell; barrel: Cell; plunge: Cell };
 
 const summaryRows: Row[] = [
-  { label: "Standard Outlet (120V, 20A)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
+  { label: "Standard Outlet (110/120V, 20A)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
   { label: "Renter Friendly", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
   { label: "Traditional Finnish Temps (~176°F)", anywhere: "yes-anywhere", nordica: "yes", barrel: "yes", plunge: "yes" },
   { label: "No Electrician Required", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
@@ -23,7 +23,7 @@ const summaryRows: Row[] = [
 
 const fullRows: Row[] = [
   { label: "Traditional Finnish Temps (~176°F)", anywhere: "yes-anywhere", nordica: "yes", barrel: "yes", plunge: "yes" },
-  { label: "Standard Outlet (120V, 20A circuit breaker)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
+  { label: "Standard Outlet (110/120V, 20A circuit breaker)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
   { label: "Full Body Heat (incl. legs and feet)", anywhere: "yes-anywhere", nordica: "yes", barrel: "no", plunge: "yes" },
   { label: "Renter Friendly", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
   { label: "Install Without Permits or Landlord Approval", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },

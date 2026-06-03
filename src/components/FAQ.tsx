@@ -7,12 +7,12 @@ const faqs = [
   {
     question: "Will this actually work in my home?",
     answer:
-      "Yes — it's specifically designed for standard 120V outlets. About ~98% of homes and apartments already have the setup needed.\n\nIf you're unsure, book a free 15-minute video consult and we'll check your outlet + breaker together.",
+      "Yes — it's specifically designed for standard 110/120V outlets. About ~98% of homes and apartments already have the setup needed.\n\nIf you're unsure, book a free 15-minute video consult and we'll check your outlet + breaker together.",
   },
   {
     question: "I thought a standard outlet couldn't get a sauna hot?",
     answer:
-      "Normally, it can't.\n\nTraditional saunas assume a large space and a 240V heater. This sauna is designed differently:\n\n• smaller air volume\n• elevated seating (so your whole body sits in the heat zone)\n• high-efficiency insulation\n\nThat combination allows a 120V heater to reach ~160–194°F in real use.",
+      "Normally, it can't.\n\nTraditional saunas assume a large space and a 240V heater. This sauna is designed differently:\n\n• smaller air volume\n• elevated seating (so your whole body sits in the heat zone)\n• high-efficiency insulation\n\nThat combination allows a 110/120V heater to reach ~160–194°F in real use.",
   },
   {
     question: "Why doesn't it come with a heater?",

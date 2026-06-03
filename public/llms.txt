@@ -13,7 +13,7 @@ Founded with a focus on accessibility and convenience, Sfsaunarental manages the
   - Two sauna types: Infrared and Finnish dry
   - Indoor and outdoor installation options
   - Professional delivery, setup, and pickup
-  - Standard 120V plug (no special wiring required)
+  - Standard 110/120V plug (no special wiring required)
   - Flexible rental terms starting from one month
   - Standard installations completed in 23 hours
   - Whisper-quiet operation
@@ -45,7 +45,7 @@ Founded with a focus on accessibility and convenience, Sfsaunarental manages the
 
 ## Pricing & Plans
 
-Sfsaunarental offers pricing based on sauna type, installation location, and rental period. All rentals include full setup, pickup, standard 120V compatibility, and 24/7 support.
+Sfsaunarental offers pricing based on sauna type, installation location, and rental period. All rentals include full setup, pickup, standard 110/120V compatibility, and 24/7 support.
 
 ### Indoor Infrared
 - 1 month  $449/mo
@@ -86,7 +86,7 @@ Sfsaunarentals installations are showcased across residential apartments and hom
 ## Feature Deep Dive
 
 ### Installation & Power
-- **How it works:** All units connect to a standard 120V wall outlet using approximately 1500 watts. The sauna heats to full temperature within 3040 minutes and costs under $1 per session based on average San Francisco electricity rates.
+- **How it works:** All units connect to a standard 110/120V wall outlet using approximately 1500 watts. The sauna heats to full temperature within 3040 minutes and costs under $1 per session based on average San Francisco electricity rates.
 - **Benefits:** No special electrical work is required, allowing users in apartments or rental properties to enjoy saunas with minimal setup.
 - **Requirements:** A standard household outlet and sufficient clearance space (48" x 42" footprint, 75" height, and 24" door swing).
 

@@ -44,7 +44,7 @@ export function useSEO({ title, description, canonical }: SEOProps) {
     return () => {
       document.title = 'SF Sauna Rental';
       if (metaDescription) {
-        metaDescription.setAttribute('content', 'Monthly sauna rentals for SF Bay Area homes and backyards. Dry and infrared saunas on 120V power with fast delivery, setup, and ongoing support.');
+        metaDescription.setAttribute('content', 'Monthly sauna rentals for SF Bay Area homes and backyards. Dry and infrared saunas on 110/120V power with fast delivery, setup, and ongoing support.');
       }
     };
   }, [title, description, canonical]);

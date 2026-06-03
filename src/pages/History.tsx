@@ -130,7 +130,7 @@ const History = () => {
         <section className="pt-6 pb-16 md:pt-8 md:pb-24">
           <div className="container mx-auto px-4 max-w-3xl space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              A normal wall outlet (120V) in the US is severely underpowered for a sauna. In Europe, saunas are everywhere, and they can do this because the standard outlet in Europe delivers twice the power compared to the US. This makes installing a sauna in Europe very easy.
+              A normal wall outlet (110/120V) in the US is severely underpowered for a sauna. In Europe, saunas are everywhere, and they can do this because the standard outlet in Europe delivers twice the power compared to the US. This makes installing a sauna in Europe very easy.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -142,11 +142,11 @@ const History = () => {
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I wanted a hotter sauna, so I bought a 120V heater to try out. I put in my infrared sauna and see I could get it hotter. While it got warmer, my legs were still cold and the sauna seemed to be losing a lot of heat.
+              I wanted a hotter sauna, so I bought a 110/120V heater to try out. I put in my infrared sauna and see I could get it hotter. While it got warmer, my legs were still cold and the sauna seemed to be losing a lot of heat.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              From there, I spent months modifying the sauna enclosure, trying countless improvements to get the heat I wanted, while still only using the 120V sauna heater.
+              From there, I spent months modifying the sauna enclosure, trying countless improvements to get the heat I wanted, while still only using the 110/120V sauna heater.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">

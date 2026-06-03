@@ -47,7 +47,7 @@ const IndoorInfraredLanding = () => {
                 Indoor Infrared Sauna Rental
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg">
-                Experience deep, therapeutic heat in the comfort of your home. Our infrared saunas plug into any standard 120V outlet — no special wiring required.
+                Experience deep, therapeutic heat in the comfort of your home. Our infrared saunas plug into any standard 110/120V outlet — no special wiring required.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
@@ -111,7 +111,7 @@ const IndoorInfraredLanding = () => {
                 </div>
                 <div className="flex items-center gap-2 text-foreground">
                   <Zap className="w-5 h-5 text-[hsl(var(--color-accent))]" />
-                  <span>Standard 120V</span>
+                  <span>Standard 110/120V</span>
                 </div>
                 <div className="flex items-center gap-2 text-foreground">
                   <Clock className="w-5 h-5 text-[hsl(var(--color-accent))]" />
@@ -170,7 +170,7 @@ const IndoorInfraredLanding = () => {
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {[
               "Full delivery & setup",
-              "Standard 120V power",
+              "Standard 110/120V power",
               "Pickup when you're done",
               "24/7 support",
               "2-person capacity",

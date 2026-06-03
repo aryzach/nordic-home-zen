@@ -76,7 +76,7 @@ const Gallery = () => {
             </div>
             <div className="flex items-start gap-3">
               <Check className="text-primary flex-shrink-0 mt-0.5" size={24} strokeWidth={2.5} />
-              <span className="text-muted-foreground">Standard 120V power (no electrician needed)</span>
+              <span className="text-muted-foreground">Standard 110/120V power (no electrician needed)</span>
             </div>
             <div className="flex items-start gap-3">
               <Check className="text-primary flex-shrink-0 mt-0.5" size={24} strokeWidth={2.5} />

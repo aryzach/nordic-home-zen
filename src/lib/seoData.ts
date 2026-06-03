@@ -52,12 +52,12 @@ export const seoData = {
   },
   inHomeSaunaSF: {
     title: "In-Home Sauna Rental SF | Daily Heat Therapy at Home",
-    description: "Rent a sauna for your San Francisco home. Infrared or steam saunas delivered and installed. Perfect for renters—no permanent modifications, 120V power.",
+    description: "Rent a sauna for your San Francisco home. Infrared or steam saunas delivered and installed. Perfect for renters—no permanent modifications, 110/120V power.",
     canonical: "https://sfsaunarental.com/in-home-sauna-san-francisco"
   },
   infraredSaunaSF: {
     title: "Infrared Sauna Rental San Francisco | Fast Warmup, Deep Heat",
-    description: "Rent an infrared sauna in San Francisco. Lower temps, faster warmup, perfect for apartments. 120V plug-in with delivery, installation, and maintenance included.",
+    description: "Rent an infrared sauna in San Francisco. Lower temps, faster warmup, perfect for apartments. 110/120V plug-in with delivery, installation, and maintenance included.",
     canonical: "https://sfsaunarental.com/infrared-sauna-san-francisco"
   },
    finnishSaunaSF: {
@@ -77,7 +77,7 @@ export const seoData = {
   },
   saunaRentalOakland: {
     title: "Sauna Rental in Oakland | Delivery, Setup & Monthly Plans",
-    description: "Plug-in sauna rentals for Oakland homes and apartments. Serving Rockridge, Temescal, Piedmont, Montclair, and all Oakland neighborhoods. 120V installation in 45 minutes.",
+    description: "Plug-in sauna rentals for Oakland homes and apartments. Serving Rockridge, Temescal, Piedmont, Montclair, and all Oakland neighborhoods. 110/120V installation in 45 minutes.",
     canonical: "https://sfsaunarental.com/sauna-rental-oakland"
   },
   saunaRentalBerkeley: {
@@ -97,7 +97,7 @@ export const seoData = {
   },
   saunaRentalMountainView: {
     title: "Sauna Rental in Mountain View & Los Altos | Delivery & Setup",
-    description: "Plug-in sauna rentals for Mountain View and Los Altos homes. Serving Cuesta Park, Waverly Park, Old Los Altos. 120V installation for apartments and homes.",
+    description: "Plug-in sauna rentals for Mountain View and Los Altos homes. Serving Cuesta Park, Waverly Park, Old Los Altos. 110/120V installation for apartments and homes.",
     canonical: "https://sfsaunarental.com/sauna-rental-mountain-view"
   },
 
@@ -138,7 +138,7 @@ export const seoData = {
   // Utility Pages
   installPower: {
     title: "Installation & Power Guide | SF Sauna Rental",
-    description: "Everything you need to know about sauna setup, 120V power requirements, and placement. Our saunas install in 45-60 minutes with no special wiring.",
+    description: "Everything you need to know about sauna setup, 110/120V power requirements, and placement. Our saunas install in 45-60 minutes with no special wiring.",
     canonical: "https://sfsaunarental.com/install-power"
   },
   learnHub: {
@@ -155,7 +155,7 @@ export const seoData = {
   // Google Ads Landing Pages
   indoorInfraredLanding: {
     title: "Indoor Infrared Sauna Rental | SF Sauna Rental",
-    description: "Rent an indoor infrared sauna for your San Francisco home. 150°F deep heat, 120V plug-in, 45-minute setup. Monthly plans from $199/mo with free installation.",
+    description: "Rent an indoor infrared sauna for your San Francisco home. 150°F deep heat, 110/120V plug-in, 45-minute setup. Monthly plans from $199/mo with free installation.",
     canonical: "https://sfsaunarental.com/indoor-infrared-sauna-rental"
   },
 

@@ -4,7 +4,7 @@ const WhySFSauna = () => {
   const benefits = [
     "Fast SF-local delivery (1–8 weeks depending on sauna type)",
     "Professional installation + removal included",
-    "Standard 120V power (no electrician needed)",
+    "Standard 110/120V power (no electrician needed)",
     "Month-to-month after initial term",
     "Apartment-friendly setups",
   ];

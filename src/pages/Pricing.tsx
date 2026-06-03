@@ -67,7 +67,7 @@ const saunaData = [
 ];
 
 const commonFeatures = [
-  "Standard 120V",
+  "Standard 110/120V",
   "Pickup included",
   "24/7 support",
   "2 person capacity",
