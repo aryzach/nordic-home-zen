@@ -18,7 +18,7 @@ const GoogleReviews = () => {
     <section className="w-full pt-2 pb-0">
       <div className="container mx-auto px-4">
         <div>
-          <div className="elfsight-app-8e4c426b-67fd-4565-8145-975c8d5acc74" data-elfsight-app-lazy></div>
+          <div className="elfsight-app-e6af0906-0da4-4409-8128-e4441444a14e" data-elfsight-app-lazy></div>
         </div>
       </div>
     </section>
