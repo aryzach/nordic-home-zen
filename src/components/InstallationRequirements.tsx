@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const InstallationRequirements = () => {
   const requirements = [
-    "Standard 120V outlet nearby",
+    "Standard 110/120V outlet nearby",
     "Ceiling height 7 ft or higher",
     "Floor space: ~4×4 ft",
     "No ventilation needed",

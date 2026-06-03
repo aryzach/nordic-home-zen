@@ -27,7 +27,7 @@ const InstallPower = () => {
                   <h2 className="text-2xl font-semibold mb-3 text-card-foreground">Power Requirements</h2>
                   <div className="space-y-4 text-card-foreground">
                     <div>
-                      <h3 className="font-semibold mb-2">Standard 120V</h3>
+                      <h3 className="font-semibold mb-2">Standard 110/120V</h3>
                       <p className="text-muted-foreground">
                         Plugs into any standard household outlet. No special wiring needed. Heats to full temperature in 30-40 minutes.
                         Uses approximately 1500W.
