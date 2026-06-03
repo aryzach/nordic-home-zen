@@ -9,7 +9,7 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
-import reviewsGif from "@/assets/reviews-animation.gif.asset.json";
+
 
 const Index = () => {
   useSEO(seoData.home);
