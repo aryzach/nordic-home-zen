@@ -1,10 +1,13 @@
+import apartmentImg from "@/assets/placement-apartment.jpeg.asset.json";
+import deckImg from "@/assets/placement-deck.jpeg.asset.json";
+import rooftopImg from "@/assets/placement-rooftop.jpeg.asset.json";
+import backyardImg from "@/assets/placement-backyard.jpeg.asset.json";
+
 const placements = [
-  { label: "Apartments", placeholder: "Apartment" },
-  { label: "Rentals", placeholder: "Rental" },
-  { label: "Backyards", placeholder: "Backyard" },
-  { label: "Garages", placeholder: "Garage" },
-  { label: "Decks", placeholder: "Deck" },
-  { label: "Bedrooms", placeholder: "Bedroom" },
+  { label: "Apartment", src: apartmentImg.url, alt: "Anywhere Sauna on an apartment patio" },
+  { label: "Deck", src: deckImg.url, alt: "Anywhere Sauna on a backyard deck" },
+  { label: "Rooftop", src: rooftopImg.url, alt: "Anywhere Sauna on a city rooftop" },
+  { label: "Backyard", src: backyardImg.url, alt: "Anywhere Sauna in a backyard garden" },
 ];
 
 const PlacementGallery = () => {
@@ -17,19 +20,18 @@ const PlacementGallery = () => {
         <p className="text-base md:text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto leading-relaxed">
           Homes, apartments, living rooms, backyards, garages, Anywhere.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 gap-6 md:gap-8">
           {placements.map((p) => (
             <div
               key={p.label}
-              className="aspect-[3/4] w-full rounded-2xl flex items-end justify-center p-5 border border-border/60"
-              style={{
-                background:
-                  "linear-gradient(160deg, hsl(30 38% 92%) 0%, hsl(33 25% 86%) 100%)",
-              }}
+              className="aspect-[3/4] w-full rounded-2xl overflow-hidden border border-border/60"
             >
-              <span className="font-heading text-lg md:text-xl text-foreground/50 italic">
-                {p.placeholder}
-              </span>
+              <img
+                src={p.src}
+                alt={p.alt}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>

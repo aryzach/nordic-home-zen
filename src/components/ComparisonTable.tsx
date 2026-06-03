@@ -36,9 +36,9 @@ const fullRows: Row[] = [
   { label: "Longevity", anywhere: "~30 years", nordica: "~15 years", barrel: "~30 years", plunge: "~30 years" },
   { label: "Heater Included", anywhere: "no", nordica: "no", barrel: "yes", plunge: "yes" },
   { label: "Compatible with SuperHotSuperFast Heater (shipping 2027)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
-  { label: "Unit Cost", anywhere: "$4,599", nordica: "$3,999", barrel: "$4,399", plunge: "$9,590" },
+  { label: "Unit Cost", anywhere: "$3,649", nordica: "$3,999", barrel: "$4,399", plunge: "$9,590" },
   { label: "Heater Cost", anywhere: "$200 – $900", nordica: "$200 – $900", barrel: "$0", plunge: "$0" },
-  { label: "Shipping Cost", anywhere: "$0", nordica: "$950", barrel: "$0", plunge: "$499" },
+  { label: "Shipping Cost", anywhere: "$950", nordica: "$950", barrel: "$0", plunge: "$499" },
   { label: "Electrician Cost", anywhere: "$0", nordica: "$1–3k", barrel: "$1–3k", plunge: "$1–3k" },
   { label: "All-in Cost", anywhere: "$4,799", nordica: "$6,149+", barrel: "$5,399+", plunge: "$11,089+" },
 ];
