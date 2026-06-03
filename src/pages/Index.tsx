@@ -9,7 +9,7 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
-import reviewsGif from "@/assets/reviews-animation.gif.asset.json";
+
 
 const Index = () => {
   useSEO(seoData.home);
@@ -21,7 +21,7 @@ const Index = () => {
         <Hero />
         <GoogleReviews />
         <div className="container mx-auto px-4 py-8 flex justify-center">
-          <img src={reviewsGif.url} alt="SF Sauna customer reviews" className="max-w-full h-auto rounded-lg" loading="lazy" />
+          <img src="/assets/reviews-animation.gif" alt="SF Sauna customer reviews" className="max-w-full h-auto rounded-lg" loading="lazy" />
         </div>
         <PlacementGallery />
         <AboutTheSauna />

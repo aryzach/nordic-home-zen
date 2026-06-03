@@ -1,13 +1,8 @@
-import apartmentImg from "@/assets/placement-apartment.jpeg.asset.json";
-import deckImg from "@/assets/placement-deck.jpeg.asset.json";
-import rooftopImg from "@/assets/placement-rooftop.jpeg.asset.json";
-import backyardImg from "@/assets/placement-backyard.jpeg.asset.json";
-
 const placements = [
-  { label: "Apartment", src: apartmentImg.url, alt: "Anywhere Sauna on an apartment patio" },
-  { label: "Deck", src: deckImg.url, alt: "Anywhere Sauna on a backyard deck" },
-  { label: "Rooftop", src: rooftopImg.url, alt: "Anywhere Sauna on a city rooftop" },
-  { label: "Backyard", src: backyardImg.url, alt: "Anywhere Sauna in a backyard garden" },
+  { label: "Apartment", src: "/assets/placement-apartment.jpeg", alt: "Anywhere Sauna on an apartment patio" },
+  { label: "Deck", src: "/assets/placement-deck.jpeg", alt: "Anywhere Sauna on a backyard deck" },
+  { label: "Rooftop", src: "/assets/placement-rooftop.jpeg", alt: "Anywhere Sauna on a city rooftop" },
+  { label: "Backyard", src: "/assets/placement-backyard.jpeg", alt: "Anywhere Sauna in a backyard garden" },
 ];
 
 const PlacementGallery = () => {
