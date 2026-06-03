@@ -101,6 +101,7 @@ const moreGroups: SpecGroup[] = [
       },
       { label: "Heater Mount Compatibility", value: "Wall-mounted" },
       { label: "Heat-Up Time", value: "~40–60 minutes depending on ambient temperature" },
+      { label: "Sauna Heater Stones", value: "Any stones made for sauna, available on Amazon" },
     ],
   },
   {
