@@ -240,6 +240,7 @@ const AboutTheSauna = () => {
           </Accordion>
         </div>
       </div>
+      <ImageLightbox images={aboutPhotos} open={lightboxOpen} startIndex={startIndex} onOpenChange={setLightboxOpen} />
     </section>
   );
 };
