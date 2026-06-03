@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Accordion,
@@ -6,15 +7,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import standardOutlet from "@/assets/standard-outlet.png";
-import saunaPhoto1 from "@/assets/sauna-exterior-front.png";
-import saunaPhoto2 from "@/assets/sauna-interior-back.png";
-import saunaPhoto3 from "@/assets/sauna-interior-floor.png";
-import saunaSchematic from "@/assets/sauna-schematic.png";
+import ImageLightbox from "./ImageLightbox";
 
 const aboutPhotos = [
-  { src: saunaPhoto1, alt: "Anywhere Sauna exterior front view with glass door" },
-  { src: saunaPhoto2, alt: "Anywhere Sauna interior back wall with cedar paneling" },
-  { src: saunaPhoto3, alt: "Anywhere Sauna interior floor and bench view" },
+  { src: "/assets/about-sauna-1.jpeg", alt: "Anywhere Sauna interior with heater and open door view" },
+  { src: "/assets/about-sauna-2.jpeg", alt: "Anywhere Sauna cedar interior bench detail" },
+  { src: "/assets/about-sauna-3.jpeg", alt: "Anywhere Sauna interior wall with thermometer" },
 ];
 
 type Spec = {
@@ -184,6 +182,9 @@ const GroupBlock = ({ group }: { group: SpecGroup }) => (
 );
 
 const AboutTheSauna = () => {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [startIndex, setStartIndex] = useState(0);
+
   return (
     <section id="about-the-sauna" className="pt-0 pb-8 md:pb-12 bg-background">
       <div className="container mx-auto px-4 max-w-[900px]">
@@ -194,17 +195,20 @@ const AboutTheSauna = () => {
         {/* Image placeholders + outlet photo */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {aboutPhotos.map((photo, i) => (
-            <div
+            <button
               key={i}
-              className="aspect-square rounded-lg overflow-hidden flex items-center justify-center"
+              type="button"
+              onClick={() => { setStartIndex(i); setLightboxOpen(true); }}
+              className="aspect-square rounded-lg overflow-hidden flex items-center justify-center cursor-zoom-in group"
+              aria-label={`Expand photo ${i + 1}`}
             >
               <img
                 src={photo.src}
                 alt={photo.alt}
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
-            </div>
+            </button>
           ))}
           <div className="aspect-square rounded-lg overflow-hidden border border-border bg-muted">
             <img
@@ -236,6 +240,7 @@ const AboutTheSauna = () => {
           </Accordion>
         </div>
       </div>
+      <ImageLightbox images={aboutPhotos} open={lightboxOpen} startIndex={startIndex} onOpenChange={setLightboxOpen} />
     </section>
   );
 };
