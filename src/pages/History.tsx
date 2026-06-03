@@ -7,7 +7,7 @@ const timelineEvents = [
   {
     year: "2024",
     items: [
-      "Realize there are no steam saunas that use a standard outlet. All solutions are expensive and require electrical modifications.",
+      "Realize there are no steam saunas that use a standard outlet. All solutions are expensive and require electrical modifications, or they use a 120V sauna heater in an enclosure that's too big, and to doesn't get to acceptable sauna temps.",
     ],
   },
   {
