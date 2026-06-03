@@ -20,8 +20,13 @@ const Index = () => {
       <main>
         <Hero />
         <GoogleReviews />
-        <div className="container mx-auto px-4 py-8 flex justify-center">
-          <img src="/assets/reviews-animation.gif" alt="SF Sauna customer reviews" className="max-w-full h-auto rounded-lg" loading="lazy" />
+        <div className="w-full px-0 sm:container sm:mx-auto sm:px-4 py-8 flex justify-center">
+          <img
+            src="/assets/reviews-animation.gif"
+            alt="SF Sauna customer reviews"
+            className="w-full max-w-[1100px] h-auto sm:rounded-lg"
+            loading="lazy"
+          />
         </div>
         <PlacementGallery />
         <AboutTheSauna />
