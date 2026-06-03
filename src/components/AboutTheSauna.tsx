@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Accordion,
@@ -6,15 +7,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import standardOutlet from "@/assets/standard-outlet.png";
-import saunaPhoto1 from "@/assets/sauna-exterior-front.png";
-import saunaPhoto2 from "@/assets/sauna-interior-back.png";
-import saunaPhoto3 from "@/assets/sauna-interior-floor.png";
-import saunaSchematic from "@/assets/sauna-schematic.png";
+import ImageLightbox from "./ImageLightbox";
 
 const aboutPhotos = [
-  { src: saunaPhoto1, alt: "Anywhere Sauna exterior front view with glass door" },
-  { src: saunaPhoto2, alt: "Anywhere Sauna interior back wall with cedar paneling" },
-  { src: saunaPhoto3, alt: "Anywhere Sauna interior floor and bench view" },
+  { src: "/assets/about-sauna-1.jpeg", alt: "Anywhere Sauna interior with heater and open door view" },
+  { src: "/assets/about-sauna-2.jpeg", alt: "Anywhere Sauna cedar interior bench detail" },
+  { src: "/assets/about-sauna-3.jpeg", alt: "Anywhere Sauna interior wall with thermometer" },
 ];
 
 type Spec = {
