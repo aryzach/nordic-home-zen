@@ -20,11 +20,11 @@ const Index = () => {
       <main>
         <Hero />
         <GoogleReviews />
-        <div className="w-full px-0 sm:container sm:mx-auto sm:px-4 py-8 flex justify-center">
+        <div className="w-full py-8 flex justify-center px-2 sm:px-6">
           <img
             src="/assets/reviews-animation.gif"
             alt="SF Sauna customer reviews"
-            className="w-full sm:max-h-[70vh] sm:w-auto h-auto sm:rounded-lg"
+            className="block w-auto h-auto max-w-full max-h-[88vh] sm:max-h-[90vh] mx-auto rounded-lg"
             loading="lazy"
           />
         </div>
