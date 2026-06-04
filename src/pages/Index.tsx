@@ -22,11 +22,14 @@ const Index = () => {
         <Hero />
         <GoogleReviews />
         <div className="w-full py-8 flex justify-center px-2 sm:px-6">
-          <img
-            src="/assets/reviews-animation.gif"
-            alt="SF Sauna customer reviews"
+          <video
+            src={reviewsVideo.url}
             className="block h-auto w-full max-w-[480px] sm:max-w-[500px] sm:w-full mx-auto rounded-lg"
-            loading="lazy"
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-label="SF Sauna customer reviews"
           />
         </div>
         <PlacementGallery />
