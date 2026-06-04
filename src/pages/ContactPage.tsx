@@ -93,13 +93,6 @@ const ContactPage = () => {
                 
                 {/* NAP Info */}
                 <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="text-accent mt-1 flex-shrink-0" size={20} />
-                    <div>
-                      <p className="font-medium text-heading">Service Area</p>
-                      <p className="text-text">San Francisco Bay Area, CA</p>
-                    </div>
-                  </div>
 
                   <div className="flex items-start gap-3">
                     <Phone className="text-accent mt-1 flex-shrink-0" size={20} />
