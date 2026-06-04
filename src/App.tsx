@@ -93,7 +93,7 @@ const App = () => (
         <GAPageView />
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/pricing" element={<Pricing />} />
+          
           
           <Route path="/how-it-started" element={<HowItStarted />} />
           <Route path="/history" element={<History />} />
