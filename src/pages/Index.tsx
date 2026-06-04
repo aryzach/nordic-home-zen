@@ -9,7 +9,7 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
-import reviewsVideo from "@/assets/reviews-animation.mp4.asset.json";
+
 
 
 const Index = () => {
@@ -23,7 +23,7 @@ const Index = () => {
         <GoogleReviews />
         <div className="w-full py-8 flex justify-center px-2 sm:px-6">
           <video
-            src={reviewsVideo.url}
+            src="/reviews-animation.mp4"
             className="block h-auto w-full max-w-[480px] sm:max-w-[500px] sm:w-full mx-auto rounded-lg"
             autoPlay
             loop
