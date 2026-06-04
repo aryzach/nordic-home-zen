@@ -49,6 +49,7 @@ const steps = [
 ];
 
 const outcomes = [
+  "Clarity around sauna options, and their cost and complexity for your space",
   "Ready to purchase a sauna",
   "Need a small electrical upgrade first",
   "Need to evaluate a different location",
