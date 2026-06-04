@@ -57,10 +57,15 @@ const outcomes = [
 ];
 
 const BookButton = () => (
-  <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
-    <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
-      <Calendar className="mr-2" size={18} />
-      Book Electrical Compatibility Consultation
+  <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white h-auto py-3">
+    <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center">
+      <span className="flex items-center">
+        <Calendar className="mr-2" size={18} />
+        Book Electrical Compatibility Consultation — $129
+      </span>
+      <span className="text-xs font-normal opacity-90 mt-1">
+        Consultation fee is credited toward Anywhere Sauna purchase
+      </span>
     </a>
   </Button>
 );
@@ -76,12 +81,12 @@ const ElectricChecklist = () => {
             <h1 className="mb-6">
               Not sure what saunas will work in your home?
             </h1>
-            <p className="mb-4">
-              Choosing and installing a sauna can be complicated and costly. We help you navigate your options and understand the costs and installation logistics involved in each
+            <p className="mb-8">
+              Choosing and installing a sauna can be complicated and costly. We help you navigate your options and understand the costs and installation logistics involved in each.
             </p>
-            <p className="text-muted-foreground mb-10">
-              In a 30-minute video consultation, we'll review your goals, assess your space and electrical setup, and walk through sauna options that are compatible with your space and sauna dreams.
-            </p>
+            <div className="flex justify-center mb-10">
+              <BookButton />
+            </div>
 
             {/* What's Covered - circular cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6 mb-12">
@@ -96,15 +101,6 @@ const ElectricChecklist = () => {
                   </div>
                 );
               })}
-            </div>
-
-            <div className="bg-card p-6 rounded-lg border border-border mb-8 text-left">
-              <h3 className="mb-2">
-                $109 consultation fee
-              </h3>
-              <p className="text-muted-foreground">
-                If you decide on purchasing the Anywhere Sauna, the full consultation fee is credited toward your order.
-              </p>
             </div>
 
             <div className="flex justify-center">
