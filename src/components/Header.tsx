@@ -54,7 +54,6 @@ const Header = () => {
           <nav className="hidden md:flex flex-1 justify-center items-center gap-8 font-sans">
             {[
               { to: "/history", label: "History" },
-              { to: "/sauna-electrical-fit-consultation", label: "Electrical Compatibility Consultation" },
             ].map((item) => (
               <Link
                 key={item.to}
@@ -88,9 +87,14 @@ const Header = () => {
           </nav>
 
           {/* CTA Button */}
-          <Button asChild shape="pill" className="hidden md:flex font-sans font-medium bg-accent text-white">
-            <Link to="/buy-your-anywhere-sauna">Buy Now</Link>
-          </Button>
+          <div className="hidden md:flex items-center gap-3">
+            <Button asChild shape="pill" className="font-sans font-medium bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))]">
+              <Link to="/sauna-electrical-fit-consultation">Book Electrical Compatibility Consultation</Link>
+            </Button>
+            <Button asChild shape="pill" className="font-sans font-medium bg-accent text-white">
+              <Link to="/buy-your-anywhere-sauna">Buy Now</Link>
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
