@@ -84,15 +84,13 @@ const ElectricChecklist = () => {
             </p>
 
             {/* What's Covered - circular cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-8 justify-items-center mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6 mb-12">
               {covered.map(({ icon: Icon, title, body }, i) => {
                 const bottomRowClass =
                   i === 3 ? "md:col-span-2 md:col-start-2" : i === 4 ? "md:col-span-2 md:col-start-4" : "md:col-span-2";
                 return (
-                  <div key={title} className={`flex flex-col items-center text-center max-w-xs ${bottomRowClass}`}>
-                    <div className="w-32 h-32 rounded-full bg-card border border-border flex items-center justify-center mb-4">
-                      <Icon className="text-accent" size={40} />
-                    </div>
+                  <div key={title} className={`bg-card p-6 rounded-lg border border-border text-left ${bottomRowClass}`}>
+                    <Icon className="text-accent mb-3" size={32} />
                     <h3 className="mb-2">{title}</h3>
                     <p className="text-muted-foreground">{body}</p>
                   </div>
