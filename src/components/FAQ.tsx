@@ -109,7 +109,7 @@ const ConsultCallout = ({
         shape="pill"
         className="w-full md:w-auto bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))] font-sans font-medium h-auto px-[28px] py-[14px] text-sm md:text-base"
       >
-        Book Electrical Compatibility Consultation — $129
+        Book Consultation — $129
       </Button>
     </Link>
   </div>
