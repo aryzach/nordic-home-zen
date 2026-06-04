@@ -95,18 +95,21 @@ const ConsultCallout = ({
   body,
 }: {
   heading: string;
-  body: string;
+  body?: string;
 }) => (
   <div className="rounded-xl bg-card border border-border/60 p-6 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
     <div>
       <h3 className="text-lg md:text-xl font-semibold text-foreground mb-1">
         {heading}
       </h3>
-      <p className="text-muted-foreground text-sm md:text-base">{body}</p>
+      {body && <p className="text-muted-foreground text-sm md:text-base">{body}</p>}
     </div>
     <Link to="/sauna-electrical-fit-consultation" className="shrink-0">
-      <Button size="lg" shape="card" className="w-full md:w-auto">
-        Book Consultation
+      <Button
+        shape="pill"
+        className="w-full md:w-auto bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))] font-sans font-medium h-auto px-[28px] py-[14px] text-sm md:text-base"
+      >
+        Book Electrical Compatibility Consultation — $129
       </Button>
     </Link>
   </div>
@@ -126,7 +129,7 @@ const FAQ = () => {
         <div className="mb-8">
           <ConsultCallout
             heading="Not sure if it'll work in your home?"
-            body="Book a free 15-minute video consultation and we'll check your setup together."
+            body="Book a 30-minute video consultation and we'll check your setup together."
           />
         </div>
 
@@ -151,10 +154,16 @@ const FAQ = () => {
           ))}
         </Accordion>
 
-        <ConsultCallout
-          heading="Still unsure?"
-          body="We'll tell you in 5 minutes if this will work in your space."
-        />
+        <div className="flex justify-center">
+          <Link to="/sauna-electrical-fit-consultation">
+            <Button
+              shape="pill"
+              className="bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
+            >
+              Book Electrical Compatibility Consultation — $129
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );
