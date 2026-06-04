@@ -66,8 +66,8 @@ const Hero = () => {
             <div className="flex flex-col items-center w-full">
               <Button
                 asChild
-                size="lg"
-                className="bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-[hsl(var(--color-white))] font-sans font-medium"
+                shape="pill"
+                className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
               >
                 <a href="https://calendar.app.google/tn9D96XCvg1sYfZGA" target="_blank" rel="noopener noreferrer">
                   Book Electrical Compatibility Consultation — $129
