@@ -54,8 +54,7 @@ const Header = () => {
           <nav className="hidden md:flex flex-1 justify-center items-center gap-8 font-sans">
             {[
               { to: "/history", label: "History" },
-              { to: "/climate-performance", label: "Climate & Performance" },
-              { to: "/sauna-electrical-fit-consultation", label: "Electrical Consult" },
+              { to: "/sauna-electrical-fit-consultation", label: "Electrical Compatibility Consultation" },
             ].map((item) => (
               <Link
                 key={item.to}
