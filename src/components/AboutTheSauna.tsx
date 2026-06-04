@@ -39,12 +39,10 @@ const overviewGroup: SpecGroup = {
       value: "Standard 110/120V outlet with 20A breaker",
       helper: (
         <>
-          Book a free video consultation to confirm your setup
+          Book a paid video consultation to review your goals and setup
           <br />
-          ~98% of homes and apartments already have what's needed.
-          <br />
-          <Link to="/electric-checklist" className="text-accent hover:underline not-italic font-medium">
-            Book Free Electrical Consult
+          <Link to="/sauna-electrical-fit-consultation" className="text-accent hover:underline not-italic font-medium">
+            Book Electrical Compatibility Consultation
           </Link>
         </>
       ),
