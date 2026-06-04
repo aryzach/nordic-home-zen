@@ -24,7 +24,7 @@ const Index = () => {
           <img
             src="/assets/reviews-animation.gif"
             alt="SF Sauna customer reviews"
-            className="block w-auto h-auto max-w-full max-h-[88vh] sm:max-h-[90vh] mx-auto rounded-lg"
+            className="block h-auto w-full max-w-[480px] sm:max-w-[1400px] sm:w-full mx-auto rounded-lg"
             loading="lazy"
           />
         </div>
