@@ -121,18 +121,6 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                {/* Map */}
-                <div className="rounded-lg overflow-hidden border border-ui">
-                  <iframe 
-                    src="https://maps.google.com/maps?q=SF%20Sauna%20Rental&output=embed&z=10" 
-                    width="100%" 
-                    height="350" 
-                    style={{ border: 0 }} 
-                    allowFullScreen 
-                    loading="lazy"
-                    title="SF Sauna Rental Location"
-                  />
-                </div>
               </div>
             </div>
           </div>
