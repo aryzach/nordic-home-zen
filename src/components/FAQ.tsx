@@ -37,7 +37,7 @@ const faqs = [
   {
     question: "How hot does it actually get?",
     answer:
-      "Up to ~194°F (the practical/legal max).\n\nTypical ranges:\n\n• cooler environments → ~150–170°F\n• moderate → ~170–185°F\n• warm → ~185–194°F",
+      "Up to ~194°F (the practical/legal max).\n\nTypical ranges:\n\n• 30–45°F ambient → ~150–170°F\n• 45–60°F ambient → ~170–185°F\n• 60°F+ ambient → ~185–194°F",
   },
   {
     question: "How long does it take to heat up?",
@@ -104,9 +104,9 @@ const ConsultCallout = ({
       </h3>
       <p className="text-muted-foreground text-sm md:text-base">{body}</p>
     </div>
-    <Link to="/electric-checklist" className="shrink-0">
+    <Link to="/sauna-electrical-fit-consultation" className="shrink-0">
       <Button size="lg" shape="card" className="w-full md:w-auto">
-        Book Free Consult
+        Book Consultation
       </Button>
     </Link>
   </div>

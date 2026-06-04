@@ -55,10 +55,10 @@ const ReservationPaymentOrScheduleCall = () => {
 
             <div className="bg-card p-8 rounded-lg border border-border">
               <h2 className="text-2xl font-heading font-semibold mb-4 text-heading">
-                Schedule Free Electrical Consultation
+                Book Electrical Compatibility Consultation
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Not sure your home is ready? Book a free 15-minute video call and we'll confirm your electrical setup.
+                Thinking about a sauna but not sure what's possible at your home? Book a 30-minute video consultation ($109, credited toward any purchase or rental).
               </p>
               <Button 
                 asChild 
@@ -68,7 +68,7 @@ const ReservationPaymentOrScheduleCall = () => {
               >
                 <Link to="/sauna-electrical-fit-consultation">
                   <Calendar className="mr-2" size={18} />
-                  Schedule Electrical Consult
+                  Book Electrical Compatibility Consultation
                 </Link>
               </Button>
             </div>
