@@ -104,9 +104,9 @@ const ConsultCallout = ({
       </h3>
       <p className="text-muted-foreground text-sm md:text-base">{body}</p>
     </div>
-    <Link to="/electric-checklist" className="shrink-0">
+    <Link to="/sauna-electrical-fit-consultation" className="shrink-0">
       <Button size="lg" shape="card" className="w-full md:w-auto">
-        Book Free Consult
+        Book Consultation
       </Button>
     </Link>
   </div>
