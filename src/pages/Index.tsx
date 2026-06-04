@@ -9,6 +9,7 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
+import reviewsVideo from "@/assets/reviews-animation.mp4.asset.json";
 
 
 const Index = () => {
