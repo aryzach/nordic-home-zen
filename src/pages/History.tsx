@@ -7,13 +7,13 @@ const timelineEvents = [
   {
     year: "2024",
     items: [
-      "Realize there are no steam saunas that use a standard outlet. All solutions are expensive and require electrical modifications, or they use a 120V sauna heater in an enclosure that's too big, and to doesn't get to acceptable sauna temps.",
+      "When looking for a sauna to buy, I discover that all steam saunas require expensive electrical modifications. This is both out of my budget, and wouldn't be allowed by my landlord.",
     ],
   },
   {
     year: "2025",
     items: [
-      "R&D, design, build, and install early prototypes for customers in the SF Bay Area.",
+      "Design and build prototypes of a sauna made for a standard home outlet. Install these for early customers in the SF Bay Area.",
     ],
   },
   {
@@ -25,10 +25,10 @@ const timelineEvents = [
   {
     year: "2027",
     items: [
-      "Launch the SuperHotSuperFast sauna heater, compatible with the Anywhere Sauna.",
+      "Launch the Heater Inferno, our battery-augmented sauna heater that enables 190°F heat in under 10 minutes. Compatible with the Anywhere Sauna.",
     ],
     subtext: {
-      text: "Learn about the SuperHotSuperFast sauna heater",
+      text: "Learn about the Heater Inferno here.",
       href: "/superhotsuperfast",
     },
   },
