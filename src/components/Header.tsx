@@ -88,7 +88,10 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-3">
-            <Button asChild shape="pill" className="font-sans font-medium bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))]">
+            <Button asChild shape="pill" className={cn(
+              "font-sans font-medium bg-transparent border-[3px]",
+              transparent ? "border-white text-white" : "border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))]"
+            )}>
               <Link to="/sauna-electrical-fit-consultation">Book Electrical Compatibility Consultation</Link>
             </Button>
             <Button asChild shape="pill" className="font-sans font-medium bg-accent text-white">
