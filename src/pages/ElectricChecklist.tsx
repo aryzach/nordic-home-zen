@@ -57,17 +57,17 @@ const outcomes = [
 ];
 
 const BookButton = () => (
-  <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white h-auto py-3">
-    <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center">
-      <span className="flex items-center">
+  <div className="flex flex-col items-center">
+    <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
+      <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
         <Calendar className="mr-2" size={18} />
         Book Electrical Compatibility Consultation — $129
-      </span>
-      <span className="text-xs font-normal opacity-90 mt-1">
-        Consultation fee is credited toward Anywhere Sauna purchase
-      </span>
-    </a>
-  </Button>
+      </a>
+    </Button>
+    <p className="text-xs text-muted-foreground mt-2">
+      Consultation fee is credited toward the purchase of an Anywhere Sauna
+    </p>
+  </div>
 );
 
 const ElectricChecklist = () => {
