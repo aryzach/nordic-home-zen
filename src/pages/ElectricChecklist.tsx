@@ -131,52 +131,6 @@ const ElectricChecklist = () => {
           </div>
         </section>
 
-        {/* Pricing */}
-        <section className="py-16 bg-cedar-section">
-          <div className="container mx-auto px-4 max-w-2xl">
-            <h2 className="mb-6 text-center">
-              Pricing
-            </h2>
-            <div className="bg-card p-8 rounded-lg border border-border text-center">
-              <h3 className="mb-4">
-                Consultation Fee: $109
-              </h3>
-              <p className="text-muted-foreground mb-2">
-                If you decide on purchasing the Anywhere Sauna, the full consultation fee is credited toward your order.
-              </p>
-              <p className="text-muted-foreground">
-                If you move forward, your consultation was effectively free.
-              </p>
-            </div>
-            <p className="text-center text-muted-foreground mt-8 max-w-xl mx-auto">
-              Most homes and apartments already have at least one viable sauna option available. We'll help determine what's possible in your specific situation.
-            </p>
-          </div>
-        </section>
-
-        {/* Common Outcomes */}
-        <section className="pt-16 pb-8 md:pb-10">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <h2 className="mb-4 text-center">
-              Common Outcomes
-            </h2>
-            <p className="text-center text-muted-foreground mb-10">
-              After the consultation, most people leave with one of the following:
-            </p>
-            <ul className="space-y-3 mb-8">
-              {outcomes.map((o) => (
-                <li key={o} className="flex items-start gap-3 bg-card p-4 rounded-lg border border-border">
-                  <CheckCircle2 className="text-accent flex-shrink-0 mt-0.5" size={20} />
-                  <span className="text-foreground">{o}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-center text-muted-foreground italic">
-              The goal is clarity before spending thousands of dollars.
-            </p>
-          </div>
-        </section>
-
         {/* Final CTA */}
         <section className="pt-8 md:pt-10 pb-16 md:pb-24 bg-cedar-section">
           <div className="container mx-auto px-4 max-w-2xl text-center">
@@ -184,7 +138,7 @@ const ElectricChecklist = () => {
               Ready to see what's possible?
             </h2>
             <p className="text-muted-foreground mb-8">
-              Book an Electrical Compatibility Consultation and get a clear understanding of your sauna options.
+              Get clarity before spending thousands of dollars.
             </p>
             <div className="flex justify-center">
               <BookButton />
