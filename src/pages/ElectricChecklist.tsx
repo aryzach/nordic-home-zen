@@ -72,16 +72,34 @@ const ElectricChecklist = () => {
       <main className="flex-grow pt-20">
         {/* Hero */}
         <section className="pt-16 md:pt-24 pb-8 md:pb-10">
-          <div className="container mx-auto px-4 max-w-3xl text-center">
+          <div className="container mx-auto px-4 max-w-5xl text-center">
             <h1 className="mb-6">
               Not sure what saunas will work in your home?
             </h1>
             <p className="mb-4">
-              Thinking about getting a sauna but not sure what's possible at your home?
+              Choosing and installing a sauna can be complicated and costly. We help you navigate your options and understand the costs and installation logistics involved in each
             </p>
-            <p className="text-muted-foreground mb-8">
+            <p className="text-muted-foreground mb-10">
               In a 30-minute video consultation, we'll review your goals, assess your space and electrical setup, and walk through sauna options that are compatible with your space and sauna dreams.
             </p>
+
+            {/* What's Covered - circular cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6 justify-items-center mb-12">
+              {covered.map(({ icon: Icon, title, body }, i) => {
+                const bottomRowClass =
+                  i === 3 ? "md:col-span-2 md:col-start-2" : i === 4 ? "md:col-span-2 md:col-start-4" : "md:col-span-2";
+                return (
+                  <div
+                    key={title}
+                    className={`w-56 h-56 rounded-full bg-card border border-border flex flex-col items-center justify-center text-center p-6 ${bottomRowClass}`}
+                  >
+                    <Icon className="text-accent mb-2" size={28} />
+                    <h3 className="text-sm mb-1">{title}</h3>
+                    <p className="text-muted-foreground text-xs leading-snug">{body}</p>
+                  </div>
+                );
+              })}
+            </div>
 
             <div className="bg-card p-6 rounded-lg border border-border mb-8 text-left">
               <h3 className="mb-2">
@@ -94,30 +112,6 @@ const ElectricChecklist = () => {
 
             <div className="flex justify-center">
               <BookButton />
-            </div>
-          </div>
-        </section>
-
-        {/* What's Covered */}
-        <section className="pt-8 md:pt-10 pb-16 bg-cedar-section">
-          <div className="container mx-auto px-4 max-w-5xl">
-            <h2 className="mb-10 text-center">
-              What's Covered
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-8 justify-items-center">
-              {covered.map(({ icon: Icon, title, body }, i) => {
-                const bottomRowClass =
-                  i === 3 ? "md:col-span-2 md:col-start-2" : i === 4 ? "md:col-span-2 md:col-start-4" : "md:col-span-2";
-                return (
-                  <div key={title} className={`flex flex-col items-center text-center max-w-xs ${bottomRowClass}`}>
-                    <div className="w-32 h-32 rounded-full bg-card border border-border flex items-center justify-center mb-4">
-                      <Icon className="text-accent" size={40} />
-                    </div>
-                    <h3 className="mb-2">{title}</h3>
-                    <p className="text-muted-foreground">{body}</p>
-                  </div>
-                );
-              })}
             </div>
           </div>
         </section>
