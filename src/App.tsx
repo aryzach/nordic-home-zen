@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
-import Pricing from "./pages/Pricing";
+
 
 import HowItStarted from "./pages/HowItStarted";
 import History from "./pages/History";
@@ -93,7 +93,7 @@ const App = () => (
         <GAPageView />
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/pricing" element={<Pricing />} />
+          
           
           <Route path="/how-it-started" element={<HowItStarted />} />
           <Route path="/history" element={<History />} />

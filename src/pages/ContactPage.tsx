@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
 
@@ -93,13 +93,6 @@ const ContactPage = () => {
                 
                 {/* NAP Info */}
                 <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="text-accent mt-1 flex-shrink-0" size={20} />
-                    <div>
-                      <p className="font-medium text-heading">Service Area</p>
-                      <p className="text-text">San Francisco Bay Area, CA</p>
-                    </div>
-                  </div>
 
                   <div className="flex items-start gap-3">
                     <Phone className="text-accent mt-1 flex-shrink-0" size={20} />
@@ -128,18 +121,6 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                {/* Map */}
-                <div className="rounded-lg overflow-hidden border border-ui">
-                  <iframe 
-                    src="https://maps.google.com/maps?q=SF%20Sauna%20Rental&output=embed&z=10" 
-                    width="100%" 
-                    height="350" 
-                    style={{ border: 0 }} 
-                    allowFullScreen 
-                    loading="lazy"
-                    title="SF Sauna Rental Location"
-                  />
-                </div>
               </div>
             </div>
           </div>
