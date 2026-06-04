@@ -55,7 +55,7 @@ const Hero = () => {
             <Button
               asChild
               shape="pill"
-              className="bg-transparent border-2 border-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
+              className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
             >
               <Link to="/buy-your-anywhere-sauna">
                 Buy now for $4,599
@@ -67,7 +67,7 @@ const Hero = () => {
               <Button
                 asChild
                 shape="pill"
-                className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
+                className="bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
               >
                 <a href="https://calendar.app.google/tn9D96XCvg1sYfZGA" target="_blank" rel="noopener noreferrer">
                   Book Electrical Compatibility Consultation — $129
