@@ -104,25 +104,20 @@ const ElectricChecklist = () => {
             <h2 className="mb-10 text-center">
               What's Covered
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
-              {covered.map(({ icon: Icon, title, body }, i) => (
-                <div
-                  key={title}
-                  className={`flex flex-col items-center text-center max-w-xs ${
-                    covered.length === 5 && i === 3 ? "md:col-start-1 md:[grid-column:1/span_3] md:max-w-none md:grid md:grid-cols-2 md:gap-8 md:justify-items-center" : ""
-                  }`}
-                >
-                  {covered.length === 5 && i === 3 ? null : (
-                    <>
-                      <div className="w-32 h-32 rounded-full bg-card border border-border flex items-center justify-center mb-4">
-                        <Icon className="text-accent" size={40} />
-                      </div>
-                      <h3 className="mb-2">{title}</h3>
-                      <p className="text-muted-foreground">{body}</p>
-                    </>
-                  )}
-                </div>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-8 justify-items-center">
+              {covered.map(({ icon: Icon, title, body }, i) => {
+                const bottomRowClass =
+                  i === 3 ? "md:col-span-2 md:col-start-2" : i === 4 ? "md:col-span-2 md:col-start-4" : "md:col-span-2";
+                return (
+                  <div key={title} className={`flex flex-col items-center text-center max-w-xs ${bottomRowClass}`}>
+                    <div className="w-32 h-32 rounded-full bg-card border border-border flex items-center justify-center mb-4">
+                      <Icon className="text-accent" size={40} />
+                    </div>
+                    <h3 className="mb-2">{title}</h3>
+                    <p className="text-muted-foreground">{body}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
