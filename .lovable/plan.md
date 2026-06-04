@@ -1,29 +1,36 @@
 
-The user is asking for the full list of specs used in the comparison chart on the homepage. This is a research/Q&A request, not an implementation task — no plan needed. Pulling directly from `src/components/ComparisonTable.tsx`.
+## Plan: Refine /sauna-electrical-fit-consultation page
 
-## Comparison Chart — Full List of Specs
+All changes are in `src/pages/ElectricChecklist.tsx`.
 
-The chart compares three saunas: **Anywhere Sauna**, **Barrel Sauna (Costco)**, and **Nordica SaunaLife**.
+### 1. Typography cohesion
+Standardize the page on the global heading scale (h1/h2/h3 from `tailwind.config.ts`) and remove ad-hoc `text-4xl/5xl`, `text-3xl/4xl`, `text-2xl`, `text-xl`, `text-lg` overrides.
 
-### Main Table (always visible)
-1. Standard Outlet (120V, 20A circuit breaker)
-2. Full Body Heat
-3. Renter Friendly
-4. Permits / Landlord Approval
-5. Setup Time
-6. Where You Can Put It
-7. All-in Cost
+- H1 "Electrical Compatibility Consultation" → rely on default h1 (drop `text-4xl md:text-5xl`).
+- All section H2s ("What's Covered", "How It Works", "Pricing", "Common Outcomes", "Ready to see what's possible?") → rely on default h2 (drop `text-3xl md:text-4xl`).
+- Card titles ("$109 consultation fee", "Consultation Fee: $109", step titles, covered titles) → use h3 default (drop `text-xl`, `text-2xl`).
+- Body paragraphs → single size using default `p` (18px). Drop `text-xl`, `text-lg` variants on intro/subhead.
 
-### Full Specs Table (shown when "See full comparison" expanded)
-1. Exterior Dimensions
-2. Heated Space
-3. Wood Type
-4. Longevity
-5. Heater Included
-6. Compatible with SuperHotSuperFast Heater (shipping 2027)
-7. Unit Cost
-8. Shipping Cost
-9. Electrician Cost
-10. Total Cost
+### 2. Copy changes
+- Subhead under H1:
+  - From: "In a 30-minute video consultation, we'll review your goals, assess your space and electrical setup, and walk through the sauna options available to you."
+  - To: "In a 30-minute video consultation, we'll review your goals, assess your space and electrical setup, and walk through sauna options that are compatible with your space and sauna dreams."
+- Consultation-fee card body (hero) AND pricing-section body:
+  - From: "If you move forward with a sauna purchase or rental, the full consultation fee is credited toward your order."
+  - To: "If you decide on purchasing the Anywhere Sauna, the full consultation fee is credited toward your order."
+- Step 2 body:
+  - From: "FaceTime, Zoom, or Google Meet."
+  - To: "Joining the call on FaceTime or Google Meet on your phone is preferred, as we'll be moving around your home."
 
-Source: `src/components/ComparisonTable.tsx` (`mainRows` and `specRows` arrays).
+### 3. Layout/spacing
+- Center the hero CTA: wrap `<BookButton>` in a centered container (e.g. `flex justify-center`) and drop `w-full md:w-auto`.
+- Reduce space below hero CTA: change hero section padding from `py-16 md:py-24` to `pt-16 md:pt-24 pb-8 md:pb-10`.
+- Reduce space above "What's Covered": change that section padding from `py-16` to `pt-8 md:pt-10 pb-16`.
+- Reduce space below "The goal is clarity…": change Common Outcomes section padding from `py-16` to `pt-16 pb-8 md:pb-10`.
+- Reduce space above "Ready to see what's possible?": change final CTA section from `py-16 md:py-24` to `pt-8 md:pt-10 pb-16 md:pb-24`.
+
+### 4. Content removal
+- Remove "Ready to rent a sauna immediately" from the `outcomes` array (keep the other 4).
+
+### Out of scope
+No changes to other pages, routes, nav, or components.
