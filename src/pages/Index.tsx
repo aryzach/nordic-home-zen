@@ -6,6 +6,7 @@ import PlacementGallery from "@/components/PlacementGallery";
 import SaunaFeatures from "@/components/SaunaFeatures";
 import ComparisonTable from "@/components/ComparisonTable";
 import FAQ from "@/components/FAQ";
+import DualCTAs from "@/components/DualCTAs";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
@@ -32,9 +33,11 @@ const Index = () => {
             aria-label="SF Sauna customer reviews"
           />
         </div>
+        <DualCTAs />
         <PlacementGallery />
         <AboutTheSauna />
         <SaunaFeatures />
+        <DualCTAs />
         <ComparisonTable />
         <FAQ />
       </main>
