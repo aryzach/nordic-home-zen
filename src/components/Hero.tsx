@@ -63,28 +63,20 @@ const Hero = () => {
               </Link>
             </Button>
             <div className="text-white/70 text-xs font-sans">or</div>
-            <form
-              action="https://api.web3forms.com/submit"
-              method="POST"
-              className="flex gap-2 w-full items-stretch"
-            >
-              <input type="hidden" name="access_key" value="0d3fcf2f-c3a3-49ec-9106-7ab3f8a35cf6" />
-              <input type="hidden" name="subject" value="New Hero Email Signup" />
-              <input type="hidden" name="redirect" value={`${window.location.origin}/thank-you`} />
-              <Input
-                type="email"
-                name="email"
-                required
-                placeholder="Enter your email"
-                className="flex-1 h-11 bg-white/95 text-charcoal placeholder:text-charcoal/60 border-0"
-              />
+            <div className="flex flex-col items-center w-full">
               <Button
-                type="submit"
-                className="h-11 bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-[hsl(var(--color-white))] font-sans font-medium"
+                asChild
+                size="lg"
+                className="bg-[hsl(var(--color-accent))] hover:bg-[hsl(var(--color-accent-dark))] text-[hsl(var(--color-white))] font-sans font-medium"
               >
-                Learn More
+                <a href="https://calendar.app.google/tn9D96XCvg1sYfZGA" target="_blank" rel="noopener noreferrer">
+                  Book Electrical Compatibility Consultation — $129
+                </a>
               </Button>
-            </form>
+              <p className="text-xs text-white/80 mt-2">
+                Consultation fee is credited toward the purchase of an Anywhere Sauna
+              </p>
+            </div>
           </div>
         </div>
       </div>
