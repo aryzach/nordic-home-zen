@@ -108,11 +108,8 @@ const Header = () => {
               <Link to="/history" className="text-left text-foreground/70 hover:text-foreground transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 History
               </Link>
-              <Link to="/climate-performance" className="text-foreground/70 hover:text-foreground transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Climate &amp; Performance
-              </Link>
               <Link to="/sauna-electrical-fit-consultation" className="text-foreground/70 hover:text-foreground transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                Electrical Consult
+                Electrical Compatibility Consultation
               </Link>
               <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }} className="text-left text-foreground/70 hover:text-foreground transition-colors">
                 Specs
