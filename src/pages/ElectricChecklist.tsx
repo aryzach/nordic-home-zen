@@ -74,7 +74,7 @@ const ElectricChecklist = () => {
         <section className="pt-16 md:pt-24 pb-8 md:pb-10">
           <div className="container mx-auto px-4 max-w-3xl text-center">
             <h1 className="mb-6">
-              Electrical Compatibility Consultation
+              Not sure what saunas will work in your home?
             </h1>
             <p className="mb-4">
               Thinking about getting a sauna but not sure what's possible at your home?
@@ -104,14 +104,20 @@ const ElectricChecklist = () => {
             <h2 className="mb-10 text-center">
               What's Covered
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {covered.map(({ icon: Icon, title, body }) => (
-                <div key={title} className="bg-card p-6 rounded-lg border border-border">
-                  <Icon className="text-accent mb-4" size={28} />
-                  <h3 className="mb-2">{title}</h3>
-                  <p className="text-muted-foreground">{body}</p>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-8 justify-items-center">
+              {covered.map(({ icon: Icon, title, body }, i) => {
+                const bottomRowClass =
+                  i === 3 ? "md:col-span-2 md:col-start-2" : i === 4 ? "md:col-span-2 md:col-start-4" : "md:col-span-2";
+                return (
+                  <div key={title} className={`flex flex-col items-center text-center max-w-xs ${bottomRowClass}`}>
+                    <div className="w-32 h-32 rounded-full bg-card border border-border flex items-center justify-center mb-4">
+                      <Icon className="text-accent" size={40} />
+                    </div>
+                    <h3 className="mb-2">{title}</h3>
+                    <p className="text-muted-foreground">{body}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
