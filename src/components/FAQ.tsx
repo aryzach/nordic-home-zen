@@ -160,7 +160,8 @@ const FAQ = () => {
               shape="pill"
               className="bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
             >
-              Book Electrical Compatibility Consultation — $129
+              <span className="md:hidden">Book Electrical Consultation — $129</span>
+              <span className="hidden md:inline">Book Electrical Compatibility Consultation — $129</span>
             </Button>
           </Link>
         </div>

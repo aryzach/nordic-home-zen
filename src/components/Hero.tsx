@@ -70,7 +70,8 @@ const Hero = () => {
                 className="bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
               >
                 <a href="https://calendar.app.google/tn9D96XCvg1sYfZGA" target="_blank" rel="noopener noreferrer">
-                  Book Electrical Compatibility Consultation — $129
+                  <span className="md:hidden">Book Electrical Consultation — $129</span>
+                  <span className="hidden md:inline">Book Electrical Compatibility Consultation — $129</span>
                 </a>
               </Button>
               <p className="text-xs text-white/80 mt-2">

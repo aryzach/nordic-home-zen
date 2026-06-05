@@ -25,7 +25,7 @@ const timelineEvents = [
   {
     year: "2027",
     items: [
-      "Launch the Heater Inferno, our battery-augmented sauna heater that enables 190°F heat in under 10 minutes. Compatible with the Anywhere Sauna.",
+      "Launch the Heater Inferno, our battery-augmented sauna heater that enables 190°F heat in under 10 minutes, using just a standard home outlet. Compatible with the Anywhere Sauna.",
     ],
     subtext: {
       text: "Learn about the Heater Inferno here.",
