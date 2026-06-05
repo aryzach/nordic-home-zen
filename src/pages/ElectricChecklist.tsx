@@ -61,10 +61,10 @@ const BookButton = () => (
     <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
       <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
         <Calendar className="mr-2" size={18} />
-        Book Electrical Compatibility Consultation — $129
+        Book Electrical Consultation — $129
       </a>
     </Button>
-    <p className="text-xs text-muted-foreground mt-2">
+    <p className="text-xs text-muted-foreground mt-2 text-center max-w-[260px] md:max-w-none">
       Consultation fee is credited toward the purchase of an Anywhere Sauna
     </p>
   </div>
