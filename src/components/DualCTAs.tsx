@@ -29,7 +29,7 @@ const DualCTAs = () => {
                 <span className="hidden md:inline">Book Electrical Compatibility Consultation — $129</span>
               </Link>
             </Button>
-            <p className="text-xs text-muted-foreground mt-2">
+            <p className="text-xs text-muted-foreground mt-2 text-center">
               Consultation fee is credited toward the purchase of an Anywhere Sauna
             </p>
           </div>

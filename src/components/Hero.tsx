@@ -74,7 +74,7 @@ const Hero = () => {
                   <span className="hidden md:inline">Book Electrical Compatibility Consultation — $129</span>
                 </a>
               </Button>
-              <p className="text-xs text-white/80 mt-2">
+              <p className="text-xs text-white/80 mt-2 text-center">
                 Consultation fee is credited toward the purchase of an Anywhere Sauna
               </p>
             </div>
