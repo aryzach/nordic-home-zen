@@ -107,7 +107,7 @@ const ConsultCallout = ({
     <Link to="/sauna-electrical-fit-consultation" className="shrink-0">
       <Button
         shape="pill"
-        className="w-full md:w-auto bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))] font-sans font-medium h-auto px-[28px] py-[14px] text-sm md:text-base"
+        className="w-full md:w-auto bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[28px] py-[14px] text-sm md:text-base"
       >
         Book Consultation — $129
       </Button>
@@ -158,10 +158,9 @@ const FAQ = () => {
           <Link to="/sauna-electrical-fit-consultation">
             <Button
               shape="pill"
-              className="bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
+              className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
             >
-              <span className="md:hidden">Book Electrical Consultation — $129</span>
-              <span className="hidden md:inline">Book Electrical Compatibility Consultation — $129</span>
+              More Questions?
             </Button>
           </Link>
         </div>
