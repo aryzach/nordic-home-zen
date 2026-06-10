@@ -4,9 +4,9 @@ import { useSEO } from "@/hooks/useSEO";
 
 const HeaterInferno = () => {
   useSEO({
-    title: "HeaterInferno Sauna Heater | The Anywhere Sauna",
+    title: "Heater Inferno Sauna Heater | The Anywhere Sauna",
     description:
-      "The HeaterInferno sauna heater — designed to heat your sauna fast using a standard American outlet. Shipping 2027.",
+      "The Heater Inferno sauna heater — designed to heat your sauna fast using a standard American outlet. Shipping 2027.",
   });
 
   return (
@@ -16,10 +16,10 @@ const HeaterInferno = () => {
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-semibold mb-6 text-foreground">
-              HeaterInferno Sauna Heater
+              Heater Inferno Sauna Heater
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              The HeaterInferno heater is the next step in making real sauna
+              The Heater Inferno is the next step in making real sauna
               heat accessible to everyone. A new type of battery-augmented sauna
               heater designed from the ground up to deliver fast, intense heat
               from a standard American outlet.
