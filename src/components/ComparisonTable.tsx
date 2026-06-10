@@ -35,7 +35,7 @@ const fullRows: Row[] = [
   { label: "Wood Type", anywhere: "Red Cedar", nordica: "Spruce", barrel: "Red Cedar", plunge: "Red Cedar" },
   { label: "Longevity", anywhere: "~30 years", nordica: "~15 years", barrel: "~30 years", plunge: "~30 years" },
   { label: "Heater Included", anywhere: "no", nordica: "no", barrel: "yes", plunge: "yes" },
-  { label: "Compatible with SuperHotSuperFast Heater (shipping 2027)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
+  { label: "Compatible with Heater Inferno (shipping 2027)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
   { label: "Unit Cost", anywhere: "$3,649", nordica: "$3,999", barrel: "$4,399", plunge: "$9,590" },
   { label: "Heater Cost", anywhere: "$200 – $900", nordica: "$200 – $900", barrel: "$0", plunge: "$0" },
   { label: "Shipping Cost", anywhere: "$950", nordica: "$950", barrel: "$0", plunge: "$499" },
