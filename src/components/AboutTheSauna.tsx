@@ -88,9 +88,9 @@ const moreGroups: SpecGroup[] = [
       { label: "Maximum Heater Dimensions", value: "13″ × 22″ × 9″" },
       { label: "Recommended Power Range", value: "1.8kW – 2.0kW (for standard outlet use)" },
       {
-        label: "Compatible with SuperHotSuperFast Heater",
+        label: "Compatible with HeaterInferno Heater",
         value: (
-          <Link to="/superhotsuperfast" className="text-accent hover:underline">
+          <Link to="/heater-inferno" className="text-accent hover:underline">
             Yes (shipping 2027)
           </Link>
         ),

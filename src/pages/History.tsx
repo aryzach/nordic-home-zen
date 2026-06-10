@@ -29,7 +29,7 @@ const timelineEvents = [
     ],
     subtext: {
       text: "Learn about the Heater Inferno here.",
-      href: "/superhotsuperfast",
+      href: "/heater-inferno",
     },
   },
 ];
