@@ -24,7 +24,7 @@ const ReservationPaymentOrScheduleCall = () => {
             </p>
 
             <img
-              src={saunaBackyard.url}
+              src="./anywhere-sauna-backyard.jpg"
               alt="Anywhere Sauna set up in a backyard patio"
               className="w-full rounded-lg mb-8"
               loading="lazy"
