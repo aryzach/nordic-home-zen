@@ -11,7 +11,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-const BOOKING_URL = "https://calendar.app.google/tn9D96XCvg1sYfZGA";
+const BOOKING_URL = "https://calendar.app.google/Q9nw6fTEBMnyNbDf8";
 
 const covered = [
   {
