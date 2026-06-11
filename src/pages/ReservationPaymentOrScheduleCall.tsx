@@ -20,8 +20,16 @@ const ReservationPaymentOrScheduleCall = () => {
               Buy Your Anywhere Sauna
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              A sauna built for a standard outlet that makes you sweat. That's it.
+              The only sauna built for a standard outlet that makes you sweat.
             </p>
+
+            <img
+              src={saunaBackyard.url}
+              alt="Anywhere Sauna set up in a backyard patio"
+              className="w-full rounded-lg mb-8"
+              loading="lazy"
+            />
+
 
             {/* Buy options */}
             <div className="space-y-6 mb-8">
