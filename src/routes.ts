@@ -25,6 +25,7 @@ export const routes = [
   { path: '/thank-you', priority: 0.3, changefreq: 'monthly' },
   { path: '/buy-your-anywhere-sauna', priority: 0.6, changefreq: 'monthly' },
   { path: '/indoor-infrared-sauna-rental', priority: 0.8, changefreq: 'monthly' },
+  { path: '/electrical-compatibility-quiz', priority: 0.8, changefreq: 'monthly' },
 ] as const;
 
 export const routePaths = routes.map(r => r.path);

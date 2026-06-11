@@ -37,6 +37,7 @@ const routes = [
   '/email-more-info',
   '/thank-you',
   '/buy-your-anywhere-sauna',
+  '/electrical-compatibility-quiz',
 ];
 
 const PORT = 5173;
