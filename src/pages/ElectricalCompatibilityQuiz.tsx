@@ -263,7 +263,7 @@ const ElectricalCompatibilityQuiz = () => {
                 </div>
                 <p className="text-sm text-muted-foreground mb-6 flex items-start gap-2">
                   <CheckCircle2 className="text-green-600 flex-shrink-0 mt-0.5" size={18} />
-                  <span>The Anywhere Sauna performs best when connected to a dedicated 20A circuit.</span>
+                  <span>The Anywhere Sauna performs best when used with a heater plugged into an outlet on a 20A circuit.</span>
                 </p>
 
                 <div className="space-y-3">
