@@ -5,6 +5,7 @@ import { ExternalLink, Calendar } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
 import { Link } from "react-router-dom";
+import saunaBackyard from "@/assets/anywhere-sauna-backyard.png.asset.json";
 
 const ReservationPaymentOrScheduleCall = () => {
   useSEO(seoData.reservationPayment);
@@ -19,8 +20,16 @@ const ReservationPaymentOrScheduleCall = () => {
               Buy Your Anywhere Sauna
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              A sauna built for a standard outlet that makes you sweat. That's it.
+              The only sauna built for a standard outlet that makes you sweat.
             </p>
+
+            <img
+              src={saunaBackyard.url}
+              alt="Anywhere Sauna set up in a backyard patio"
+              className="w-full rounded-lg mb-8"
+              loading="lazy"
+            />
+
 
             {/* Buy options */}
             <div className="space-y-6 mb-8">
