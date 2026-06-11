@@ -5,7 +5,7 @@ import { ExternalLink, Calendar } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
 import { Link } from "react-router-dom";
-import saunaBackyard from "@/assets/anywhere-sauna-backyard.png.asset.json";
+
 
 const ReservationPaymentOrScheduleCall = () => {
   useSEO(seoData.reservationPayment);
@@ -24,7 +24,7 @@ const ReservationPaymentOrScheduleCall = () => {
             </p>
 
             <img
-              src={saunaBackyard.url}
+              src="./anywhere-sauna-backyard.jpg"
               alt="Anywhere Sauna set up in a backyard patio"
               className="w-full rounded-lg mb-8"
               loading="lazy"
