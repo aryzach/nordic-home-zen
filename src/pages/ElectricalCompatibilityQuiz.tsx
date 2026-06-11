@@ -417,7 +417,7 @@ const ElectricalCompatibilityQuiz = () => {
                 subtext={
                   view.from === 2
                     ? "We'll review your space, electrical setup, and sauna options. Consultation fee is credited toward the purchase of an Anywhere Sauna."
-                    : "We'll help evaluate your options."
+                    : "We'll help evaluate your options. Consultation fee is credited toward the purchase of an Anywhere Sauna."
                 }
               />
 
