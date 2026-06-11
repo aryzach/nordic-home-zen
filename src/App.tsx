@@ -23,6 +23,8 @@ import ThankYou from "./pages/ThankYou";
 import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrScheduleCall";
 import IndoorInfraredLanding from "./pages/IndoorInfraredLanding";
 import ElectricChecklist from "./pages/ElectricChecklist";
+import ElectricalCompatibilityQuiz from "./pages/ElectricalCompatibilityQuiz";
+import ElectricalAssessmentSubmitted from "./pages/ElectricalAssessmentSubmitted";
 import LeaveReview from "./pages/LeaveReview";
 import NotFound from "./pages/NotFound";
 
@@ -115,6 +117,8 @@ const App = () => (
           <Route path="/sauna-electrical-fit-consultation" element={<ElectricChecklist />} />
           <Route path="/electric-checklist" element={<Navigate to="/sauna-electrical-fit-consultation" replace />} />
           <Route path="/leave-review" element={<LeaveReview />} />
+          <Route path="/electrical-compatibility-quiz" element={<ElectricalCompatibilityQuiz />} />
+          <Route path="/electrical-assessment-submitted" element={<ElectricalAssessmentSubmitted />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

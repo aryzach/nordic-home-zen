@@ -69,14 +69,10 @@ const Hero = () => {
                 shape="pill"
                 className="bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
               >
-                <Link to="/sauna-electrical-fit-consultation">
-                  <span className="md:hidden">Book Electrical Consultation — $129</span>
-                  <span className="hidden md:inline">Book Electrical Compatibility Consultation — $129</span>
+                <Link to="/electrical-compatibility-quiz">
+                  Take the Electrical Compatibility Quiz
                 </Link>
               </Button>
-              <p className="text-xs text-white/80 mt-2 text-center">
-                Consultation fee is credited toward the purchase of an Anywhere Sauna
-              </p>
             </div>
           </div>
         </div>
