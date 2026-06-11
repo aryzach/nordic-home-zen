@@ -49,8 +49,12 @@ const ElectricalAssessmentSubmitted = () => {
                 </a>
               </Button>
               <p className="text-xs text-muted-foreground -mt-2 text-center max-w-[320px]">
-                Want immediate feedback? Schedule a call with us. Consultation fee is credited toward the purchase of an Anywhere Sauna.
+                Want immediate feedback? Schedule a call with us.
               </p>
+              <p className="text-xs text-muted-foreground -mt-2 text-center max-w-[320px]">
+                Consultation fee is credited toward the purchase of an Anywhere Sauna.
+              </p>
+
 
               <Button
                 asChild
