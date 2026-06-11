@@ -6,8 +6,17 @@ import { Link } from "react-router-dom";
 const faqs = [
   {
     question: "Will this actually work in my home?",
-    answer:
-      "Yes — it's specifically designed for standard 110/120V outlets. About ~98% of homes and apartments already have the setup needed.\n\nIf you're unsure, book a free 15-minute video consult and we'll check your outlet + breaker together.",
+    answer: (
+      <>
+        Yes — it's specifically designed for standard 110/120V outlets. About ~98% of homes and apartments already have the setup needed.
+        {"\n\n"}
+        If you're unsure, book a{" "}
+        <Link to="/sauna-electrical-fit-consultation" className="underline hover:text-primary">
+          30-minute video consult
+        </Link>{" "}
+        and we'll check your outlet + breaker together.
+      </>
+    ),
   },
   {
     question: "I thought a standard outlet couldn't get a sauna hot?",
