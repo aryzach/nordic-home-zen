@@ -232,10 +232,6 @@ const ElectricalCompatibilityQuiz = () => {
                   className="w-full h-auto object-cover"
                 />
               </div>
-              <p className="text-sm text-muted-foreground mb-6 flex items-start gap-2">
-                <CheckCircle2 className="text-green-600 flex-shrink-0 mt-0.5" size={18} />
-                <span>Most homes, apartments, and condos already have one.</span>
-              </p>
 
               <div className="space-y-3">
                 <AnswerButton label="Yes" variant="primary" onClick={() => handleQ1("Yes")} />
@@ -267,7 +263,7 @@ const ElectricalCompatibilityQuiz = () => {
                 </div>
                 <p className="text-sm text-muted-foreground mb-6 flex items-start gap-2">
                   <CheckCircle2 className="text-green-600 flex-shrink-0 mt-0.5" size={18} />
-                  <span>The Anywhere Sauna performs best when connected to a dedicated 20A circuit.</span>
+                  <span>The Anywhere Sauna performs best when used with a heater plugged into an outlet on a 20A circuit.</span>
                 </p>
 
                 <div className="space-y-3">
@@ -316,31 +312,6 @@ const ElectricalCompatibilityQuiz = () => {
                 <input type="hidden" name="question_2_on_20a_circuit" value={answers.q2} />
                 <input type="hidden" name="submitted_at" value="" />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="first_name" className="font-sans">First Name *</Label>
-                    <Input id="first_name" name="first_name" required className="mt-1.5" />
-                  </div>
-                  <div>
-                    <Label htmlFor="last_name" className="font-sans">Last Name *</Label>
-                    <Input id="last_name" name="last_name" required className="mt-1.5" />
-                  </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="email" className="font-sans">Email Address *</Label>
-                  <Input id="email" name="email" type="email" required className="mt-1.5" />
-                </div>
-
-                <div>
-                  <Label htmlFor="phone" className="font-sans">Phone Number *</Label>
-                  <Input id="phone" name="phone" type="tel" required className="mt-1.5" />
-                </div>
-
-                <p className="text-xs text-muted-foreground">
-                  We'll use this information to send your compatibility assessment and answer any questions.
-                </p>
-
                 <div className="pt-2">
                   <Label className="font-sans block mb-2">Photos & Video Walkthrough</Label>
                   <ul className="space-y-1.5 mb-3 text-sm text-muted-foreground">
@@ -371,6 +342,32 @@ const ElectricalCompatibilityQuiz = () => {
                     Drag and drop or tap to upload. Up to 10 files, max 25MB each.
                   </p>
                 </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="first_name" className="font-sans">First Name *</Label>
+                    <Input id="first_name" name="first_name" required className="mt-1.5" />
+                  </div>
+                  <div>
+                    <Label htmlFor="last_name" className="font-sans">Last Name *</Label>
+                    <Input id="last_name" name="last_name" required className="mt-1.5" />
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="email" className="font-sans">Email Address *</Label>
+                  <Input id="email" name="email" type="email" required className="mt-1.5" />
+                </div>
+
+                <div>
+                  <Label htmlFor="phone" className="font-sans">Phone Number *</Label>
+                  <Input id="phone" name="phone" type="tel" required className="mt-1.5" />
+                </div>
+
+                <p className="text-xs text-muted-foreground">
+                  We'll use this information to send your compatibility assessment and answer any questions.
+                </p>
+
 
                 <div className="pt-2">
                   <Button
@@ -421,7 +418,7 @@ const ElectricalCompatibilityQuiz = () => {
                 subtext={
                   view.from === 2
                     ? "We'll review your space, electrical setup, and sauna options. Consultation fee is credited toward the purchase of an Anywhere Sauna."
-                    : "We'll help evaluate your options."
+                    : "We'll help evaluate your options. Consultation fee is credited toward the purchase of an Anywhere Sauna."
                 }
               />
 
