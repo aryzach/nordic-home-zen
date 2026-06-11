@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useSEO } from "@/hooks/useSEO";
 import { ArrowLeft, ArrowRight, Calendar, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
-import outletImg from "@/assets/outlet-3prong.jpg";
+
 
 const BOOKING_URL = "https://calendar.app.google/Q9nw6fTEBMnyNbDf8";
 const WEB3FORMS_KEY = "02180c68-7a47-43d5-9a5a-38b9e1d73d59";
@@ -226,10 +226,8 @@ const ElectricalCompatibilityQuiz = () => {
               </h2>
               <div className="rounded-xl overflow-hidden bg-secondary/40 mb-4 border border-border">
                 <img
-                  src={outletImg}
+                  src="/outlet-3prong.jpg"
                   alt="Standard North American 3-prong electrical outlet"
-                  width={1024}
-                  height={768}
                   loading="lazy"
                   className="w-full h-auto object-cover"
                 />
