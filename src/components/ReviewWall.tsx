@@ -137,17 +137,8 @@ const ReviewWall = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-background overflow-hidden">
-      <div className="container mx-auto px-4 mb-10 md:mb-14 text-center">
-        <h2 className="text-3xl md:text-5xl font-heading font-semibold text-heading mb-4">
-          Don't take our word for it.
-        </h2>
-        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-          Real feedback from customers using Anywhere Sauna in apartments, homes, backyards, rentals, and shared living spaces.
-        </p>
-      </div>
-
-      <div className="space-y-2 md:space-y-4">
+    <section className="py-8 md:py-12 bg-background overflow-hidden">
+      <div className="space-y-0">
         <MarqueeRow
           items={rowTop}
           direction="left"
