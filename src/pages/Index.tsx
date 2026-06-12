@@ -23,7 +23,6 @@ const Index = () => {
       <main>
         <Hero />
         <GoogleReviews />
-        <ReviewWall />
         <div className="w-full py-8 flex justify-center px-2 sm:px-6">
           <video
             src="/reviews-animation.mp4"
@@ -37,6 +36,7 @@ const Index = () => {
         </div>
         <DualCTAs />
         <PlacementGallery />
+        <ReviewWall />
         <AboutTheSauna />
         <SaunaFeatures />
         <DualCTAs />

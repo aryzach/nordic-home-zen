@@ -11,6 +11,12 @@ import r7 from "@/assets/reviews/review-7.png.asset.json";
 import r8 from "@/assets/reviews/review-8.png.asset.json";
 import r9 from "@/assets/reviews/review-9.png.asset.json";
 import r10 from "@/assets/reviews/review-10.png.asset.json";
+import r11 from "@/assets/reviews/review-11.png.asset.json";
+import r12 from "@/assets/reviews/review-12.png.asset.json";
+import r13 from "@/assets/reviews/review-13.png.asset.json";
+import r14 from "@/assets/reviews/review-14.png.asset.json";
+import r15 from "@/assets/reviews/review-15.png.asset.json";
+import r16 from "@/assets/reviews/review-16.png.asset.json";
 
 type Review = { src: string; alt: string; size: "sm" | "md" | "lg" };
 
@@ -19,11 +25,17 @@ const ALL_REVIEWS: Review[] = [
   { src: r1.url, alt: "Customer text: That sauna is so great. It's really changed my life!", size: "lg" },
   { src: r2.url, alt: "Google review from vicky rusconi: I can not recommend this company enough!", size: "md" },
   { src: r3.url, alt: "Google review from satya kamdar: Life with Sauna is way better than life without.", size: "md" },
+  { src: r11.url, alt: "Google review from Lyndsay Corrick: Zach is chill and professional, the sauna is so easy with just a plug into one outlet.", size: "lg" },
   { src: r4.url, alt: "Google review from Mackenzie Croxdale: I love having a sauna at home!", size: "lg" },
+  { src: r12.url, alt: "Google review from Isy Osubor: The sauna is beautiful and easy to use. Could not recommend enough!", size: "md" },
   { src: r5.url, alt: "Google review from Liam Bailey: this shit is hot. the guy was solid as well.", size: "sm" },
+  { src: r13.url, alt: "Google review from Richard Gavan: Good sauna.", size: "sm" },
   { src: r6.url, alt: "Google review from Skye Vanderlinden: Zach is incredibly kind and accommodating! 10/10 recommend!", size: "md" },
+  { src: r14.url, alt: "Google review from Page Finlay: I am so happy with the sauna, the life upgrade I have been wanting as a renter.", size: "lg" },
   { src: r7.url, alt: "Google review from Nadia Czebiniak: Zach is a great guy, extremely professional.", size: "lg" },
+  { src: r15.url, alt: "Google review from Peter Wong: Honestly amazing. Got warm super quick and fits two people comfortably.", size: "md" },
   { src: r8.url, alt: "Customer text: Sauna has been such a wonderful life addition for us the last couple weeks!", size: "md" },
+  { src: r16.url, alt: "Google review from Suraj Srivats: Great quality saunas. High quality, short quantity, get your rental asap!", size: "md" },
   { src: r9.url, alt: "Google review from Britt McClintock: One of the best decisions I've made in a long time!", size: "md" },
   { src: r10.url, alt: "Customer text: the sauna is so easy with just a plug into one outlet and that's it!", size: "md" },
 ];
@@ -43,15 +55,15 @@ const sizeClasses = {
 const rowSizeClasses = {
   // Top & bottom rows: smaller overall
   small: {
-    sm: "w-[170px]",
-    md: "w-[210px] sm:w-[240px]",
-    lg: "w-[260px] sm:w-[290px]",
+    sm: "w-[200px]",
+    md: "w-[240px] sm:w-[280px]",
+    lg: "w-[300px] sm:w-[340px]",
   },
   // Middle row: largest
   large: {
-    sm: "w-[240px]",
-    md: "w-[300px] sm:w-[340px]",
-    lg: "w-[360px] sm:w-[440px]",
+    sm: "w-[280px]",
+    md: "w-[340px] sm:w-[390px]",
+    lg: "w-[410px] sm:w-[500px]",
   },
 };
 
@@ -71,9 +83,9 @@ const MarqueeRow = ({ items, direction, duration, scale, startGlobalIndex, onOpe
   const doubled = [...items, ...items];
 
   return (
-    <div className="group relative overflow-hidden py-4">
+    <div className="group relative overflow-hidden py-1">
       <div
-        className={`flex w-max gap-6 ${animClass} [animation-play-state:running] group-hover:[animation-play-state:paused]`}
+        className={`flex w-max gap-2 ${animClass} [animation-play-state:running] group-hover:[animation-play-state:paused]`}
         style={{ animationDuration: `${duration}s` }}
       >
         {doubled.map((rev, i) => {
@@ -125,17 +137,8 @@ const ReviewWall = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-background overflow-hidden">
-      <div className="container mx-auto px-4 mb-10 md:mb-14 text-center">
-        <h2 className="text-3xl md:text-5xl font-heading font-semibold text-heading mb-4">
-          Don't take our word for it.
-        </h2>
-        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-          Real feedback from customers using Anywhere Sauna in apartments, homes, backyards, rentals, and shared living spaces.
-        </p>
-      </div>
-
-      <div className="space-y-2 md:space-y-4">
+    <section className="py-8 md:py-12 bg-background overflow-hidden">
+      <div className="space-y-0">
         <MarqueeRow
           items={rowTop}
           direction="left"
