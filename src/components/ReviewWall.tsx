@@ -18,7 +18,7 @@ import r14 from "@/assets/reviews/review-14.png.asset.json";
 import r15 from "@/assets/reviews/review-15.png.asset.json";
 import r16 from "@/assets/reviews/review-16.png.asset.json";
 
-type Review = { src: string; alt: string; size: "sm" | "md" | "lg" };
+type Review = { src: string; alt: string; size: "sm" | "md" | "lg"; widthClass?: string };
 
 // Size distribution: ~60% md, ~25% lg, ~15% sm-larger (we use sm/md/lg)
 const ALL_REVIEWS: Review[] = [
@@ -30,7 +30,7 @@ const ALL_REVIEWS: Review[] = [
   { src: r13.url, alt: "Google review from Richard Gavan: Good sauna.", size: "sm" },
   { src: r8.url, alt: "Customer text: Sauna has been such a wonderful life addition for us the last couple weeks!", size: "md" },
   // Middle row (5): the tallest / featured reviews
-  { src: r11.url, alt: "Google review from Lyndsay Corrick: Zach is chill and professional, the sauna is so easy with just a plug into one outlet.", size: "lg" },
+  { src: r11.url, alt: "Google review from Lyndsay Corrick: Zach is chill and professional, the sauna is so easy with just a plug into one outlet.", size: "lg", widthClass: "w-[287px] sm:w-[350px]" },
   { src: r1.url, alt: "Customer text: Hi- can I text you tomorrow? That sauna is so great. It's really changed my life!", size: "lg" },
   { src: r14.url, alt: "Google review from Page Finlay: This is the life upgrade I have been wanting as a renter for a long time.", size: "lg" },
   { src: r16.url, alt: "Google review from Suraj Srivats: Great quality saunas. High quality, short quantity, get your rental asap!", size: "lg" },
@@ -86,7 +86,7 @@ const MarqueeRow = ({ items, direction, duration, scale, startGlobalIndex, onOpe
   const doubled = [...items, ...items];
 
   return (
-    <div className="group relative overflow-hidden py-1">
+    <div className="group relative overflow-hidden py-0 -my-2">
       <div
         className={`flex w-max gap-2 ${animClass} [animation-play-state:running] group-hover:[animation-play-state:paused]`}
         style={{ animationDuration: `${duration}s` }}
@@ -100,7 +100,7 @@ const MarqueeRow = ({ items, direction, duration, scale, startGlobalIndex, onOpe
               key={i}
               type="button"
               onClick={() => onOpen(globalIdx)}
-              className={`shrink-0 ${sizes[rev.size]} transition-transform duration-300 ease-out hover:scale-105 hover:z-10 will-change-transform`}
+              className={`shrink-0 ${rev.widthClass ?? sizes[rev.size]} transition-transform duration-300 ease-out hover:scale-105 hover:z-10 will-change-transform`}
               style={{ transform: `rotate(${rot}deg)` }}
               aria-label="Open review screenshot"
             >
