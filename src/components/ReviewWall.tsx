@@ -22,19 +22,22 @@ type Review = { src: string; alt: string; size: "sm" | "md" | "lg" };
 
 // Size distribution: ~60% md, ~25% lg, ~15% sm-larger (we use sm/md/lg)
 const ALL_REVIEWS: Review[] = [
-  { src: r1.url, alt: "Customer text: That sauna is so great. It's really changed my life!", size: "lg" },
+  // Top row (first 6): shorter reviews (sm/md)
+  { src: r5.url, alt: "Google review from Liam Bailey: this shit is hot. the guy was solid as well.", size: "sm" },
   { src: r2.url, alt: "Google review from vicky rusconi: I can not recommend this company enough!", size: "md" },
   { src: r3.url, alt: "Google review from satya kamdar: Life with Sauna is way better than life without.", size: "md" },
+  { src: r12.url, alt: "Google review from Isy Osubor: The sauna is beautiful and easy to use. Could not recommend enough!", size: "md" },
+  { src: r6.url, alt: "Google review from Skye Vanderlinden: Zach is incredibly kind and accommodating! 10/10 recommend!", size: "md" },
+  { src: r13.url, alt: "Google review from Richard Gavan: Good sauna.", size: "sm" },
+  // Middle row (next 6): tallest reviews (lg)
+  { src: r1.url, alt: "Customer text: That sauna is so great. It's really changed my life!", size: "lg" },
   { src: r11.url, alt: "Google review from Lyndsay Corrick: Zach is chill and professional, the sauna is so easy with just a plug into one outlet.", size: "lg" },
   { src: r4.url, alt: "Google review from Mackenzie Croxdale: I love having a sauna at home!", size: "lg" },
-  { src: r12.url, alt: "Google review from Isy Osubor: The sauna is beautiful and easy to use. Could not recommend enough!", size: "md" },
-  { src: r5.url, alt: "Google review from Liam Bailey: this shit is hot. the guy was solid as well.", size: "sm" },
-  { src: r13.url, alt: "Google review from Richard Gavan: Good sauna.", size: "sm" },
-  { src: r6.url, alt: "Google review from Skye Vanderlinden: Zach is incredibly kind and accommodating! 10/10 recommend!", size: "md" },
-  { src: r14.url, alt: "Google review from Page Finlay: I am so happy with the sauna, the life upgrade I have been wanting as a renter.", size: "lg" },
+  { src: r14.url, alt: "Google review from Page Finlay: This is the life upgrade I have been wanting as a renter for a long time.", size: "lg" },
   { src: r7.url, alt: "Google review from Nadia Czebiniak: Zach is a great guy, extremely professional.", size: "lg" },
-  { src: r15.url, alt: "Google review from Peter Wong: Honestly amazing. Got warm super quick and fits two people comfortably.", size: "md" },
   { src: r8.url, alt: "Customer text: Sauna has been such a wonderful life addition for us the last couple weeks!", size: "md" },
+  // Bottom row (last 4): shorter reviews (md)
+  { src: r15.url, alt: "Google review from Peter Wong: Honestly amazing. Got warm super quick and fits two people comfortably.", size: "md" },
   { src: r16.url, alt: "Google review from Suraj Srivats: Great quality saunas. High quality, short quantity, get your rental asap!", size: "md" },
   { src: r9.url, alt: "Google review from Britt McClintock: One of the best decisions I've made in a long time!", size: "md" },
   { src: r10.url, alt: "Customer text: the sauna is so easy with just a plug into one outlet and that's it!", size: "md" },
