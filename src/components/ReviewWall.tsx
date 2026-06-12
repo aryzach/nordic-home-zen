@@ -94,7 +94,7 @@ const MarqueeRow = ({ items, direction, duration, scale, startGlobalIndex, onOpe
         {doubled.map((rev, i) => {
           const originalIdx = i % items.length;
           const globalIdx = startGlobalIndex + originalIdx;
-          const rot = rotationFor(i + (scale === "large" ? 3 : 0));
+          const rot = rotationFor(originalIdx + (scale === "large" ? 3 : 0));
           return (
             <button
               key={i}
