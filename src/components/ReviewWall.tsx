@@ -100,7 +100,7 @@ const MarqueeRow = ({ items, direction, duration, scale, startGlobalIndex, onOpe
               key={i}
               type="button"
               onClick={() => onOpen(globalIdx)}
-              className={`shrink-0 ${sizes[rev.size]} transition-transform duration-300 ease-out hover:scale-105 hover:z-10 will-change-transform`}
+              className={`shrink-0 ${rev.widthClass ?? sizes[rev.size]} transition-transform duration-300 ease-out hover:scale-105 hover:z-10 will-change-transform`}
               style={{ transform: `rotate(${rot}deg)` }}
               aria-label="Open review screenshot"
             >
