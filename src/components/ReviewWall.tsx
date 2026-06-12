@@ -83,9 +83,9 @@ const MarqueeRow = ({ items, direction, duration, scale, startGlobalIndex, onOpe
   const doubled = [...items, ...items];
 
   return (
-    <div className="group relative overflow-hidden py-4">
+    <div className="group relative overflow-hidden py-1">
       <div
-        className={`flex w-max gap-6 ${animClass} [animation-play-state:running] group-hover:[animation-play-state:paused]`}
+        className={`flex w-max gap-2 ${animClass} [animation-play-state:running] group-hover:[animation-play-state:paused]`}
         style={{ animationDuration: `${duration}s` }}
       >
         {doubled.map((rev, i) => {
