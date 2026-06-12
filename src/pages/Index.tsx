@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import AboutTheSauna from "@/components/AboutTheSauna";
 import GoogleReviews from "@/components/GoogleReviews";
+import ReviewWall from "@/components/ReviewWall";
 import PlacementGallery from "@/components/PlacementGallery";
 import SaunaFeatures from "@/components/SaunaFeatures";
 import ComparisonTable from "@/components/ComparisonTable";
@@ -22,6 +23,7 @@ const Index = () => {
       <main>
         <Hero />
         <GoogleReviews />
+        <ReviewWall />
         <div className="w-full py-8 flex justify-center px-2 sm:px-6">
           <video
             src="/reviews-animation.mp4"
