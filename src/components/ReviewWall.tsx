@@ -1,46 +1,46 @@
 import { useState, useMemo } from "react";
 import ImageLightbox, { type LightboxImage } from "@/components/ImageLightbox";
 
-import r1 from "@/assets/reviews/review-1.png.asset.json";
-import r2 from "@/assets/reviews/review-2.png.asset.json";
-import r3 from "@/assets/reviews/review-3.png.asset.json";
-import r4 from "@/assets/reviews/review-4.png.asset.json";
-import r5 from "@/assets/reviews/review-5.png.asset.json";
-import r6 from "@/assets/reviews/review-6.png.asset.json";
-import r7 from "@/assets/reviews/review-7.png.asset.json";
-import r8 from "@/assets/reviews/review-8.png.asset.json";
-import r9 from "@/assets/reviews/review-9.png.asset.json";
-import r10 from "@/assets/reviews/review-10.png.asset.json";
-import r11 from "@/assets/reviews/review-11.png.asset.json";
-import r12 from "@/assets/reviews/review-12.png.asset.json";
-import r13 from "@/assets/reviews/review-13.png.asset.json";
-import r14 from "@/assets/reviews/review-14.png.asset.json";
-import r15 from "@/assets/reviews/review-15.png.asset.json";
-import r16 from "@/assets/reviews/review-16.png.asset.json";
+import r1 from "@/assets/reviews/local/review-1.png";
+import r2 from "@/assets/reviews/local/review-2.png";
+import r3 from "@/assets/reviews/local/review-3.png";
+import r4 from "@/assets/reviews/local/review-4.png";
+import r5 from "@/assets/reviews/local/review-5.png";
+import r6 from "@/assets/reviews/local/review-6.png";
+import r7 from "@/assets/reviews/local/review-7.png";
+import r8 from "@/assets/reviews/local/review-8.png";
+import r9 from "@/assets/reviews/local/review-9.png";
+import r10 from "@/assets/reviews/local/review-10.png";
+import r11 from "@/assets/reviews/local/review-11.png";
+import r12 from "@/assets/reviews/local/review-12.png";
+import r13 from "@/assets/reviews/local/review-13.png";
+import r14 from "@/assets/reviews/local/review-14.png";
+import r15 from "@/assets/reviews/local/review-15.png";
+import r16 from "@/assets/reviews/local/review-16.png";
 
 type Review = { src: string; alt: string; size: "sm" | "md" | "lg"; widthClass?: string };
 
 // Size distribution: ~60% md, ~25% lg, ~15% sm-larger (we use sm/md/lg)
 const ALL_REVIEWS: Review[] = [
   // Top row (6): shorter reviews
-  { src: r2.url, alt: "Google review from vicky rusconi: I can not recommend this company enough!", size: "md" },
-  { src: r3.url, alt: "Google review from satya kamdar: Life with Sauna is way better than life without.", size: "md" },
-  { src: r12.url, alt: "Google review from Isy Osubor: The sauna is beautiful and easy to use. Could not recommend enough!", size: "md" },
-  { src: r6.url, alt: "Google review from Skye Vanderlinden: Zach is incredibly kind and accommodating! 10/10 recommend!", size: "md" },
-  { src: r13.url, alt: "Google review from Richard Gavan: Good sauna.", size: "sm" },
-  { src: r8.url, alt: "Customer text: Sauna has been such a wonderful life addition for us the last couple weeks!", size: "md" },
+  { src: r2, alt: "Google review from vicky rusconi: I can not recommend this company enough!", size: "md" },
+  { src: r3, alt: "Google review from satya kamdar: Life with Sauna is way better than life without.", size: "md" },
+  { src: r12, alt: "Google review from Isy Osubor: The sauna is beautiful and easy to use. Could not recommend enough!", size: "md" },
+  { src: r6, alt: "Google review from Skye Vanderlinden: Zach is incredibly kind and accommodating! 10/10 recommend!", size: "md" },
+  { src: r13, alt: "Google review from Richard Gavan: Good sauna.", size: "sm" },
+  { src: r8, alt: "Customer text: Sauna has been such a wonderful life addition for us the last couple weeks!", size: "md" },
   // Middle row (5): the tallest / featured reviews
-  { src: r11.url, alt: "Google review from Lyndsay Corrick: Zach is chill and professional, the sauna is so easy with just a plug into one outlet.", size: "lg", widthClass: "w-[287px] sm:w-[350px]" },
-  { src: r1.url, alt: "Customer text: Hi- can I text you tomorrow? That sauna is so great. It's really changed my life!", size: "lg" },
-  { src: r14.url, alt: "Google review from Page Finlay: This is the life upgrade I have been wanting as a renter for a long time.", size: "lg" },
-  { src: r16.url, alt: "Google review from Suraj Srivats: Great quality saunas. High quality, short quantity, get your rental asap!", size: "lg" },
-  { src: r5.url, alt: "Google review from Liam Bailey: this shit is hot. the guy was solid as well.", size: "lg" },
+  { src: r11, alt: "Google review from Lyndsay Corrick: Zach is chill and professional, the sauna is so easy with just a plug into one outlet.", size: "lg", widthClass: "w-[287px] sm:w-[350px]" },
+  { src: r1, alt: "Customer text: Hi- can I text you tomorrow? That sauna is so great. It's really changed my life!", size: "lg" },
+  { src: r14, alt: "Google review from Page Finlay: This is the life upgrade I have been wanting as a renter for a long time.", size: "lg" },
+  { src: r16, alt: "Google review from Suraj Srivats: Great quality saunas. High quality, short quantity, get your rental asap!", size: "lg" },
+  { src: r5, alt: "Google review from Liam Bailey: this shit is hot. the guy was solid as well.", size: "lg" },
   // Bottom row (5): remaining reviews
-  { src: r4.url, alt: "Google review from Mackenzie Croxdale: I love having a sauna at home!", size: "md" },
-  { src: r7.url, alt: "Google review from Nadia Czebiniak: Zach is a great guy, extremely professional.", size: "md" },
-  { src: r15.url, alt: "Google review from Peter Wong: Honestly amazing. Got warm super quick and fits two people comfortably.", size: "md" },
-  { src: r9.url, alt: "Google review from Britt McClintock: One of the best decisions I've made in a long time!", size: "md" },
-  { src: r10.url, alt: "Customer text: the sauna is so easy with just a plug into one outlet and that's it!", size: "md" },
+  { src: r4, alt: "Google review from Mackenzie Croxdale: I love having a sauna at home!", size: "md" },
+  { src: r7, alt: "Google review from Nadia Czebiniak: Zach is a great guy, extremely professional.", size: "md" },
+  { src: r15, alt: "Google review from Peter Wong: Honestly amazing. Got warm super quick and fits two people comfortably.", size: "md" },
+  { src: r9, alt: "Google review from Britt McClintock: One of the best decisions I've made in a long time!", size: "md" },
+  { src: r10, alt: "Customer text: the sauna is so easy with just a plug into one outlet and that's it!", size: "md" },
 ];
 
 // Deterministic pseudo-rotation by index so SSR matches CSR
