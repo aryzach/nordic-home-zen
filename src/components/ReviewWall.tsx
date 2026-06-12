@@ -125,8 +125,6 @@ const ReviewWall = () => {
 
   // Split into 3 rows
   const { rowTop, rowMid, rowBot, lightboxImages } = useMemo(() => {
-    const n = ALL_REVIEWS.length;
-    const third = Math.ceil(n / 3);
     const top = ALL_REVIEWS.slice(0, 6);
     const mid = ALL_REVIEWS.slice(6, 11);
     const bot = ALL_REVIEWS.slice(11);
