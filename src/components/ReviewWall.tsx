@@ -55,15 +55,15 @@ const sizeClasses = {
 const rowSizeClasses = {
   // Top & bottom rows: smaller overall
   small: {
-    sm: "w-[170px]",
-    md: "w-[210px] sm:w-[240px]",
-    lg: "w-[260px] sm:w-[290px]",
+    sm: "w-[200px]",
+    md: "w-[240px] sm:w-[280px]",
+    lg: "w-[300px] sm:w-[340px]",
   },
   // Middle row: largest
   large: {
-    sm: "w-[240px]",
-    md: "w-[300px] sm:w-[340px]",
-    lg: "w-[360px] sm:w-[440px]",
+    sm: "w-[280px]",
+    md: "w-[340px] sm:w-[390px]",
+    lg: "w-[410px] sm:w-[500px]",
   },
 };
 
