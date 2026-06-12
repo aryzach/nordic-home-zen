@@ -26,6 +26,7 @@ import ElectricChecklist from "./pages/ElectricChecklist";
 import ElectricalCompatibilityQuiz from "./pages/ElectricalCompatibilityQuiz";
 import ElectricalAssessmentSubmitted from "./pages/ElectricalAssessmentSubmitted";
 import LeaveReview from "./pages/LeaveReview";
+import SevenQuestionsHomeSauna from "./pages/SevenQuestionsHomeSauna";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
