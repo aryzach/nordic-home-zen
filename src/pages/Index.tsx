@@ -22,6 +22,8 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <GoogleReviews />
+
 
 
         <DualCTAs />
