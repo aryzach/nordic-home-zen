@@ -47,7 +47,7 @@ const GAPageView = () => {
 
   useEffect(() => {
     if (typeof (window as any).gtag !== 'undefined') {
-      (window as any).gtag('config', 'G-K2RGWZH97X', {
+      (window as any).gtag('config', 'G-Q1KB7R2MLG', {
         page_path: window.location.pathname + window.location.search
       });
     }
