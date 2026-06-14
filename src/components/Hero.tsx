@@ -45,7 +45,7 @@ const Hero = () => {
           </div>
 
           {/* Text content */}
-          <div className="text-center order-3 md:order-2">
+          <div className="text-center order-3 md:order-2 md:h-full md:flex md:flex-col">
             <div className="flex items-center justify-center gap-2 text-white/90 font-sans text-[14px] font-normal mb-4">
               <a href="https://share.google/bqGJ8MiXfwNgvigwm" target="_blank" rel="noopener noreferrer" className="hover:underline">Enjoyed by 26+ Saunojat</a>
               <div className="flex">
@@ -54,35 +54,38 @@ const Hero = () => {
                 ))}
               </div>
             </div>
-            <h1 className="hidden md:block font-heading text-[36px] md:text-[52px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.01em]">
-              The 190°F sauna for everyone.
-            </h1>
-            <p className="hidden md:block font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-8 font-normal">
-              Standard outlet. No electrician. Made for any home or apartment.
-            </p>
-            <div className="flex flex-col items-center gap-3 max-w-md mx-auto w-full">
-              <Button
-                asChild
-                shape="pill"
-                className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
-              >
-                <Link to="/buy-your-anywhere-sauna">
-                  Buy now for $4,599
-                  <ArrowRight className="ml-1" size={20} />
-                </Link>
-              </Button>
-              <div className="text-white/70 text-xs font-sans">or</div>
-              <Button
-                asChild
-                shape="pill"
-                className="bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
-              >
-                <Link to="/electrical-compatibility-quiz">
-                  Take the Electrical Compatibility Quiz
-                </Link>
-              </Button>
+            <div className="md:my-auto">
+              <h1 className="hidden md:block font-heading text-[36px] md:text-[52px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.01em]">
+                The 190°F sauna for everyone.
+              </h1>
+              <p className="hidden md:block font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-8 font-normal">
+                Standard outlet. No electrician. Made for any home or apartment.
+              </p>
+              <div className="flex flex-col items-center gap-3 max-w-md mx-auto w-full">
+                <Button
+                  asChild
+                  shape="pill"
+                  className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
+                >
+                  <Link to="/buy-your-anywhere-sauna">
+                    Buy now for $4,599
+                    <ArrowRight className="ml-1" size={20} />
+                  </Link>
+                </Button>
+                <div className="text-white/70 text-xs font-sans">or</div>
+                <Button
+                  asChild
+                  shape="pill"
+                  className="bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
+                >
+                  <Link to="/electrical-compatibility-quiz">
+                    Take the Electrical Compatibility Quiz
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
+
         </div>
 
       </div>
