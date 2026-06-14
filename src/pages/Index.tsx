@@ -22,18 +22,8 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <GoogleReviews />
-        <div className="w-full py-8 flex justify-center px-2 sm:px-6">
-          <video
-            src="/reviews-animation.mp4"
-            className="block h-auto w-full max-w-[480px] sm:max-w-[500px] sm:w-full mx-auto rounded-lg"
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label="SF Sauna customer reviews"
-          />
-        </div>
+
+
         <DualCTAs />
         <PlacementGallery />
         <ReviewWall />
