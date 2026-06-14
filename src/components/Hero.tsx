@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import heroVideoVertical from "@/assets/hero-video-vertical.mp4.asset.json";
+
 
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
