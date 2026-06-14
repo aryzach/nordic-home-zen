@@ -28,6 +28,7 @@ import ElectricalAssessmentSubmitted from "./pages/ElectricalAssessmentSubmitted
 import LeaveReview from "./pages/LeaveReview";
 import SevenQuestionsHomeSauna from "./pages/SevenQuestionsHomeSauna";
 import NotFound from "./pages/NotFound";
+import OldHeroVideo from "./pages/OldHeroVideo";
 
 const queryClient = new QueryClient();
 
