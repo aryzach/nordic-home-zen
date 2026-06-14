@@ -18,7 +18,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-charcoal">
       <div className="relative z-10 container mx-auto px-4 py-8 md:py-12 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start max-w-[1200px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start md:items-stretch max-w-[1200px] mx-auto">
           {/* Mobile-only heading above video */}
           <div className="md:hidden text-center order-1">
             <h1 className="font-heading text-[36px] font-semibold text-white mb-4 leading-[1.1] tracking-[-0.01em]">
