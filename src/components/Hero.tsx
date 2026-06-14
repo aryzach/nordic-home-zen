@@ -18,9 +18,19 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20 bg-charcoal">
       <div className="relative z-10 container mx-auto px-4 py-8 md:py-12 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center max-w-[1200px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start max-w-[1200px] mx-auto">
+          {/* Mobile-only heading above video */}
+          <div className="md:hidden text-center order-1">
+            <h1 className="font-heading text-[36px] font-semibold text-white mb-4 leading-[1.1] tracking-[-0.01em]">
+              The 190°F sauna for everyone.
+            </h1>
+            <p className="font-sans text-[16px] leading-[1.6] text-white/90 font-normal">
+              Standard outlet. No electrician. Made for any home or apartment.
+            </p>
+          </div>
+
           {/* Vertical Video */}
-          <div className="w-full flex justify-center order-1">
+          <div className="w-full flex justify-center order-2 md:order-1">
             <video
               ref={videoRef}
               autoPlay
@@ -35,8 +45,8 @@ const Hero = () => {
           </div>
 
           {/* Text content */}
-          <div className="text-center md:text-left order-2">
-            <div className="flex items-center justify-center md:justify-start gap-2 text-white/90 font-sans text-[14px] font-normal mb-4">
+          <div className="text-center order-3 md:order-2">
+            <div className="flex items-center justify-center gap-2 text-white/90 font-sans text-[14px] font-normal mb-4">
               <a href="https://share.google/bqGJ8MiXfwNgvigwm" target="_blank" rel="noopener noreferrer" className="hover:underline">Enjoyed by 26+ Saunojat</a>
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
@@ -44,13 +54,13 @@ const Hero = () => {
                 ))}
               </div>
             </div>
-            <h1 className="font-heading text-[36px] md:text-[52px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.01em]">
+            <h1 className="hidden md:block font-heading text-[36px] md:text-[52px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.01em]">
               The 190°F sauna for everyone.
             </h1>
-            <p className="font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-8 font-normal">
+            <p className="hidden md:block font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-8 font-normal">
               Standard outlet. No electrician. Made for any home or apartment.
             </p>
-            <div className="flex flex-col items-center md:items-start gap-3 max-w-md mx-auto md:mx-0 w-full">
+            <div className="flex flex-col items-center gap-3 max-w-md mx-auto w-full">
               <Button
                 asChild
                 shape="pill"
@@ -61,7 +71,7 @@ const Hero = () => {
                   <ArrowRight className="ml-1" size={20} />
                 </Link>
               </Button>
-              <div className="text-white/70 text-xs font-sans self-center md:self-start md:ml-6">or</div>
+              <div className="text-white/70 text-xs font-sans">or</div>
               <Button
                 asChild
                 shape="pill"
@@ -74,6 +84,7 @@ const Hero = () => {
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );
