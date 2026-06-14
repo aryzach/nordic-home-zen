@@ -27,6 +27,7 @@ export const routes = [
   { path: '/indoor-infrared-sauna-rental', priority: 0.8, changefreq: 'monthly' },
   { path: '/electrical-compatibility-quiz', priority: 0.8, changefreq: 'monthly' },
   { path: '/7-questions-before-buying-a-home-sauna', priority: 0.7, changefreq: 'monthly' },
+  { path: '/old-hero-video', priority: 0.1, changefreq: 'yearly' },
 ] as const;
 
 export const routePaths = routes.map(r => r.path);
