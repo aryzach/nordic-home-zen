@@ -21,7 +21,7 @@ import ServiceAreas from "./pages/ServiceAreas";
 import EmailMoreInfo from "./pages/EmailMoreInfo";
 import ThankYou from "./pages/ThankYou";
 import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrScheduleCall";
-import IndoorInfraredLanding from "./pages/IndoorInfraredLanding";
+
 import ElectricChecklist from "./pages/ElectricChecklist";
 import ElectricalCompatibilityQuiz from "./pages/ElectricalCompatibilityQuiz";
 import ElectricalAssessmentSubmitted from "./pages/ElectricalAssessmentSubmitted";
@@ -115,7 +115,7 @@ const App = () => (
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/buy-your-anywhere-sauna" element={<ReservationPaymentOrScheduleCall />} />
           <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
-          <Route path="/indoor-infrared-sauna-rental" element={<IndoorInfraredLanding />} />
+          
           <Route path="/sauna-electrical-fit-consultation" element={<ElectricChecklist />} />
           <Route path="/electric-checklist" element={<Navigate to="/sauna-electrical-fit-consultation" replace />} />
           <Route path="/leave-review" element={<LeaveReview />} />

@@ -25,7 +25,7 @@ export const routes = [
   '/email-more-info',
   '/thank-you',
   '/buy-your-anywhere-sauna',
-  '/indoor-infrared-sauna-rental',
+  
 ];
 
 // Vite config for root GitHub Pages site (aryzach.github.io)
