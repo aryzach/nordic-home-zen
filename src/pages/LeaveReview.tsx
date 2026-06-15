@@ -31,13 +31,12 @@ const LeaveReview = () => {
             </h1>
 
             <p className="font-sans text-[17px] md:text-[18px] text-text leading-relaxed mb-8">
-              Your feedback means the world to us. Share your experience with The Anywhere Sauna on Trustpilot and help others discover what makes our saunas special.
+              Your feedback means the world to us. Share your experience with The Anywhere Sauna and help others discover what makes our saunas special.
             </p>
 
             <div className="bg-white rounded-lg p-8 shadow-sm border border-ui">
               <p className="font-sans text-[16px] text-text">
-                A Trustpilot review form will appear shortly. If it doesn't load,
-                please refresh the page or reach out to us directly.
+                Please email us at hello@getanywheresauna.com with your review, or reach out via our contact page.
               </p>
             </div>
           </div>
