@@ -20,6 +20,7 @@ const HowItWorks = () => {
         <form 
           action="https://api.web3forms.com/submit" 
           method="POST"
+          onSubmit={() => { try { (window as any).fbq?.('track', 'Lead', { content_name: 'How It Works Inquiry' }); } catch {} }}
           className="flex flex-col gap-4 max-w-md mx-auto w-full"
         >
           <input type="hidden" name="access_key" value="3fb7e2ca-1dd3-49a9-8a81-e90cbcc240b3" />

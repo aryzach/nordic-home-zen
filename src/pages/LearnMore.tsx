@@ -26,6 +26,7 @@ const LearnMore = () => {
             <form
               action="https://api.web3forms.com/submit"
               method="POST"
+              onSubmit={() => { try { (window as any).fbq?.('track', 'Lead', { content_name: 'Learn More' }); } catch {} }}
               className="space-y-6"
             >
               <input type="hidden" name="access_key" value="0fd02492-4a8f-4c11-b60e-a2485315ef72" />

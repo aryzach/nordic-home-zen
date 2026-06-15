@@ -50,6 +50,16 @@ const ReservationPaymentOrScheduleCall = () => {
                     href="https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B"
                     target="_blank" 
                     rel="noopener noreferrer"
+                    onClick={() => {
+                      try {
+                        (window as any).fbq?.('track', 'InitiateCheckout', {
+                          content_name: 'Anywhere Sauna - Deposit',
+                          content_category: 'Sauna',
+                          value: 500,
+                          currency: 'USD',
+                        });
+                      } catch {}
+                    }}
                   >
                     Pay $500 deposit
                     <ExternalLink className="ml-2" size={18} />
