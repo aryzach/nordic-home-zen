@@ -155,6 +155,12 @@ const ElectricalCompatibilityQuiz = () => {
     const form = e.currentTarget;
     const tsInput = form.querySelector<HTMLInputElement>('input[name="submitted_at"]');
     if (tsInput) tsInput.value = new Date().toISOString();
+    try {
+      (window as any).fbq?.('track', 'Lead', {
+        content_name: 'Electrical Compatibility Quiz',
+        content_category: 'Quiz',
+      });
+    } catch {}
   };
 
   const currentStepNumber =

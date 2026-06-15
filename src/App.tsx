@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Index from "./pages/Index";
 
 
@@ -42,15 +42,28 @@ const ScrollToTop = () => {
   return null;
 };
 
+const VIEW_CONTENT_ROUTES: Record<string, { content_name: string; content_category: string }> = {
+  "/buy-your-anywhere-sauna": { content_name: "Anywhere Sauna", content_category: "Product" },
+  "/electrical-compatibility-quiz": { content_name: "Electrical Compatibility Quiz", content_category: "Quiz" },
+  "/sauna-electrical-fit-consultation": { content_name: "Electrical Compatibility Consultation", content_category: "Consultation" },
+};
+
 const GAPageView = () => {
   const location = useLocation();
+  const firstRun = useRef(true);
 
   useEffect(() => {
+    const path = window.location.pathname + window.location.search;
     if (typeof (window as any).gtag !== 'undefined') {
-      (window as any).gtag('config', 'G-Q1KB7R2MLG', {
-        page_path: window.location.pathname + window.location.search
-      });
+      (window as any).gtag('config', 'G-Q1KB7R2MLG', { page_path: path });
     }
+    if (typeof (window as any).fbq === 'function') {
+      // PageView already fires on initial load via the base pixel in index.html.
+      if (!firstRun.current) (window as any).fbq('track', 'PageView');
+      const vc = VIEW_CONTENT_ROUTES[window.location.pathname];
+      if (vc) (window as any).fbq('track', 'ViewContent', vc);
+    }
+    firstRun.current = false;
   }, [location.pathname, location.search]);
 
   return null;

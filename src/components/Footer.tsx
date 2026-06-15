@@ -87,6 +87,7 @@ const Footer = () => {
             <form 
               action="https://api.web3forms.com/submit" 
               method="POST"
+              onSubmit={() => { try { (window as any).fbq?.('track', 'Lead', { content_name: 'Footer Email Capture' }); } catch {} }}
               className="flex gap-2"
             >
               <input type="hidden" name="access_key" value="3fb7e2ca-1dd3-49a9-8a81-e90cbcc240b3" />

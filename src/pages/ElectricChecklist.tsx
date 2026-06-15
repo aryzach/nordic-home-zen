@@ -59,7 +59,23 @@ const outcomes = [
 const BookButton = () => (
   <div className="flex flex-col items-center">
     <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
-      <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+      <a
+        href={BOOKING_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => {
+          try {
+            (window as any).fbq?.('track', 'Schedule', {
+              content_name: 'Electrical Compatibility Consultation',
+              value: 129,
+              currency: 'USD',
+            });
+            (window as any).fbq?.('track', 'Lead', {
+              content_name: 'Electrical Compatibility Consultation Booking',
+            });
+          } catch {}
+        }}
+      >
         <Calendar className="mr-2" size={18} />
         Book Electrical Consultation — $129
       </a>

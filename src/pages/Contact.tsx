@@ -36,6 +36,7 @@ const Contact = () => {
             <form 
               action="https://api.web3forms.com/submit" 
               method="POST" 
+              onSubmit={() => { try { (window as any).fbq?.('track', 'Lead', { content_name: 'Reserve Your Sauna' }); } catch {} }}
               className="space-y-6"
             >
               <input type="hidden" name="access_key" value="c69ea9bb-1c41-4a04-9948-6cf7aa7f09ef" />
