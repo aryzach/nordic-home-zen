@@ -42,14 +42,24 @@ const ScrollToTop = () => {
   return null;
 };
 
+const VIEW_CONTENT_ROUTES: Record<string, { content_name: string; content_category: string }> = {
+  "/buy-your-anywhere-sauna": { content_name: "Anywhere Sauna", content_category: "Product" },
+  "/electrical-compatibility-quiz": { content_name: "Electrical Compatibility Quiz", content_category: "Quiz" },
+  "/sauna-electrical-fit-consultation": { content_name: "Electrical Compatibility Consultation", content_category: "Consultation" },
+};
+
 const GAPageView = () => {
   const location = useLocation();
 
   useEffect(() => {
+    const path = window.location.pathname + window.location.search;
     if (typeof (window as any).gtag !== 'undefined') {
-      (window as any).gtag('config', 'G-Q1KB7R2MLG', {
-        page_path: window.location.pathname + window.location.search
-      });
+      (window as any).gtag('config', 'G-Q1KB7R2MLG', { page_path: path });
+    }
+    if (typeof (window as any).fbq === 'function') {
+      (window as any).fbq('track', 'PageView');
+      const vc = VIEW_CONTENT_ROUTES[window.location.pathname];
+      if (vc) (window as any).fbq('track', 'ViewContent', vc);
     }
   }, [location.pathname, location.search]);
 
