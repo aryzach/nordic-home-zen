@@ -50,6 +50,7 @@ const VIEW_CONTENT_ROUTES: Record<string, { content_name: string; content_catego
 
 const GAPageView = () => {
   const location = useLocation();
+  const firstRun = useRef(true);
 
   useEffect(() => {
     const path = window.location.pathname + window.location.search;
@@ -57,10 +58,12 @@ const GAPageView = () => {
       (window as any).gtag('config', 'G-Q1KB7R2MLG', { page_path: path });
     }
     if (typeof (window as any).fbq === 'function') {
-      (window as any).fbq('track', 'PageView');
+      // PageView already fires on initial load via the base pixel in index.html.
+      if (!firstRun.current) (window as any).fbq('track', 'PageView');
       const vc = VIEW_CONTENT_ROUTES[window.location.pathname];
       if (vc) (window as any).fbq('track', 'ViewContent', vc);
     }
+    firstRun.current = false;
   }, [location.pathname, location.search]);
 
   return null;
