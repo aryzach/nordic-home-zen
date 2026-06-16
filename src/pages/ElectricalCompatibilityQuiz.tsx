@@ -122,6 +122,11 @@ const ElectricalCompatibilityQuiz = () => {
     } catch {}
   }, [answers]);
 
+  // Scroll to top on step/view change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [view]);
+
   // Inject Web3Forms uploader script when reaching step 4
   useEffect(() => {
     if (view.kind === "step" && view.step === 4) {
