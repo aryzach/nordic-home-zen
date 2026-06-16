@@ -30,7 +30,14 @@ import SevenQuestionsHomeSauna from "./pages/SevenQuestionsHomeSauna";
 import NotFound from "./pages/NotFound";
 import OldHeroVideo from "./pages/OldHeroVideo";
 
+import { trackEvent } from "./lib/analytics";
+
 const queryClient = new QueryClient();
+
+const ROUTE_EVENT_MAP: Record<string, string> = {
+  "/sauna-electrical-fit-consultation": "view_consultation_page",
+  "/electrical-assessment-submitted": "assessment_submitted",
+};
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -63,6 +70,13 @@ const GAPageView = () => {
       const vc = VIEW_CONTENT_ROUTES[window.location.pathname];
       if (vc) (window as any).fbq('track', 'ViewContent', vc);
     }
+
+    const routeEvent = ROUTE_EVENT_MAP[location.pathname];
+    if (routeEvent) {
+      // Defer so document.title reflects the new page's <title>.
+      setTimeout(() => trackEvent(routeEvent), 0);
+    }
+
     firstRun.current = false;
   }, [location.pathname, location.search]);
 

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { trackEvent } from "@/lib/analytics";
 
 const DualCTAs = () => {
   return (
@@ -12,7 +13,10 @@ const DualCTAs = () => {
             shape="pill"
             className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
           >
-            <Link to="/buy-your-anywhere-sauna">
+            <Link
+              to="/buy-your-anywhere-sauna"
+              onClick={() => trackEvent("buy_now_click", { button_text: "Buy now for $4,599", location: "dual_ctas" })}
+            >
               Buy now for $4,599
               <ArrowRight className="ml-1" size={20} />
             </Link>

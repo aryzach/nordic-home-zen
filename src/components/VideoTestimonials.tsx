@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const videos = [
   { url: "https://pub-2979dec23e16480f9840f48df8535df6.r2.dev/0615.mp4", label: "Customer testimonial 1" },
@@ -15,6 +16,11 @@ const VideoTestimonials = () => {
   const openAt = (i: number) => {
     setIndex(i);
     setOpen(true);
+    trackEvent("testimonial_video_play", {
+      video_url: videos[i].url,
+      video_label: videos[i].label,
+      video_index: i,
+    });
   };
 
   const next = () => setIndex((i) => (i + 1) % videos.length);
