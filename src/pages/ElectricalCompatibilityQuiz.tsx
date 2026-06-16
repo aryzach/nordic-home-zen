@@ -42,7 +42,7 @@ const Card = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-const BookConsultationCTA = ({ subtext }: { subtext?: string }) => (
+const BookConsultationCTA = ({ subtext, mobileLabel }: { subtext?: string; mobileLabel?: string }) => (
   <div className="flex flex-col items-center">
     <Button
       shape="pill"
@@ -50,13 +50,20 @@ const BookConsultationCTA = ({ subtext }: { subtext?: string }) => (
       onClick={() =>
         trackAndNavigate(
           "consultation_booking_click",
-          { button_text: "Book Electrical Compatibility Consultation — $129", location: "quiz" },
+          { button_text: mobileLabel ?? "Book Free Electrical Consultation", location: "quiz" },
           () => window.open(BOOKING_URL, "_blank", "noopener,noreferrer")
         )
       }
     >
       <Calendar className="mr-1" size={18} />
-      Book Electrical Compatibility Consultation — $129
+      {mobileLabel ? (
+        <>
+          <span className="sm:hidden">{mobileLabel}</span>
+          <span className="hidden sm:inline">Book Free Electrical Consultation</span>
+        </>
+      ) : (
+        "Book Free Electrical Consultation"
+      )}
     </Button>
     {subtext && (
       <p className="text-xs font-sans text-muted-foreground mt-3 text-center max-w-[320px]">
@@ -436,9 +443,10 @@ const ElectricalCompatibilityQuiz = () => {
               <BookConsultationCTA
                 subtext={
                   view.from === 2
-                    ? "We'll review your space, electrical setup, and sauna options. Consultation fee is credited toward the purchase of an Anywhere Sauna."
-                    : "We'll help evaluate your options. Consultation fee is credited toward the purchase of an Anywhere Sauna."
+                    ? "We'll review your space, electrical setup, and sauna options."
+                    : "We'll help evaluate your options."
                 }
+                mobileLabel={view.from === 2 ? undefined : "Book Free Consultation"}
               />
 
               <button

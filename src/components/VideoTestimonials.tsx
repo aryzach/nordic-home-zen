@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 
 const videos = [
-  { url: "https://pub-2979dec23e16480f9840f48df8535df6.r2.dev/0615.mp4", label: "Customer testimonial 1" },
+  { url: "/__l5e/assets-v1/0d75a3aa-2353-4441-a45d-fd3461443313/0615-2.mp4", label: "Customer testimonial 1" },
   { url: "https://pub-2979dec23e16480f9840f48df8535df6.r2.dev/output.mp4", label: "Customer testimonial 2" },
 ];
 

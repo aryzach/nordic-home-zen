@@ -75,13 +75,13 @@ const BookButton = () => (
         } catch {}
         trackAndNavigate(
           "consultation_booking_click",
-          { button_text: "Book Electrical Consultation — $129", location: "consultation_page" },
+          { button_text: "Book Free Electrical Consultation", location: "consultation_page" },
           () => window.open(BOOKING_URL, "_blank", "noopener,noreferrer")
         );
       }}
     >
       <Calendar className="mr-2" size={18} />
-      Book Electrical Consultation — $129
+      Book Free Electrical Consultation
     </Button>
     <p className="text-xs text-muted-foreground mt-2 text-center max-w-[260px] md:max-w-none">
       Consultation fee is credited toward the purchase of an Anywhere Sauna

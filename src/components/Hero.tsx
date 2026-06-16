@@ -40,7 +40,7 @@ const Hero = () => {
               muted
               playsInline
               preload="auto"
-              className="w-full max-w-[360px] md:max-w-full h-auto rounded-2xl object-cover aspect-[9/16]"
+              className="w-full max-w-[360px] md:max-w-[80%] h-auto rounded-2xl object-cover aspect-[9/16]"
             >
               <source src="/hero-video-vertical.mp4" type="video/mp4" />
             </video>

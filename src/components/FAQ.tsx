@@ -122,12 +122,12 @@ const ConsultCallout = ({
         onClick={() =>
           trackAndNavigate(
             "consultation_booking_click",
-            { button_text: "Book Consultation — $129", location: "faq_callout" },
+            { button_text: "Book Free Electrical Consultation", location: "faq_callout" },
             () => navigate("/sauna-electrical-fit-consultation")
           )
         }
       >
-        Book Consultation — $129
+        Book Free Electrical Consultation
       </Button>
     </div>
   );
