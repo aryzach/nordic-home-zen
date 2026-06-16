@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { trackEvent } from "@/lib/analytics";
+import { Link, useNavigate } from "react-router-dom";
+import { trackAndNavigate } from "@/lib/analytics";
 
 
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (videoRef.current) {
@@ -64,17 +65,18 @@ const Hero = () => {
               </p>
               <div className="flex flex-col items-center gap-3 max-w-md mx-auto w-full">
                 <Button
-                  asChild
                   shape="pill"
                   className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
+                  onClick={() =>
+                    trackAndNavigate(
+                      "buy_now_click",
+                      { button_text: "Buy now for $4,599", location: "hero" },
+                      () => navigate("/buy-your-anywhere-sauna")
+                    )
+                  }
                 >
-                  <Link
-                    to="/buy-your-anywhere-sauna"
-                    onClick={() => trackEvent("buy_now_click", { button_text: "Buy now for $4,599", location: "hero" })}
-                  >
-                    Buy now for $4,599
-                    <ArrowRight className="ml-1" size={20} />
-                  </Link>
+                  Buy now for $4,599
+                  <ArrowRight className="ml-1" size={20} />
                 </Button>
                 <div className="text-white/70 text-xs font-sans">or</div>
                 <Button

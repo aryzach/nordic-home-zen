@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { trackEvent } from "@/lib/analytics";
+import { trackAndNavigate } from "@/lib/analytics";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -89,24 +89,30 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-3">
-            <Button asChild shape="pill" className={cn(
+            <Button shape="pill" className={cn(
               "font-sans font-medium bg-transparent border-[3px]",
               transparent ? "border-white text-white" : "border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))]"
-            )}>
-              <Link
-                to="/sauna-electrical-fit-consultation"
-                onClick={() => trackEvent("consultation_booking_click", { button_text: "Book Electrical Compatibility Consultation", location: "header" })}
-              >
-                Book Electrical Compatibility Consultation
-              </Link>
+            )}
+              onClick={() =>
+                trackAndNavigate(
+                  "consultation_booking_click",
+                  { button_text: "Book Electrical Compatibility Consultation", location: "header" },
+                  () => navigate("/sauna-electrical-fit-consultation")
+                )
+              }
+            >
+              Book Electrical Compatibility Consultation
             </Button>
-            <Button asChild shape="pill" className="font-sans font-medium bg-accent text-white">
-              <Link
-                to="/buy-your-anywhere-sauna"
-                onClick={() => trackEvent("buy_now_click", { button_text: "Buy Now", location: "header" })}
-              >
-                Buy Now
-              </Link>
+            <Button shape="pill" className="font-sans font-medium bg-accent text-white"
+              onClick={() =>
+                trackAndNavigate(
+                  "buy_now_click",
+                  { button_text: "Buy Now", location: "header" },
+                  () => navigate("/buy-your-anywhere-sauna")
+                )
+              }
+            >
+              Buy Now
             </Button>
           </div>
 
@@ -126,32 +132,37 @@ const Header = () => {
               <Link to="/history" className="text-left text-foreground/70 hover:text-foreground transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 History
               </Link>
-              <Link
-                to="/sauna-electrical-fit-consultation"
-                className="text-foreground/70 hover:text-foreground transition-colors"
+              <button
+                type="button"
+                className="text-left text-foreground/70 hover:text-foreground transition-colors"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  trackEvent("consultation_booking_click", { button_text: "Electrical Compatibility Consultation", location: "header_mobile" });
+                  trackAndNavigate(
+                    "consultation_booking_click",
+                    { button_text: "Electrical Compatibility Consultation", location: "header_mobile" },
+                    () => navigate("/sauna-electrical-fit-consultation")
+                  );
                 }}
               >
                 Electrical Compatibility Consultation
-              </Link>
+              </button>
               <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }} className="text-left text-foreground/70 hover:text-foreground transition-colors">
                 Specs
               </button>
               <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#faq"); }} className="text-left text-foreground/70 hover:text-foreground transition-colors">
                 FAQ
               </button>
-              <Button asChild shape="pill" className="w-full font-sans font-medium bg-accent text-white">
-                <Link
-                  to="/buy-your-anywhere-sauna"
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    trackEvent("buy_now_click", { button_text: "Buy Now", location: "header_mobile" });
-                  }}
-                >
-                  Buy Now
-                </Link>
+              <Button shape="pill" className="w-full font-sans font-medium bg-accent text-white"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  trackAndNavigate(
+                    "buy_now_click",
+                    { button_text: "Buy Now", location: "header_mobile" },
+                    () => navigate("/buy-your-anywhere-sauna")
+                  );
+                }}
+              >
+                Buy Now
               </Button>
             </div>
           </nav>

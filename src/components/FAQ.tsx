@@ -1,7 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { trackEvent } from "@/lib/analytics";
+import { Link, useNavigate } from "react-router-dom";
+import { trackAndNavigate } from "@/lib/analytics";
 
 
 const faqs = [
@@ -106,30 +106,35 @@ const ConsultCallout = ({
 }: {
   heading: string;
   body?: string;
-}) => (
-  <div className="rounded-xl bg-card border border-border/60 p-6 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-    <div>
-      <h3 className="text-lg md:text-xl font-semibold text-foreground mb-1">
-        {heading}
-      </h3>
-      {body && <p className="text-muted-foreground text-sm md:text-base">{body}</p>}
-    </div>
-    <Link
-      to="/sauna-electrical-fit-consultation"
-      className="shrink-0"
-      onClick={() => trackEvent("consultation_booking_click", { button_text: "Book Consultation — $129", location: "faq_callout" })}
-    >
+}) => {
+  const navigate = useNavigate();
+  return (
+    <div className="rounded-xl bg-card border border-border/60 p-6 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <h3 className="text-lg md:text-xl font-semibold text-foreground mb-1">
+          {heading}
+        </h3>
+        {body && <p className="text-muted-foreground text-sm md:text-base">{body}</p>}
+      </div>
       <Button
         shape="pill"
-        className="w-full md:w-auto bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[28px] py-[14px] text-sm md:text-base"
+        className="shrink-0 w-full md:w-auto bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[28px] py-[14px] text-sm md:text-base"
+        onClick={() =>
+          trackAndNavigate(
+            "consultation_booking_click",
+            { button_text: "Book Consultation — $129", location: "faq_callout" },
+            () => navigate("/sauna-electrical-fit-consultation")
+          )
+        }
       >
         Book Consultation — $129
       </Button>
-    </Link>
-  </div>
-);
+    </div>
+  );
+};
 
 const FAQ = () => {
+  const navigate = useNavigate();
   return (
     <section id="faq" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 max-w-3xl">
@@ -169,17 +174,19 @@ const FAQ = () => {
         </Accordion>
 
         <div className="flex justify-center">
-          <Link
-            to="/sauna-electrical-fit-consultation"
-            onClick={() => trackEvent("consultation_booking_click", { button_text: "More Questions?", location: "faq_footer" })}
+          <Button
+            shape="pill"
+            className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
+            onClick={() =>
+              trackAndNavigate(
+                "consultation_booking_click",
+                { button_text: "More Questions?", location: "faq_footer" },
+                () => navigate("/sauna-electrical-fit-consultation")
+              )
+            }
           >
-            <Button
-              shape="pill"
-              className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
-            >
-              More Questions?
-            </Button>
-          </Link>
+            More Questions?
+          </Button>
         </div>
       </div>
     </section>
