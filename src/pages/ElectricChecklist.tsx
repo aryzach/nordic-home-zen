@@ -10,7 +10,7 @@ import {
   MessageCircleQuestion,
   CheckCircle2,
 } from "lucide-react";
-import { trackEvent } from "@/lib/analytics";
+import { trackAndNavigate } from "@/lib/analytics";
 
 const BOOKING_URL = "https://calendar.app.google/Q9nw6fTEBMnyNbDf8";
 
@@ -59,28 +59,29 @@ const outcomes = [
 
 const BookButton = () => (
   <div className="flex flex-col items-center">
-    <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-white">
-      <a
-        href={BOOKING_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => {
-          trackEvent("consultation_booking_click", { button_text: "Book Electrical Consultation — $129", location: "consultation_page" });
-          try {
-            (window as any).fbq?.('track', 'Schedule', {
-              content_name: 'Electrical Compatibility Consultation',
-              value: 129,
-              currency: 'USD',
-            });
-            (window as any).fbq?.('track', 'Lead', {
-              content_name: 'Electrical Compatibility Consultation Booking',
-            });
-          } catch {}
-        }}
-      >
-        <Calendar className="mr-2" size={18} />
-        Book Electrical Consultation — $129
-      </a>
+    <Button
+      size="lg"
+      className="bg-accent hover:bg-accent/90 text-white"
+      onClick={() => {
+        try {
+          (window as any).fbq?.('track', 'Schedule', {
+            content_name: 'Electrical Compatibility Consultation',
+            value: 129,
+            currency: 'USD',
+          });
+          (window as any).fbq?.('track', 'Lead', {
+            content_name: 'Electrical Compatibility Consultation Booking',
+          });
+        } catch {}
+        trackAndNavigate(
+          "consultation_booking_click",
+          { button_text: "Book Electrical Consultation — $129", location: "consultation_page" },
+          () => window.open(BOOKING_URL, "_blank", "noopener,noreferrer")
+        );
+      }}
+    >
+      <Calendar className="mr-2" size={18} />
+      Book Electrical Consultation — $129
     </Button>
     <p className="text-xs text-muted-foreground mt-2 text-center max-w-[260px] md:max-w-none">
       Consultation fee is credited toward the purchase of an Anywhere Sauna

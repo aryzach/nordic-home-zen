@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Calendar, CheckCircle2 } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
-import { trackEvent } from "@/lib/analytics";
+import { trackAndNavigate } from "@/lib/analytics";
 
 const BOOKING_URL = "https://calendar.app.google/Q9nw6fTEBMnyNbDf8";
 
@@ -40,19 +40,18 @@ const ElectricalAssessmentSubmitted = () => {
 
             <div className="flex flex-col items-center gap-4">
               <Button
-                asChild
                 shape="pill"
                 className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-8 py-4 text-base w-full"
+                onClick={() =>
+                  trackAndNavigate(
+                    "consultation_booking_click",
+                    { button_text: "Book Electrical Compatibility Consultation — $129", location: "assessment_submitted" },
+                    () => window.open(BOOKING_URL, "_blank", "noopener,noreferrer")
+                  )
+                }
               >
-                <a
-                  href={BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent("consultation_booking_click", { button_text: "Book Electrical Compatibility Consultation — $129", location: "assessment_submitted" })}
-                >
-                  <Calendar className="mr-1" size={18} />
-                  Book Electrical Compatibility Consultation — $129
-                </a>
+                <Calendar className="mr-1" size={18} />
+                Book Electrical Compatibility Consultation — $129
               </Button>
               <p className="text-xs text-muted-foreground -mt-2 text-center max-w-[320px]">
                 Want immediate feedback? Schedule a call with us.

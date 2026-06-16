@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useSEO } from "@/hooks/useSEO";
 import { ArrowLeft, ArrowRight, Calendar, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackAndNavigate } from "@/lib/analytics";
 
 
 const BOOKING_URL = "https://calendar.app.google/Q9nw6fTEBMnyNbDf8";
@@ -45,19 +45,18 @@ const Card = ({ children }: { children: React.ReactNode }) => (
 const BookConsultationCTA = ({ subtext }: { subtext?: string }) => (
   <div className="flex flex-col items-center">
     <Button
-      asChild
       shape="pill"
       className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-8 py-4 text-base w-full sm:w-auto"
+      onClick={() =>
+        trackAndNavigate(
+          "consultation_booking_click",
+          { button_text: "Book Electrical Compatibility Consultation — $129", location: "quiz" },
+          () => window.open(BOOKING_URL, "_blank", "noopener,noreferrer")
+        )
+      }
     >
-      <a
-        href={BOOKING_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => trackEvent("consultation_booking_click", { button_text: "Book Electrical Compatibility Consultation — $129", location: "quiz" })}
-      >
-        <Calendar className="mr-1" size={18} />
-        Book Electrical Compatibility Consultation — $129
-      </a>
+      <Calendar className="mr-1" size={18} />
+      Book Electrical Compatibility Consultation — $129
     </Button>
     {subtext && (
       <p className="text-xs font-sans text-muted-foreground mt-3 text-center max-w-[320px]">
