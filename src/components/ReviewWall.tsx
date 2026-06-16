@@ -137,8 +137,9 @@ const ReviewWall = () => {
   };
 
   return (
-    <section className="py-8 md:py-12 bg-background overflow-hidden">
-      <div className="space-y-0">
+    <section className="py-8 md:py-12 bg-background overflow-x-hidden overflow-y-visible">
+      <div className="space-y-2">
+
         <MarqueeRow
           items={rowTop}
           direction="left"
