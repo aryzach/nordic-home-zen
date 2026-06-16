@@ -97,22 +97,19 @@ const MarqueeRow = ({ items, direction, duration, scale, startGlobalIndex, onOpe
           const globalIdx = startGlobalIndex + originalIdx;
           const rot = rotationFor(originalIdx + (scale === "large" ? 3 : 0));
           return (
-            <button
+            <div
               key={i}
-              type="button"
-              onClick={() => onOpen(globalIdx)}
-              className={`shrink-0 ${rev.widthClass ?? sizes[rev.size]} transition-transform duration-300 ease-out hover:scale-105 hover:z-10 will-change-transform`}
+              className={`shrink-0 ${rev.widthClass ?? sizes[rev.size]} will-change-transform`}
               style={{ transform: `rotate(${rot}deg)` }}
-              aria-label="Open review screenshot"
             >
               <img
                 src={rev.src}
                 alt={rev.alt}
                 loading="lazy"
                 decoding="async"
-                className="w-full h-auto rounded-xl shadow-[0_8px_24px_-8px_rgba(0,0,0,0.18)] hover:shadow-[0_18px_40px_-10px_rgba(0,0,0,0.28)] bg-white border border-black/5 transition-shadow duration-300"
+                className="w-full h-auto rounded-xl shadow-[0_8px_24px_-8px_rgba(0,0,0,0.18)] bg-white border border-black/5"
               />
-            </button>
+            </div>
           );
         })}
       </div>
