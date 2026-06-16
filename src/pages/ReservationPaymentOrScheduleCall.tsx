@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Calendar } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
-import { Link } from "react-router-dom";
-import { trackEvent } from "@/lib/analytics";
+import { Link, useNavigate } from "react-router-dom";
+import { trackEvent, trackAndNavigate } from "@/lib/analytics";
 
 
 const ReservationPaymentOrScheduleCall = () => {
   useSEO(seoData.reservationPayment);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -42,30 +43,33 @@ const ReservationPaymentOrScheduleCall = () => {
                 <p className="text-muted-foreground mb-6">
                   Pay a $500 deposit now, and the remainder once shipped. Your sauna will be delivered within 45 days.
                 </p>
-                <Button 
-                  asChild 
+                <Button
                   size="lg"
                   className="w-full"
+                  onClick={() => {
+                    try {
+                      (window as any).fbq?.('track', 'InitiateCheckout', {
+                        content_name: 'Anywhere Sauna - Deposit',
+                        content_category: 'Sauna',
+                        value: 500,
+                        currency: 'USD',
+                      });
+                    } catch {}
+                    trackAndNavigate(
+                      "deposit_checkout_started",
+                      { button_text: "Pay $500 deposit", value: 500, currency: "USD" },
+                      () => {
+                        window.open(
+                          "https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B",
+                          "_blank",
+                          "noopener,noreferrer"
+                        );
+                      }
+                    );
+                  }}
                 >
-                  <a 
-                    href="https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B"
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    onClick={() => {
-                      trackEvent("deposit_checkout_started", { button_text: "Pay $500 deposit", value: 500, currency: "USD" });
-                      try {
-                        (window as any).fbq?.('track', 'InitiateCheckout', {
-                          content_name: 'Anywhere Sauna - Deposit',
-                          content_category: 'Sauna',
-                          value: 500,
-                          currency: 'USD',
-                        });
-                      } catch {}
-                    }}
-                  >
-                    Pay $500 deposit
-                    <ExternalLink className="ml-2" size={18} />
-                  </a>
+                  Pay $500 deposit
+                  <ExternalLink className="ml-2" size={18} />
                 </Button>
               </div>
             </div>
@@ -81,19 +85,20 @@ const ReservationPaymentOrScheduleCall = () => {
               <p className="text-lg text-muted-foreground mb-6">
                 Thinking about a sauna but not sure what's possible at your home? Book a 30-minute video consultation ($109, credited toward any purchase or rental).
               </p>
-              <Button 
-                asChild 
+              <Button
                 variant="outline"
                 size="lg"
                 className="w-full"
+                onClick={() =>
+                  trackAndNavigate(
+                    "consultation_booking_click",
+                    { button_text: "Book Electrical Compatibility Consultation", location: "buy_page" },
+                    () => navigate("/sauna-electrical-fit-consultation")
+                  )
+                }
               >
-                <Link
-                  to="/sauna-electrical-fit-consultation"
-                  onClick={() => trackEvent("consultation_booking_click", { button_text: "Book Electrical Compatibility Consultation", location: "buy_page" })}
-                >
-                  <Calendar className="mr-2" size={18} />
-                  Book Electrical Compatibility Consultation
-                </Link>
+                <Calendar className="mr-2" size={18} />
+                Book Electrical Compatibility Consultation
               </Button>
             </div>
           </div>
