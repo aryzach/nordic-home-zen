@@ -87,7 +87,7 @@ const MarqueeRow = ({ items, direction, duration, scale, startGlobalIndex, onOpe
   const doubled = [...items, ...items];
 
   return (
-    <div className="group relative overflow-hidden py-0 -my-2">
+    <div className="group relative overflow-x-hidden overflow-y-visible py-6 -my-2">
       <div
         className={`flex w-max gap-2 ${animClass} [animation-play-state:running] group-hover:[animation-play-state:paused]`}
         style={{ animationDuration: `${duration}s` }}
