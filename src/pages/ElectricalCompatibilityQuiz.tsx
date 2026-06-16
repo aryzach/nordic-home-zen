@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useSEO } from "@/hooks/useSEO";
 import { ArrowLeft, ArrowRight, Calendar, CheckCircle2, ShieldCheck, Sparkles } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 
 const BOOKING_URL = "https://calendar.app.google/Q9nw6fTEBMnyNbDf8";
@@ -48,7 +49,12 @@ const BookConsultationCTA = ({ subtext }: { subtext?: string }) => (
       shape="pill"
       className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-8 py-4 text-base w-full sm:w-auto"
     >
-      <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+      <a
+        href={BOOKING_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => trackEvent("consultation_booking_click", { button_text: "Book Electrical Compatibility Consultation — $129", location: "quiz" })}
+      >
         <Calendar className="mr-1" size={18} />
         Book Electrical Compatibility Consultation — $129
       </a>
@@ -155,6 +161,11 @@ const ElectricalCompatibilityQuiz = () => {
     const form = e.currentTarget;
     const tsInput = form.querySelector<HTMLInputElement>('input[name="submitted_at"]');
     if (tsInput) tsInput.value = new Date().toISOString();
+    trackEvent("quiz_submitted", {
+      button_text: "Submit Assessment",
+      q1: answers.q1,
+      q2: answers.q2,
+    });
     try {
       (window as any).fbq?.('track', 'Lead', {
         content_name: 'Electrical Compatibility Quiz',
@@ -215,7 +226,10 @@ const ElectricalCompatibilityQuiz = () => {
 
               <Button
                 shape="pill"
-                onClick={() => setView({ kind: "step", step: 2 })}
+                onClick={() => {
+                  trackEvent("quiz_started", { button_text: "Start Assessment" });
+                  setView({ kind: "step", step: 2 });
+                }}
                 className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-8 py-4 text-base w-full"
               >
                 Start Assessment

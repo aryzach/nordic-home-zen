@@ -113,7 +113,11 @@ const ConsultCallout = ({
       </h3>
       {body && <p className="text-muted-foreground text-sm md:text-base">{body}</p>}
     </div>
-    <Link to="/sauna-electrical-fit-consultation" className="shrink-0">
+    <Link
+      to="/sauna-electrical-fit-consultation"
+      className="shrink-0"
+      onClick={() => trackEvent("consultation_booking_click", { button_text: "Book Consultation — $129", location: "faq_callout" })}
+    >
       <Button
         shape="pill"
         className="w-full md:w-auto bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[28px] py-[14px] text-sm md:text-base"
@@ -164,7 +168,10 @@ const FAQ = () => {
         </Accordion>
 
         <div className="flex justify-center">
-          <Link to="/sauna-electrical-fit-consultation">
+          <Link
+            to="/sauna-electrical-fit-consultation"
+            onClick={() => trackEvent("consultation_booking_click", { button_text: "More Questions?", location: "faq_footer" })}
+          >
             <Button
               shape="pill"
               className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"

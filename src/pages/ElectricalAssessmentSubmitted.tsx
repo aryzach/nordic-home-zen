@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Calendar, CheckCircle2 } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
+import { trackEvent } from "@/lib/analytics";
 
 const BOOKING_URL = "https://calendar.app.google/Q9nw6fTEBMnyNbDf8";
 
@@ -43,7 +44,12 @@ const ElectricalAssessmentSubmitted = () => {
                 shape="pill"
                 className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-8 py-4 text-base w-full"
               >
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent("consultation_booking_click", { button_text: "Book Electrical Compatibility Consultation — $129", location: "assessment_submitted" })}
+                >
                   <Calendar className="mr-1" size={18} />
                   Book Electrical Compatibility Consultation — $129
                 </a>

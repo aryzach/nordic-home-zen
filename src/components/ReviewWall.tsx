@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import ImageLightbox, { type LightboxImage } from "@/components/ImageLightbox";
+import { trackEvent } from "@/lib/analytics";
 
 import r1 from "@/assets/reviews/local/review-1.png";
 import r2 from "@/assets/reviews/local/review-2.png";
@@ -135,6 +136,7 @@ const ReviewWall = () => {
   const openAt = (i: number) => {
     setLightboxIndex(i);
     setLightboxOpen(true);
+    trackEvent("review_opened", { review_index: i });
   };
 
   return (

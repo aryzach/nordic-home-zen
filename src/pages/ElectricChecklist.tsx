@@ -10,6 +10,7 @@ import {
   MessageCircleQuestion,
   CheckCircle2,
 } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const BOOKING_URL = "https://calendar.app.google/Q9nw6fTEBMnyNbDf8";
 
@@ -64,6 +65,7 @@ const BookButton = () => (
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => {
+          trackEvent("consultation_booking_click", { button_text: "Book Electrical Consultation — $129", location: "consultation_page" });
           try {
             (window as any).fbq?.('track', 'Schedule', {
               content_name: 'Electrical Compatibility Consultation',

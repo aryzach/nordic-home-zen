@@ -5,6 +5,7 @@ import { ExternalLink, Calendar } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
 import { Link } from "react-router-dom";
+import { trackEvent } from "@/lib/analytics";
 
 
 const ReservationPaymentOrScheduleCall = () => {
@@ -51,6 +52,7 @@ const ReservationPaymentOrScheduleCall = () => {
                     target="_blank" 
                     rel="noopener noreferrer"
                     onClick={() => {
+                      trackEvent("deposit_checkout_started", { button_text: "Pay $500 deposit", value: 500, currency: "USD" });
                       try {
                         (window as any).fbq?.('track', 'InitiateCheckout', {
                           content_name: 'Anywhere Sauna - Deposit',
@@ -85,7 +87,10 @@ const ReservationPaymentOrScheduleCall = () => {
                 size="lg"
                 className="w-full"
               >
-                <Link to="/sauna-electrical-fit-consultation">
+                <Link
+                  to="/sauna-electrical-fit-consultation"
+                  onClick={() => trackEvent("consultation_booking_click", { button_text: "Book Electrical Compatibility Consultation", location: "buy_page" })}
+                >
                   <Calendar className="mr-2" size={18} />
                   Book Electrical Compatibility Consultation
                 </Link>
