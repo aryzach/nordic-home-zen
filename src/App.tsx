@@ -30,7 +30,14 @@ import SevenQuestionsHomeSauna from "./pages/SevenQuestionsHomeSauna";
 import NotFound from "./pages/NotFound";
 import OldHeroVideo from "./pages/OldHeroVideo";
 
+import { trackEvent } from "./lib/analytics";
+
 const queryClient = new QueryClient();
+
+const ROUTE_EVENT_MAP: Record<string, string> = {
+  "/sauna-electrical-fit-consultation": "view_consultation_page",
+  "/electrical-assessment-submitted": "assessment_submitted",
+};
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
