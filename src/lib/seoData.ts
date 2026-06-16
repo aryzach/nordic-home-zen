@@ -4,43 +4,43 @@
 export const seoData = {
   // Main Pages
   home: {
-    title: "SF Sauna — The Anywhere Sauna",
+    title: "Anywhere Sauna",
     description: "The only traditional steam sauna that uses a standard home outlet.",
     canonical: "https://getanywheresauna.com/"
   },
   pricing: {
-    title: "Sauna Rental Pricing | SF Sauna Rental",
+    title: "Sauna Rental Pricing | Anywhere Sauna",
     description: "View monthly pricing for infrared and steam sauna rentals in San Francisco. Indoor and outdoor options starting at $169/mo. Free installation on 6+ month leases.",
     canonical: "https://sfsaunarental.com/pricing"
   },
   howItStarted: {
-    title: "How It Started | SF Sauna Rental",
+    title: "How It Started | Anywhere Sauna",
     description: "Meet Zach, founder of SF Sauna. After 3 years of chronic pain and discovering sauna therapy, he started SF Sauna to bring convenient sauna access to Bay Area renters.",
     canonical: "https://sfsaunarental.com/how-it-started"
   },
   serviceAreas: {
-    title: "Service Areas | SF Sauna Rental",
+    title: "Service Areas | Anywhere Sauna",
     description: "We deliver and install plug-in saunas throughout San Francisco, Oakland, Berkeley, Marin, Palo Alto, and Mountain View. Check availability in your neighborhood.",
     canonical: "https://sfsaunarental.com/service-areas"
   },
   contact: {
-    title: "Contact Us | SF Sauna Rental",
-    description: "Get in touch with SF Sauna Rental. Call (415) 489-0261 or email us. We're here to answer your sauna rental questions in the San Francisco Bay Area.",
+    title: "Contact Us | Anywhere Sauna",
+    description: "Get in touch with Anywhere Sauna. Call (415) 489-0261 or email us. We're here to answer your sauna rental questions in the San Francisco Bay Area.",
     canonical: "https://sfsaunarental.com/contact"
   },
   policies: {
-    title: "Privacy Policy | SF Sauna Rental",
-    description: "SF Sauna Rental privacy policy. Learn how we collect, use, and protect your information when you use our sauna rental services in the San Francisco Bay Area.",
+    title: "Privacy Policy | Anywhere Sauna",
+    description: "Anywhere Sauna privacy policy. Learn how we collect, use, and protect your information when you use our sauna rental services in the San Francisco Bay Area.",
     canonical: "https://sfsaunarental.com/policies"
   },
   reserveYourSauna: {
-    title: "Reserve Your Sauna | SF Sauna Rental",
+    title: "Reserve Your Sauna | Anywhere Sauna",
     description: "Check availability and reserve your home sauna rental in San Francisco. Choose infrared or steam, indoor or outdoor. Fast delivery and professional installation.",
     canonical: "https://sfsaunarental.com/reserve-your-sauna"
   },
   learnMore: {
-    title: "Ask a Question | SF Sauna Rental",
-    description: "Have questions about sauna rentals? Contact SF Sauna Rental. We'll help you choose the right sauna for your home and answer all your questions.",
+    title: "Ask a Question | Anywhere Sauna",
+    description: "Have questions about sauna rentals? Contact Anywhere Sauna. We'll help you choose the right sauna for your home and answer all your questions.",
     canonical: "https://sfsaunarental.com/learn-more"
   },
   
@@ -120,34 +120,34 @@ export const seoData = {
 
   // Conversion/Funnel Pages
   emailMoreInfo: {
-    title: "Thanks for Your Interest | SF Sauna Rental",
+    title: "Thanks for Your Interest | Anywhere Sauna",
     description: "Thank you for signing up! Fill out the form to tell us about your space and schedule a free sauna fit check.",
     canonical: "https://sfsaunarental.com/email-more-info"
   },
   thankYou: {
-    title: "Thank You | SF Sauna Rental",
-    description: "Thank you for contacting SF Sauna Rental. We'll be in touch shortly about your home sauna rental.",
+    title: "Thank You | Anywhere Sauna",
+    description: "Thank you for contacting Anywhere Sauna. We'll be in touch shortly about your home sauna rental.",
     canonical: "https://sfsaunarental.com/thank-you"
   },
   reservationPayment: {
-    title: "Complete Your Reservation | SF Sauna Rental",
+    title: "Complete Your Reservation | Anywhere Sauna",
     description: "Complete your sauna reservation with a reservation fee or schedule a video call to discuss your options.",
     canonical: "https://sfsaunarental.com/buy-your-anywhere-sauna"
   },
 
   // Utility Pages
   installPower: {
-    title: "Installation & Power Guide | SF Sauna Rental",
+    title: "Installation & Power Guide | Anywhere Sauna",
     description: "Everything you need to know about sauna setup, 110/120V power requirements, and placement. Our saunas install in 45-60 minutes with no special wiring.",
     canonical: "https://sfsaunarental.com/install-power"
   },
   learnHub: {
-    title: "Learn About Home Saunas | SF Sauna Rental",
+    title: "Learn About Home Saunas | Anywhere Sauna",
     description: "Expert guides on infrared vs steam saunas, electricity costs, and landlord-friendly wellness solutions. Tips for getting the most from your home sauna.",
     canonical: "https://sfsaunarental.com/learn"
   },
   media: {
-    title: "Media Gallery | SF Sauna Rental",
+    title: "Media Gallery | Anywhere Sauna",
     description: "See our saunas in action across San Francisco Bay Area homes. Photos and videos of infrared and steam sauna installations.",
     canonical: "https://sfsaunarental.com/media"
   },

@@ -42,7 +42,7 @@ export function useSEO({ title, description, canonical }: SEOProps) {
 
     // Cleanup: restore defaults on unmount
     return () => {
-      document.title = 'SF Sauna Rental';
+      document.title = 'Anywhere Sauna';
       if (metaDescription) {
         metaDescription.setAttribute('content', 'Monthly sauna rentals for SF Bay Area homes and backyards. Dry and infrared saunas on 110/120V power with fast delivery, setup, and ongoing support.');
       }
