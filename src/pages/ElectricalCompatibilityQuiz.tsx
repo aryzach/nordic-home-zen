@@ -287,10 +287,14 @@ const ElectricalCompatibilityQuiz = () => {
                     className="w-full h-auto object-cover"
                   />
                 </div>
-                <div className="rounded-xl overflow-hidden bg-secondary/40 mb-4 border border-border aspect-video flex items-center justify-center">
-                  <p className="text-sm text-muted-foreground px-4 text-center">
-                    Short video walkthrough coming soon — how to find the breaker for your outlet and check if it's 20A.
-                  </p>
+                <div className="rounded-xl overflow-hidden bg-secondary/40 mb-4 border border-border">
+                  <video
+                    src="https://pub-2979dec23e16480f9840f48df8535df6.r2.dev/electricaltestdraft1.mp4"
+                    controls
+                    playsInline
+                    preload="metadata"
+                    className="w-full h-auto"
+                  />
                 </div>
                 <p className="text-sm text-muted-foreground mb-6 flex items-start gap-2">
                   <CheckCircle2 className="text-green-600 flex-shrink-0 mt-0.5" size={18} />
