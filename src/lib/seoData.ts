@@ -4,7 +4,7 @@
 export const seoData = {
   // Main Pages
   home: {
-    title: "SF Sauna — The Anywhere Sauna",
+    title: "Anywhere Sauna",
     description: "The only traditional steam sauna that uses a standard home outlet.",
     canonical: "https://getanywheresauna.com/"
   },
