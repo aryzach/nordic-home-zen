@@ -296,10 +296,6 @@ const ElectricalCompatibilityQuiz = () => {
                     className="w-full h-auto"
                   />
                 </div>
-                <p className="text-sm text-muted-foreground mb-6 flex items-start gap-2">
-                  <CheckCircle2 className="text-green-600 flex-shrink-0 mt-0.5" size={18} />
-                  <span>The Anywhere Sauna performs best with a heater plugged into an outlet on a 20A circuit.</span>
-                </p>
 
                 <div className="space-y-3">
                   <AnswerButton label="Yes" variant="primary" onClick={() => handleQ2("Yes")} />
