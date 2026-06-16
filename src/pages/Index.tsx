@@ -23,12 +23,12 @@ const Index = () => {
       <main>
         <Hero />
         <ReviewWall />
-        <VideoTestimonials />
 
 
 
         <DualCTAs />
         <PlacementGallery />
+        <VideoTestimonials />
         <AboutTheSauna />
         <SaunaFeatures />
         <DualCTAs />
