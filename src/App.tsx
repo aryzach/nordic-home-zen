@@ -70,6 +70,13 @@ const GAPageView = () => {
       const vc = VIEW_CONTENT_ROUTES[window.location.pathname];
       if (vc) (window as any).fbq('track', 'ViewContent', vc);
     }
+
+    const routeEvent = ROUTE_EVENT_MAP[location.pathname];
+    if (routeEvent) {
+      // Defer so document.title reflects the new page's <title>.
+      setTimeout(() => trackEvent(routeEvent), 0);
+    }
+
     firstRun.current = false;
   }, [location.pathname, location.search]);
 
