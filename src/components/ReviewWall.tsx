@@ -87,7 +87,7 @@ const MarqueeRow = ({ items, direction, duration, scale, startGlobalIndex, onOpe
   const doubled = [...items, ...items];
 
   return (
-    <div className="group relative overflow-hidden py-0 -my-2">
+    <div className="group relative overflow-x-hidden overflow-y-visible py-6 -my-2">
       <div
         className={`flex w-max gap-2 ${animClass} [animation-play-state:running] group-hover:[animation-play-state:paused]`}
         style={{ animationDuration: `${duration}s` }}
@@ -137,8 +137,9 @@ const ReviewWall = () => {
   };
 
   return (
-    <section className="py-8 md:py-12 bg-background overflow-hidden">
-      <div className="space-y-0">
+    <section className="py-8 md:py-12 bg-background overflow-x-hidden overflow-y-visible">
+      <div className="space-y-2">
+
         <MarqueeRow
           items={rowTop}
           direction="left"
