@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Calendar } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
-import { Link, useNavigate } from "react-router-dom";
-import { trackEvent, trackAndNavigate } from "@/lib/analytics";
+import { useNavigate } from "react-router-dom";
+import { trackAndNavigate } from "@/lib/analytics";
 
 
 const ReservationPaymentOrScheduleCall = () => {
