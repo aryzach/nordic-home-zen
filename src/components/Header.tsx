@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { trackEvent } from "@/lib/analytics";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -92,10 +93,20 @@ const Header = () => {
               "font-sans font-medium bg-transparent border-[3px]",
               transparent ? "border-white text-white" : "border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))]"
             )}>
-              <Link to="/sauna-electrical-fit-consultation">Book Electrical Compatibility Consultation</Link>
+              <Link
+                to="/sauna-electrical-fit-consultation"
+                onClick={() => trackEvent("consultation_booking_click", { button_text: "Book Electrical Compatibility Consultation", location: "header" })}
+              >
+                Book Electrical Compatibility Consultation
+              </Link>
             </Button>
             <Button asChild shape="pill" className="font-sans font-medium bg-accent text-white">
-              <Link to="/buy-your-anywhere-sauna">Buy Now</Link>
+              <Link
+                to="/buy-your-anywhere-sauna"
+                onClick={() => trackEvent("buy_now_click", { button_text: "Buy Now", location: "header" })}
+              >
+                Buy Now
+              </Link>
             </Button>
           </div>
 
@@ -115,7 +126,14 @@ const Header = () => {
               <Link to="/history" className="text-left text-foreground/70 hover:text-foreground transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                 History
               </Link>
-              <Link to="/sauna-electrical-fit-consultation" className="text-foreground/70 hover:text-foreground transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link
+                to="/sauna-electrical-fit-consultation"
+                className="text-foreground/70 hover:text-foreground transition-colors"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  trackEvent("consultation_booking_click", { button_text: "Electrical Compatibility Consultation", location: "header_mobile" });
+                }}
+              >
                 Electrical Compatibility Consultation
               </Link>
               <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }} className="text-left text-foreground/70 hover:text-foreground transition-colors">
@@ -125,7 +143,15 @@ const Header = () => {
                 FAQ
               </button>
               <Button asChild shape="pill" className="w-full font-sans font-medium bg-accent text-white">
-                <Link to="/buy-your-anywhere-sauna" onClick={() => setIsMobileMenuOpen(false)}>Buy Now</Link>
+                <Link
+                  to="/buy-your-anywhere-sauna"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    trackEvent("buy_now_click", { button_text: "Buy Now", location: "header_mobile" });
+                  }}
+                >
+                  Buy Now
+                </Link>
               </Button>
             </div>
           </nav>
