@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
-import video1 from "@/assets/testimonial-1.mp4.asset.json";
-import video2 from "@/assets/testimonial-2.mp4.asset.json";
 
 const videos = [
-  { url: video1.url, label: "Customer testimonial 1" },
-  { url: video2.url, label: "Customer testimonial 2" },
+  { url: "https://pub-2979dec23e16480f9840f48df8535df6.r2.dev/0615.mp4", label: "Customer testimonial 1" },
+  { url: "https://pub-2979dec23e16480f9840f48df8535df6.r2.dev/output.mp4", label: "Customer testimonial 2" },
 ];
 
 const VideoTestimonials = () => {
