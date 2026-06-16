@@ -19,7 +19,7 @@ const Policies = () => {
 
           <div className="prose prose-lg max-w-none text-muted-foreground">
             <p className="mb-6">
-              SF Sauna Rental ("we," "us," "our") provides in-home sauna rentals, installations, and related services. This Privacy Policy explains what information we collect, why we collect it, and how it's used when you visit our website, submit a form, or become a customer.
+              Anywhere Sauna ("we," "us," "our") provides in-home sauna rentals, installations, and related services. This Privacy Policy explains what information we collect, why we collect it, and how it's used when you visit our website, submit a form, or become a customer.
             </p>
 
             <h2 className="text-2xl font-semibold text-foreground mt-8 mb-4">1. What We Collect</h2>
