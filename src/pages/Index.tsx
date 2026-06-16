@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import AboutTheSauna from "@/components/AboutTheSauna";
-import GoogleReviews from "@/components/GoogleReviews";
+import VideoTestimonials from "@/components/VideoTestimonials";
 import ReviewWall from "@/components/ReviewWall";
 import PlacementGallery from "@/components/PlacementGallery";
 import SaunaFeatures from "@/components/SaunaFeatures";
@@ -22,7 +22,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <GoogleReviews />
+        <VideoTestimonials />
 
 
 
