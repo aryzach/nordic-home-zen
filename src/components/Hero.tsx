@@ -24,7 +24,7 @@ const Hero = () => {
           {/* Mobile-only heading above video */}
           <div className="md:hidden text-center order-1">
             <h1 className="font-heading text-[36px] font-semibold text-white mb-4 leading-[1.1] tracking-[-0.01em]">
-              The 190°F sauna for everyone.
+              The world's only 200°F plug-in sauna.
             </h1>
             <p className="font-sans text-[16px] leading-[1.6] text-white/90 font-normal">
               Standard outlet. No electrician. Made for any home or apartment.
@@ -58,7 +58,7 @@ const Hero = () => {
             </div>
             <div className="md:my-auto">
               <h1 className="hidden md:block font-heading text-[36px] md:text-[52px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.01em]">
-                The 190°F sauna for everyone.
+                The world's only 200°F plug-in sauna.
               </h1>
               <p className="hidden md:block font-sans text-[16px] md:text-[18px] leading-[1.6] text-white/90 mb-8 font-normal">
                 Standard outlet. No electrician. Made for any home or apartment.
