@@ -66,10 +66,10 @@ const getCardWidth = () => {
 };
 
 const getContainerSize = () => {
-  if (typeof window === "undefined") return { w: 1348, h: 570 };
-  const w = Math.min(window.innerWidth, 1400);
-  const innerW = Math.max(0, w - 32 - 20); // px-4 padding + scrollbar safety buffer
-  const innerH = w < 640 ? 420 : w < 768 ? 480 : 570;
+  if (typeof window === "undefined") return { w: 1888, h: 570 };
+  const w = window.innerWidth;
+  const innerW = Math.max(0, w - 32); // px-4 padding
+  const innerH = w < 640 ? 252 : w < 768 ? 288 : 342;
   return { w: innerW, h: innerH };
 };
 
