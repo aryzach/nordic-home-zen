@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Instagram, MapPin, Phone, Mail } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 
@@ -14,85 +13,89 @@ const Footer = () => {
     }
   };
 
+  const colHeader = "text-[12px] uppercase tracking-[0.2em] text-white/40 mb-5 font-medium";
+  const linkClass = "text-[14px] text-white/70 hover:text-white transition-colors duration-200";
+
   return (
-    <footer className="bg-charcoal text-white py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-6 gap-8 mb-8">
+    <footer style={{ backgroundColor: "#111111", color: "#E7E3DC" }} className="pt-20 pb-10">
+      <div className="container-x">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
+          <div className="md:col-span-1">
+            <h3 className="text-[17px] font-bold uppercase tracking-tight text-white mb-2">
+              The Anywhere Sauna
+            </h3>
+            <p className="text-[12px] tracking-[0.18em] uppercase text-white/40 mb-6">By SF Sauna</p>
+            <p className="text-[14px] text-white/60 leading-relaxed mb-6 max-w-xs">
+              The world's only 200°F plug-in sauna.
+            </p>
+            <div className="flex gap-3">
+              <a
+                href="https://www.instagram.com/getanywheresauna/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center border border-white/15 hover:bg-white/10 transition-colors duration-200"
+                aria-label="Instagram"
+              >
+                <Instagram size={16} className="text-white/80" />
+              </a>
+            </div>
+          </div>
+
+          {/* Company */}
           <div>
-            <h3 className="text-2xl font-semibold mb-1 text-accent">The Anywhere Sauna</h3>
-            <p className="text-white/60 text-xs mb-4">by SF Sauna</p>
+            <h4 className={colHeader}>Company</h4>
+            <ul className="space-y-3">
+              <li><Link to="/history" className={linkClass}>History</Link></li>
+              <li><Link to="/policies" onClick={handlePoliciesClick} className={linkClass}>Privacy Policy</Link></li>
+            </ul>
+          </div>
+
+          {/* Product */}
+          <div>
+            <h4 className={colHeader}>Product</h4>
+            <ul className="space-y-3">
+              <li><Link to="/buy-your-anywhere-sauna" className={linkClass}>Buy Now</Link></li>
+              <li><Link to="/sauna-electrical-fit-consultation" className={linkClass}>Electrical Consultation</Link></li>
+              <li><Link to="/electrical-compatibility-quiz" className={linkClass}>Compatibility Quiz</Link></li>
+            </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-medium mb-4 text-accent">Contact</h4>
-            <ul className="space-y-3 text-sm">
+            <h4 className={colHeader}>Contact</h4>
+            <ul className="space-y-3 mb-6">
               <li>
-                <a 
-                  href="tel:+14154890261" 
-                  className="text-white/70 hover:text-white transition-colors flex items-center gap-2"
-                  itemProp="telephone"
-                >
-                  <Phone size={14} />
-                  (415) 489-0261
+                <a href="tel:+14154890261" className={`${linkClass} flex items-center gap-2`} itemProp="telephone">
+                  <Phone size={13} /> (415) 489-0261
                 </a>
               </li>
               <li
                 itemProp="address"
                 itemScope
                 itemType="https://schema.org/PostalAddress"
-                className="text-white/70 flex items-start gap-2"
+                className="text-[14px] text-white/70 flex items-start gap-2"
               >
-                <MapPin size={14} className="mt-0.5 flex-shrink-0" />
+                <MapPin size={13} className="mt-1 flex-shrink-0" />
                 <span>
                   <span itemProp="addressLocality">San Francisco</span>, <span itemProp="addressRegion">CA</span>
                 </span>
               </li>
               <li>
-                <a 
-                  href="mailto:info@sf-sauna.com" 
-                  className="text-white/70 hover:text-white transition-colors flex items-center gap-2"
-                  itemProp="email"
-                >
-                  <Mail size={14} />
-                  info@sf-sauna.com
+                <a href="mailto:info@sf-sauna.com" className={`${linkClass} flex items-center gap-2`} itemProp="email">
+                  <Mail size={13} /> info@sf-sauna.com
                 </a>
               </li>
             </ul>
-          </div>
 
-          {/* Links */}
-          <div>
-            <h4 className="font-medium mb-4 text-accent">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              
-              <li><Link to="/sauna-electrical-fit-consultation" className="text-white/70 hover:text-white transition-colors">Electrical Compatibility Consultation</Link></li>
-              
-              <li><Link to="/contact" className="text-white/70 hover:text-white transition-colors">Contact</Link></li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h4 className="font-medium mb-4 text-accent">Legal</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link to="/policies" onClick={handlePoliciesClick} className="text-white/70 hover:text-white transition-colors">Privacy Policy</Link></li>
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h4 className="font-medium mb-4 text-accent">Stay Updated</h4>
-            <p className="text-white/70 text-sm mb-3">Join for sauna tips & updates</p>
-            <form 
-              action="https://api.web3forms.com/submit" 
+            <form
+              action="https://api.web3forms.com/submit"
               method="POST"
               onSubmit={() => {
                 trackEvent("newsletter_signup", { location: "footer" });
                 try { (window as any).fbq?.('track', 'Lead', { content_name: 'Footer Email Capture' }); } catch {}
               }}
-              className="flex gap-2"
+              className="flex flex-col gap-2"
             >
               <input type="hidden" name="access_key" value="3fb7e2ca-1dd3-49a9-8a81-e90cbcc240b3" />
               <input type="hidden" name="redirect" value="https://www.sfsaunarental.com/email-more-info/" />
@@ -100,27 +103,20 @@ const Footer = () => {
                 type="email"
                 name="email"
                 required
-                placeholder="Your email"
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
+                placeholder="Email for updates"
+                className="bg-white/5 border-white/15 text-white placeholder:text-white/40 text-[14px] rounded-none"
               />
-              <Button type="submit" size="sm" className="bg-accent hover:bg-accent/90">
-                Join
-              </Button>
+              <button type="submit" className="btn-outline w-full" style={{ padding: "0.85rem 1.2rem" }}>
+                Subscribe
+              </button>
             </form>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/70 text-sm">
-            © 2024 SF Sauna. All rights reserved.
-          </p>
-
-          <div className="flex gap-4">
-            <a href="https://www.instagram.com/getanywheresauna/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">
-              <Instagram size={20} />
-            </a>
-          </div>
+        {/* Bottom strip */}
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
+          <p className="text-[12px] text-white/40">© 2024 SF Sauna. All rights reserved.</p>
+          <p className="text-[12px] text-white/40 uppercase tracking-[0.18em]">The world's only 200°F plug-in sauna</p>
         </div>
       </div>
     </footer>

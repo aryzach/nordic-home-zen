@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { trackAndNavigate } from "@/lib/analytics";
@@ -11,88 +10,64 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Only use transparent-over-hero treatment on the homepage
   const isHome = location.pathname === "/";
   const transparent = isHome && !isScrolled && !isMobileMenuOpen;
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navLinkClass = cn(
+    "text-[13px] font-medium tracking-wide transition-colors duration-200",
+    transparent ? "text-white/85 hover:text-white" : "text-foreground/75 hover:text-foreground"
+  );
+
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-out",
         transparent
           ? "bg-transparent border-b border-transparent"
-          : "bg-[hsl(var(--color-bg))]/95 backdrop-blur-sm border-b border-border"
+          : "bg-background/95 backdrop-blur-sm border-b border-border"
       )}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <div className="container-x">
+        <div className="flex items-center justify-between h-[78px] lg:h-24">
+          {/* Wordmark */}
           <button
             onClick={() => {
               navigate("/");
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             className={cn(
-              "text-left font-heading text-xl md:text-2xl font-semibold transition-colors leading-tight",
-              transparent ? "text-white hover:text-accent" : "text-[hsl(var(--color-heading))] hover:text-accent"
+              "text-left font-bold uppercase tracking-tight text-[15px] md:text-[17px] leading-tight transition-colors duration-200",
+              transparent ? "text-white" : "text-foreground"
             )}
           >
-            <div>The Anywhere Sauna</div>
-            <div className={cn("text-xs font-normal font-sans", transparent ? "text-white/60" : "text-[hsl(var(--color-text))]")}>
-              by SF Sauna
-            </div>
+            The Anywhere Sauna
+            <span className={cn("block text-[10px] font-medium tracking-[0.18em] mt-0.5", transparent ? "text-white/60" : "text-muted-foreground")}>
+              BY SF SAUNA
+            </span>
           </button>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex flex-1 justify-center items-center gap-8 font-sans">
-            {[
-              { to: "/history", label: "History" },
-            ].map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className={cn(
-                  "transition-colors",
-                  transparent ? "text-white/80 hover:text-white" : "text-[hsl(var(--color-text))] hover:text-[hsl(var(--color-heading))]"
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <button
-              onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }}
-              className={cn(
-                "transition-colors",
-                transparent ? "text-white/80 hover:text-white" : "text-[hsl(var(--color-text))] hover:text-[hsl(var(--color-heading))]"
-              )}
-            >
+          <nav className="hidden lg:flex flex-1 justify-center items-center gap-9">
+            <Link to="/history" className={navLinkClass}>History</Link>
+            <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }} className={navLinkClass}>
               Specs
             </button>
-            <button
-              onClick={() => { setIsMobileMenuOpen(false); navigate("/#faq"); }}
-              className={cn(
-                "transition-colors",
-                transparent ? "text-white/80 hover:text-white" : "text-[hsl(var(--color-text))] hover:text-[hsl(var(--color-heading))]"
-              )}
-            >
+            <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#faq"); }} className={navLinkClass}>
               FAQ
             </button>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-3">
-            <Button shape="pill" className={cn(
-              "font-sans font-medium bg-transparent border-[3px]",
-              transparent ? "border-white text-white" : "border-[hsl(var(--color-accent))] text-[hsl(var(--color-accent))]"
-            )}
+          {/* CTAs */}
+          <div className="hidden lg:flex items-center gap-3">
+            <button
+              className={transparent ? "btn-outline" : "btn-dark-outline"}
               onClick={() =>
                 trackAndNavigate(
                   "consultation_booking_click",
@@ -101,9 +76,10 @@ const Header = () => {
                 )
               }
             >
-              Book Electrical Compatibility Consultation
-            </Button>
-            <Button shape="pill" className="font-sans font-medium bg-accent text-white"
+              Consultation
+            </button>
+            <button
+              className="btn-primary"
               onClick={() =>
                 trackAndNavigate(
                   "buy_now_click",
@@ -113,61 +89,72 @@ const Header = () => {
               }
             >
               Buy Now
-            </Button>
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={cn("md:hidden", transparent ? "text-white" : "text-[hsl(var(--color-heading))]")}
+            className={cn("lg:hidden transition-colors duration-200", transparent ? "text-white" : "text-foreground")}
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border font-sans">
-            <div className="flex flex-col gap-4">
-              <Link to="/history" className="text-left text-foreground/70 hover:text-foreground transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                History
-              </Link>
-              <button
-                type="button"
-                className="text-left text-foreground/70 hover:text-foreground transition-colors"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  trackAndNavigate(
-                    "consultation_booking_click",
-                    { button_text: "Electrical Compatibility Consultation", location: "header_mobile" },
-                    () => navigate("/sauna-electrical-fit-consultation")
-                  );
-                }}
-              >
-                Electrical Compatibility Consultation
-              </button>
-              <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }} className="text-left text-foreground/70 hover:text-foreground transition-colors">
-                Specs
-              </button>
-              <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#faq"); }} className="text-left text-foreground/70 hover:text-foreground transition-colors">
-                FAQ
-              </button>
-              <Button shape="pill" className="w-full font-sans font-medium bg-accent text-white"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  trackAndNavigate(
-                    "buy_now_click",
-                    { button_text: "Buy Now", location: "header_mobile" },
-                    () => navigate("/buy-your-anywhere-sauna")
-                  );
-                }}
-              >
-                Buy Now
-              </Button>
-            </div>
-          </nav>
-        )}
       </div>
+
+      {/* Mobile full-screen overlay */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 top-[78px] bg-background z-40 overflow-y-auto">
+          <nav className="container-x py-10 flex flex-col">
+            <Link
+              to="/history"
+              className="text-[24px] font-semibold text-foreground py-5 border-b border-border"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              History
+            </Link>
+            <button
+              className="text-left text-[24px] font-semibold text-foreground py-5 border-b border-border"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                trackAndNavigate(
+                  "consultation_booking_click",
+                  { button_text: "Electrical Compatibility Consultation", location: "header_mobile" },
+                  () => navigate("/sauna-electrical-fit-consultation")
+                );
+              }}
+            >
+              Electrical Compatibility Consultation
+            </button>
+            <button
+              onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }}
+              className="text-left text-[24px] font-semibold text-foreground py-5 border-b border-border"
+            >
+              Specs
+            </button>
+            <button
+              onClick={() => { setIsMobileMenuOpen(false); navigate("/#faq"); }}
+              className="text-left text-[24px] font-semibold text-foreground py-5 border-b border-border"
+            >
+              FAQ
+            </button>
+            <button
+              className="btn-primary mt-8 w-full"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                trackAndNavigate(
+                  "buy_now_click",
+                  { button_text: "Buy Now", location: "header_mobile" },
+                  () => navigate("/buy-your-anywhere-sauna")
+                );
+              }}
+            >
+              Buy Now
+            </button>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
