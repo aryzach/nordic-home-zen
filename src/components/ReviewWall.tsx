@@ -168,7 +168,7 @@ const ReviewWall = () => {
 
           const next = [...prev, newPin];
           if (next.length > MAX_COUNT) {
-            const oldest = next.find(p => !p.exiting);
+            const oldest = next.find(p => !p.exiting && !p.touchesLeft && !p.touchesRight) || next.find(p => !p.exiting);
             if (oldest) {
               window.setTimeout(() => {
                 setPins(curr => curr.filter(p => p.id !== oldest.id));
