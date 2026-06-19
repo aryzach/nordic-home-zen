@@ -122,8 +122,22 @@ const ReviewWall = () => {
   const [pins, setPins] = useState<Pin[]>(() => {
     const used = new Set<number>();
     const initialPins: Pin[] = [];
-    for (let i = 0; i < INITIAL_COUNT; i++) {
-      const pin = makePin(used);
+
+    // Ensure at least one review touches the left edge and one the right edge
+    const leftPin = makePin({ used, forceLeft: true });
+    if (leftPin) {
+      used.add(leftPin.imgIdx);
+      initialPins.push(leftPin);
+    }
+
+    const rightPin = makePin({ used, forceRight: true });
+    if (rightPin) {
+      used.add(rightPin.imgIdx);
+      initialPins.push(rightPin);
+    }
+
+    for (let i = initialPins.length; i < INITIAL_COUNT; i++) {
+      const pin = makePin({ used });
       if (!pin) break;
       used.add(pin.imgIdx);
       initialPins.push(pin);
