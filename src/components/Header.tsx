@@ -45,11 +45,11 @@ const Header = () => {
             }}
             className={cn(
               "text-left font-bold uppercase tracking-tight text-[15px] md:text-[17px] leading-tight transition-colors duration-200",
-              transparent ? "text-white" : "text-foreground"
+              lightOnHero ? "text-white" : "text-foreground"
             )}
           >
             Anywhere Sauna
-            <span className={cn("block text-[10px] font-medium tracking-[0.18em] mt-0.5", transparent ? "text-white/60" : "text-muted-foreground")}>
+            <span className={cn("block text-[10px] font-medium tracking-[0.18em] mt-0.5", lightOnHero ? "text-white/60" : "text-muted-foreground")}>
               BY SF SAUNA
             </span>
           </button>
