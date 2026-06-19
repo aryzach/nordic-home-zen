@@ -82,19 +82,25 @@ const makePin = (used?: Set<number>): Pin | null => {
   const rot = rand(-8, 8);
   const rotRad = Math.abs(rot) * (Math.PI / 180);
 
-  // Bounding box of a rotated rectangle (used to keep the full card in view)
+  // Bounding box of the card when rotated around its center
   const bboxW = cardWidth * Math.cos(rotRad) + cardHeight * Math.sin(rotRad);
   const bboxH = cardWidth * Math.sin(rotRad) + cardHeight * Math.cos(rotRad);
 
   const { w: contW, h: contH } = getContainerSize();
-  const xMax = Math.max(0, ((contW - bboxW) / contW) * 100);
-  const yMax = Math.max(0, ((contH - bboxH) / contH) * 100);
+  // Keep the full rotated bounding box inside the container
+  const centerXMin = bboxW / 2;
+  const centerXMax = contW - bboxW / 2;
+  const centerYMin = bboxH / 2;
+  const centerYMax = contH - bboxH / 2;
+
+  const left = rand(centerXMin - cardWidth / 2, centerXMax - cardWidth / 2);
+  const top = rand(centerYMin - cardHeight / 2, centerYMax - cardHeight / 2);
 
   return {
     id: NEXT_ID++,
     imgIdx,
-    xPct: rand(0, xMax),
-    yPct: rand(0, yMax),
+    xPct: (left / contW) * 100,
+    yPct: (top / contH) * 100,
     rot,
     z: NEXT_Z++,
   };
