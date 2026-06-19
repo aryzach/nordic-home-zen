@@ -222,6 +222,10 @@ const PinCard = ({ pin }: { pin: Pin }) => {
 
   const visible = mounted && !pin.exiting;
 
+  // Scale up shorter reviews by 30% so small testimonials remain legible
+  const scale = getCardScale(img.aspect);
+  const scaledWidth = scale > 1 ? getBaseWidth() * scale : undefined;
+
   return (
     <div
       className="group absolute will-change-transform"
@@ -247,6 +251,7 @@ const PinCard = ({ pin }: { pin: Pin }) => {
           draggable={false}
           className="block w-[216px] sm:w-[288px] md:w-[336px] h-auto bg-white select-none transition-shadow duration-300 group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
           style={{
+            width: scaledWidth,
             borderRadius: "12px",
             boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
           }}
