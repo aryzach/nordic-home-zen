@@ -75,7 +75,8 @@ const getContainerSize = () => {
   return { w: innerW, h: innerH };
 };
 
-const makePin = (used?: Set<number>): Pin | null => {
+const makePin = (opts?: { used?: Set<number>; forceLeft?: boolean; forceRight?: boolean }): Pin | null => {
+  const used = opts?.used;
   const available = IMAGES.map((_, i) => i).filter(i => !used?.has(i));
   if (available.length === 0) return null;
 
@@ -92,7 +93,15 @@ const makePin = (used?: Set<number>): Pin | null => {
   const hOverflow = 40; // slight horizontal overflow in px
 
   // Slight overflow allowed left/right, but keep the full card inside top/bottom
-  const left = rand(-hOverflow, contW - cardWidth + hOverflow);
+  let left: number;
+  if (opts?.forceLeft) {
+    left = rand(-hOverflow, -hOverflow + 20);
+  } else if (opts?.forceRight) {
+    left = rand(contW - cardWidth + hOverflow - 20, contW - cardWidth + hOverflow);
+  } else {
+    left = rand(-hOverflow, contW - cardWidth + hOverflow);
+  }
+
   const topMin = bboxH / 2 - cardHeight / 2;
   const topMax = contH - bboxH / 2 - cardHeight / 2;
   const top = rand(topMin, topMax);
@@ -104,6 +113,8 @@ const makePin = (used?: Set<number>): Pin | null => {
     yPct: (top / contH) * 100,
     rot,
     z: NEXT_Z++,
+    touchesLeft: opts?.forceLeft,
+    touchesRight: opts?.forceRight,
   };
 };
 
