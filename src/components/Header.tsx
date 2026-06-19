@@ -11,7 +11,8 @@ const Header = () => {
   const navigate = useNavigate();
 
   const isHome = location.pathname === "/";
-  const transparent = isHome && !isScrolled && !isMobileMenuOpen;
+  const transparent = !isScrolled && !isMobileMenuOpen;
+  const lightOnHero = isHome && transparent;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 0);
@@ -22,7 +23,7 @@ const Header = () => {
 
   const navLinkClass = cn(
     "text-[13px] font-medium tracking-wide transition-colors duration-200",
-    transparent ? "text-white/85 hover:text-white" : "text-foreground/75 hover:text-foreground"
+    lightOnHero ? "text-white/85 hover:text-white" : "text-foreground/75 hover:text-foreground"
   );
 
   return (
