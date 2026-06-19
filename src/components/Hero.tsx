@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { trackAndNavigate } from "@/lib/analytics";
@@ -8,10 +7,9 @@ const Hero = () => {
   const navigate = useNavigate();
 
   const ctas = (
-    <div className="flex flex-col items-center md:items-start gap-3 max-w-md w-full">
-      <Button
-        shape="pill"
-        className="bg-[hsl(var(--color-accent))] text-[hsl(var(--color-white))] font-sans font-medium h-auto px-[52px] py-[18px] text-base"
+    <div className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4 w-full">
+      <button
+        className="btn-primary w-full md:w-auto"
         onClick={() =>
           trackAndNavigate(
             "buy_now_click",
@@ -22,19 +20,16 @@ const Hero = () => {
       >
         Buy now for $4,599
         <ArrowRight className="ml-1" size={20} />
-      </Button>
-      <div className="text-white/70 text-xs font-sans">or</div>
-      <Button
-        asChild
-        shape="pill"
-        className="bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-white font-sans font-medium h-auto px-[52px] py-[18px] text-base"
+      </button>
+      <Link
+        to="/electrical-compatibility-quiz"
+        className="btn-outline w-full md:w-auto"
       >
-        <Link to="/electrical-compatibility-quiz">
-          Take the Electrical Compatibility Quiz
-        </Link>
-      </Button>
+        Take the Electrical Compatibility Quiz
+      </Link>
     </div>
   );
+
 
   const rating = (
     <div className="flex items-center justify-center md:justify-start gap-2 font-sans text-[14px] font-normal mb-4 text-white/90">
