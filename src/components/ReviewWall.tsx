@@ -157,7 +157,7 @@ const ReviewWall = () => {
       aria-label="Customer reviews"
       className="relative z-10 w-full bg-background overflow-visible py-[14px] md:py-[22px]"
     >
-      <div className="relative mx-auto w-full max-w-[1400px] h-[252px] sm:h-[288px] md:h-[342px] px-4 overflow-visible">
+      <div className="relative mx-auto w-full h-[252px] sm:h-[288px] md:h-[342px] px-4 overflow-visible">
         {pins.map(pin => (
           <PinCard key={pin.id} pin={pin} />
         ))}
