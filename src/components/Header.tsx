@@ -94,7 +94,7 @@ const Header = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={cn("lg:hidden transition-colors duration-200", transparent ? "text-white" : "text-foreground")}
+            className={cn("lg:hidden transition-colors duration-200", lightOnHero ? "text-white" : "text-foreground")}
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
