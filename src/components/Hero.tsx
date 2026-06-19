@@ -57,7 +57,7 @@ const Hero = () => {
       </div>
 
       {/* DESKTOP: full-width image with text overlay on the right */}
-      <div className="hidden md:flex relative w-full min-h-[calc(100vh-96px)] items-center justify-end px-10 lg:px-20 py-12">
+      <div className="hidden md:flex relative w-full min-h-screen items-center justify-end px-10 lg:px-20 py-12 pt-32">
         <img
           src={heroImage.url}
           alt="Anywhere Sauna in a sunlit forest"
