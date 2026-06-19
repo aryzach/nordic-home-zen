@@ -11,7 +11,8 @@ const Header = () => {
   const navigate = useNavigate();
 
   const isHome = location.pathname === "/";
-  const transparent = isHome && !isScrolled && !isMobileMenuOpen;
+  const transparent = !isScrolled && !isMobileMenuOpen;
+  const lightOnHero = isHome && transparent;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 0);
@@ -22,7 +23,7 @@ const Header = () => {
 
   const navLinkClass = cn(
     "text-[13px] font-medium tracking-wide transition-colors duration-200",
-    transparent ? "text-white/85 hover:text-white" : "text-foreground/75 hover:text-foreground"
+    lightOnHero ? "text-white/85 hover:text-white" : "text-foreground/75 hover:text-foreground"
   );
 
   return (
@@ -44,11 +45,11 @@ const Header = () => {
             }}
             className={cn(
               "text-left font-bold uppercase tracking-tight text-[15px] md:text-[17px] leading-tight transition-colors duration-200",
-              transparent ? "text-white" : "text-foreground"
+              lightOnHero ? "text-white" : "text-foreground"
             )}
           >
             Anywhere Sauna
-            <span className={cn("block text-[10px] font-medium tracking-[0.18em] mt-0.5", transparent ? "text-white/60" : "text-muted-foreground")}>
+            <span className={cn("block text-[10px] font-medium tracking-[0.18em] mt-0.5", lightOnHero ? "text-white/60" : "text-muted-foreground")}>
               BY SF SAUNA
             </span>
           </button>
@@ -65,7 +66,7 @@ const Header = () => {
           {/* CTAs */}
           <div className="hidden lg:flex items-center gap-3">
             <button
-              className={transparent ? "btn-outline" : "btn-dark-outline"}
+              className={lightOnHero ? "btn-outline" : "btn-dark-outline"}
               onClick={() =>
                 trackAndNavigate(
                   "consultation_booking_click",
@@ -93,7 +94,7 @@ const Header = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={cn("lg:hidden transition-colors duration-200", transparent ? "text-white" : "text-foreground")}
+            className={cn("lg:hidden transition-colors duration-200", lightOnHero ? "text-white" : "text-foreground")}
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
