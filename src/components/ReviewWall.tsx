@@ -86,7 +86,7 @@ const makePin = (used?: Set<number>): Pin | null => {
   const top = rand(-0.5 * cardWidth, contH - 0.5 * cardWidth);
 
   return {
-    id: NEXT_ID++,
+    id: uid(),
     imgIdx,
     xPct: (left / contW) * 100,
     yPct: (top / contH) * 100,
