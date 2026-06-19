@@ -1,7 +1,7 @@
 import { ArrowRight, Star } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { trackAndNavigate } from "@/lib/analytics";
-import heroImage from "@/assets/hero-sauna-forest.png.asset.json";
+const heroImage = { url: "/hero-sauna-forest.png" };
 
 const Hero = () => {
   const navigate = useNavigate();
