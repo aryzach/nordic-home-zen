@@ -73,7 +73,7 @@ const Hero = () => {
           alt="Anywhere Sauna in a sunlit forest"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/40 to-black/75" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/35 to-black/85" />
         <div className="relative z-10 max-w-xl text-left">
           {rating}
           <h1 className="font-heading text-[44px] lg:text-[56px] font-semibold text-white mb-6 leading-[1.05] tracking-[-0.01em]">
