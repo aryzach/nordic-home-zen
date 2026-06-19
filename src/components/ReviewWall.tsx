@@ -153,7 +153,17 @@ const ReviewWall = () => {
       timeoutRef.current = window.setTimeout(() => {
         setPins(prev => {
           const used = new Set(prev.map(p => p.imgIdx));
-          const newPin = makePin(used);
+          const hasLeft = prev.some(p => p.touchesLeft && !p.exiting);
+          const hasRight = prev.some(p => p.touchesRight && !p.exiting);
+
+          let newPin: Pin | null;
+          if (!hasLeft) {
+            newPin = makePin({ used, forceLeft: true });
+          } else if (!hasRight) {
+            newPin = makePin({ used, forceRight: true });
+          } else {
+            newPin = makePin({ used });
+          }
           if (!newPin) return prev;
 
           const next = [...prev, newPin];
