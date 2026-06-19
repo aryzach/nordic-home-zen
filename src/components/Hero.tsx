@@ -1,23 +1,24 @@
 import { Star } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { trackAndNavigate } from "@/lib/analytics";
 const heroImage = { url: "/hero-sauna-forest.png" };
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   const cta = (
-    <Link
-      to="/sauna-electrical-fit-consultation"
+    <button
       className="btn-outline w-full md:w-auto"
-      onClick={(e) =>
+      onClick={() =>
         trackAndNavigate(
           "consultation_booking_click",
           { button_text: "Book Free Electrical Consultation", location: "hero" },
-          () => {}
-        )(e)
+          () => navigate("/sauna-electrical-fit-consultation")
+        )
       }
     >
       Book Free Electrical Consultation
-    </Link>
+    </button>
   );
 
   const rating = (
