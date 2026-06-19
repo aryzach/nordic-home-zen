@@ -1,6 +1,4 @@
-import { useState, useMemo } from "react";
-import ImageLightbox, { type LightboxImage } from "@/components/ImageLightbox";
-import { trackEvent } from "@/lib/analytics";
+import { useEffect, useRef, useState } from "react";
 
 import r1 from "@/assets/reviews/local/review-1.png";
 import r2 from "@/assets/reviews/local/review-2.png";
@@ -19,160 +17,150 @@ import r14 from "@/assets/reviews/local/review-14.png";
 import r15 from "@/assets/reviews/local/review-15.png";
 import r16 from "@/assets/reviews/local/review-16.png";
 
-type Review = { src: string; alt: string; size: "sm" | "md" | "lg"; widthClass?: string };
+type ReviewImg = { src: string; alt: string };
 
-// Size distribution: ~60% md, ~25% lg, ~15% sm-larger (we use sm/md/lg)
-const ALL_REVIEWS: Review[] = [
-  // Top row (6): shorter reviews
-  { src: r2, alt: "Google review from vicky rusconi: I can not recommend this company enough!", size: "md" },
-  { src: r3, alt: "Google review from satya kamdar: Life with Sauna is way better than life without.", size: "md" },
-  { src: r12, alt: "Google review from Isy Osubor: The sauna is beautiful and easy to use. Could not recommend enough!", size: "md" },
-  { src: r6, alt: "Google review from Skye Vanderlinden: Zach is incredibly kind and accommodating! 10/10 recommend!", size: "md" },
-  { src: r13, alt: "Google review from Richard Gavan: Good sauna.", size: "sm" },
-  { src: r8, alt: "Customer text: Sauna has been such a wonderful life addition for us the last couple weeks!", size: "md" },
-  // Middle row (5): the tallest / featured reviews
-  { src: r11, alt: "Google review from Lyndsay Corrick: Zach is chill and professional, the sauna is so easy with just a plug into one outlet.", size: "lg", widthClass: "w-[287px] sm:w-[350px]" },
-  { src: r1, alt: "Customer text: Hi- can I text you tomorrow? That sauna is so great. It's really changed my life!", size: "lg" },
-  { src: r14, alt: "Google review from Page Finlay: This is the life upgrade I have been wanting as a renter for a long time.", size: "lg" },
-  { src: r16, alt: "Google review from Suraj Srivats: Great quality saunas. High quality, short quantity, get your rental asap!", size: "lg" },
-  { src: r5, alt: "Google review from Liam Bailey: this shit is hot. the guy was solid as well.", size: "lg" },
-  // Bottom row (5): remaining reviews
-  { src: r4, alt: "Google review from Mackenzie Croxdale: I love having a sauna at home!", size: "md" },
-  { src: r7, alt: "Google review from Nadia Czebiniak: Zach is a great guy, extremely professional.", size: "md" },
-  { src: r15, alt: "Google review from Peter Wong: Honestly amazing. Got warm super quick and fits two people comfortably.", size: "md" },
-  { src: r9, alt: "Google review from Britt McClintock: One of the best decisions I've made in a long time!", size: "md" },
-  { src: r10, alt: "Customer text: the sauna is so easy with just a plug into one outlet and that's it!", size: "md" },
+const IMAGES: ReviewImg[] = [
+  { src: r1, alt: "Customer review: That sauna is so great. It's really changed my life!" },
+  { src: r2, alt: "Google review: I can not recommend this company enough!" },
+  { src: r3, alt: "Google review: Life with Sauna is way better than life without." },
+  { src: r4, alt: "Google review: I love having a sauna at home!" },
+  { src: r5, alt: "Google review: this shit is hot. the guy was solid as well." },
+  { src: r6, alt: "Google review: Zach is incredibly kind and accommodating! 10/10 recommend!" },
+  { src: r7, alt: "Google review: Zach is a great guy, extremely professional." },
+  { src: r8, alt: "Customer review: Sauna has been such a wonderful life addition!" },
+  { src: r9, alt: "Google review: One of the best decisions I've made in a long time!" },
+  { src: r10, alt: "Customer review: the sauna is so easy with just a plug into one outlet." },
+  { src: r11, alt: "Google review: Zach is chill and professional, sauna is easy." },
+  { src: r12, alt: "Google review: The sauna is beautiful and easy to use." },
+  { src: r13, alt: "Google review: Good sauna." },
+  { src: r14, alt: "Google review: This is the life upgrade I have been wanting." },
+  { src: r15, alt: "Google review: Honestly amazing. Fits two people comfortably." },
+  { src: r16, alt: "Google review: Great quality saunas. Get your rental asap!" },
 ];
 
-// Deterministic pseudo-rotation by index so SSR matches CSR
-const rotationFor = (i: number) => {
-  const seq = [-2.5, 1.8, -1.2, 2.4, -0.8, 1.5, -2.1, 0.9, -1.7, 2.8, -2.3, 1.1];
-  return seq[i % seq.length];
+type Pin = {
+  id: number;
+  imgIdx: number;
+  xPct: number;
+  yPct: number;
+  rot: number;
+  z: number;
+  exiting?: boolean;
 };
 
-const sizeClasses = {
-  sm: "w-[200px] sm:w-[220px]",
-  md: "w-[260px] sm:w-[300px]",
-  lg: "w-[320px] sm:w-[380px]",
-};
+let NEXT_ID = 1;
+let NEXT_Z = 1;
 
-const rowSizeClasses = {
-  // Top & bottom rows: smaller overall
-  small: {
-    sm: "w-[200px]",
-    md: "w-[240px] sm:w-[280px]",
-    lg: "w-[300px] sm:w-[340px]",
-  },
-  // Middle row: largest
-  large: {
-    sm: "w-[280px]",
-    md: "w-[340px] sm:w-[390px]",
-    lg: "w-[410px] sm:w-[500px]",
-  },
-};
+const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
-interface RowProps {
-  items: Review[];
-  direction: "left" | "right";
-  duration: number;
-  scale: "small" | "large";
-  startGlobalIndex: number;
-  onOpen: (idx: number) => void;
-}
+const makePin = (forceIdx?: number): Pin => ({
+  id: NEXT_ID++,
+  imgIdx: forceIdx ?? Math.floor(Math.random() * IMAGES.length),
+  xPct: rand(-4, 72),
+  yPct: rand(-2, 62),
+  rot: rand(-8, 8),
+  z: NEXT_Z++,
+});
 
-const MarqueeRow = ({ items, direction, duration, scale, startGlobalIndex, onOpen }: RowProps) => {
-  const animClass = direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
-  const sizes = rowSizeClasses[scale];
-  // Duplicate items for seamless loop
-  const doubled = [...items, ...items];
+const INITIAL_COUNT = 14;
+const MAX_COUNT = 22;
+
+const ReviewWall = () => {
+  // Seed initial pile with a spread of distinct reviews
+  const [pins, setPins] = useState<Pin[]>(() => {
+    const indices = [...IMAGES.keys()].sort(() => Math.random() - 0.5);
+    return Array.from({ length: INITIAL_COUNT }, (_, i) =>
+      makePin(indices[i % indices.length])
+    );
+  });
+
+  const timeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const schedule = () => {
+      const delay = 2000 + Math.random() * 2000;
+      timeoutRef.current = window.setTimeout(() => {
+        setPins(prev => {
+          const next = [...prev, makePin()];
+          if (next.length > MAX_COUNT) {
+            // Mark the oldest non-exiting pin as exiting; remove after fade
+            const oldest = next.find(p => !p.exiting);
+            if (oldest) {
+              window.setTimeout(() => {
+                setPins(curr => curr.filter(p => p.id !== oldest.id));
+              }, 900);
+              return next.map(p =>
+                p.id === oldest.id ? { ...p, exiting: true } : p
+              );
+            }
+          }
+          return next;
+        });
+        schedule();
+      }, delay);
+    };
+    schedule();
+    return () => {
+      if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   return (
-    <div className="group relative overflow-x-hidden overflow-y-visible py-6 -my-2">
-      <div
-        className={`flex w-max gap-2 ${animClass} [animation-play-state:running] group-hover:[animation-play-state:paused]`}
-        style={{ animationDuration: `${duration}s` }}
-      >
-        {doubled.map((rev, i) => {
-          const originalIdx = i % items.length;
-          const globalIdx = startGlobalIndex + originalIdx;
-          const rot = rotationFor(originalIdx + (scale === "large" ? 3 : 0));
-          return (
-            <div
-              key={i}
-              className={`shrink-0 ${rev.widthClass ?? sizes[rev.size]} will-change-transform`}
-              style={{ transform: `rotate(${rot}deg)` }}
-            >
-              <img
-                src={rev.src}
-                alt={rev.alt}
-                loading="lazy"
-                decoding="async"
-                className="w-full h-auto rounded-xl shadow-[0_8px_24px_-8px_rgba(0,0,0,0.18)] bg-white border border-black/5"
-              />
-            </div>
-          );
-        })}
+    <section
+      aria-label="Customer reviews"
+      className="relative w-full bg-background overflow-hidden py-8 md:py-12"
+    >
+      <div className="relative mx-auto w-full max-w-[1400px] h-[560px] sm:h-[640px] md:h-[760px] px-4">
+        {pins.map(pin => (
+          <PinCard key={pin.id} pin={pin} />
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 
-const ReviewWall = () => {
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
+const PinCard = ({ pin }: { pin: Pin }) => {
+  const [mounted, setMounted] = useState(false);
+  const img = IMAGES[pin.imgIdx];
 
-  // Split into 3 rows
-  const { rowTop, rowMid, rowBot, lightboxImages } = useMemo(() => {
-    const top = ALL_REVIEWS.slice(0, 6);
-    const mid = ALL_REVIEWS.slice(6, 11);
-    const bot = ALL_REVIEWS.slice(11);
-    const all: LightboxImage[] = ALL_REVIEWS.map(r => ({ src: r.src, alt: r.alt }));
-    return { rowTop: top, rowMid: mid, rowBot: bot, lightboxImages: all };
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
   }, []);
 
-  const openAt = (i: number) => {
-    setLightboxIndex(i);
-    setLightboxOpen(true);
-    trackEvent("review_opened", { review_index: i });
-  };
+  const visible = mounted && !pin.exiting;
 
   return (
-    <section className="py-8 md:py-12 bg-background overflow-x-hidden overflow-y-visible">
-      <div className="space-y-2">
-
-        <MarqueeRow
-          items={rowTop}
-          direction="left"
-          duration={60}
-          scale="small"
-          startGlobalIndex={0}
-          onOpen={openAt}
-        />
-        <MarqueeRow
-          items={rowMid}
-          direction="right"
-          duration={45}
-          scale="large"
-          startGlobalIndex={rowTop.length}
-          onOpen={openAt}
-        />
-        <MarqueeRow
-          items={rowBot}
-          direction="left"
-          duration={65}
-          scale="small"
-          startGlobalIndex={rowTop.length + rowMid.length}
-          onOpen={openAt}
+    <div
+      className="group absolute will-change-transform"
+      style={{
+        left: `${pin.xPct}%`,
+        top: `${pin.yPct}%`,
+        zIndex: pin.z,
+        opacity: visible ? 1 : 0,
+        transform: `translateY(${visible ? 0 : -10}px) scale(${visible ? 1 : 0.95})`,
+        transition:
+          "opacity 800ms ease-out, transform 800ms cubic-bezier(0.22, 1, 0.36, 1)",
+      }}
+    >
+      <div
+        className="hover:!z-[9999] transition-transform duration-300 ease-out group-hover:-translate-y-1"
+        style={{ transform: `rotate(${pin.rot}deg)` }}
+      >
+        <img
+          src={img.src}
+          alt={img.alt}
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+          className="block w-[180px] sm:w-[240px] md:w-[280px] h-auto bg-white select-none transition-shadow duration-300 group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
+          style={{
+            borderRadius: "12px",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
+          }}
         />
       </div>
-
-      <ImageLightbox
-        images={lightboxImages}
-        open={lightboxOpen}
-        startIndex={lightboxIndex}
-        onOpenChange={setLightboxOpen}
-      />
-    </section>
+    </div>
   );
 };
 
