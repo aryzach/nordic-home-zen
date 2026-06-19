@@ -17,7 +17,7 @@ const Footer = () => {
   const linkClass = "text-[14px] text-white/70 hover:text-white transition-colors duration-200";
 
   return (
-    <footer style={{ backgroundColor: "#111111", color: "#E7E3DC" }} className="pt-20 pb-10">
+    <footer id="contact" style={{ backgroundColor: "#111111", color: "#E7E3DC" }} className="pt-20 pb-10">
       <div className="container-x">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}

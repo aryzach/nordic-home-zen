@@ -17,7 +17,7 @@ const features = [
 
 const SaunaFeatures = () => {
   return (
-    <section className="py-16 md:py-20 bg-background">
+    <section id="why-it-works" className="py-16 md:py-20 bg-background">
       <div className="container mx-auto px-4 max-w-[1100px]">
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((f) => (
