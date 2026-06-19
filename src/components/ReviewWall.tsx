@@ -89,7 +89,7 @@ const makePin = (opts?: { used?: Set<number>; forceLeft?: boolean; forceRight?: 
   if (available.length === 0) return null;
 
   const imgIdx = available[Math.floor(Math.random() * available.length)];
-  const cardWidth = getCardWidth();
+  const cardWidth = getCardWidth(IMAGES[imgIdx].aspect);
   const cardHeight = cardWidth * IMAGES[imgIdx].aspect;
   const rot = rand(-8, 8);
   const rotRad = Math.abs(rot) * (Math.PI / 180);
