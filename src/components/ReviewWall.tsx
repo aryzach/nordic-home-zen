@@ -59,12 +59,20 @@ const MAX_COUNT = IMAGES.length - 1;
 
 const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
-const getCardWidth = () => {
+const getBaseWidth = () => {
   if (typeof window === "undefined") return 336;
   const w = window.innerWidth;
   if (w < 640) return 216;
   if (w < 768) return 288;
   return 336;
+};
+
+const getCardScale = (aspect: number) => (aspect < 0.32 ? 1.3 : 1);
+
+const getCardWidth = (aspect: number) => {
+  const base = getBaseWidth();
+  const scale = getCardScale(aspect);
+  return base * scale;
 };
 
 const getContainerSize = () => {
