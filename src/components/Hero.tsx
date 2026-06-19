@@ -56,15 +56,15 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* DESKTOP: full-width image with text overlay on the left */}
-      <div className="hidden md:flex relative w-full min-h-screen items-center justify-start px-10 lg:px-20 py-12 pt-32">
+      {/* DESKTOP: full-width image with text overlay on the right */}
+      <div className="hidden md:flex relative w-full min-h-screen items-center justify-end px-10 lg:px-20 py-12 pt-32">
         <img
           src={heroImage.url}
           alt="Anywhere Sauna in a sunlit forest"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/35 to-black/10" />
-        <div className="relative z-10 max-w-xl text-left">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/35 to-black/85" />
+        <div className="relative z-10 max-w-xl text-left ml-auto">
           {rating}
           <h1 className="font-heading text-[44px] lg:text-[56px] font-semibold text-white mb-6 leading-[1.05] tracking-[-0.01em]">
             The world's only 200°F plug-in sauna.
