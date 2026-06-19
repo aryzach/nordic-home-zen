@@ -39,7 +39,7 @@ const IMAGES: ReviewImg[] = [
 ];
 
 type Pin = {
-  id: number;
+  id: string;
   imgIdx: number;
   xPct: number;
   yPct: number;
