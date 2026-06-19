@@ -79,18 +79,28 @@ const makePin = (used?: Set<number>): Pin | null => {
 
   const imgIdx = available[Math.floor(Math.random() * available.length)];
   const cardWidth = getCardWidth();
-  const { w: contW, h: contH } = getContainerSize();
+  const cardHeight = cardWidth * IMAGES[imgIdx].aspect;
+  const rot = rand(-8, 8);
+  const rotRad = Math.abs(rot) * (Math.PI / 180);
 
-  // Allow reviews to overflow past the section edges by about half a card width
-  const left = rand(-0.5 * cardWidth, contW - 0.5 * cardWidth);
-  const top = rand(-0.5 * cardWidth, contH - 0.5 * cardWidth);
+  // Bounding box height when rotated (used to keep the card fully inside vertically)
+  const bboxH = cardWidth * Math.sin(rotRad) + cardHeight * Math.cos(rotRad);
+
+  const { w: contW, h: contH } = getContainerSize();
+  const hOverflow = 40; // slight horizontal overflow in px
+
+  // Slight overflow allowed left/right, but keep the full card inside top/bottom
+  const left = rand(-hOverflow, contW - cardWidth + hOverflow);
+  const topMin = bboxH / 2 - cardHeight / 2;
+  const topMax = contH - bboxH / 2 - cardHeight / 2;
+  const top = rand(topMin, topMax);
 
   return {
     id: uid(),
     imgIdx,
     xPct: (left / contW) * 100,
     yPct: (top / contH) * 100,
-    rot: rand(-8, 8),
+    rot,
     z: NEXT_Z++,
   };
 };
