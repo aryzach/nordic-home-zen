@@ -48,8 +48,9 @@ type Pin = {
   exiting?: boolean;
 };
 
-let NEXT_ID = 1;
-let NEXT_Z = 1;
+let NEXT_Z = Date.now();
+
+const uid = () => `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 
 const INITIAL_COUNT = 14;
 const MAX_COUNT = IMAGES.length - 1;
