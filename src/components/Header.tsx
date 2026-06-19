@@ -47,7 +47,7 @@ const Header = () => {
               transparent ? "text-white" : "text-foreground"
             )}
           >
-            The Anywhere Sauna
+            Anywhere Sauna
             <span className={cn("block text-[10px] font-medium tracking-[0.18em] mt-0.5", transparent ? "text-white/60" : "text-muted-foreground")}>
               BY SF SAUNA
             </span>
@@ -55,13 +55,11 @@ const Header = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex flex-1 justify-center items-center gap-9">
-            <Link to="/history" className={navLinkClass}>History</Link>
-            <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }} className={navLinkClass}>
-              Specs
-            </button>
-            <button onClick={() => { setIsMobileMenuOpen(false); navigate("/#faq"); }} className={navLinkClass}>
-              FAQ
-            </button>
+            <button onClick={() => navigate("/#about-the-sauna")} className={navLinkClass}>Specs</button>
+            <button onClick={() => navigate("/#why-it-works")} className={navLinkClass}>Why It Works</button>
+            <button onClick={() => navigate("/#installs")} className={navLinkClass}>Installs</button>
+            <button onClick={() => navigate("/#faq")} className={navLinkClass}>FAQ</button>
+            <button onClick={() => navigate("/#contact")} className={navLinkClass}>Contact</button>
           </nav>
 
           {/* CTAs */}
@@ -107,38 +105,21 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 top-[78px] bg-background z-40 overflow-y-auto">
           <nav className="container-x py-10 flex flex-col">
-            <Link
-              to="/history"
-              className="text-[24px] font-semibold text-foreground py-5 border-b border-border"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              History
-            </Link>
-            <button
-              className="text-left text-[24px] font-semibold text-foreground py-5 border-b border-border"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                trackAndNavigate(
-                  "consultation_booking_click",
-                  { button_text: "Electrical Compatibility Consultation", location: "header_mobile" },
-                  () => navigate("/sauna-electrical-fit-consultation")
-                );
-              }}
-            >
-              Electrical Compatibility Consultation
-            </button>
-            <button
-              onClick={() => { setIsMobileMenuOpen(false); navigate("/#about-the-sauna"); }}
-              className="text-left text-[24px] font-semibold text-foreground py-5 border-b border-border"
-            >
-              Specs
-            </button>
-            <button
-              onClick={() => { setIsMobileMenuOpen(false); navigate("/#faq"); }}
-              className="text-left text-[24px] font-semibold text-foreground py-5 border-b border-border"
-            >
-              FAQ
-            </button>
+            {[
+              { label: "Specs", hash: "about-the-sauna" },
+              { label: "Why It Works", hash: "why-it-works" },
+              { label: "Installs", hash: "installs" },
+              { label: "FAQ", hash: "faq" },
+              { label: "Contact", hash: "contact" },
+            ].map((item) => (
+              <button
+                key={item.hash}
+                onClick={() => { setIsMobileMenuOpen(false); navigate(`/#${item.hash}`); }}
+                className="text-left text-[24px] font-semibold text-foreground py-5 border-b border-border"
+              >
+                {item.label}
+              </button>
+            ))}
             <button
               className="btn-primary mt-8 w-full"
               onClick={() => {
