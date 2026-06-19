@@ -14,7 +14,7 @@ const Header = () => {
   const transparent = isHome && !isScrolled && !isMobileMenuOpen;
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => setIsScrolled(window.scrollY > 0);
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
