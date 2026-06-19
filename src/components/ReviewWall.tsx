@@ -46,6 +46,8 @@ type Pin = {
   rot: number;
   z: number;
   exiting?: boolean;
+  touchesLeft?: boolean;
+  touchesRight?: boolean;
 };
 
 let NEXT_Z = Date.now();
