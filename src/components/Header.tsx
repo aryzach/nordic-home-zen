@@ -22,9 +22,10 @@ const Header = () => {
   }, []);
 
   const navLinkClass = cn(
-    "text-[13px] font-medium tracking-wide transition-colors duration-200",
-    lightOnHero ? "text-white/85 hover:text-white" : "text-foreground/75 hover:text-foreground"
+    "text-[15px] font-semibold tracking-wide transition-colors duration-200",
+    lightOnHero ? "text-white/90 hover:text-white" : "text-foreground/85 hover:text-foreground"
   );
+
 
   return (
     <header
@@ -104,7 +105,7 @@ const Header = () => {
 
       {/* Mobile full-screen overlay */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[78px] bg-background z-40 overflow-y-auto">
+        <div className="lg:hidden fixed left-0 right-0 bottom-0 top-[78px] bg-background z-[60] overflow-y-auto">
           <nav className="container-x py-10 flex flex-col">
             {[
               { label: "Specs", hash: "about-the-sauna" },
@@ -115,6 +116,7 @@ const Header = () => {
             ].map((item) => (
               <button
                 key={item.hash}
+                type="button"
                 onClick={() => { setIsMobileMenuOpen(false); navigate(`/#${item.hash}`); }}
                 className="text-left text-[24px] font-semibold text-foreground py-5 border-b border-border"
               >
@@ -122,6 +124,7 @@ const Header = () => {
               </button>
             ))}
             <button
+              type="button"
               className="btn-primary mt-8 w-full"
               onClick={() => {
                 setIsMobileMenuOpen(false);
@@ -137,6 +140,7 @@ const Header = () => {
           </nav>
         </div>
       )}
+
     </header>
   );
 };
