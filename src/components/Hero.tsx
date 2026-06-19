@@ -35,9 +35,9 @@ const Hero = () => {
   );
 
   return (
-    <section className="relative min-h-screen overflow-hidden pt-[78px] lg:pt-24 bg-background">
+    <section className="relative min-h-screen overflow-hidden bg-background">
       {/* MOBILE: full-bleed image (left-cropped to sauna) with overlay text */}
-      <div className="md:hidden relative w-full h-[calc(100vh-78px)] min-h-[560px]">
+      <div className="md:hidden relative w-full h-screen min-h-[560px]">
         <img
           src={heroImage.url}
           alt="Anywhere Sauna in a sunlit forest"
