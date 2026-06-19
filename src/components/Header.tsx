@@ -66,7 +66,7 @@ const Header = () => {
           {/* CTAs */}
           <div className="hidden lg:flex items-center gap-3">
             <button
-              className={transparent ? "btn-outline" : "btn-dark-outline"}
+              className={lightOnHero ? "btn-outline" : "btn-dark-outline"}
               onClick={() =>
                 trackAndNavigate(
                   "consultation_booking_click",
