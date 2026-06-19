@@ -193,7 +193,7 @@ const PinCard = ({ pin }: { pin: Pin }) => {
     >
       <div
         className="hover:!z-[9999] transition-transform duration-300 ease-out group-hover:-translate-y-1"
-        style={{ transform: `rotate(${pin.rot}deg)`, transformOrigin: "top left" }}
+        style={{ transform: `rotate(${pin.rot}deg)` }}
       >
         <img
           src={img.src}
