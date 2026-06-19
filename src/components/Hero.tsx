@@ -23,11 +23,11 @@ const Hero = () => {
         Buy now for $4,599
         <ArrowRight className="ml-1" size={20} />
       </Button>
-      <div className="text-white/70 md:text-foreground/60 text-xs font-sans">or</div>
+      <div className="text-white/70 text-xs font-sans">or</div>
       <Button
         asChild
         shape="pill"
-        className="bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-white md:text-foreground font-sans font-medium h-auto px-[52px] py-[18px] text-base"
+        className="bg-transparent border-[3px] border-[hsl(var(--color-accent))] text-white font-sans font-medium h-auto px-[52px] py-[18px] text-base"
       >
         <Link to="/electrical-compatibility-quiz">
           Take the Electrical Compatibility Quiz
@@ -37,7 +37,7 @@ const Hero = () => {
   );
 
   const rating = (
-    <div className="flex items-center justify-center md:justify-start gap-2 font-sans text-[14px] font-normal mb-4 text-white/90 md:text-foreground/80">
+    <div className="flex items-center justify-center md:justify-start gap-2 font-sans text-[14px] font-normal mb-4 text-white/90">
       <a href="https://share.google/bqGJ8MiXfwNgvigwm" target="_blank" rel="noopener noreferrer" className="hover:underline">
         Enjoyed by 26+ Saunojat
       </a>
@@ -71,26 +71,23 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* DESKTOP: image left, text right */}
-      <div className="hidden md:grid grid-cols-2 items-stretch min-h-[calc(100vh-96px)]">
-        <div className="relative">
-          <img
-            src={heroImage.url}
-            alt="Anywhere Sauna in a sunlit forest"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </div>
-        <div className="flex items-center px-10 lg:px-16 py-12 bg-background">
-          <div className="max-w-xl">
-            {rating}
-            <h1 className="font-heading text-[44px] lg:text-[56px] font-semibold text-foreground mb-6 leading-[1.05] tracking-[-0.01em]">
-              The world's only 200°F plug-in sauna.
-            </h1>
-            <p className="font-sans text-[18px] leading-[1.6] text-foreground/75 mb-8 font-normal">
-              Standard outlet. No electrician. Made for any home or apartment.
-            </p>
-            {ctas}
-          </div>
+      {/* DESKTOP: full-width image with text overlay on the right */}
+      <div className="hidden md:flex relative w-full min-h-[calc(100vh-96px)] items-center justify-end px-10 lg:px-20 py-12">
+        <img
+          src={heroImage.url}
+          alt="Anywhere Sauna in a sunlit forest"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/40 to-black/75" />
+        <div className="relative z-10 max-w-xl text-left">
+          {rating}
+          <h1 className="font-heading text-[44px] lg:text-[56px] font-semibold text-white mb-6 leading-[1.05] tracking-[-0.01em]">
+            The world's only 200°F plug-in sauna.
+          </h1>
+          <p className="font-sans text-[18px] leading-[1.6] text-white/90 mb-8 font-normal">
+            Standard outlet. No electrician. Made for any home or apartment.
+          </p>
+          {ctas}
         </div>
       </div>
     </section>
