@@ -46,7 +46,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/70" />
         <div className="relative z-10 h-full flex flex-col justify-end items-start px-5 pb-10 pt-8 text-left">
           {rating}
-          <h1 className="font-heading text-[36px] font-semibold text-white mb-4 leading-[1.1] tracking-[-0.01em]">
+          <h1 className="font-heading text-[44px] leading-[1.02] font-semibold tracking-[-0.03em] text-white mb-4">
             The world's only 200°F plug-in sauna.
           </h1>
           <div className="flex justify-start w-full mb-6">{cta}</div>
@@ -66,7 +66,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/35 to-black/85" />
         <div className="relative z-10 max-w-xl text-left ml-auto">
           {rating}
-          <h1 className="font-heading text-[44px] lg:text-[56px] font-semibold text-white mb-6 leading-[1.05] tracking-[-0.01em]">
+          <h1 className="font-heading text-[44px] leading-[1.02] md:text-[88px] md:leading-[0.98] font-semibold tracking-[-0.03em] text-white mb-6">
             The world's only 200°F plug-in sauna.
           </h1>
           <div className="flex justify-start w-full mb-6">{cta}</div>
