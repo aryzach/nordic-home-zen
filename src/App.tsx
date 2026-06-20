@@ -61,9 +61,14 @@ const GAPageView = () => {
 
   useEffect(() => {
     const path = window.location.pathname + window.location.search;
-    if (typeof (window as any).gtag !== 'undefined') {
-      (window as any).gtag('config', 'G-Q1KB7R2MLG', { page_path: path });
-    }
+    // Push a SPA page_view to GTM's dataLayer; configure a GA4 page_view tag in GTM.
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({
+      event: 'page_view',
+      page_path: path,
+      page_location: window.location.href,
+      page_title: typeof document !== 'undefined' ? document.title : undefined,
+    });
     if (typeof (window as any).fbq === 'function') {
       // PageView already fires on initial load via the base pixel in index.html.
       if (!firstRun.current) (window as any).fbq('track', 'PageView');
