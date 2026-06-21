@@ -146,34 +146,34 @@ const moreGroups: SpecGroup[] = [
   },
 ];
 
-const SpecRow = ({ spec }: { spec: Spec }) => (
-  <div className="py-1.5 border-b border-border/50 last:border-b-0">
-    <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-0.5 md:gap-6">
-      <div className="text-sm font-medium text-foreground">{spec.label}</div>
-      <div className="text-sm text-muted-foreground">{spec.value}</div>
-    </div>
-    {spec.helper && (
-      <div className="mt-1 text-xs text-muted-foreground/80 italic md:max-w-2xl">
-        {spec.helper}
+const SpecRow = ({ spec, alt }: { spec: Spec; alt: boolean }) => (
+  <div
+    className={`grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-1 md:gap-7 px-5 md:px-7 py-4 md:py-[18px] border-b border-[#e8e8e1] last:border-b-0 ${
+      alt ? "bg-[#f5f5f5]" : "bg-white"
+    }`}
+  >
+    <div className="text-[14px] font-bold tracking-[0.025em] text-[#1c1d1d]">{spec.label}</div>
+    <div>
+      <div className="text-[14px] font-normal leading-[1.6] tracking-[0.025em] text-[#1c1d1d]">
+        {spec.value}
       </div>
-    )}
+      {spec.helper && (
+        <div className="mt-1.5 text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70">
+          {spec.helper}
+        </div>
+      )}
+    </div>
   </div>
 );
 
 const GroupBlock = ({ group }: { group: SpecGroup }) => (
-  <div
-    className={
-      group.highlight
-        ? "rounded-lg border border-accent/40 bg-accent/5 px-4 py-3 md:px-5 md:py-4"
-        : ""
-    }
-  >
-    <h3 className="text-xs font-semibold tracking-[0.15em] uppercase text-accent mb-1">
+  <div className="border border-[#e8e8e1]">
+    <h3 className="px-5 md:px-7 py-3 text-[12px] font-bold tracking-[0.18em] uppercase text-[#1c1d1d] border-b border-[#e8e8e1] bg-white">
       {group.title}
     </h3>
     <div>
-      {group.specs.map((spec) => (
-        <SpecRow key={spec.label} spec={spec} />
+      {group.specs.map((spec, i) => (
+        <SpecRow key={spec.label} spec={spec} alt={i % 2 === 1} />
       ))}
     </div>
   </div>
@@ -184,20 +184,26 @@ const AboutTheSauna = () => {
   const [startIndex, setStartIndex] = useState(0);
 
   return (
-    <section id="about-the-sauna" className="pt-0 pb-8 md:pb-12 bg-background">
-      <div className="container mx-auto px-4 max-w-[900px]">
-        <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-8 text-heading text-center">
+    <section id="about-the-sauna" className="bg-white">
+      <div className="mx-auto max-w-[1100px] px-5 md:px-10 py-10 md:py-16">
+        <p className="uppercase text-[12px] font-bold tracking-[0.18em] text-[#1c1d1d]/70 mb-3 text-center">
+          Specifications
+        </p>
+        <h2
+          className="font-bold text-[#1c1d1d] mb-8 md:mb-10 text-center"
+          style={{ fontSize: "clamp(22px, 3vw, 28px)", lineHeight: 1.2, letterSpacing: 0 }}
+        >
           About the Anywhere Sauna
         </h2>
 
-        {/* Image placeholders + outlet photo */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        {/* Image strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
           {aboutPhotos.map((photo, i) => (
             <button
               key={i}
               type="button"
               onClick={() => { setStartIndex(i); setLightboxOpen(true); }}
-              className="aspect-square overflow-hidden flex items-center justify-center cursor-zoom-in group"
+              className="aspect-square overflow-hidden bg-[#f5f5f5] cursor-zoom-in group border border-[#e8e8e1]"
               aria-label={`Expand photo ${i + 1}`}
             >
               <img
@@ -208,7 +214,7 @@ const AboutTheSauna = () => {
               />
             </button>
           ))}
-          <div className="aspect-square overflow-hidden border border-border bg-muted">
+          <div className="aspect-square overflow-hidden border border-[#e8e8e1] bg-[#f5f5f5]">
             <img
               src={standardOutlet}
               alt="Standard 110/120V wall outlet — what's needed to power the Anywhere Sauna"
@@ -218,17 +224,16 @@ const AboutTheSauna = () => {
           </div>
         </div>
 
-
         <GroupBlock group={overviewGroup} />
 
         <div className="mt-4">
           <Accordion type="single" collapsible>
-            <AccordionItem value="more" className="border-t border-b border-border">
-              <AccordionTrigger className="text-xs font-semibold tracking-[0.15em] uppercase text-accent hover:no-underline py-3">
+            <AccordionItem value="more" className="border-t border-b border-[#e8e8e1]">
+              <AccordionTrigger className="text-[12px] font-bold tracking-[0.18em] uppercase text-[#1c1d1d] hover:no-underline py-4 px-1">
                 More Specs
               </AccordionTrigger>
               <AccordionContent>
-                <div className="space-y-4 pt-2">
+                <div className="space-y-5 pt-2 pb-2">
                   {moreGroups.map((group) => (
                     <GroupBlock key={group.title} group={group} />
                   ))}
@@ -244,3 +249,4 @@ const AboutTheSauna = () => {
 };
 
 export default AboutTheSauna;
+
