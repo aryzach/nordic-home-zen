@@ -3,6 +3,8 @@
 
 export const routes = [
   { path: '/', priority: 1.0, changefreq: 'weekly' },
+  { path: '/specs', priority: 0.8, changefreq: 'monthly' },
+  { path: '/installs', priority: 0.8, changefreq: 'monthly' },
   
   
   { path: '/how-it-started', priority: 0.6, changefreq: 'yearly' },
