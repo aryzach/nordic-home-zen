@@ -66,7 +66,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/35 to-black/85" />
         <div className="relative z-10 max-w-xl text-left ml-auto">
           {rating}
-          <h1 className="font-heading text-[44px] leading-[1.02] md:text-[88px] md:leading-[0.98] font-semibold tracking-[-0.03em] text-white mb-6">
+          <h1 className="hero-title font-heading text-white mb-6">
             The world's only 200°F plug-in sauna.
           </h1>
           <div className="flex justify-start w-full mb-6">{cta}</div>
