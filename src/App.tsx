@@ -131,6 +131,8 @@ const App = () => (
         <GAPageView />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/specs" element={<Specs />} />
+          <Route path="/installs" element={<Installs />} />
           
           
           <Route path="/how-it-started" element={<HowItStarted />} />
