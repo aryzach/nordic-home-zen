@@ -200,7 +200,7 @@ const ReviewWall = () => {
   return (
     <section
       aria-label="Customer reviews"
-      className="relative z-10 w-full bg-background overflow-visible py-[14px] md:py-[22px]"
+      className="relative z-10 w-full bg-secondary overflow-visible py-[14px] md:py-[22px]"
     >
       <div className="relative mx-auto w-full h-[252px] sm:h-[288px] md:h-[342px] px-4 overflow-visible">
         {pins.map(pin => (

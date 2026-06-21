@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import Index from "./pages/Index";
+import Specs from "./pages/Specs";
+import Installs from "./pages/Installs";
 
 
 import HowItStarted from "./pages/HowItStarted";
@@ -129,6 +131,8 @@ const App = () => (
         <GAPageView />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/specs" element={<Specs />} />
+          <Route path="/installs" element={<Installs />} />
           
           
           <Route path="/how-it-started" element={<HowItStarted />} />

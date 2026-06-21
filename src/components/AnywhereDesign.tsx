@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-import anywhereVideo from "@/assets/anywhere-design.mp4.asset.json";
+
+const anywhereVideoUrl = `${import.meta.env.BASE_URL}anywhere-design.mp4`;
 
 const features = [
   {
     title: "Up to 200°F in 60 minutes",
-    detail: "The only sauna where a 120V stove can heat the sauna over 150°F.",
+    detail: "The only sauna where a 120V stove can heat the sauna to traditional Finnish temps.",
   },
   {
     title: "Standard home outlet",
@@ -72,7 +73,7 @@ const AnywhereDesign = () => {
           <div className="order-1 md:order-2">
             <div className="overflow-hidden aspect-[4/5] md:aspect-[4/5] bg-muted">
               <video
-                src={anywhereVideo.url}
+                src={anywhereVideoUrl}
                 autoPlay
                 muted
                 loop
