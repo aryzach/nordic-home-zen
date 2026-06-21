@@ -16,12 +16,22 @@ const ElectricChecklist = () => {
             <p className="mb-6">
               During this consultation, we'll determine what saunas are compatible with your existing home or apartment based on:
             </p>
-            <ul className="text-left max-w-xl mx-auto mb-8 space-y-2 list-disc pl-5">
-              <li>Electrical configuration</li>
-              <li>Space available (indoors or outdoors)</li>
-              <li>Whether you rent or own</li>
-              <li>And answer any other questions you might have</li>
-            </ul>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-10">
+              {[
+                "Electrical configuration",
+                "Space available (indoors or outdoors)",
+                "Whether you rent or own",
+                "And answer any other questions you might have",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="relative bg-card border border-border rounded-lg p-5 text-center shadow-sm overflow-hidden"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-accent" />
+                  <p className="font-medium text-foreground pt-1">{item}</p>
+                </div>
+              ))}
+            </div>
             <CalInlineEmbed />
           </div>
         </section>
