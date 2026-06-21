@@ -103,7 +103,7 @@ const Header = () => {
                   trackAndNavigate(
                     "buy_now_click",
                     { button_text: "Buy Now", location: "header" },
-                    () => navigate("/buy-your-anywhere-sauna")
+                    () => navigate("/specs")
                   )
                 }
               >
@@ -146,7 +146,7 @@ const Header = () => {
                 trackAndNavigate(
                   "buy_now_click",
                   { button_text: "Buy Now", location: "header_mobile" },
-                  () => navigate("/buy-your-anywhere-sauna")
+                  () => navigate("/specs")
                 );
               }}
             >

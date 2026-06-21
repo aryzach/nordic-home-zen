@@ -78,10 +78,10 @@ const ProductHero = () => {
 
             <div className="flex flex-col">
               <Link
-                to="/reserve-your-sauna"
+                to="/deposit"
                 className="group block w-full bg-[#111111] text-white text-center font-bold text-[16px] tracking-[0.025em] mb-2.5 px-5 py-[11px] hover:bg-black transition-colors"
               >
-                Reserve Yours
+                Reserve With $500 Refundable Deposit
                 <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">
                   →
                 </span>
