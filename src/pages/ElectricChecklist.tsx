@@ -104,6 +104,7 @@ const ElectricChecklist = () => {
             <p className="mb-8">
               Choosing and installing a sauna can be complicated and costly. We help you navigate your options and understand the costs and installation logistics involved in each.
             </p>
+            <CalInlineEmbed />
             <div className="flex justify-center mb-10">
               <BookButton />
             </div>
