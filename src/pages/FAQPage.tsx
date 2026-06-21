@@ -15,9 +15,9 @@ const FAQPage = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-24 md:pt-28">
-        <div className="container-x max-w-3xl text-center section-y">
+        <div className="container-x max-w-3xl text-center pt-8 pb-4 md:pt-10 md:pb-5">
           <h1>Frequently Asked Questions</h1>
-          <p className="text-muted-foreground mt-3">
+          <p className="text-muted-foreground mt-1">
             Everything you need to know before getting your own sauna.
           </p>
         </div>

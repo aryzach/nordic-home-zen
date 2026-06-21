@@ -15,7 +15,7 @@ const gallery = [
 const benefits = [
   { Icon: Plug, label: "Runs on a standard 110/120V outlet" },
   { Icon: Users, label: "Comfortably fits two people" },
-  { Icon: Flame, label: "Reaches up to ~194°F" },
+  { Icon: Flame, label: "Reaches up to ~200°F" },
   { Icon: Home, label: "Designed for indoor or outdoor use" },
 ];
 
@@ -54,9 +54,6 @@ const ProductHero = () => {
 
           {/* Buy box */}
           <div className="lg:pt-2">
-            <p className="uppercase text-[12px] font-bold tracking-[0.18em] text-[#1c1d1d]/70 mb-3">
-              Anywhere Sauna Co.
-            </p>
             <h1
               className="font-bold text-[#1c1d1d] mb-1.5 md:mb-2.5"
               style={{ fontSize: "clamp(22px, 4vw, 28px)", lineHeight: 1.2, letterSpacing: 0 }}
@@ -64,8 +61,7 @@ const ProductHero = () => {
               Anywhere Sauna
             </h1>
             <p className="text-[14px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d] mb-6">
-              From $199/mo. The first 2-person steam sauna designed to run on a standard
-              home outlet — no electrician, no permits, no rewiring.
+              The only steam sauna designed to run on a standard home outlet — no electrician, no permits, no rewiring.
             </p>
 
             <ul className="border-y border-[#e8e8e1] divide-y divide-[#e8e8e1] mb-6">

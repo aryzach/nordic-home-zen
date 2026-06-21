@@ -32,19 +32,15 @@ const overviewGroup: SpecGroup = {
   highlight: true,
   specs: [
     { label: "Capacity", value: "2 person" },
-    { label: "Max Temperature", value: "~194°F (legal limit dependent)" },
+    { label: "Max Temperature", value: "~200°F (legal limit dependent)" },
     { label: "Heat Type", value: "Traditional dry/steam sauna (electric heater)" },
     {
       label: "Power Requirement",
       value: "Standard 110/120V outlet with 20A breaker",
       helper: (
-        <>
-          Book a paid video consultation to review your goals and setup
-          <br />
-          <Link to="/sauna-electrical-fit-consultation" className="text-accent hover:underline not-italic font-medium">
-            Book Electrical Compatibility Consultation
-          </Link>
-        </>
+        <Link to="/sauna-electrical-fit-consultation" className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium">
+          Book Free Electrical Compatibility Consultation
+        </Link>
       ),
     },
   ],
@@ -65,7 +61,7 @@ const moreGroups: SpecGroup[] = [
     specs: [
       { label: "Plug Type", value: "NEMA 5-15 or 5-20 compatible" },
       { label: "Extension Cords", value: "Not recommended (if needed: 10 AWG, max 50 ft)" },
-      { label: "Electrical Setup Needed", value: "None in most homes (~98% compatible)" },
+      { label: "Electrical Setup Needed", value: "None in most homes (~97% compatible)" },
       { label: "Pre-Install Check", value: "Free remote electrical consult available" },
     ],
   },
@@ -78,8 +74,8 @@ const moreGroups: SpecGroup[] = [
         helper: (
           <>
             The sauna does not come with a heater. There are a few options that range from $200 - $900. We can help you pick during the consultation.{" "}
-            <Link to="/sauna-electrical-fit-consultation" className="text-accent hover:underline not-italic font-medium">
-              Book an Electrical Compatibility Consultation
+            <Link to="/sauna-electrical-fit-consultation" className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium">
+              Book Free Electrical Compatibility Consultation
             </Link>
             .
           </>
