@@ -138,12 +138,6 @@ const FAQ = () => {
   return (
     <section id="faq" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 max-w-3xl">
-        <h2 className="text-3xl md:text-5xl font-semibold text-center mb-3 text-foreground">
-          Frequently Asked Questions
-        </h2>
-        <p className="text-center text-muted-foreground mb-8 md:mb-10">
-          Everything you need to know before getting your own sauna
-        </p>
 
         <div className="mb-8">
           <ConsultCallout
