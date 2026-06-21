@@ -14,17 +14,17 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        heading: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        heading: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        'h1-desktop': ['64px', { lineHeight: '1.02', letterSpacing: '-0.03em', fontWeight: '700' }],
-        'h1-mobile': ['40px', { lineHeight: '1.05', letterSpacing: '-0.03em', fontWeight: '700' }],
-        'h2-desktop': ['48px', { lineHeight: '1.1', letterSpacing: '-0.025em', fontWeight: '700' }],
-        'h2-mobile': ['32px', { lineHeight: '1.1', letterSpacing: '-0.025em', fontWeight: '700' }],
-        'h3': ['24px', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '600' }],
-        'body': ['17px', { lineHeight: '1.65' }],
-        'caption': ['13px', { lineHeight: '1.5', fontWeight: '500', letterSpacing: '0.1em' }],
+        'h1-desktop': ['33.6px', { lineHeight: '1.2', letterSpacing: '0em', fontWeight: '700' }],
+        'h1-mobile': ['28.56px', { lineHeight: '1.2', letterSpacing: '0em', fontWeight: '700' }],
+        'h2-desktop': ['25.2px', { lineHeight: '1.2', letterSpacing: '0em', fontWeight: '700' }],
+        'h2-mobile': ['21.42px', { lineHeight: '1.2', letterSpacing: '0em', fontWeight: '700' }],
+        'h3': ['18px', { lineHeight: '1.2', letterSpacing: '0em', fontWeight: '700' }],
+        'body': ['14px', { lineHeight: '1.6', letterSpacing: '0.025em' }],
+        'caption': ['12px', { lineHeight: '1.5', fontWeight: '600', letterSpacing: '0.2em' }],
       },
       colors: {
         border: "hsl(var(--border))",
