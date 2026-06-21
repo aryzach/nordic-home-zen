@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import Index from "./pages/Index";
 import Specs from "./pages/Specs";
 import Installs from "./pages/Installs";
+import FAQPage from "./pages/FAQPage";
 
 
 import HowItStarted from "./pages/HowItStarted";
@@ -133,6 +134,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/specs" element={<Specs />} />
           <Route path="/installs" element={<Installs />} />
+          <Route path="/faq" element={<FAQPage />} />
           
           
           <Route path="/how-it-started" element={<HowItStarted />} />

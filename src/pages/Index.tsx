@@ -4,7 +4,7 @@ import VideoTestimonials from "@/components/VideoTestimonials";
 import ReviewWall from "@/components/ReviewWall";
 
 import ComparisonTable from "@/components/ComparisonTable";
-import FAQ from "@/components/FAQ";
+import ConsultationCallout from "@/components/ConsultationCallout";
 import AnywhereDesign from "@/components/AnywhereDesign";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
@@ -22,7 +22,7 @@ const Index = () => {
         <AnywhereDesign />
         <VideoTestimonials />
         <ComparisonTable />
-        <FAQ />
+        <ConsultationCallout />
       </main>
       <Footer />
     </div>
@@ -30,3 +30,4 @@ const Index = () => {
 };
 
 export default Index;
+
