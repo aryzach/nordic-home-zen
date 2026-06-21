@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const CalInlineEmbed = () => {
+  const initialized = useRef(false);
+
   useEffect(() => {
-    if ((window as any).__calInline30minLoaded) return;
-    (window as any).__calInline30minLoaded = true;
+    if (initialized.current) return;
+    initialized.current = true;
 
     const script = document.createElement("script");
     script.type = "text/javascript";
