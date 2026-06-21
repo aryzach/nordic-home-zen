@@ -1,87 +1,101 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const anywhereVideoUrl = `${import.meta.env.BASE_URL}anywhere-design.mp4`;
 
 const features = [
   {
+    eyebrow: "Fast Heat",
     title: "Up to 200°F in 60 minutes",
-    detail: "The only sauna where a 120V stove can heat the sauna to traditional Finnish temps.",
+    body: "The only sauna where a 120V stove can heat the sauna to traditional Finnish temps.",
   },
   {
+    eyebrow: "Standard Outlet",
     title: "Standard home outlet",
-    detail: "Skip the expensive electrical modification — just plug it in and start sweating.",
+    body: "Skip the expensive electrical modification — just plug it in and start sweating.",
   },
   {
+    eyebrow: "Real Steam",
     title: "Hot stones, pour water",
-    detail: "Traditional sauna heat that envelops your body.",
+    body: "Traditional sauna heat that envelops your body.",
   },
   {
+    eyebrow: "True Portability",
     title: "Move and setup easily",
-    detail: "Installs in two hours, no foundation needed.",
+    body: "Installs in two hours, no foundation needed.",
   },
 ];
 
 const AnywhereDesign = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-16 md:py-24 bg-secondary">
-      <div className="container mx-auto px-4 max-w-[1200px]">
-        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-          {/* Text column - on mobile shows after video */}
-          <div className="order-2 md:order-1">
-            <h2 className="text-3xl md:text-4xl font-heading font-semibold text-heading mb-4">
-              The Anywhere Design
-            </h2>
-            <p className="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed">
-              Until now, all saunas have required home electrical modifications, making sauna installation complex and expensive.
-            </p>
+    <section className="bg-secondary py-24 md:py-32">
+      <div className="container-x grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+        <div>
+          <div className="eyebrow mb-5">The Anywhere Difference</div>
+          <h2 className="text-[36px] md:text-[54px] leading-[1.02] font-bold tracking-[-0.025em] max-w-[18ch]">
+            The Anywhere Design
+          </h2>
+          <p className="mt-7 text-[17px] md:text-[19px] leading-[1.65] text-muted-foreground max-w-[52ch]">
+            Until now, all saunas have required home electrical modifications, making sauna installation complex and expensive.
+          </p>
 
-            <div className="border-t border-border/60">
-              {features.map((f, i) => {
-                const isOpen = openIndex === i;
-                return (
-                  <div key={f.title} className="border-b border-border/60">
-                    <button
-                      type="button"
-                      onClick={() => setOpenIndex(isOpen ? null : i)}
-                      className="w-full flex items-center justify-between py-4 text-left"
-                      aria-expanded={isOpen}
-                    >
-                      <span className="text-sm md:text-base font-heading font-semibold tracking-[0.08em] uppercase text-heading">
-                        {f.title}
-                      </span>
-                      {isOpen ? (
-                        <Minus className="shrink-0 text-heading" size={20} />
-                      ) : (
-                        <Plus className="shrink-0 text-heading" size={20} />
+          <div className="mt-10 divide-y divide-border border-y border-border">
+            {features.map((it, i) => {
+              const isOpen = openIndex === i;
+              return (
+                <div key={i}>
+                  <button
+                    type="button"
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    className="w-full flex items-center justify-between text-left py-5 gap-6 group"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="flex flex-col">
+                      {it.eyebrow && (
+                        <span className="eyebrow mb-1">{it.eyebrow}</span>
                       )}
-                    </button>
-                    {isOpen && (
-                      <p className="pb-4 pr-8 text-sm md:text-base text-muted-foreground leading-relaxed">
-                        {f.detail}
+                      <span className="text-base md:text-lg font-semibold tracking-tight">
+                        {it.title}
+                      </span>
+                    </span>
+                    <span className="shrink-0 text-foreground/60 group-hover:text-foreground transition">
+                      {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                    </span>
+                  </button>
+                  <div
+                    className="grid transition-all duration-300 ease-out"
+                    style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="pb-6 pr-10 text-[15px] md:text-[16px] leading-[1.65] text-muted-foreground max-w-[60ch]">
+                        {it.body}
                       </p>
-                    )}
+                    </div>
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
 
-          {/* Video column */}
-          <div className="order-1 md:order-2">
-            <div className="overflow-hidden aspect-[4/5] md:aspect-[4/5] bg-muted">
-              <video
-                src={anywhereVideoUrl}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover"
-              />
-            </div>
+          <div className="mt-10">
+            <Link to="/specs" className="btn-dark-outline">
+              Learn About the Design
+            </Link>
           </div>
+        </div>
+
+        <div className="relative">
+          <video
+            src={anywhereVideoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full aspect-[4/5] object-cover"
+          />
         </div>
       </div>
     </section>
