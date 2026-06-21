@@ -38,7 +38,7 @@ const AnywhereDesign = () => {
           <h2 className="text-[36px] md:text-[54px] leading-[1.02] font-bold tracking-[-0.025em] max-w-[18ch]">
             The Anywhere Design
           </h2>
-          <p className="mt-7 text-[17px] md:text-[19px] leading-[1.65] text-muted-foreground max-w-[52ch]">
+          <p className="mt-7 text-muted-foreground max-w-[52ch]">
             Until now, all saunas have required home electrical modifications, making sauna installation complex and expensive.
           </p>
 
