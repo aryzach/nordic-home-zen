@@ -31,16 +31,16 @@ const AnywhereDesign = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-secondary py-24 md:py-32">
-      <div className="container-x grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+    <section className="bg-secondary section-y">
+      <div className="container-x grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         <div>
-          <div className="eyebrow mb-5">The Anywhere Difference</div>
-          <h2 className="text-[36px] md:text-[54px] leading-[1.02] font-bold tracking-[-0.025em] max-w-[18ch]">
+          <h2 className="max-w-[22ch]">
             The Anywhere Design
           </h2>
-          <p className="mt-7 text-muted-foreground max-w-[52ch]">
+          <p className="mt-4 text-muted-foreground max-w-[52ch]">
             Until now, all saunas have required home electrical modifications, making sauna installation complex and expensive.
           </p>
+
 
           <div className="mt-10 divide-y divide-border border-y border-border">
             {features.map((it, i) => {
