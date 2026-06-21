@@ -7,7 +7,7 @@ import PlacementGallery from "@/components/PlacementGallery";
 import SaunaFeatures from "@/components/SaunaFeatures";
 import ComparisonTable from "@/components/ComparisonTable";
 import FAQ from "@/components/FAQ";
-import DualCTAs from "@/components/DualCTAs";
+import AnywhereDesign from "@/components/AnywhereDesign";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
@@ -23,15 +23,11 @@ const Index = () => {
       <main>
         <Hero />
         <ReviewWall />
-
-
-
-        <DualCTAs />
+        <AnywhereDesign />
         <PlacementGallery />
         <VideoTestimonials />
         <AboutTheSauna />
         <SaunaFeatures />
-        <DualCTAs />
         <ComparisonTable />
         <FAQ />
       </main>
