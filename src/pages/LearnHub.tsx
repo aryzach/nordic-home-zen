@@ -52,7 +52,7 @@ const LearnHub = () => {
             {blogPosts.map((post, index) => (
               <article
                 key={index}
-                className="bg-card rounded-lg overflow-hidden border border-border hover:shadow-lg transition-shadow"
+                className="bg-card overflow-hidden border border-border hover:shadow-lg transition-shadow"
               >
                 <img
                   src={post.image}

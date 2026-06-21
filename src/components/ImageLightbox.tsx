@@ -29,7 +29,7 @@ const ImageLightbox = ({ images, open, startIndex = 0, onOpenChange }: ImageLigh
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-5xl w-[95vw] p-2 sm:p-4 bg-background border-border">
+      <DialogContent className="max-w-5xl w-[95vw] p-2 sm:p-4 bg-background border-border rounded-none sm:rounded-none">
         <Carousel setApi={setApi} opts={{ startIndex, loop: true }} className="w-full">
           <CarouselContent>
             {images.map((img, i) => (
@@ -37,7 +37,7 @@ const ImageLightbox = ({ images, open, startIndex = 0, onOpenChange }: ImageLigh
                 <img
                   src={img.src}
                   alt={img.alt}
-                  className="max-h-[80vh] w-auto mx-auto object-contain rounded-md"
+                  className="max-h-[80vh] w-auto mx-auto object-contain"
                 />
               </CarouselItem>
             ))}

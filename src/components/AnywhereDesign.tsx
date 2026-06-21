@@ -70,7 +70,7 @@ const AnywhereDesign = () => {
 
           {/* Video column */}
           <div className="order-1 md:order-2">
-            <div className="rounded-2xl overflow-hidden aspect-[4/5] md:aspect-[4/5] bg-muted">
+            <div className="overflow-hidden aspect-[4/5] md:aspect-[4/5] bg-muted">
               <video
                 src={anywhereVideo.url}
                 autoPlay

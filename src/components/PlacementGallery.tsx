@@ -27,7 +27,7 @@ const PlacementGallery = () => {
               key={p.label}
               type="button"
               onClick={() => { setStartIndex(i); setOpen(true); }}
-              className="aspect-[3/4] w-full rounded-2xl overflow-hidden border border-border/60 cursor-zoom-in group"
+              className="aspect-[3/4] w-full overflow-hidden border border-border/60 cursor-zoom-in group"
               aria-label={`Expand ${p.label} photo`}
             >
               <img

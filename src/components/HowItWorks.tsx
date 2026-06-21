@@ -6,7 +6,7 @@ const HowItWorks = () => {
   return (
     <section id="how-it-works" className="py-16 md:py-24 bg-cedar-section">
       <div className="container mx-auto px-4 text-center max-w-2xl">
-        <div className="mb-8 rounded-lg overflow-hidden">
+        <div className="mb-8 overflow-hidden">
           <video
             autoPlay
             loop

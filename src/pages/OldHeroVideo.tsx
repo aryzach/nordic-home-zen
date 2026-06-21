@@ -18,7 +18,7 @@ const OldHeroVideo = () => {
             loop
             muted
             playsInline
-            className="w-full h-auto rounded-lg"
+            className="w-full h-auto"
           />
         </div>
       </main>
