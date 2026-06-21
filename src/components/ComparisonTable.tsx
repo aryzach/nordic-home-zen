@@ -123,7 +123,7 @@ const ComparisonTable = () => {
           <button
             type="button"
             onClick={() => setShowFull((v) => !v)}
-            className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-black hover:text-black/80 transition-colors"
             aria-expanded={showFull}
           >
             {showFull ? "Hide full comparison" : "See full comparison"}
