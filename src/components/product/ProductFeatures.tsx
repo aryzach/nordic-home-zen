@@ -18,7 +18,7 @@ const features: Feature[] = [
     eyebrow: "Standard Outlet",
     heading: "Plug it in. Heat it up.",
     body:
-      "Every other steam sauna assumes a 240V line and an electrician on the way. The Anywhere Sauna was engineered around the outlet you already have — so ~98% of homes are compatible on day one. No permits. No rewiring. No landlord conversation.",
+      "Every other steam sauna assumes a 240V line and an electrician on the way. The Anywhere Sauna was engineered around the outlet you already have — so ~97% of homes and apartments are compatible on day one. No permits. No rewiring. No landlord conversation.",
     image: outletImg,
     alt: "Standard 110/120V three-prong outlet",
     cta: { label: "Check my outlet", to: "/sauna-electrical-fit-consultation" },
@@ -27,7 +27,7 @@ const features: Feature[] = [
     eyebrow: "Indoor or Outdoor",
     heading: "Built for the space you actually have.",
     body:
-      "A 63\" × 49\" footprint that fits a spare room, a garage corner, a deck, or a backyard pad. Sits on any level surface, requires no foundation, and moves with you if you move.",
+      "A 63\" × 49\" footprint that fits a spare room, a garage corner, a backyard, or even a studio apartment. Sits on any level surface, requires no foundation, and moves with you if you move.",
     image: outdoorImg,
     alt: "Anywhere Sauna placed on a backyard deck",
     reverse: true,
@@ -36,7 +36,7 @@ const features: Feature[] = [
     eyebrow: "Real Steam",
     heading: "A real heater. Real stones. Real löyly.",
     body:
-      "This is a traditional steam sauna — not infrared. An electric heater, sauna stones, and water you pour yourself. Smaller air volume and high-temp PIR insulation are what let it hit ~194°F on a standard outlet.",
+      "This is a traditional steam sauna — not infrared. An electric heater, sauna stones, and water you pour yourself. Smaller air volume and high-temp PIR insulation are what let it hit ~200°F on a standard outlet.",
     image: heaterImg,
     alt: "Sauna heater with stones",
   },

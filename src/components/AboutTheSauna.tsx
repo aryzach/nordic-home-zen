@@ -32,19 +32,15 @@ const overviewGroup: SpecGroup = {
   highlight: true,
   specs: [
     { label: "Capacity", value: "2 person" },
-    { label: "Max Temperature", value: "~194°F (legal limit dependent)" },
+    { label: "Max Temperature", value: "~200°F (legal limit dependent)" },
     { label: "Heat Type", value: "Traditional dry/steam sauna (electric heater)" },
     {
       label: "Power Requirement",
       value: "Standard 110/120V outlet with 20A breaker",
       helper: (
-        <>
-          Book a paid video consultation to review your goals and setup
-          <br />
-          <Link to="/sauna-electrical-fit-consultation" className="text-accent hover:underline not-italic font-medium">
-            Book Electrical Compatibility Consultation
-          </Link>
-        </>
+        <Link to="/sauna-electrical-fit-consultation" className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium">
+          Book Free Electrical Compatibility Consultation
+        </Link>
       ),
     },
   ],
