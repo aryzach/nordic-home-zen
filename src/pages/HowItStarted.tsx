@@ -21,7 +21,7 @@ const HowItStarted = () => {
                 <img 
                   src={zachPortrait} 
                   alt="Zach, founder of SF Sauna" 
-                  className="w-full rounded-lg"
+                  className="w-full"
                 />
               </div>
               

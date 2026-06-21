@@ -197,7 +197,7 @@ const AboutTheSauna = () => {
               key={i}
               type="button"
               onClick={() => { setStartIndex(i); setLightboxOpen(true); }}
-              className="aspect-square rounded-lg overflow-hidden flex items-center justify-center cursor-zoom-in group"
+              className="aspect-square overflow-hidden flex items-center justify-center cursor-zoom-in group"
               aria-label={`Expand photo ${i + 1}`}
             >
               <img
@@ -208,7 +208,7 @@ const AboutTheSauna = () => {
               />
             </button>
           ))}
-          <div className="aspect-square rounded-lg overflow-hidden border border-border bg-muted">
+          <div className="aspect-square overflow-hidden border border-border bg-muted">
             <img
               src={standardOutlet}
               alt="Standard 110/120V wall outlet — what's needed to power the Anywhere Sauna"

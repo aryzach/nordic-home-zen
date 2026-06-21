@@ -24,7 +24,7 @@ const VideoTestimonials = () => {
           {videos.map((v, i) => (
             <div
               key={v.url}
-              className="relative aspect-[9/16] overflow-hidden rounded-lg bg-charcoal shadow-md"
+              className="relative aspect-[9/16] overflow-hidden bg-charcoal shadow-md"
             >
               <video
                 src={v.url}

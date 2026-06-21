@@ -255,7 +255,7 @@ const ElectricalCompatibilityQuiz = () => {
               <h2 className="text-[24px] md:text-[28px] leading-[1.2] font-semibold mb-4">
                 Do you have a standard 3-prong outlet within 50 feet of where you'd like to place your sauna?
               </h2>
-              <div className="rounded-xl overflow-hidden bg-secondary/40 mb-4 border border-border">
+              <div className="overflow-hidden bg-secondary/40 mb-4 border border-border">
                 <img
                   src="/outlet-3prong.jpg"
                   alt="Standard North American 3-prong electrical outlet"
@@ -279,7 +279,7 @@ const ElectricalCompatibilityQuiz = () => {
                 <h2 className="text-[24px] md:text-[28px] leading-[1.2] font-semibold mb-4">
                   Is that outlet on a 20-amp circuit?
                 </h2>
-                <div className="rounded-xl overflow-hidden bg-secondary/40 mb-4 border border-border">
+                <div className="overflow-hidden bg-secondary/40 mb-4 border border-border">
                   <img
                     src="/panel-example.jpg"
                     alt="Example residential electrical panel with labeled breakers"
@@ -287,7 +287,7 @@ const ElectricalCompatibilityQuiz = () => {
                     className="w-full h-auto object-cover"
                   />
                 </div>
-                <div className="rounded-xl overflow-hidden bg-secondary/40 mb-4 border border-border">
+                <div className="overflow-hidden bg-secondary/40 mb-4 border border-border">
                   <video
                     src="https://pub-2979dec23e16480f9840f48df8535df6.r2.dev/electricaltestdraft1.mp4"
                     controls

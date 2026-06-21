@@ -252,7 +252,7 @@ const PinCard = ({ pin }: { pin: Pin }) => {
           className="block w-[216px] sm:w-[288px] md:w-[336px] h-auto bg-white select-none transition-shadow duration-300 group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
           style={{
             width: scaledWidth,
-            borderRadius: "12px",
+            borderRadius: "0px",
             boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
           }}
         />
