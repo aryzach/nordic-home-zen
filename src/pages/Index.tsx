@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import VideoTestimonials from "@/components/VideoTestimonials";
 import ReviewWall from "@/components/ReviewWall";
-import SaunaFeatures from "@/components/SaunaFeatures";
+
 import ComparisonTable from "@/components/ComparisonTable";
 import FAQ from "@/components/FAQ";
 import AnywhereDesign from "@/components/AnywhereDesign";
@@ -21,7 +21,6 @@ const Index = () => {
         <ReviewWall />
         <AnywhereDesign />
         <VideoTestimonials />
-        <SaunaFeatures />
         <ComparisonTable />
         <FAQ />
       </main>
