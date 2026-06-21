@@ -1,94 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CalInlineEmbed from "@/components/CalInlineEmbed";
-import { Button } from "@/components/ui/button";
-import {
-  Calendar,
-  Target,
-  MapPin,
-  Zap,
-  Scale,
-  MessageCircleQuestion,
-  CheckCircle2,
-} from "lucide-react";
-import { trackAndNavigate } from "@/lib/analytics";
-
-const BOOKING_URL = "https://calendar.app.google/Q9nw6fTEBMnyNbDf8";
-
-const covered = [
-  {
-    icon: Target,
-    title: "Your Sauna Goals",
-    body: "We'll discuss what you're looking for in a sauna, including temperature, size, indoor vs outdoor placement, budget, and how often you plan to use it.",
-  },
-  {
-    icon: MapPin,
-    title: "Placement Options",
-    body: "We'll review your space and identify potential sauna locations.",
-  },
-  {
-    icon: Zap,
-    title: "Electrical Assessment",
-    body: "We'll evaluate your electrical setup and determine which sauna options are compatible with your home.",
-  },
-  {
-    icon: Scale,
-    title: "Compare Your Options",
-    body: "We'll explain the costs, timelines, installation requirements, and tradeoffs for each available option.",
-  },
-  {
-    icon: MessageCircleQuestion,
-    title: "Q&A",
-    body: "Ask anything you'd like about saunas, installation, landlords, apartments, power requirements, maintenance, or ownership.",
-  },
-];
-
-const steps = [
-  { n: "1", title: "Schedule", body: "Book a consultation time that works for you." },
-  { n: "2", title: "Join the Video Call", body: "Joining the call on FaceTime or Google Meet on your phone is preferred, as we'll be moving around your home." },
-  { n: "3", title: "Walk Us Through Your Space", body: "We'll review your intended location and electrical setup." },
-  { n: "4", title: "Receive Recommendations", body: "You'll leave with a clear understanding of what sauna options are available and what each would cost." },
-];
-
-const outcomes = [
-  "Clarity around sauna options, and their cost and complexity for your space",
-  "Ready to purchase a sauna",
-  "Need a small electrical upgrade first",
-  "Need to evaluate a different location",
-  "Decide a sauna isn't the right fit",
-];
-
-const BookButton = () => (
-  <div className="flex flex-col items-center">
-    <Button
-      size="lg"
-      className="bg-accent hover:bg-accent/90 text-white"
-      onClick={() => {
-        try {
-          (window as any).fbq?.('track', 'Schedule', {
-            content_name: 'Electrical Compatibility Consultation',
-            value: 129,
-            currency: 'USD',
-          });
-          (window as any).fbq?.('track', 'Lead', {
-            content_name: 'Electrical Compatibility Consultation Booking',
-          });
-        } catch {}
-        trackAndNavigate(
-          "consultation_booking_click",
-          { button_text: "Book Free Electrical Consultation", location: "consultation_page" },
-          () => window.open(BOOKING_URL, "_blank", "noopener,noreferrer")
-        );
-      }}
-    >
-      <Calendar className="mr-2" size={18} />
-      Book Free Electrical Consultation
-    </Button>
-    <p className="text-xs text-muted-foreground mt-2 text-center max-w-[260px] md:max-w-none">
-      Consultation fee is credited toward the purchase of an Anywhere Sauna
-    </p>
-  </div>
-);
 
 const ElectricChecklist = () => {
   return (
@@ -99,71 +11,18 @@ const ElectricChecklist = () => {
         <section className="pt-16 md:pt-24 pb-8 md:pb-10">
           <div className="container mx-auto px-4 max-w-5xl text-center">
             <h1 className="mb-6">
-              Not sure what saunas will work in your home?
+              Not sure what saunas could work in your home?
             </h1>
-            <p className="mb-8">
-              Choosing and installing a sauna can be complicated and costly. We help you navigate your options and understand the costs and installation logistics involved in each.
+            <p className="mb-6">
+              During this consultation, we'll determine what saunas are compatible with your existing home or apartment based on:
             </p>
+            <ul className="text-left max-w-xl mx-auto mb-8 space-y-2 list-disc pl-5">
+              <li>Electrical configuration</li>
+              <li>Space available (indoors or outdoors)</li>
+              <li>Whether you rent or own</li>
+              <li>And answer any other questions you might have</li>
+            </ul>
             <CalInlineEmbed />
-            <div className="flex justify-center mb-10">
-              <BookButton />
-            </div>
-
-            {/* What's Covered - circular cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6 mb-12">
-              {covered.map(({ icon: Icon, title, body }, i) => {
-                const bottomRowClass =
-                  i === 3 ? "md:col-span-2 md:col-start-2" : i === 4 ? "md:col-span-2 md:col-start-4" : "md:col-span-2";
-                return (
-                  <div key={title} className={`bg-card p-6 rounded-lg border border-border text-left ${bottomRowClass}`}>
-                    <Icon className="text-accent mb-3" size={32} />
-                    <h3 className="mb-2">{title}</h3>
-                    <p className="text-muted-foreground">{body}</p>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="flex justify-center">
-              <BookButton />
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section className="py-16">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <h2 className="mb-10 text-center">
-              How It Works
-            </h2>
-            <ol className="space-y-6">
-              {steps.map((s) => (
-                <li key={s.n} className="flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-semibold">
-                    {s.n}
-                  </div>
-                  <div>
-                    <h3 className="mb-1">{s.title}</h3>
-                    <p className="text-muted-foreground">{s.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="pt-8 md:pt-10 pb-16 md:pb-24 bg-cedar-section">
-          <div className="container mx-auto px-4 max-w-2xl text-center">
-            <h2 className="mb-4">
-              Ready to see what's possible?
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              Get clarity before spending thousands of dollars.
-            </p>
-            <div className="flex justify-center">
-              <BookButton />
-            </div>
           </div>
         </section>
       </main>
