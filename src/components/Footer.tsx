@@ -55,7 +55,7 @@ const Footer = () => {
           <div>
             <h4 className={colHeader}>Product</h4>
             <ul className="space-y-3">
-              <li><Link to="/buy-your-anywhere-sauna" className={linkClass}>Buy Now</Link></li>
+              <li><Link to="/specs" className={linkClass}>Buy Now</Link></li>
               <li><Link to="/sauna-electrical-fit-consultation" className={linkClass}>Electrical Consultation</Link></li>
               <li><Link to="/electrical-compatibility-quiz" className={linkClass}>Compatibility Quiz</Link></li>
             </ul>

@@ -192,33 +192,6 @@ const AboutTheSauna = () => {
           About the Anywhere Sauna
         </h2>
 
-        {/* Image strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
-          {aboutPhotos.map((photo, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => { setStartIndex(i); setLightboxOpen(true); }}
-              className="aspect-square overflow-hidden bg-[#f5f5f5] cursor-zoom-in group border border-[#e8e8e1]"
-              aria-label={`Expand photo ${i + 1}`}
-            >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-            </button>
-          ))}
-          <div className="aspect-square overflow-hidden border border-[#e8e8e1] bg-[#f5f5f5]">
-            <img
-              src={standardOutlet}
-              alt="Standard 110/120V wall outlet — what's needed to power the Anywhere Sauna"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-        </div>
 
         <GroupBlock group={overviewGroup} />
 

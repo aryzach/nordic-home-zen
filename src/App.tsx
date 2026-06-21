@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Specs from "./pages/Specs";
 import Installs from "./pages/Installs";
 import FAQPage from "./pages/FAQPage";
+import Deposit from "./pages/Deposit";
 
 
 import HowItStarted from "./pages/HowItStarted";
@@ -135,6 +136,7 @@ const App = () => (
           <Route path="/specs" element={<Specs />} />
           <Route path="/installs" element={<Installs />} />
           <Route path="/faq" element={<FAQPage />} />
+          <Route path="/deposit" element={<Deposit />} />
           
           
           <Route path="/how-it-started" element={<HowItStarted />} />
