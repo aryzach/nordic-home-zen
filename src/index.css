@@ -3,80 +3,78 @@
 @tailwind utilities;
 
 /* ============================================================
-   Design System — Warm Scandinavian Minimalism
+   Design System — Premium Shopify/DTC (Northup-inspired)
    Tokens are HSL (Tailwind v3 requires HSL for hsl(var(--x)))
    ============================================================ */
 
 @layer base {
   :root {
     /* Core palette */
-    --background: 60 14% 98%;          /* #FAFAF8 warm off-white */
-    --foreground: 0 0% 9%;             /* #171717 near-black ink */
+    --background: 0 0% 100%;            /* #ffffff */
+    --foreground: 0 1% 11%;             /* #1c1d1d */
 
-    --ink: 0 0% 9%;
-    --ink-soft: 40 5% 32%;             /* #55524D */
+    --ink: 0 1% 11%;
+    --ink-soft: 0 0% 30%;
 
-    --beige: 33 53% 87%;               /* #EEDFCC */
-    --beige-deep: 32 38% 78%;
+    --beige: 31 64% 88%;                /* #f3e2d0 accent beige */
+    --beige-deep: 31 50% 80%;
 
-    --line: 36 19% 83%;                /* #DDD5CA */
+    --line: 60 9% 89%;                  /* #e8e8e1 border */
 
-    /* Semantic mapping */
-    --card: 60 14% 98%;
-    --card-foreground: 0 0% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 1% 11%;
 
-    --popover: 60 14% 98%;
-    --popover-foreground: 0 0% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 1% 11%;
 
-    --primary: 0 0% 9%;
+    --primary: 0 0% 7%;                 /* #111111 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 33 53% 87%;           /* beige */
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 31 64% 88%;            /* beige */
+    --secondary-foreground: 0 1% 11%;
 
-    --muted: 33 53% 87%;
-    --muted-foreground: 40 5% 32%;
+    --muted: 60 9% 95%;
+    --muted-foreground: 0 0% 35%;
 
-    --accent: 33 53% 87%;
-    --accent-foreground: 0 0% 9%;
+    --accent: 31 64% 88%;
+    --accent-foreground: 0 1% 11%;
 
     --destructive: 0 70% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 36 19% 83%;
-    --input: 36 19% 83%;
-    --ring: 0 0% 9%;
+    --border: 60 9% 89%;                /* #e8e8e1 */
+    --input: 60 9% 89%;
+    --ring: 0 0% 7%;
 
     --radius: 0px;
 
-    /* Legacy tokens kept for back-compat with existing components.
-       They now point to the new system so nothing visually breaks. */
-    --color-bg: 60 14% 98%;
-    --color-cream: 60 14% 98%;
-    --color-text: 40 5% 32%;
-    --color-heading: 0 0% 9%;
+    /* Legacy compat tokens */
+    --color-bg: 0 0% 100%;
+    --color-cream: 0 0% 100%;
+    --color-text: 0 1% 11%;
+    --color-heading: 0 1% 11%;
     --color-white: 0 0% 100%;
-    --color-ui: 36 19% 83%;
-    --color-accent: 0 0% 9%;
+    --color-ui: 60 9% 89%;
+    --color-accent: 0 0% 7%;
     --color-accent-dark: 0 0% 0%;
-    --color-accent-amber: 33 53% 87%;
+    --color-accent-amber: 31 64% 88%;
 
-    --cedar: 0 0% 9%;
+    --cedar: 0 0% 7%;
     --cedar-dark: 0 0% 0%;
-    --cedar-light: 33 53% 87%;
-    --cedar-section: 33 53% 87%;
-    --warm-orange: 0 0% 9%;
-    --charcoal: 0 0% 7%;               /* #111111 footer */
-    --cream: 60 14% 98%;
+    --cedar-light: 31 64% 88%;
+    --cedar-section: 31 64% 88%;
+    --warm-orange: 0 0% 7%;
+    --charcoal: 0 0% 7%;                /* #111111 footer */
+    --cream: 0 0% 100%;
 
-    --sidebar-background: 60 14% 98%;
-    --sidebar-foreground: 0 0% 9%;
-    --sidebar-primary: 0 0% 9%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 1% 11%;
+    --sidebar-primary: 0 0% 7%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 33 53% 87%;
-    --sidebar-accent-foreground: 0 0% 9%;
-    --sidebar-border: 36 19% 83%;
-    --sidebar-ring: 0 0% 9%;
+    --sidebar-accent: 31 64% 88%;
+    --sidebar-accent-foreground: 0 1% 11%;
+    --sidebar-border: 60 9% 89%;
+    --sidebar-ring: 0 0% 7%;
   }
 }
 
@@ -91,42 +89,50 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    font-feature-settings: "ss01", "cv11";
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    color: hsl(var(--muted-foreground));
-    font-size: 17px;
-    line-height: 1.65;
+    color: #1c1d1d;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.025em;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    color: hsl(var(--foreground));
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    color: #1c1d1d;
     font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    line-height: 1.2;
+    letter-spacing: 0em;
+    margin: 0 0 10px;
+  }
+  @media (min-width: 768px) {
+    h1, h2, h3, h4, h5, h6 { margin: 0 0 20px; }
   }
 
   h1 {
-    font-size: clamp(40px, 6vw, 64px);
-    line-height: 1.02;
-    letter-spacing: -0.03em;
+    font-size: 28.56px;
+  }
+  @media (min-width: 768px) {
+    h1 { font-size: 33.6px; }
   }
 
   h2 {
-    font-size: clamp(32px, 4vw, 48px);
-    letter-spacing: -0.025em;
+    font-size: 21.42px;
+  }
+  @media (min-width: 768px) {
+    h2 { font-size: 25.2px; }
   }
 
-  h3 {
-    font-size: 24px;
-  }
+  h3 { font-size: 18px; }
+  h4 { font-size: 16px; }
 
-  p {
-    line-height: 1.65;
-  }
+  p { line-height: 1.6; }
+
+  /* Section title rhythm */
+  .section-title { margin-bottom: 16px; }
 }
 
 /* ============================================================
@@ -136,72 +142,81 @@
 @layer components {
   .container-x {
     width: 100%;
-    max-width: 1240px;
+    max-width: 1400px;
     margin-inline: auto;
-    padding-inline: 1.25rem;
+    padding-inline: 20px;
   }
   @media (min-width: 768px) {
-    .container-x { padding-inline: 2.5rem; }
+    .container-x { padding-inline: 40px; }
   }
+
+  /* Standard section rhythm */
+  .section-y {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  @media (min-width: 768px) {
+    .section-y {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+  }
+
+  .bg-beige { background-color: #f3e2d0; }
 
   .eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
+    font-size: 12px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    font-weight: 500;
-    color: hsl(var(--ink-soft));
+    font-weight: 600;
+    color: #1c1d1d;
   }
 
-  /* Buttons — sharp corners, uppercase, tracked, no shadows/glow/gradients */
+  /* Buttons — square, Montserrat 700, padding 11px 20px */
   .btn-primary,
   .btn-outline,
   .btn-dark-outline {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    text-transform: uppercase;
-    font-size: 0.82rem;
-    letter-spacing: 0.1em;
-    padding: 1rem 1.6rem;
+    display: inline-block;
+    text-align: center;
+    font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.42;
+    padding: 11px 20px;
+    min-width: 90px;
+    border: 1px solid transparent;
     border-radius: 0;
-    border: none;
-    line-height: 1;
     cursor: pointer;
     text-decoration: none;
+    transition: padding-right .3s ease, background .3s ease, color .3s ease, opacity 1s ease;
   }
 
   .btn-primary {
-    background-color: #171717;
-    color: #fff;
-    font-weight: 700;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    background-color: #111111;
+    color: #ffffff;
   }
   .btn-primary:hover {
-    opacity: 0.85;
+    background-color: #000000;
+    padding-right: 28px;
   }
 
   .btn-outline {
     background-color: transparent;
-    color: #fff;
-    font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    transition: background 0.2s ease, color 0.2s ease;
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.7);
   }
   .btn-outline:hover {
-    background-color: #fff;
-    color: #171717;
+    background-color: #ffffff;
+    color: #111111;
   }
 
   .btn-dark-outline {
     background-color: transparent;
-    color: #171717;
-    font-weight: 600;
-    border: 1px solid #171717;
-    transition: background 0.2s ease, color 0.2s ease;
+    color: #111111;
+    border-color: #111111;
   }
   .btn-dark-outline:hover {
-    background-color: #171717;
-    color: #fff;
+    background-color: #111111;
+    color: #ffffff;
   }
 }
