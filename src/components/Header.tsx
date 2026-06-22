@@ -140,7 +140,21 @@ const Header = () => {
             ))}
             <button
               type="button"
-              className="btn-primary mt-8 w-full"
+              className="btn-dark-outline mt-8 w-full"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                trackAndNavigate(
+                  "consultation_booking_click",
+                  { button_text: "Book Electrical Consultation", location: "header_mobile" },
+                  () => navigate("/sauna-electrical-fit-consultation")
+                );
+              }}
+            >
+              Book Electrical Consultation
+            </button>
+            <button
+              type="button"
+              className="btn-primary mt-3 w-full"
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 trackAndNavigate(

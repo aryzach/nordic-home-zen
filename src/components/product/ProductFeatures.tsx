@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
-import outletImg from "@/assets/outlet-3prong.jpg";
-import outdoorImg from "@/assets/sauna-rental-berkeley-backyard.jpeg";
 import heaterImg from "@/assets/finnishheater.png";
 
 type Feature = {
   eyebrow: string;
   heading: string;
   body: string;
-  image: string;
-  alt: string;
+  image?: string;
+  alt?: string;
   cta?: { label: string; to: string };
   reverse?: boolean;
 };
@@ -19,7 +17,7 @@ const features: Feature[] = [
     heading: "Plug it in. Heat it up.",
     body:
       "Every other steam sauna assumes a 240V line and an electrician on the way. The Anywhere Sauna was engineered around the outlet you already have — so ~97% of homes and apartments are compatible on day one. No permits. No rewiring. No landlord conversation.",
-    image: outletImg,
+    image: "/installs/specs-outlet.png",
     alt: "Standard 110/120V three-prong outlet",
     cta: { label: "Check my outlet", to: "/sauna-electrical-fit-consultation" },
   },
@@ -28,8 +26,6 @@ const features: Feature[] = [
     heading: "Built for the space you actually have.",
     body:
       "A 63\" × 49\" footprint that fits a spare room, a garage corner, a backyard, or even a studio apartment. Sits on any level surface, requires no foundation, and moves with you if you move.",
-    image: outdoorImg,
-    alt: "Anywhere Sauna placed on a backyard deck",
     reverse: true,
   },
   {
