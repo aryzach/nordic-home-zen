@@ -38,43 +38,54 @@ const features: Feature[] = [
   },
 ];
 
-const Row = ({ feature }: { feature: Feature }) => (
-  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-    <div className={feature.reverse ? "lg:order-2" : ""}>
-      <div className="aspect-[4/3] w-full bg-[#f5f5f5] overflow-hidden">
-        <img
-          src={feature.image}
-          alt={feature.alt}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
+const Row = ({ feature }: { feature: Feature }) => {
+  const hasImage = Boolean(feature.image);
+  return (
+    <div
+      className={
+        hasImage
+          ? "grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
+          : "max-w-[680px] mx-auto text-center"
+      }
+    >
+      {hasImage && (
+        <div className={feature.reverse ? "lg:order-2" : ""}>
+          <div className="aspect-[4/3] w-full bg-[#f5f5f5] overflow-hidden">
+            <img
+              src={feature.image}
+              alt={feature.alt}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      )}
+      <div className={hasImage && feature.reverse ? "lg:order-1" : ""}>
+        <p className="uppercase text-[12px] font-bold tracking-[0.18em] text-[#1c1d1d]/70 mb-3">
+          {feature.eyebrow}
+        </p>
+        <h2
+          className="font-bold text-[#1c1d1d] mb-3"
+          style={{ fontSize: "clamp(22px, 3vw, 28px)", lineHeight: 1.2, letterSpacing: 0 }}
+        >
+          {feature.heading}
+        </h2>
+        <p className={`text-[14px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d] ${hasImage ? "max-w-[52ch]" : "mx-auto"}`}>
+          {feature.body}
+        </p>
+        {feature.cta && (
+          <Link
+            to={feature.cta.to}
+            className="group inline-block mt-5 text-[13px] font-bold tracking-[0.18em] uppercase text-[#111] border-b border-[#111] pb-1 hover:opacity-70 transition-opacity"
+          >
+            {feature.cta.label}
+            <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
+          </Link>
+        )}
       </div>
     </div>
-    <div className={feature.reverse ? "lg:order-1" : ""}>
-      <p className="uppercase text-[12px] font-bold tracking-[0.18em] text-[#1c1d1d]/70 mb-3">
-        {feature.eyebrow}
-      </p>
-      <h2
-        className="font-bold text-[#1c1d1d] mb-3"
-        style={{ fontSize: "clamp(22px, 3vw, 28px)", lineHeight: 1.2, letterSpacing: 0 }}
-      >
-        {feature.heading}
-      </h2>
-      <p className="text-[14px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d] max-w-[52ch]">
-        {feature.body}
-      </p>
-      {feature.cta && (
-        <Link
-          to={feature.cta.to}
-          className="group inline-block mt-5 text-[13px] font-bold tracking-[0.18em] uppercase text-[#111] border-b border-[#111] pb-1 hover:opacity-70 transition-opacity"
-        >
-          {feature.cta.label}
-          <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
-        </Link>
-      )}
-    </div>
-  </div>
-);
+  );
+};
 
 const ProductFeatures = () => (
   <section className="bg-white">
