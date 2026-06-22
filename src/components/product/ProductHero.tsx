@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Plug, Users, Flame, Home } from "lucide-react";
-import saunaExterior from "@/assets/sauna-exterior-front.png";
-import saunaInteriorBack from "@/assets/sauna-interior-back.png";
 
 const gallery = [
-  { src: saunaExterior, alt: "Anywhere Sauna exterior" },
+  { src: "/installs/specs-1.jpg", alt: "Anywhere Sauna exterior in a backyard" },
+  { src: "/installs/specs-2.jpg", alt: "Anywhere Sauna installed" },
   { src: "/assets/about-sauna-1.jpeg", alt: "Anywhere Sauna interior with heater" },
   { src: "/assets/about-sauna-2.jpeg", alt: "Anywhere Sauna cedar bench detail" },
-  { src: saunaInteriorBack, alt: "Anywhere Sauna interior back" },
   { src: "/assets/about-sauna-3.jpeg", alt: "Anywhere Sauna interior thermometer" },
 ];
 
