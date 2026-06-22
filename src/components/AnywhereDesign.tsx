@@ -28,12 +28,12 @@ const features = [
 ];
 
 const AnywhereDesign = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section className="bg-secondary section-y">
       <div className="container-x grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-        <div>
+        <div className="order-2 lg:order-1">
           <h2 className="max-w-[22ch]">
             The Anywhere Design
           </h2>
@@ -42,7 +42,7 @@ const AnywhereDesign = () => {
           </p>
 
 
-          <div className="mt-10 divide-y divide-border border-y border-border">
+          <div className="mt-10 divide-y divide-black border-y border-black">
             {features.map((it, i) => {
               const isOpen = openIndex === i;
               return (
@@ -87,7 +87,7 @@ const AnywhereDesign = () => {
           </div>
         </div>
 
-        <div className="relative">
+        <div className="relative order-1 lg:order-2">
           <video
             src={anywhereVideoUrl}
             autoPlay

@@ -90,12 +90,12 @@ const Header = () => {
                 onClick={() =>
                   trackAndNavigate(
                     "consultation_booking_click",
-                    { button_text: "Book Electrical Compatibility Consultation", location: "header" },
+                    { button_text: "Book Electrical Consultation", location: "header" },
                     () => navigate("/sauna-electrical-fit-consultation")
                   )
                 }
               >
-                Consultation
+                Book Electrical Consultation
               </button>
               <button
                 className="btn-primary"
