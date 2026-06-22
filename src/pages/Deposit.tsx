@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import saunaExterior from "@/assets/sauna-exterior-front.png";
+const saunaExterior = "/installs/specs-1.jpg";
 import { useSEO } from "@/hooks/useSEO";
 
 const Deposit = () => {

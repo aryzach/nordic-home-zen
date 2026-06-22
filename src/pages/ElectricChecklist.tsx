@@ -7,7 +7,8 @@ const BookButton = () => (
     href="https://cal.com/zach-pretzell/30min"
     target="_blank"
     rel="noopener noreferrer"
-    className="btn-outline inline-flex items-center gap-2"
+    className="inline-flex items-center gap-2 bg-white text-[#111111] border border-[#111111] font-bold text-[16px] px-5 py-[11px] hover:bg-[#111111] hover:text-white transition-colors"
+    style={{ fontFamily: "'Montserrat', ui-sans-serif, system-ui, sans-serif" }}
   >
     Book Free Consultation
     <ExternalLink className="w-4 h-4" aria-hidden="true" />
