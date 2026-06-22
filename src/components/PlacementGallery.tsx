@@ -1,11 +1,21 @@
 import { useState } from "react";
 import ImageLightbox from "./ImageLightbox";
+import install7869 from "@/assets/install-IMG_7869.jpg.asset.json";
+import install7970 from "@/assets/install-IMG_7970.jpg.asset.json";
+import install7982 from "@/assets/install-IMG_7982.jpg.asset.json";
+import install8056 from "@/assets/install-IMG_8056.jpg.asset.json";
+import install8335 from "@/assets/install-IMG_8335_1.jpg.asset.json";
 
 const placements = [
   { label: "Apartment", src: "/assets/placement-apartment.jpeg", alt: "Anywhere Sauna on an apartment patio" },
   { label: "Deck", src: "/assets/placement-deck.jpeg", alt: "Anywhere Sauna on a backyard deck" },
   { label: "Rooftop", src: "/assets/placement-rooftop.jpeg", alt: "Anywhere Sauna on a city rooftop" },
   { label: "Backyard", src: "/assets/placement-backyard.jpeg", alt: "Anywhere Sauna in a backyard garden" },
+  { label: "Install", src: install7869.url, alt: "Anywhere Sauna installed in a San Francisco backyard" },
+  { label: "Install", src: install7970.url, alt: "Anywhere Sauna install" },
+  { label: "Install", src: install7982.url, alt: "Anywhere Sauna install" },
+  { label: "Install", src: install8056.url, alt: "Anywhere Sauna install" },
+  { label: "Install", src: install8335.url, alt: "Anywhere Sauna install" },
 ];
 
 const PlacementGallery = () => {
