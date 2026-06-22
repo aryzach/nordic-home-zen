@@ -7,7 +7,7 @@ const BookButton = () => (
     href="https://cal.com/zach-pretzell/30min"
     target="_blank"
     rel="noopener noreferrer"
-    className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-md hover:opacity-90 transition-opacity"
+    className="btn-outline inline-flex items-center gap-2"
   >
     Book Free Consultation
     <ExternalLink className="w-4 h-4" aria-hidden="true" />
