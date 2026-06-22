@@ -13,6 +13,16 @@ const ElectricChecklist = () => {
             <h1 className="mb-6">
               Not sure what saunas could work in your home?
             </h1>
+            <p className="mb-6">
+              <a
+                href="https://cal.com/zach-pretzell/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 hover:opacity-80"
+              >
+                Book a 30-minute consultation
+              </a>
+            </p>
             <div className="max-w-3xl mx-auto mb-10">
               <CalInlineEmbed />
             </div>
