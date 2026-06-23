@@ -310,22 +310,28 @@ const SevenQuestionsHomeSauna = () => {
             <p>
               And if you're unsure what electrical service is available or which sauna options are
               realistic for your space,{" "}
-              <Link
-                to="/sauna-planning-consultation"
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBooking("schedule a Free Consultation")}
                 className="text-primary underline"
               >
                 schedule a Free Consultation
-              </Link>
+              </a>
               .
             </p>
 
             <div className="mt-12 pt-8 border-t border-border">
-              <Link
-                to="/sauna-planning-consultation"
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBooking("Schedule Your Free Consultation")}
                 className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
               >
                 Schedule Your Free Consultation
-              </Link>
+              </a>
             </div>
           </div>
         </article>
