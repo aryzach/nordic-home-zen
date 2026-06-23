@@ -87,7 +87,10 @@ const Header = () => {
             {/* CTAs */}
             <div className="hidden lg:flex items-center gap-3">
               <button
-                className={lightOnHero ? "btn-outline" : "btn-dark-outline"}
+                className={cn(
+                  "inline-flex items-center justify-center gap-2",
+                  lightOnHero ? "btn-outline" : "btn-dark-outline"
+                )}
                 onClick={() =>
                   trackAndNavigate(
                     "consultation_booking_click",
@@ -97,6 +100,7 @@ const Header = () => {
                 }
               >
                 Book Free Consultation
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </button>
               <button
                 className="btn-primary"
