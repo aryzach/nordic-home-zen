@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ExternalLink } from "lucide-react";
 import standardOutlet from "@/assets/standard-outlet.png";
 import ImageLightbox from "./ImageLightbox";
 import { trackEvent } from "@/lib/analytics";
