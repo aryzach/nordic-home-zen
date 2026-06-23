@@ -145,7 +145,7 @@ const Header = () => {
             ))}
             <button
               type="button"
-              className="btn-dark-outline mt-8 w-full"
+              className="btn-dark-outline mt-8 w-full inline-flex items-center justify-center gap-2"
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 trackAndNavigate(
@@ -156,6 +156,7 @@ const Header = () => {
               }}
             >
               Book Free Consultation
+              <ExternalLink className="w-4 h-4" aria-hidden="true" />
             </button>
             <button
               type="button"
