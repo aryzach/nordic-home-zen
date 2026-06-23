@@ -15,7 +15,7 @@ const ConsultationCallout = () => {
           </div>
           <button
             type="button"
-            className="btn-primary shrink-0 w-full md:w-auto"
+            className="btn-primary shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-2"
             onClick={() =>
               trackAndNavigate(
                 "consultation_booking_click",
@@ -25,6 +25,7 @@ const ConsultationCallout = () => {
             }
           >
             Book Free Consultation
+            <ExternalLink className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
       </div>
