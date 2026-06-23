@@ -76,13 +76,30 @@ const Row = ({ feature }: { feature: Feature }) => {
           {feature.body}
         </p>
         {feature.cta && (
-          <Link
-            to={feature.cta.to}
-            className="group inline-block mt-5 text-[13px] font-bold tracking-[0.18em] uppercase text-[#111] border-b border-[#111] pb-1 hover:opacity-70 transition-opacity"
-          >
-            {feature.cta.label}
-            <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
-          </Link>
+          feature.cta.bookConsultation ? (
+            <button
+              type="button"
+              onClick={() =>
+                trackAndNavigate(
+                  "consultation_booking_click",
+                  { button_text: feature.cta!.label, location: "product_features_outlet" },
+                  openBookingUrl
+                )
+              }
+              className="group inline-block mt-5 text-[13px] font-bold tracking-[0.18em] uppercase text-[#111] border-b border-[#111] pb-1 hover:opacity-70 transition-opacity"
+            >
+              {feature.cta.label}
+              <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
+            </button>
+          ) : (
+            <Link
+              to={feature.cta.to!}
+              className="group inline-block mt-5 text-[13px] font-bold tracking-[0.18em] uppercase text-[#111] border-b border-[#111] pb-1 hover:opacity-70 transition-opacity"
+            >
+              {feature.cta.label}
+              <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          )
         )}
       </div>
     </div>
