@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Input } from "@/components/ui/input";
-import { Instagram, MapPin, Phone, Mail } from "lucide-react";
+import { Instagram, MapPin, Phone, Mail, ExternalLink } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 import { BOOKING_URL } from "@/lib/booking";
 
