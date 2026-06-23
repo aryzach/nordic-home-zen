@@ -44,7 +44,7 @@ const SevenQuestionsHomeSauna = () => {
                 to="/sauna-planning-consultation"
                 className="text-primary underline"
               >
-                Electrical Fit Consultation
+                Free Consultation
               </Link>
               .
             </p>
@@ -302,7 +302,7 @@ const SevenQuestionsHomeSauna = () => {
                 to="/sauna-planning-consultation"
                 className="text-primary underline"
               >
-                schedule a free Electrical Fit Consultation
+                schedule a free Free Consultation
               </Link>
               .
             </p>
@@ -312,7 +312,7 @@ const SevenQuestionsHomeSauna = () => {
                 to="/sauna-planning-consultation"
                 className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
               >
-                Schedule Your Free Electrical Fit Consultation
+                Schedule Your Free Consultation
               </Link>
             </div>
           </div>

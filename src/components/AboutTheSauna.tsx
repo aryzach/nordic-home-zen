@@ -39,7 +39,7 @@ const overviewGroup: SpecGroup = {
       value: "Standard 110/120V outlet with 20A breaker",
       helper: (
         <Link to="/sauna-planning-consultation" className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium">
-          Book Free Electrical Compatibility Consultation
+          Book Free Consultation
         </Link>
       ),
     },
@@ -75,7 +75,7 @@ const moreGroups: SpecGroup[] = [
           <>
             The sauna does not come with a heater. There are a few options that range from $200 - $900. We can help you pick during the consultation.{" "}
             <Link to="/sauna-planning-consultation" className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium">
-              Book Free Electrical Compatibility Consultation
+              Book Free Consultation
             </Link>
             .
           </>
