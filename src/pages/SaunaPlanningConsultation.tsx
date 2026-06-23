@@ -112,10 +112,11 @@ const SaunaPlanningConsultation = () => {
             <p className="text-[15px] md:text-[16px] text-[#1c1d1d] mb-6 max-w-2xl mx-auto">
               After the call, you'll receive personalized recommendations and estimated costs.
             </p>
-            <ul className="flex flex-col sm:flex-row sm:justify-center gap-2 sm:gap-6 text-[14px] text-[#1c1d1d]">
+            <ul className="flex flex-col sm:flex-row sm:justify-center gap-3 sm:gap-12 text-[14px] text-[#1c1d1d]">
               {heroChecks.map(({ label, Icon }) => (
-                <li key={label} className="flex items-center justify-center gap-2">
-                  <Icon className="w-4 h-4 text-[#111111]" aria-hidden="true" /> {label}
+                <li key={label} className="flex sm:flex-col items-center justify-center gap-2">
+                  <Icon className="w-4 h-4 sm:w-6 sm:h-6 text-[#111111]" aria-hidden="true" />
+                  <span>{label}</span>
                 </li>
               ))}
             </ul>
