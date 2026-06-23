@@ -6,6 +6,7 @@ import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
 import { useNavigate } from "react-router-dom";
 import { trackAndNavigate } from "@/lib/analytics";
+import { openBookingUrl } from "@/lib/booking";
 
 
 const ReservationPaymentOrScheduleCall = () => {
