@@ -33,7 +33,10 @@ const ConsultCallout = ({
           )
         }
       >
-        Book Free Consultation
+        <span className="inline-flex items-center gap-2">
+          Book Free Consultation
+          <ExternalLink className="w-4 h-4" aria-hidden="true" />
+        </span>
       </Button>
     </div>
   );
