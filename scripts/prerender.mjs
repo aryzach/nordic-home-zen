@@ -39,6 +39,7 @@ const routes = [
   '/buy-your-anywhere-sauna',
   '/electrical-compatibility-quiz',
   '/sauna-planning-consultation',
+  '/specs',
 ];
 
 
