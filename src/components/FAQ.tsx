@@ -28,7 +28,7 @@ const ConsultCallout = ({
           trackAndNavigate(
             "consultation_booking_click",
             { button_text: "Book Free Consultation", location: "faq_callout" },
-            () => navigate("/sauna-planning-consultation")
+            openBookingUrl
           )
         }
       >
