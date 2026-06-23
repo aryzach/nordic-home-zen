@@ -6,6 +6,7 @@ import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
 import { useNavigate } from "react-router-dom";
 import { trackAndNavigate } from "@/lib/analytics";
+import { openBookingUrl } from "@/lib/booking";
 
 
 const ReservationPaymentOrScheduleCall = () => {
@@ -93,7 +94,7 @@ const ReservationPaymentOrScheduleCall = () => {
                   trackAndNavigate(
                     "consultation_booking_click",
                     { button_text: "Book Free Consultation", location: "buy_page" },
-                    () => navigate("/sauna-planning-consultation")
+                    openBookingUrl
                   )
                 }
               >

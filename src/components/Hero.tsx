@@ -1,11 +1,9 @@
 import { Star } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { trackAndNavigate } from "@/lib/analytics";
+import { openBookingUrl } from "@/lib/booking";
 const heroImage = { url: "/hero-sauna-forest.png" };
 
 const Hero = () => {
-  const navigate = useNavigate();
-
   const cta = (
     <button
       className="btn-outline w-full md:w-auto"
@@ -13,7 +11,7 @@ const Hero = () => {
         trackAndNavigate(
           "consultation_booking_click",
           { button_text: "Book Free Consultation", location: "hero" },
-          () => navigate("/sauna-planning-consultation")
+          openBookingUrl
         )
       }
     >

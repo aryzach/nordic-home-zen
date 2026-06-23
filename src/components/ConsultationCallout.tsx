@@ -1,8 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import { trackAndNavigate } from "@/lib/analytics";
+import { openBookingUrl } from "@/lib/booking";
 
 const ConsultationCallout = () => {
-  const navigate = useNavigate();
   return (
     <section className="section-y bg-background">
       <div className="container-x max-w-3xl">
@@ -20,7 +19,7 @@ const ConsultationCallout = () => {
               trackAndNavigate(
                 "consultation_booking_click",
                 { button_text: "Book Free Consultation", location: "homepage_callout" },
-                () => navigate("/sauna-planning-consultation")
+                openBookingUrl
               )
             }
           >

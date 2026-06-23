@@ -2,6 +2,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
+import { trackEvent } from "@/lib/analytics";
+import { BOOKING_URL } from "@/lib/booking";
+
+const BOOK_LOCATION = "blog_seven_questions";
+const trackBooking = (button_text: string) =>
+  trackEvent("consultation_booking_click", { button_text, location: BOOK_LOCATION });
 
 const SevenQuestionsHomeSauna = () => {
   useSEO({
@@ -40,12 +46,15 @@ const SevenQuestionsHomeSauna = () => {
             <p>
               The fastest way to figure out what sauna options make sense for your home is to
               schedule a free 15-minute{" "}
-              <Link
-                to="/sauna-planning-consultation"
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBooking("Free Consultation")}
                 className="text-primary underline"
               >
                 Free Consultation
-              </Link>
+              </a>
               .
             </p>
             <p>We'll help you determine:</p>
@@ -153,12 +162,15 @@ const SevenQuestionsHomeSauna = () => {
             </p>
             <p>
               If you're not sure whether you have a 15-amp, 20-amp, or 240V circuit available,{" "}
-              <Link
-                to="/sauna-planning-consultation"
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBooking("schedule a free consultation")}
                 className="text-primary underline"
               >
                 schedule a free consultation
-              </Link>{" "}
+              </a>{" "}
               and we'll help you figure it out.
             </p>
 
@@ -298,22 +310,28 @@ const SevenQuestionsHomeSauna = () => {
             <p>
               And if you're unsure what electrical service is available or which sauna options are
               realistic for your space,{" "}
-              <Link
-                to="/sauna-planning-consultation"
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBooking("schedule a Free Consultation")}
                 className="text-primary underline"
               >
                 schedule a Free Consultation
-              </Link>
+              </a>
               .
             </p>
 
             <div className="mt-12 pt-8 border-t border-border">
-              <Link
-                to="/sauna-planning-consultation"
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBooking("Schedule Your Free Consultation")}
                 className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
               >
                 Schedule Your Free Consultation
-              </Link>
+              </a>
             </div>
           </div>
         </article>

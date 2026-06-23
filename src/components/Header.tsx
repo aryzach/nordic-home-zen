@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { trackAndNavigate } from "@/lib/analytics";
+import { openBookingUrl } from "@/lib/booking";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -91,7 +92,7 @@ const Header = () => {
                   trackAndNavigate(
                     "consultation_booking_click",
                     { button_text: "Book Free Consultation", location: "header" },
-                    () => navigate("/sauna-planning-consultation")
+                    openBookingUrl
                   )
                 }
               >
@@ -146,7 +147,7 @@ const Header = () => {
                 trackAndNavigate(
                   "consultation_booking_click",
                   { button_text: "Book Free Consultation", location: "header_mobile" },
-                  () => navigate("/sauna-planning-consultation")
+                  openBookingUrl
                 );
               }}
             >

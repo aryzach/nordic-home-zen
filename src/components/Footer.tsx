@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Instagram, MapPin, Phone, Mail } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { BOOKING_URL } from "@/lib/booking";
 
 const Footer = () => {
   const location = useLocation();
@@ -56,7 +57,22 @@ const Footer = () => {
             <h4 className={colHeader}>Product</h4>
             <ul className="space-y-3">
               <li><Link to="/specs" className={linkClass}>Buy Now</Link></li>
-              <li><Link to="/sauna-planning-consultation" className={linkClass}>Free Consultation</Link></li>
+              <li>
+                <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    trackEvent("consultation_booking_click", {
+                      button_text: "Free Consultation",
+                      location: "footer",
+                    })
+                  }
+                  className={linkClass}
+                >
+                  Free Consultation
+                </a>
+              </li>
               <li><Link to="/electrical-compatibility-quiz" className={linkClass}>Compatibility Quiz</Link></li>
             </ul>
           </div>

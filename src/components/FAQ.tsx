@@ -1,7 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 import { trackAndNavigate } from "@/lib/analytics";
+import { openBookingUrl } from "@/lib/booking";
 import { faqs } from "@/data/faqs";
 
 
@@ -13,7 +13,6 @@ const ConsultCallout = ({
   heading: string;
   body?: string;
 }) => {
-  const navigate = useNavigate();
   return (
     <div className="rounded-xl bg-card border border-border/60 p-6 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <div>
@@ -29,7 +28,7 @@ const ConsultCallout = ({
           trackAndNavigate(
             "consultation_booking_click",
             { button_text: "Book Free Consultation", location: "faq_callout" },
-            () => navigate("/sauna-planning-consultation")
+            openBookingUrl
           )
         }
       >
@@ -40,7 +39,6 @@ const ConsultCallout = ({
 };
 
 const FAQ = () => {
-  const navigate = useNavigate();
   return (
     <section id="faq" className="pt-2 pb-12 md:pt-2 md:pb-16 bg-background">
       <div className="container mx-auto px-4 max-w-3xl">
@@ -81,7 +79,7 @@ const FAQ = () => {
               trackAndNavigate(
                 "consultation_booking_click",
                 { button_text: "More Questions?", location: "faq_footer" },
-                () => navigate("/sauna-planning-consultation")
+                openBookingUrl
               )
             }
           >
