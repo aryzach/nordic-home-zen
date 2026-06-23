@@ -1,6 +1,12 @@
 import { ExternalLink, Check, X } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const BOOKING_URL = "https://cal.com/zach-pretzell/30min";
 
@@ -17,15 +23,15 @@ const BookButton = ({ className = "" }: { className?: string }) => (
   </a>
 );
 
-type Card = { title: string; items: string[] };
+type CoverItem = { title: string; question: string; items: string[] };
 
-const coverCards: Card[] = [
-  { title: "Space", items: ["Indoor or outdoor", "Available dimensions", "HOA or landlord restrictions", "Access for delivery"] },
-  { title: "Electrical", items: ["Existing outlets", "120V vs 240V", "Electrical upgrades", "Extension run options"] },
-  { title: "Budget", items: ["Sauna budget", "Installation budget", "Operating costs"] },
-  { title: "Goals", items: ["Recovery", "Relaxation", "Heat training", "Family use"] },
-  { title: "Aesthetics", items: ["Barrel sauna", "Cabin sauna", "Modern sauna", "Indoor sauna"] },
-  { title: "Questions", items: ["Compare brands", "Compare models", "Understand tradeoffs", "Anything else"] },
+const coverItems: CoverItem[] = [
+  { title: "Space", question: "Where are you considering putting a sauna?", items: ["Indoor or outdoor", "Available dimensions", "HOA or landlord restrictions", "Access for delivery"] },
+  { title: "Electrical", question: "What can your home electrical setup support?", items: ["Existing outlets", "120V vs 240V", "Electrical upgrades", "Extension run options"] },
+  { title: "Budget", question: "What do you expect to spend all-in?", items: ["Sauna budget", "Installation budget", "Operating costs"] },
+  { title: "Goals", question: "What's important to you when choosing a sauna?", items: ["Recovery", "Relaxation", "Heat training", "Family use"] },
+  { title: "Aesthetics", question: "Did you have a certain look in mind?", items: ["Barrel sauna", "Cabin sauna", "Modern sauna", "Indoor sauna"] },
+  { title: "Questions", question: "Any other considerations you'd like to chat about?", items: ["Compare brands", "Compare models", "Understand tradeoffs", "Anything else"] },
 ];
 
 type SaunaType = {
@@ -67,13 +73,6 @@ const saunaTypes: SaunaType[] = [
   },
 ];
 
-type Row = { option: string; cost: string; install: string; complexity: string; bestFor: string };
-
-const tableRows: Row[] = [
-  { option: "Anywhere Sauna", cost: "$4k–$6k", install: "Low", complexity: "Low", bestFor: "Renters, simple installs" },
-  { option: "Barrel Sauna", cost: "$6k–$12k", install: "Medium", complexity: "Medium", bestFor: "Outdoor aesthetics" },
-  { option: "Traditional Cabin Sauna", cost: "$8k–$20k+", install: "High", complexity: "High", bestFor: "Maximum performance" },
-];
 
 const mistakes = [
   "Buying a sauna that won't fit",
@@ -106,20 +105,17 @@ const SaunaPlanningConsultation = () => {
         {/* SECTION 1: HERO */}
         <section className="section-y border-b border-border">
           <div className="container-x max-w-3xl text-center">
-            <h1 className="mb-4">Not Sure Which Sauna Is Right For Your Home?</h1>
-            <p className="text-[15px] md:text-[16px] text-[#1c1d1d] mb-3 max-w-2xl mx-auto">
-              We'll help you compare sauna options based on your space, electrical setup, budget, and goals.
-            </p>
-            <p className="text-[14px] text-[#1c1d1d]/80 mb-6 max-w-2xl mx-auto">
-              After the call, you'll receive personalized recommendations and estimated costs.
-            </p>
-            <div className="flex justify-center mb-5">
+            <h1 className="mb-6">Not Sure Which Sauna Is Right For Your Home?</h1>
+            <div className="flex justify-center mb-6">
               <BookButton />
             </div>
+            <p className="text-[15px] md:text-[16px] text-[#1c1d1d] mb-6 max-w-2xl mx-auto">
+              After the call, you'll receive personalized recommendations and estimated costs.
+            </p>
             <ul className="flex flex-col sm:flex-row sm:justify-center gap-2 sm:gap-6 text-[14px] text-[#1c1d1d]">
               {heroChecks.map((c) => (
                 <li key={c} className="flex items-center justify-center gap-2">
-                  <Check className="w-4 h-4 text-[#111111]" aria-hidden="true" /> {c}
+                  <Check className="w-4 h-4 text-[#111111] sm:hidden" aria-hidden="true" /> {c}
                 </li>
               ))}
             </ul>
@@ -131,20 +127,29 @@ const SaunaPlanningConsultation = () => {
           <div className="container-x max-w-[1100px]">
             <p className="eyebrow mb-3 text-center">What we'll cover</p>
             <h2 className="text-center mb-8">On the 30-minute call</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {coverCards.map((card) => (
-                <div key={card.title} className="border border-border bg-white p-5">
-                  <h3 className="mb-3 text-[14px] font-bold tracking-[0.18em] uppercase text-[#1c1d1d]">
-                    {card.title}
-                  </h3>
-                  <ul className="space-y-1.5 text-[14px] text-[#1c1d1d]">
-                    {card.items.map((i) => (
-                      <li key={i}>• {i}</li>
-                    ))}
-                  </ul>
-                </div>
+            <Accordion type="single" collapsible className="max-w-3xl mx-auto">
+              {coverItems.map((item) => (
+                <AccordionItem key={item.title} value={item.title} className="border-b border-[#e8e8e1]">
+                  <AccordionTrigger className="hover:no-underline py-5 text-left">
+                    <div>
+                      <div className="text-[14px] font-bold tracking-[0.18em] uppercase text-[#1c1d1d]">
+                        {item.title}
+                      </div>
+                      <div className="text-[14px] text-[#1c1d1d]/70 mt-1 font-normal normal-case tracking-normal">
+                        {item.question}
+                      </div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="space-y-1.5 text-[14px] text-[#1c1d1d] pb-2">
+                      {item.items.map((i) => (
+                        <li key={i}>• {i}</li>
+                      ))}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
               ))}
-            </div>
+            </Accordion>
           </div>
         </section>
 
@@ -162,7 +167,8 @@ const SaunaPlanningConsultation = () => {
                     loading="lazy"
                     width={800}
                     height={600}
-                    className="w-full aspect-[4/3] object-cover"
+                    className="w-full aspect-[4/3] object-contain bg-[#f5f5f5]"
+
                   />
                   <div className="p-4 flex-1 flex flex-col">
                     <h3 className="text-[14px] font-bold tracking-[0.025em] uppercase mb-3 text-[#1c1d1d]">
@@ -195,30 +201,8 @@ const SaunaPlanningConsultation = () => {
             <p className="eyebrow mb-3 text-center">What you'll receive</p>
             <h2 className="text-center mb-8">Your Personalized Sauna Plan</h2>
 
-            <div className="border border-border overflow-x-auto bg-white">
-              <table className="w-full text-[14px] text-[#1c1d1d]">
-                <thead>
-                  <tr className="bg-[#f5f5f5] text-left">
-                    <th className="px-4 py-3 font-bold border-b border-border">Option</th>
-                    <th className="px-4 py-3 font-bold border-b border-border">Purchase Cost</th>
-                    <th className="px-4 py-3 font-bold border-b border-border">Install Cost</th>
-                    <th className="px-4 py-3 font-bold border-b border-border">Complexity</th>
-                    <th className="px-4 py-3 font-bold border-b border-border">Best For</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tableRows.map((r, i) => (
-                    <tr key={r.option} className={i % 2 === 1 ? "bg-[#f5f5f5]" : "bg-white"}>
-                      <td className="px-4 py-3 border-b border-border font-bold">{r.option}</td>
-                      <td className="px-4 py-3 border-b border-border">{r.cost}</td>
-                      <td className="px-4 py-3 border-b border-border">{r.install}</td>
-                      <td className="px-4 py-3 border-b border-border">{r.complexity}</td>
-                      <td className="px-4 py-3 border-b border-border">{r.bestFor}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+
+
 
             <div className="mt-6 max-w-3xl mx-auto">
               <p className="text-[14px] text-[#1c1d1d] mb-3">
