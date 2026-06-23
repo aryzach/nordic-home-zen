@@ -162,12 +162,15 @@ const SevenQuestionsHomeSauna = () => {
             </p>
             <p>
               If you're not sure whether you have a 15-amp, 20-amp, or 240V circuit available,{" "}
-              <Link
-                to="/sauna-planning-consultation"
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBooking("schedule a free consultation")}
                 className="text-primary underline"
               >
                 schedule a free consultation
-              </Link>{" "}
+              </a>{" "}
               and we'll help you figure it out.
             </p>
 
