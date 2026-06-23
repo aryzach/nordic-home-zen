@@ -100,6 +100,7 @@ const ReservationPaymentOrScheduleCall = () => {
               >
                 <Calendar className="mr-2" size={18} />
                 Book Free Consultation
+                <ExternalLink className="ml-2" size={16} aria-hidden="true" />
               </Button>
             </div>
           </div>
