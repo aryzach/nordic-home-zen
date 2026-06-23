@@ -44,7 +44,7 @@ const Deposit = () => {
                   Fully refundable for 3 weeks.
                 </p>
 
-                <div className="flex flex-col mb-8">
+                <div className="flex flex-col mb-3">
                   <a
                     href="https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B"
                     className="group block w-full bg-[#111111] text-white text-center font-bold text-[16px] tracking-[0.025em] px-5 py-[11px] hover:bg-black transition-colors"
@@ -55,6 +55,9 @@ const Deposit = () => {
                     </span>
                   </a>
                 </div>
+                <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-8">
+                  Pay $500 today, remaining $4,099 due before shipment
+                </p>
               </div>
             </div>
           </div>
