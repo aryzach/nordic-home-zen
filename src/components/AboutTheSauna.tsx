@@ -85,9 +85,15 @@ const moreGroups: SpecGroup[] = [
         helper: (
           <>
             The sauna does not come with a heater. There are a few options that range from $200 - $900. We can help you pick during the consultation.{" "}
-            <Link to="/sauna-planning-consultation" className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium">
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackSpecsBooking("Book Free Consultation")}
+              className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium"
+            >
               Book Free Consultation
-            </Link>
+            </a>
             .
           </>
         ),
