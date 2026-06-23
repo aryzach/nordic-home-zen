@@ -46,12 +46,15 @@ const SevenQuestionsHomeSauna = () => {
             <p>
               The fastest way to figure out what sauna options make sense for your home is to
               schedule a free 15-minute{" "}
-              <Link
-                to="/sauna-planning-consultation"
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBooking("Free Consultation")}
                 className="text-primary underline"
               >
                 Free Consultation
-              </Link>
+              </a>
               .
             </p>
             <p>We'll help you determine:</p>
