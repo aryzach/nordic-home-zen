@@ -19,7 +19,7 @@ const features: Feature[] = [
       "Every other steam sauna assumes a 240V line and an electrician on the way. The Anywhere Sauna was engineered around the outlet you already have — so ~97% of homes and apartments are compatible on day one. No permits. No rewiring. No landlord conversation.",
     image: "/installs/specs-outlet.png",
     alt: "Standard 110/120V three-prong outlet",
-    cta: { label: "Check my outlet", to: "/sauna-electrical-fit-consultation" },
+    cta: { label: "Check my outlet", to: "/sauna-planning-consultation" },
   },
   {
     eyebrow: "Indoor or Outdoor",

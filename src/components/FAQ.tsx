@@ -28,12 +28,12 @@ const ConsultCallout = ({
         onClick={() =>
           trackAndNavigate(
             "consultation_booking_click",
-            { button_text: "Book Free Electrical Consultation", location: "faq_callout" },
-            () => navigate("/sauna-electrical-fit-consultation")
+            { button_text: "Book Free Consultation", location: "faq_callout" },
+            () => navigate("/sauna-planning-consultation")
           )
         }
       >
-        Book Free Electrical Consultation
+        Book Free Consultation
       </Button>
     </div>
   );
@@ -81,7 +81,7 @@ const FAQ = () => {
               trackAndNavigate(
                 "consultation_booking_click",
                 { button_text: "More Questions?", location: "faq_footer" },
-                () => navigate("/sauna-electrical-fit-consultation")
+                () => navigate("/sauna-planning-consultation")
               )
             }
           >

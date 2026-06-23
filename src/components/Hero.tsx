@@ -12,12 +12,12 @@ const Hero = () => {
       onClick={() =>
         trackAndNavigate(
           "consultation_booking_click",
-          { button_text: "Book Free Electrical Consultation", location: "hero" },
-          () => navigate("/sauna-electrical-fit-consultation")
+          { button_text: "Book Free Consultation", location: "hero" },
+          () => navigate("/sauna-planning-consultation")
         )
       }
     >
-      Book Free Electrical Consultation
+      Book Free Consultation
     </button>
   );
 

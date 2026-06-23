@@ -80,7 +80,7 @@ const ReservationPaymentOrScheduleCall = () => {
 
             <div className="bg-card p-8 rounded-lg border border-border">
               <h2 className="text-2xl font-heading font-semibold mb-4 text-heading">
-                Book Electrical Compatibility Consultation
+                Book Free Consultation
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
                 Thinking about a sauna but not sure what's possible at your home? Book a 30-minute video consultation ($109, credited toward any purchase or rental).
@@ -92,13 +92,13 @@ const ReservationPaymentOrScheduleCall = () => {
                 onClick={() =>
                   trackAndNavigate(
                     "consultation_booking_click",
-                    { button_text: "Book Electrical Compatibility Consultation", location: "buy_page" },
-                    () => navigate("/sauna-electrical-fit-consultation")
+                    { button_text: "Book Free Consultation", location: "buy_page" },
+                    () => navigate("/sauna-planning-consultation")
                   )
                 }
               >
                 <Calendar className="mr-2" size={18} />
-                Book Electrical Compatibility Consultation
+                Book Free Consultation
               </Button>
             </div>
           </div>

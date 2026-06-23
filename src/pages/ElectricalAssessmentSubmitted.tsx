@@ -45,13 +45,13 @@ const ElectricalAssessmentSubmitted = () => {
                 onClick={() =>
                   trackAndNavigate(
                     "consultation_booking_click",
-                    { button_text: "Book Free Electrical Consultation", location: "assessment_submitted" },
+                    { button_text: "Book Free Consultation", location: "assessment_submitted" },
                     () => window.open(BOOKING_URL, "_blank", "noopener,noreferrer")
                   )
                 }
               >
                 <Calendar className="mr-1" size={18} />
-                Book Free Electrical Consultation
+                Book Free Consultation
               </Button>
               <p className="text-xs text-muted-foreground -mt-2 text-center max-w-[320px]">
                 Want immediate feedback? Schedule a call with us.
