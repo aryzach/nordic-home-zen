@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
+import { trackEvent } from "@/lib/analytics";
+import { BOOKING_URL } from "@/lib/booking";
 
 export type FaqItem = { question: string; answer: ReactNode };
 
