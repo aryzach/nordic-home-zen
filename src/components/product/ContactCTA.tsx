@@ -33,10 +33,10 @@ const ContactCTA = () => (
               openBookingUrl
             )
           }
-          className="group block sm:inline-block border border-[#111] text-[#111] text-center font-bold text-[16px] tracking-[0.025em] px-6 py-[11px] hover:bg-[#111] hover:text-white transition-colors"
+          className="group inline-flex items-center justify-center gap-2 sm:inline-flex border border-[#111] text-[#111] text-center font-bold text-[16px] tracking-[0.025em] px-6 py-[11px] hover:bg-[#111] hover:text-white transition-colors"
         >
           Book Free Consultation
-          <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
+          <ExternalLink className="w-4 h-4" aria-hidden="true" />
         </button>
       </div>
     </div>
