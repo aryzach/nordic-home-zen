@@ -87,7 +87,7 @@ const heroChecks: { label: string; Icon: typeof Phone }[] = [
   { label: "Personalized recommendations", Icon: FileText },
   { label: "Cost & installation estimates", Icon: DollarSign },
 ];
-...
+
             <ul className="flex flex-col sm:flex-row sm:justify-center gap-2 sm:gap-6 text-[14px] text-[#1c1d1d]">
               {heroChecks.map(({ label, Icon }) => (
                 <li key={label} className="flex items-center justify-center gap-2">
