@@ -13,7 +13,6 @@ const ConsultCallout = ({
   heading: string;
   body?: string;
 }) => {
-  const navigate = useNavigate();
   return (
     <div className="rounded-xl bg-card border border-border/60 p-6 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <div>
