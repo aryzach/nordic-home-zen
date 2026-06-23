@@ -9,6 +9,7 @@ import Specs from "./pages/Specs";
 import Installs from "./pages/Installs";
 import FAQPage from "./pages/FAQPage";
 import Deposit from "./pages/Deposit";
+import DepositSuccess from "./pages/DepositSuccess";
 
 
 import HowItStarted from "./pages/HowItStarted";
@@ -137,6 +138,7 @@ const App = () => (
           <Route path="/installs" element={<Installs />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/deposit" element={<Deposit />} />
+          <Route path="/deposit-success" element={<DepositSuccess />} />
           
           
           <Route path="/how-it-started" element={<HowItStarted />} />
