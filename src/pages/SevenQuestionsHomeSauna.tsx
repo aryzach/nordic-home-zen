@@ -2,6 +2,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
+import { trackEvent } from "@/lib/analytics";
+import { BOOKING_URL } from "@/lib/booking";
+
+const BOOK_LOCATION = "blog_seven_questions";
+const trackBooking = (button_text: string) =>
+  trackEvent("consultation_booking_click", { button_text, location: BOOK_LOCATION });
 
 const SevenQuestionsHomeSauna = () => {
   useSEO({
