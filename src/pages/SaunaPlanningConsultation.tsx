@@ -88,6 +88,30 @@ const heroChecks: { label: string; Icon: typeof Phone }[] = [
   { label: "Cost & installation estimates", Icon: DollarSign },
 ];
 
+const reportItems = [
+  "Recommended sauna models",
+  "Estimated purchase costs",
+  "Estimated installation costs",
+  "Electrical requirements",
+  "Expected timeline",
+  "Pros and cons",
+];
+
+const SaunaPlanningConsultation = () => {
+  return (
+    <div className="min-h-screen flex flex-col bg-background">
+      <Header />
+      <main className="flex-grow pt-20">
+        {/* SECTION 1: HERO */}
+        <section className="section-y border-b border-border">
+          <div className="container-x max-w-3xl text-center">
+            <h1 className="mb-6">Not Sure Which Sauna Is Right For Your Home?</h1>
+            <div className="flex justify-center mb-6">
+              <BookButton />
+            </div>
+            <p className="text-[15px] md:text-[16px] text-[#1c1d1d] mb-6 max-w-2xl mx-auto">
+              After the call, you'll receive personalized recommendations and estimated costs.
+            </p>
             <ul className="flex flex-col sm:flex-row sm:justify-center gap-2 sm:gap-6 text-[14px] text-[#1c1d1d]">
               {heroChecks.map(({ label, Icon }) => (
                 <li key={label} className="flex items-center justify-center gap-2">
