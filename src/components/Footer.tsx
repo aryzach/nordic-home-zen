@@ -48,8 +48,11 @@ const Footer = () => {
             <h4 className={colHeader}>Company</h4>
             <ul className="space-y-3">
               <li><Link to="/history" className={linkClass}>History</Link></li>
+              <li><Link to="/sauna-planning-consultation" className={linkClass}>Planning Consultation</Link></li>
+              <li><Link to="/7-questions-before-buying-a-home-sauna" className={linkClass}>7 Questions Before Buying</Link></li>
               <li><Link to="/policies" onClick={handlePoliciesClick} className={linkClass}>Privacy Policy</Link></li>
             </ul>
+
           </div>
 
           {/* Product */}
