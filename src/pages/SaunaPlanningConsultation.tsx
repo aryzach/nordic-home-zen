@@ -73,13 +73,6 @@ const saunaTypes: SaunaType[] = [
   },
 ];
 
-type Row = { option: string; cost: string; install: string; complexity: string; bestFor: string };
-
-const tableRows: Row[] = [
-  { option: "Anywhere Sauna", cost: "$4k–$6k", install: "Low", complexity: "Low", bestFor: "Renters, simple installs" },
-  { option: "Barrel Sauna", cost: "$6k–$12k", install: "Medium", complexity: "Medium", bestFor: "Outdoor aesthetics" },
-  { option: "Traditional Cabin Sauna", cost: "$8k–$20k+", install: "High", complexity: "High", bestFor: "Maximum performance" },
-];
 
 const mistakes = [
   "Buying a sauna that won't fit",
