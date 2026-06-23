@@ -318,9 +318,10 @@ const SevenQuestionsHomeSauna = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackBooking("schedule a Free Consultation")}
-                className="text-primary underline"
+                className="text-primary underline inline-flex items-baseline gap-1"
               >
                 schedule a Free Consultation
+                <ExternalLink className="w-3 h-3 self-center" aria-hidden="true" />
               </a>
               .
             </p>
@@ -331,9 +332,10 @@ const SevenQuestionsHomeSauna = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackBooking("Schedule Your Free Consultation")}
-                className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
               >
                 Schedule Your Free Consultation
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </a>
             </div>
           </div>
