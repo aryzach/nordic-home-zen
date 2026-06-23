@@ -147,7 +147,7 @@ const Header = () => {
                 trackAndNavigate(
                   "consultation_booking_click",
                   { button_text: "Book Free Consultation", location: "header_mobile" },
-                  () => navigate("/sauna-planning-consultation")
+                  openBookingUrl
                 );
               }}
             >
