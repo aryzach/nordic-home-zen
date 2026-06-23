@@ -94,7 +94,7 @@ const ReservationPaymentOrScheduleCall = () => {
                   trackAndNavigate(
                     "consultation_booking_click",
                     { button_text: "Book Free Consultation", location: "buy_page" },
-                    () => navigate("/sauna-planning-consultation")
+                    openBookingUrl
                   )
                 }
               >
