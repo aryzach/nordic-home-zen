@@ -160,29 +160,6 @@ const SaunaPlanningConsultation = () => {
           </div>
         </section>
 
-
-        {/* SECTION 2: WHAT WE'LL COVER */}
-        <section className="section-y">
-          <div className="container-x max-w-[1100px]">
-            <p className="eyebrow mb-3 text-center">What we'll cover</p>
-            <h2 className="text-center mb-8">On the 30-minute call</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {coverCards.map((card) => (
-                <div key={card.title} className="border border-border bg-white p-5">
-                  <h3 className="mb-3 text-[14px] font-bold tracking-[0.18em] uppercase text-[#1c1d1d]">
-                    {card.title}
-                  </h3>
-                  <ul className="space-y-1.5 text-[14px] text-[#1c1d1d]">
-                    {card.items.map((i) => (
-                      <li key={i}>• {i}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* SECTION 3: COMMON SAUNA TYPES */}
         <section className="section-y bg-[#f5f5f5]">
           <div className="container-x max-w-[1100px]">
