@@ -1,6 +1,12 @@
 import { ExternalLink, Check, X } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const BOOKING_URL = "https://cal.com/zach-pretzell/30min";
 
@@ -17,15 +23,15 @@ const BookButton = ({ className = "" }: { className?: string }) => (
   </a>
 );
 
-type Card = { title: string; items: string[] };
+type CoverItem = { title: string; question: string; items: string[] };
 
-const coverCards: Card[] = [
-  { title: "Space", items: ["Indoor or outdoor", "Available dimensions", "HOA or landlord restrictions", "Access for delivery"] },
-  { title: "Electrical", items: ["Existing outlets", "120V vs 240V", "Electrical upgrades", "Extension run options"] },
-  { title: "Budget", items: ["Sauna budget", "Installation budget", "Operating costs"] },
-  { title: "Goals", items: ["Recovery", "Relaxation", "Heat training", "Family use"] },
-  { title: "Aesthetics", items: ["Barrel sauna", "Cabin sauna", "Modern sauna", "Indoor sauna"] },
-  { title: "Questions", items: ["Compare brands", "Compare models", "Understand tradeoffs", "Anything else"] },
+const coverItems: CoverItem[] = [
+  { title: "Space", question: "Where are you considering putting a sauna?", items: ["Indoor or outdoor", "Available dimensions", "HOA or landlord restrictions", "Access for delivery"] },
+  { title: "Electrical", question: "What can your home electrical setup support?", items: ["Existing outlets", "120V vs 240V", "Electrical upgrades", "Extension run options"] },
+  { title: "Budget", question: "What do you expect to spend all-in?", items: ["Sauna budget", "Installation budget", "Operating costs"] },
+  { title: "Goals", question: "What's important to you when choosing a sauna?", items: ["Recovery", "Relaxation", "Heat training", "Family use"] },
+  { title: "Aesthetics", question: "Did you have a certain look in mind?", items: ["Barrel sauna", "Cabin sauna", "Modern sauna", "Indoor sauna"] },
+  { title: "Questions", question: "Any other considerations you'd like to chat about?", items: ["Compare brands", "Compare models", "Understand tradeoffs", "Anything else"] },
 ];
 
 type SaunaType = {
