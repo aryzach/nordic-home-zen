@@ -302,7 +302,7 @@ const SevenQuestionsHomeSauna = () => {
                 to="/sauna-planning-consultation"
                 className="text-primary underline"
               >
-                schedule a free Free Consultation
+                schedule a Free Consultation
               </Link>
               .
             </p>
