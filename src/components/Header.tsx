@@ -90,12 +90,12 @@ const Header = () => {
                 onClick={() =>
                   trackAndNavigate(
                     "consultation_booking_click",
-                    { button_text: "Book Electrical Consultation", location: "header" },
-                    () => navigate("/sauna-electrical-fit-consultation")
+                    { button_text: "Book Free Consultation", location: "header" },
+                    () => navigate("/sauna-planning-consultation")
                   )
                 }
               >
-                Book Electrical Consultation
+                Book Free Consultation
               </button>
               <button
                 className="btn-primary"
@@ -145,12 +145,12 @@ const Header = () => {
                 setIsMobileMenuOpen(false);
                 trackAndNavigate(
                   "consultation_booking_click",
-                  { button_text: "Book Electrical Consultation", location: "header_mobile" },
-                  () => navigate("/sauna-electrical-fit-consultation")
+                  { button_text: "Book Free Consultation", location: "header_mobile" },
+                  () => navigate("/sauna-planning-consultation")
                 );
               }}
             >
-              Book Electrical Consultation
+              Book Free Consultation
             </button>
             <button
               type="button"

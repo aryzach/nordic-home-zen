@@ -41,10 +41,10 @@ const SevenQuestionsHomeSauna = () => {
               The fastest way to figure out what sauna options make sense for your home is to
               schedule a free 15-minute{" "}
               <Link
-                to="/sauna-electrical-fit-consultation"
+                to="/sauna-planning-consultation"
                 className="text-primary underline"
               >
-                Electrical Fit Consultation
+                Free Consultation
               </Link>
               .
             </p>
@@ -154,7 +154,7 @@ const SevenQuestionsHomeSauna = () => {
             <p>
               If you're not sure whether you have a 15-amp, 20-amp, or 240V circuit available,{" "}
               <Link
-                to="/sauna-electrical-fit-consultation"
+                to="/sauna-planning-consultation"
                 className="text-primary underline"
               >
                 schedule a free consultation
@@ -299,20 +299,20 @@ const SevenQuestionsHomeSauna = () => {
               And if you're unsure what electrical service is available or which sauna options are
               realistic for your space,{" "}
               <Link
-                to="/sauna-electrical-fit-consultation"
+                to="/sauna-planning-consultation"
                 className="text-primary underline"
               >
-                schedule a free Electrical Fit Consultation
+                schedule a Free Consultation
               </Link>
               .
             </p>
 
             <div className="mt-12 pt-8 border-t border-border">
               <Link
-                to="/sauna-electrical-fit-consultation"
+                to="/sauna-planning-consultation"
                 className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
               >
-                Schedule Your Free Electrical Fit Consultation
+                Schedule Your Free Consultation
               </Link>
             </div>
           </div>

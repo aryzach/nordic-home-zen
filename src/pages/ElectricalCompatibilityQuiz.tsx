@@ -50,7 +50,7 @@ const BookConsultationCTA = ({ subtext, mobileLabel }: { subtext?: string; mobil
       onClick={() =>
         trackAndNavigate(
           "consultation_booking_click",
-          { button_text: mobileLabel ?? "Book Free Electrical Consultation", location: "quiz" },
+          { button_text: mobileLabel ?? "Book Free Consultation", location: "quiz" },
           () => window.open(BOOKING_URL, "_blank", "noopener,noreferrer")
         )
       }
@@ -59,10 +59,10 @@ const BookConsultationCTA = ({ subtext, mobileLabel }: { subtext?: string; mobil
       {mobileLabel ? (
         <>
           <span className="sm:hidden">{mobileLabel}</span>
-          <span className="hidden sm:inline">Book Free Electrical Consultation</span>
+          <span className="hidden sm:inline">Book Free Consultation</span>
         </>
       ) : (
-        "Book Free Electrical Consultation"
+        "Book Free Consultation"
       )}
     </Button>
     {subtext && (

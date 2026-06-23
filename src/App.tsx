@@ -26,7 +26,7 @@ import EmailMoreInfo from "./pages/EmailMoreInfo";
 import ThankYou from "./pages/ThankYou";
 import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrScheduleCall";
 
-import ElectricChecklist from "./pages/ElectricChecklist";
+import SaunaPlanningConsultation from "./pages/SaunaPlanningConsultation";
 import ElectricalCompatibilityQuiz from "./pages/ElectricalCompatibilityQuiz";
 import ElectricalAssessmentSubmitted from "./pages/ElectricalAssessmentSubmitted";
 import LeaveReview from "./pages/LeaveReview";
@@ -39,7 +39,7 @@ import { trackEvent } from "./lib/analytics";
 const queryClient = new QueryClient();
 
 const ROUTE_EVENT_MAP: Record<string, string> = {
-  "/sauna-electrical-fit-consultation": "view_consultation_page",
+  "/sauna-planning-consultation": "view_consultation_page",
   "/electrical-assessment-submitted": "assessment_submitted",
 };
 
@@ -56,7 +56,7 @@ const ScrollToTop = () => {
 const VIEW_CONTENT_ROUTES: Record<string, { content_name: string; content_category: string }> = {
   "/buy-your-anywhere-sauna": { content_name: "Anywhere Sauna", content_category: "Product" },
   "/electrical-compatibility-quiz": { content_name: "Electrical Compatibility Quiz", content_category: "Quiz" },
-  "/sauna-electrical-fit-consultation": { content_name: "Electrical Compatibility Consultation", content_category: "Consultation" },
+  "/sauna-planning-consultation": { content_name: "Sauna Planning Consultation", content_category: "Consultation" },
 };
 
 const GAPageView = () => {
@@ -156,8 +156,9 @@ const App = () => (
           <Route path="/buy-your-anywhere-sauna" element={<ReservationPaymentOrScheduleCall />} />
           <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
           
-          <Route path="/sauna-electrical-fit-consultation" element={<ElectricChecklist />} />
-          <Route path="/electric-checklist" element={<Navigate to="/sauna-electrical-fit-consultation" replace />} />
+          <Route path="/sauna-planning-consultation" element={<SaunaPlanningConsultation />} />
+          <Route path="/sauna-electrical-fit-consultation" element={<Navigate to="/sauna-planning-consultation" replace />} />
+          <Route path="/electric-checklist" element={<Navigate to="/sauna-planning-consultation" replace />} />
           <Route path="/leave-review" element={<LeaveReview />} />
           <Route path="/electrical-compatibility-quiz" element={<ElectricalCompatibilityQuiz />} />
           <Route path="/electrical-assessment-submitted" element={<ElectricalAssessmentSubmitted />} />

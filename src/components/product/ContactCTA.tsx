@@ -22,7 +22,7 @@ const ContactCTA = () => (
           <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
         </Link>
         <Link
-          to="/sauna-electrical-fit-consultation"
+          to="/sauna-planning-consultation"
           className="group block sm:inline-block border border-[#111] text-[#111] text-center font-bold text-[16px] tracking-[0.025em] px-6 py-[11px] hover:bg-[#111] hover:text-white transition-colors"
         >
           Book Free Consultation

@@ -85,10 +85,10 @@ const ProductHero = () => {
                 </span>
               </Link>
               <Link
-                to="/sauna-electrical-fit-consultation"
+                to="/sauna-planning-consultation"
                 className="group block w-full border border-[#111111] text-[#111111] text-center font-bold text-[16px] tracking-[0.025em] mb-2.5 px-5 py-[11px] hover:bg-[#111] hover:text-white transition-colors"
               >
-                Book Free Electrical Consultation
+                Book Free Consultation
                 <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">
                   →
                 </span>
