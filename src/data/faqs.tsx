@@ -12,9 +12,20 @@ export const faqs: FaqItem[] = [
         Yes — it's specifically designed for standard 110/120V outlets. About ~97% of homes and apartments already have the setup needed.
         {"\n\n"}
         If you're unsure, book a{" "}
-        <Link to="/sauna-planning-consultation" className="underline hover:text-primary">
+        <a
+          href={BOOKING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() =>
+            trackEvent("consultation_booking_click", {
+              button_text: "30-minute video consult",
+              location: "faq_answer",
+            })
+          }
+          className="underline hover:text-primary"
+        >
           30-minute video consult
-        </Link>{" "}
+        </a>{" "}
         and we'll check your outlet + breaker together.
       </>
     ),
