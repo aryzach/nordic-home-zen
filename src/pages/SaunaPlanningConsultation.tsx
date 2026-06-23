@@ -15,6 +15,12 @@ const BookButton = ({ className = "" }: { className?: string }) => (
     href={BOOKING_URL}
     target="_blank"
     rel="noopener noreferrer"
+    onClick={() =>
+      trackEvent("consultation_booking_click", {
+        button_text: "Book Free Consultation",
+        location: "consultation_page",
+      })
+    }
     className={`inline-flex items-center justify-center gap-2 bg-white text-[#111111] border border-[#111111] font-bold text-[16px] px-5 py-[11px] hover:bg-[#111111] hover:text-white transition-colors ${className}`}
     style={{ fontFamily: "'Montserrat', ui-sans-serif, system-ui, sans-serif" }}
   >
