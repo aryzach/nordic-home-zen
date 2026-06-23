@@ -186,10 +186,6 @@ const SaunaPlanningConsultation = () => {
                         <dd>{s.bestFor}</dd>
                       </div>
                       <div>
-                        <dt className="font-bold">Typical price</dt>
-                        <dd>{s.price}</dd>
-                      </div>
-                      <div>
                         <dt className="font-bold">Install difficulty</dt>
                         <dd>{s.difficulty}</dd>
                       </div>
