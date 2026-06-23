@@ -39,7 +39,7 @@ type SaunaType = {
 const saunaTypes: SaunaType[] = [
   {
     name: "Anywhere Sauna",
-    image: "/anywhere-sauna-backyard.jpg",
+    image: "/images/sauna-type-anywhere.jpg",
     bestFor: "Renters, apartments, simple installs",
     price: "$4k – $6k",
     difficulty: "Low — plug into a standard outlet",
