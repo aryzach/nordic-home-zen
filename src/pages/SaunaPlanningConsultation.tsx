@@ -55,14 +55,14 @@ const saunaTypes: SaunaType[] = [
     image: "/images/sauna-type-barrel.jpg",
     bestFor: "Outdoor backyards, traditional look",
     price: "$6k – $12k",
-    difficulty: "Medium — usually needs 240V",
+    difficulty: "High — dedicated circuit, electrician required",
   },
   {
     name: "Traditional Cabin Sauna",
     image: "/images/sauna-type-cabin.jpg",
     bestFor: "Maximum performance, full Finnish experience",
     price: "$8k – $20k+",
-    difficulty: "High — dedicated circuit, often electrician",
+    difficulty: "High — dedicated circuit, electrician required",
   },
   {
     name: "Infrared Sauna",
