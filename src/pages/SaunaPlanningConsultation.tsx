@@ -1,4 +1,4 @@
-import { ExternalLink, Check, X } from "lucide-react";
+import { ExternalLink, Check, X, Phone, FileText, DollarSign } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {
@@ -82,10 +82,10 @@ const mistakes = [
   "Buying a sauna that doesn't match your goals",
 ];
 
-const heroChecks = [
-  "Free 30-minute call",
-  "Personalized recommendations",
-  "Cost & installation estimates",
+const heroChecks: { label: string; Icon: typeof Phone }[] = [
+  { label: "Free 30-minute call", Icon: Phone },
+  { label: "Personalized recommendations", Icon: FileText },
+  { label: "Cost & installation estimates", Icon: DollarSign },
 ];
 
 const reportItems = [
@@ -113,9 +113,9 @@ const SaunaPlanningConsultation = () => {
               After the call, you'll receive personalized recommendations and estimated costs.
             </p>
             <ul className="flex flex-col sm:flex-row sm:justify-center gap-2 sm:gap-6 text-[14px] text-[#1c1d1d]">
-              {heroChecks.map((c) => (
-                <li key={c} className="flex items-center justify-center gap-2">
-                  <Check className="w-4 h-4 text-[#111111] sm:hidden" aria-hidden="true" /> {c}
+              {heroChecks.map(({ label, Icon }) => (
+                <li key={label} className="flex items-center justify-center gap-2">
+                  <Icon className="w-4 h-4 text-[#111111]" aria-hidden="true" /> {label}
                 </li>
               ))}
             </ul>
