@@ -68,9 +68,10 @@ const Footer = () => {
                       location: "footer",
                     })
                   }
-                  className={linkClass}
+                  className={`${linkClass} inline-flex items-center gap-1.5`}
                 >
                   Free Consultation
+                  <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
                 </a>
               </li>
               <li><Link to="/electrical-compatibility-quiz" className={linkClass}>Compatibility Quiz</Link></li>
