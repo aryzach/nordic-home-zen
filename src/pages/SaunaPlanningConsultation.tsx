@@ -174,7 +174,8 @@ const SaunaPlanningConsultation = () => {
                     loading="lazy"
                     width={800}
                     height={600}
-                    className="w-full aspect-[4/3] object-cover"
+                    className="w-full aspect-[4/3] object-contain bg-[#f5f5f5]"
+
                   />
                   <div className="p-4 flex-1 flex flex-col">
                     <h3 className="text-[14px] font-bold tracking-[0.025em] uppercase mb-3 text-[#1c1d1d]">
