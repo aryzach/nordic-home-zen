@@ -38,6 +38,7 @@ const routes = [
   '/thank-you',
   '/buy-your-anywhere-sauna',
   '/electrical-compatibility-quiz',
+  '/sauna-planning-consultation',
 ];
 
 const PORT = 5173;
@@ -160,6 +161,21 @@ async function prerender() {
     console.log(`Successfully generated: ${successCount}/${routes.length} pages`);
     if (failedRoutes.length > 0) {
       console.log(`Failed routes: ${failedRoutes.join(', ')}`);
+    }
+
+    // GitHub Pages SPA fallback: copy index.html to 404.html so that
+    // any deep-link path not prerendered above still loads the SPA shell
+    // (React Router then renders the correct route client-side) instead
+    // of GitHub Pages' default 404 page.
+    try {
+      const indexPath = path.join(distDir, 'index.html');
+      const notFoundPath = path.join(distDir, '404.html');
+      if (fs.existsSync(indexPath)) {
+        fs.copyFileSync(indexPath, notFoundPath);
+        console.log(`✓ Wrote GitHub Pages SPA fallback: ${notFoundPath}`);
+      }
+    } catch (e) {
+      console.error('Failed to write 404.html fallback:', e.message);
     }
     console.log('========================================\n');
   } finally {
