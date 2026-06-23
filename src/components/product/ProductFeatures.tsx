@@ -9,7 +9,7 @@ type Feature = {
   body: string;
   image?: string;
   alt?: string;
-  cta?: { label: string; to: string };
+  cta?: { label: string; to?: string; bookConsultation?: boolean };
   reverse?: boolean;
 };
 
