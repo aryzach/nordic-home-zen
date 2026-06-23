@@ -30,7 +30,7 @@ const ProductHero = () => {
               <img
                 src={gallery[active].src}
                 alt={gallery[active].alt}
-                className="w-full h-full object-cover"
+                className={`w-full h-full ${active < 2 ? "object-contain" : "object-cover"}`}
               />
             </div>
             <div className="mt-3 grid grid-cols-5 gap-2">

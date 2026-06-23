@@ -54,7 +54,7 @@ const Row = ({ feature }: { feature: Feature }) => {
             <img
               src={feature.image}
               alt={feature.alt}
-              className="w-full h-full object-cover"
+              className={`w-full h-full ${feature.eyebrow === "Standard Outlet" ? "object-contain" : "object-cover"}`}
               loading="lazy"
             />
           </div>
