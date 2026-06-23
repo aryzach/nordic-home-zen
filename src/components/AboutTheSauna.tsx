@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ExternalLink } from "lucide-react";
 import standardOutlet from "@/assets/standard-outlet.png";
 import ImageLightbox from "./ImageLightbox";
 import { trackEvent } from "@/lib/analytics";
@@ -48,9 +49,10 @@ const overviewGroup: SpecGroup = {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackSpecsBooking("Book Free Consultation")}
-          className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium"
+          className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium inline-flex items-baseline gap-1"
         >
           Book Free Consultation
+          <ExternalLink className="w-3 h-3 self-center" aria-hidden="true" />
         </a>
       ),
     },
@@ -90,9 +92,10 @@ const moreGroups: SpecGroup[] = [
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackSpecsBooking("Book Free Consultation")}
-              className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium"
+              className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium inline-flex items-baseline gap-1"
             >
               Book Free Consultation
+              <ExternalLink className="w-3 h-3 self-center" aria-hidden="true" />
             </a>
             .
           </>

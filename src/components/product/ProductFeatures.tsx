@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ExternalLink } from "lucide-react";
 import heaterImg from "@/assets/finnishheater.png";
 import { trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
@@ -86,10 +87,10 @@ const Row = ({ feature }: { feature: Feature }) => {
                   openBookingUrl
                 )
               }
-              className="group inline-block mt-5 text-[13px] font-bold tracking-[0.18em] uppercase text-[#111] border-b border-[#111] pb-1 hover:opacity-70 transition-opacity"
+              className="group inline-flex items-center gap-2 mt-5 text-[13px] font-bold tracking-[0.18em] uppercase text-[#111] border-b border-[#111] pb-1 hover:opacity-70 transition-opacity"
             >
               {feature.cta.label}
-              <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
+              <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
             </button>
           ) : (
             <Link

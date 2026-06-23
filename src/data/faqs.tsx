@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ExternalLink } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 import { BOOKING_URL } from "@/lib/booking";
 
@@ -22,9 +23,10 @@ export const faqs: FaqItem[] = [
               location: "faq_answer",
             })
           }
-          className="underline hover:text-primary"
+          className="underline hover:text-primary inline-flex items-baseline gap-1"
         >
           30-minute video consult
+          <ExternalLink className="w-3 h-3 self-center" aria-hidden="true" />
         </a>{" "}
         and we'll check your outlet + breaker together.
       </>

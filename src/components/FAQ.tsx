@@ -1,5 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
 import { trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
 import { faqs } from "@/data/faqs";
@@ -32,7 +33,10 @@ const ConsultCallout = ({
           )
         }
       >
-        Book Free Consultation
+        <span className="inline-flex items-center gap-2">
+          Book Free Consultation
+          <ExternalLink className="w-4 h-4" aria-hidden="true" />
+        </span>
       </Button>
     </div>
   );
@@ -83,7 +87,10 @@ const FAQ = () => {
               )
             }
           >
-            More Questions?
+            <span className="inline-flex items-center gap-2">
+              More Questions?
+              <ExternalLink className="w-4 h-4" aria-hidden="true" />
+            </span>
           </Button>
         </div>
       </div>

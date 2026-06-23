@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
@@ -87,7 +87,10 @@ const Header = () => {
             {/* CTAs */}
             <div className="hidden lg:flex items-center gap-3">
               <button
-                className={lightOnHero ? "btn-outline" : "btn-dark-outline"}
+                className={cn(
+                  "inline-flex items-center justify-center gap-2",
+                  lightOnHero ? "btn-outline" : "btn-dark-outline"
+                )}
                 onClick={() =>
                   trackAndNavigate(
                     "consultation_booking_click",
@@ -97,6 +100,7 @@ const Header = () => {
                 }
               >
                 Book Free Consultation
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </button>
               <button
                 className="btn-primary"
@@ -141,7 +145,7 @@ const Header = () => {
             ))}
             <button
               type="button"
-              className="btn-dark-outline mt-8 w-full"
+              className="btn-dark-outline mt-8 w-full inline-flex items-center justify-center gap-2"
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 trackAndNavigate(
@@ -152,6 +156,7 @@ const Header = () => {
               }}
             >
               Book Free Consultation
+              <ExternalLink className="w-4 h-4" aria-hidden="true" />
             </button>
             <button
               type="button"
