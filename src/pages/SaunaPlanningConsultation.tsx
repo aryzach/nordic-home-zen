@@ -112,25 +112,54 @@ const SaunaPlanningConsultation = () => {
         {/* SECTION 1: HERO */}
         <section className="section-y border-b border-border">
           <div className="container-x max-w-3xl text-center">
-            <h1 className="mb-4">Not Sure Which Sauna Is Right For Your Home?</h1>
-            <p className="text-[15px] md:text-[16px] text-[#1c1d1d] mb-3 max-w-2xl mx-auto">
-              We'll help you compare sauna options based on your space, electrical setup, budget, and goals.
-            </p>
-            <p className="text-[14px] text-[#1c1d1d]/80 mb-6 max-w-2xl mx-auto">
-              After the call, you'll receive personalized recommendations and estimated costs.
-            </p>
-            <div className="flex justify-center mb-5">
+            <h1 className="mb-6">Not Sure Which Sauna Is Right For Your Home?</h1>
+            <div className="flex justify-center mb-6">
               <BookButton />
             </div>
+            <p className="text-[15px] md:text-[16px] text-[#1c1d1d] mb-6 max-w-2xl mx-auto">
+              After the call, you'll receive personalized recommendations and estimated costs.
+            </p>
             <ul className="flex flex-col sm:flex-row sm:justify-center gap-2 sm:gap-6 text-[14px] text-[#1c1d1d]">
               {heroChecks.map((c) => (
                 <li key={c} className="flex items-center justify-center gap-2">
-                  <Check className="w-4 h-4 text-[#111111]" aria-hidden="true" /> {c}
+                  <Check className="w-4 h-4 text-[#111111] sm:hidden" aria-hidden="true" /> {c}
                 </li>
               ))}
             </ul>
           </div>
         </section>
+
+        {/* SECTION 2: WHAT WE'LL COVER */}
+        <section className="section-y">
+          <div className="container-x max-w-[1100px]">
+            <p className="eyebrow mb-3 text-center">What we'll cover</p>
+            <h2 className="text-center mb-8">On the 30-minute call</h2>
+            <Accordion type="single" collapsible className="max-w-3xl mx-auto">
+              {coverItems.map((item) => (
+                <AccordionItem key={item.title} value={item.title} className="border-b border-[#e8e8e1]">
+                  <AccordionTrigger className="hover:no-underline py-5 text-left">
+                    <div>
+                      <div className="text-[14px] font-bold tracking-[0.18em] uppercase text-[#1c1d1d]">
+                        {item.title}
+                      </div>
+                      <div className="text-[14px] text-[#1c1d1d]/70 mt-1 font-normal normal-case tracking-normal">
+                        {item.question}
+                      </div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="space-y-1.5 text-[14px] text-[#1c1d1d] pb-2">
+                      {item.items.map((i) => (
+                        <li key={i}>• {i}</li>
+                      ))}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
+
 
         {/* SECTION 2: WHAT WE'LL COVER */}
         <section className="section-y">
