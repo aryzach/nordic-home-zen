@@ -208,30 +208,8 @@ const SaunaPlanningConsultation = () => {
             <p className="eyebrow mb-3 text-center">What you'll receive</p>
             <h2 className="text-center mb-8">Your Personalized Sauna Plan</h2>
 
-            <div className="border border-border overflow-x-auto bg-white">
-              <table className="w-full text-[14px] text-[#1c1d1d]">
-                <thead>
-                  <tr className="bg-[#f5f5f5] text-left">
-                    <th className="px-4 py-3 font-bold border-b border-border">Option</th>
-                    <th className="px-4 py-3 font-bold border-b border-border">Purchase Cost</th>
-                    <th className="px-4 py-3 font-bold border-b border-border">Install Cost</th>
-                    <th className="px-4 py-3 font-bold border-b border-border">Complexity</th>
-                    <th className="px-4 py-3 font-bold border-b border-border">Best For</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tableRows.map((r, i) => (
-                    <tr key={r.option} className={i % 2 === 1 ? "bg-[#f5f5f5]" : "bg-white"}>
-                      <td className="px-4 py-3 border-b border-border font-bold">{r.option}</td>
-                      <td className="px-4 py-3 border-b border-border">{r.cost}</td>
-                      <td className="px-4 py-3 border-b border-border">{r.install}</td>
-                      <td className="px-4 py-3 border-b border-border">{r.complexity}</td>
-                      <td className="px-4 py-3 border-b border-border">{r.bestFor}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+
+
 
             <div className="mt-6 max-w-3xl mx-auto">
               <p className="text-[14px] text-[#1c1d1d] mb-3">
