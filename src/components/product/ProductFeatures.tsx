@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import heaterImg from "@/assets/finnishheater.png";
+import { trackAndNavigate } from "@/lib/analytics";
+import { openBookingUrl } from "@/lib/booking";
 
 type Feature = {
   eyebrow: string;
