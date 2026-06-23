@@ -52,9 +52,10 @@ const SevenQuestionsHomeSauna = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackBooking("Free Consultation")}
-                className="text-primary underline"
+                className="text-primary underline inline-flex items-baseline gap-1"
               >
                 Free Consultation
+                <ExternalLink className="w-3 h-3 self-center" aria-hidden="true" />
               </a>
               .
             </p>
