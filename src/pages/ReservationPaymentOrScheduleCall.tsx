@@ -58,7 +58,7 @@ const ReservationPaymentOrScheduleCall = () => {
                     } catch {}
                     trackAndNavigate(
                       "deposit_checkout_started",
-                      { button_text: "Pay $500 deposit", value: 500, currency: "USD" },
+                      { location: "buy_page", amount: 500, currency: "USD" },
                       () => {
                         window.open(
                           "https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B",

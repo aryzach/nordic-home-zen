@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 const saunaExterior = "/installs/specs-1.jpg";
 import { useSEO } from "@/hooks/useSEO";
+import { trackAndNavigate } from "@/lib/analytics";
 
 const Deposit = () => {
   useSEO({
@@ -47,6 +48,17 @@ const Deposit = () => {
                 <div className="flex flex-col mb-3">
                   <a
                     href="https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      trackAndNavigate(
+                        "deposit_checkout_started",
+                        { location: "deposit_page", amount: 500, currency: "USD" },
+                        () => {
+                          window.location.href =
+                            "https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B";
+                        }
+                      );
+                    }}
                     className="group block w-full bg-[#111111] text-white text-center font-bold text-[16px] tracking-[0.025em] px-5 py-[11px] hover:bg-black transition-colors"
                   >
                     Reserve Yours Now
