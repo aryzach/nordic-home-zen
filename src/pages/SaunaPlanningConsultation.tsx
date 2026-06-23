@@ -112,10 +112,11 @@ const SaunaPlanningConsultation = () => {
             <p className="text-[15px] md:text-[16px] text-[#1c1d1d] mb-6 max-w-2xl mx-auto">
               After the call, you'll receive personalized recommendations and estimated costs.
             </p>
-            <ul className="flex flex-col sm:flex-row sm:justify-center gap-2 sm:gap-6 text-[14px] text-[#1c1d1d]">
+            <ul className="flex flex-col sm:flex-row sm:justify-center gap-3 sm:gap-12 text-[14px] text-[#1c1d1d]">
               {heroChecks.map(({ label, Icon }) => (
-                <li key={label} className="flex items-center justify-center gap-2">
-                  <Icon className="w-4 h-4 text-[#111111]" aria-hidden="true" /> {label}
+                <li key={label} className="flex sm:flex-col items-center justify-center gap-2">
+                  <Icon className="w-4 h-4 sm:w-6 sm:h-6 text-[#111111]" aria-hidden="true" />
+                  <span>{label}</span>
                 </li>
               ))}
             </ul>
@@ -127,29 +128,34 @@ const SaunaPlanningConsultation = () => {
           <div className="container-x max-w-[1100px]">
             <p className="eyebrow mb-3 text-center">What we'll cover</p>
             <h2 className="text-center mb-8">On the 30-minute call</h2>
-            <Accordion type="single" collapsible className="max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-10 max-w-3xl md:max-w-[1000px] mx-auto">
               {coverItems.map((item) => (
-                <AccordionItem key={item.title} value={item.title} className="border-b border-[#e8e8e1]">
-                  <AccordionTrigger className="hover:no-underline py-5 text-left">
-                    <div>
-                      <div className="text-[14px] font-bold tracking-[0.18em] uppercase text-[#1c1d1d]">
-                        {item.title}
+                <Accordion key={item.title} type="single" collapsible>
+                  <AccordionItem value={item.title} className="border-b border-[#e8e8e1]">
+                    <AccordionTrigger className="hover:no-underline py-4 text-left">
+                      <div>
+                        <div className="text-[13px] font-bold tracking-[0.18em] uppercase text-[#1c1d1d]">
+                          {item.title}
+                        </div>
+                        <div className="text-[14px] text-[#1c1d1d]/70 mt-1 font-normal normal-case tracking-normal">
+                          {item.question}
+                        </div>
                       </div>
-                      <div className="text-[14px] text-[#1c1d1d]/70 mt-1 font-normal normal-case tracking-normal">
-                        {item.question}
-                      </div>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <ul className="space-y-1.5 text-[14px] text-[#1c1d1d] pb-2">
-                      {item.items.map((i) => (
-                        <li key={i}>• {i}</li>
-                      ))}
-                    </ul>
-                  </AccordionContent>
-                </AccordionItem>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-[13px] text-[#1c1d1d] pb-3 pt-1">
+                        {item.items.map((i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <span className="text-[#C28C5C] mt-[1px]">—</span>
+                            <span>{i}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               ))}
-            </Accordion>
+            </div>
           </div>
         </section>
 
