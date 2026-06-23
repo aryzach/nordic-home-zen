@@ -43,9 +43,15 @@ const overviewGroup: SpecGroup = {
       label: "Power Requirement",
       value: "Standard 110/120V outlet with 20A breaker",
       helper: (
-        <Link to="/sauna-planning-consultation" className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium">
+        <a
+          href={BOOKING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackSpecsBooking("Book Free Consultation")}
+          className="underline text-[#1c1d1d] hover:no-underline not-italic font-medium"
+        >
           Book Free Consultation
-        </Link>
+        </a>
       ),
     },
   ],
