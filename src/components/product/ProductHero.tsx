@@ -60,6 +60,12 @@ const ProductHero = () => {
             >
               Anywhere Sauna
             </h1>
+            <p className="text-[20px] font-bold tracking-[0.025em] text-[#1c1d1d] mb-1">
+              $4,599 Delivered
+            </p>
+            <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-4">
+              Includes shipping anywhere in the continental US
+            </p>
             <p className="text-[14px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d] mb-6">
               The only steam sauna designed to run on a standard home outlet — no electrician, no permits, no rewiring.
             </p>
