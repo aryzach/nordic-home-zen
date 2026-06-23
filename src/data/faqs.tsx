@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ExternalLink } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 import { BOOKING_URL } from "@/lib/booking";
 
