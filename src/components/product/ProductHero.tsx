@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Plug, Users, Flame, Home } from "lucide-react";
+import { trackAndNavigate } from "@/lib/analytics";
+import { openBookingUrl } from "@/lib/booking";
 
 const gallery = [
   { src: "/installs/specs-1.jpg", alt: "Anywhere Sauna exterior in a backyard" },
