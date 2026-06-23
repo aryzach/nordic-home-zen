@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { trackEvent } from "@/lib/analytics";
 
 const BOOKING_URL = "https://cal.com/zach-pretzell/30min";
 
