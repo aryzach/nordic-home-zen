@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Plug, Users, Flame, Home } from "lucide-react";
+import { Plug, Users, Flame, Home, ExternalLink } from "lucide-react";
 import { trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
 
