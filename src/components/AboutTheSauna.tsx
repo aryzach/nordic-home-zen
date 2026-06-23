@@ -8,6 +8,11 @@ import {
 } from "@/components/ui/accordion";
 import standardOutlet from "@/assets/standard-outlet.png";
 import ImageLightbox from "./ImageLightbox";
+import { trackEvent } from "@/lib/analytics";
+import { BOOKING_URL } from "@/lib/booking";
+
+const trackSpecsBooking = (button_text: string) =>
+  trackEvent("consultation_booking_click", { button_text, location: "about_the_sauna_specs" });
 
 const aboutPhotos = [
   { src: "/assets/about-sauna-1.jpeg", alt: "Anywhere Sauna interior with heater and open door view" },
