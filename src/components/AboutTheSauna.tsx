@@ -106,7 +106,7 @@ const moreGroups: SpecGroup[] = [
       {
         label: "Compatible with HeaterInferno Heater",
         value: (
-          <Link to="/heater-inferno" className="text-accent hover:underline">
+          <Link to="/heater-inferno" className="text-foreground hover:underline">
             Yes (shipping 2027)
           </Link>
         ),
