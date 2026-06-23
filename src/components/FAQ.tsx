@@ -87,7 +87,10 @@ const FAQ = () => {
               )
             }
           >
-            More Questions?
+            <span className="inline-flex items-center gap-2">
+              More Questions?
+              <ExternalLink className="w-4 h-4" aria-hidden="true" />
+            </span>
           </Button>
         </div>
       </div>
