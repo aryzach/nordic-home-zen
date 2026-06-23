@@ -44,7 +44,7 @@ const Deposit = () => {
                   Fully refundable for 3 weeks.
                 </p>
 
-                <div className="flex flex-col mb-8">
+                <div className="flex flex-col mb-3">
                   <a
                     href="https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B"
                     className="group block w-full bg-[#111111] text-white text-center font-bold text-[16px] tracking-[0.025em] px-5 py-[11px] hover:bg-black transition-colors"
@@ -55,6 +55,9 @@ const Deposit = () => {
                     </span>
                   </a>
                 </div>
+                <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-8">
+                  Pay $500 today, remaining $4,099 due before shipment
+                </p>
               </div>
             </div>
           </div>
@@ -92,7 +95,15 @@ const Deposit = () => {
                 </p>
               </div>
               <div>
-                <h3 className="font-bold mb-1.5">3. Production Queue</h3>
+                <h3 className="font-bold mb-1.5">3. Returns</h3>
+                <p>
+                  If you return your sauna, the product purchase price ($3,649) is refundable.
+                  Shipping and delivery charges ($950) are non-refundable because they cover
+                  transportation and logistics costs already incurred.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-bold mb-1.5">4. Production Queue</h3>
                 <p>
                   Your reservation secures your position in the production queue. The deposit does
                   not guarantee a specific delivery date, as production timelines are subject to
@@ -100,7 +111,7 @@ const Deposit = () => {
                 </p>
               </div>
               <div>
-                <h3 className="font-bold mb-1.5">4. Order Confirmation</h3>
+                <h3 className="font-bold mb-1.5">5. Order Confirmation</h3>
                 <p>
                   Once your deposit is made, a representative from SF Sauna will contact you to
                   confirm your order details. The production process will commence upon the
@@ -108,14 +119,14 @@ const Deposit = () => {
                 </p>
               </div>
               <div>
-                <h3 className="font-bold mb-1.5">5. Non-Transferability</h3>
+                <h3 className="font-bold mb-1.5">6. Non-Transferability</h3>
                 <p>
                   This deposit and reservation are non-transferable and are applicable only to the
                   original purchaser.
                 </p>
               </div>
               <div>
-                <h3 className="font-bold mb-1.5">6. Agreement to Terms</h3>
+                <h3 className="font-bold mb-1.5">7. Agreement to Terms</h3>
                 <p>
                   By submitting your deposit, you agree to these terms and conditions. SF Sauna
                   reserves the right to modify these terms at any time, with notice provided to
