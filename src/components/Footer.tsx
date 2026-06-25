@@ -118,7 +118,7 @@ const Footer = () => {
               className="flex flex-col gap-2"
             >
               <input type="hidden" name="access_key" value="dbdd31bb-6234-4a4f-93cd-679cefbf3f78" />
-              <input type="hidden" name="redirect" value="https://www.sfsaunarental.com/email-more-info/" />
+              <input type="hidden" name="redirect" value={`${window.location.origin}/email-signed-up`} />
               <Input
                 type="email"
                 name="email"
