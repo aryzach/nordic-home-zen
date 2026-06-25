@@ -18,7 +18,7 @@ import HeaterInferno from "./pages/HeaterInferno";
 import InstallPower from "./pages/InstallPower";
 import Policies from "./pages/Policies";
 import LearnHub from "./pages/LearnHub";
-import Contact from "./pages/Contact";
+
 import ContactPage from "./pages/ContactPage";
 import Media from "./pages/Media";
 import LearnMore from "./pages/LearnMore";
@@ -148,7 +148,7 @@ const App = () => (
           <Route path="/install-power" element={<InstallPower />} />
           <Route path="/policies" element={<Policies />} />
           <Route path="/learn" element={<LearnHub />} />
-          <Route path="/reserve-your-sauna" element={<Contact />} />
+          <Route path="/reserve-your-sauna" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
           <Route path="/learn-more" element={<LearnMore />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/media" element={<Media />} />
