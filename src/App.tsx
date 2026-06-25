@@ -24,6 +24,7 @@ import Media from "./pages/Media";
 import LearnMore from "./pages/LearnMore";
 import ServiceAreas from "./pages/ServiceAreas";
 import EmailMoreInfo from "./pages/EmailMoreInfo";
+import EmailSignedUp from "./pages/EmailSignedUp";
 import ThankYou from "./pages/ThankYou";
 import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrScheduleCall";
 
