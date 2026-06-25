@@ -155,6 +155,7 @@ const App = () => (
           <Route path="/media" element={<Media />} />
           <Route path="/climate-performance" element={<ServiceAreas />} />
           <Route path="/email-more-info" element={<EmailMoreInfo />} />
+          <Route path="/email-signed-up" element={<EmailSignedUp />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/buy-your-anywhere-sauna" element={<ReservationPaymentOrScheduleCall />} />
           <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
