@@ -18,7 +18,7 @@ import HeaterInferno from "./pages/HeaterInferno";
 import InstallPower from "./pages/InstallPower";
 import Policies from "./pages/Policies";
 import LearnHub from "./pages/LearnHub";
-import Contact from "./pages/Contact";
+
 import ContactPage from "./pages/ContactPage";
 import Media from "./pages/Media";
 import LearnMore from "./pages/LearnMore";

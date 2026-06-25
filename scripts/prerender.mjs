@@ -15,7 +15,7 @@ const routes = [
   '/install-power',
   '/policies',
   '/learn',
-  '/reserve-your-sauna',
+  
   '/learn-more',
   '/contact',
   '/media',
