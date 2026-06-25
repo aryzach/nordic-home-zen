@@ -34,7 +34,7 @@ const ContactPage = () => {
                   className="space-y-6"
                 >
                   <input type="hidden" name="access_key" value="91e8aa2d-8afa-4f9b-bab7-bfaca33818bd" />
-                  <input type="hidden" name="redirect" value="https://sfsaunarental.com/thank-you" />
+                  <input type="hidden" name="redirect" value={`${window.location.origin}/contact-thanks`} />
 
                   <div className="space-y-2">
                     <Label htmlFor="name">Name</Label>

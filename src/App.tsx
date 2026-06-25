@@ -25,6 +25,7 @@ import LearnMore from "./pages/LearnMore";
 import ServiceAreas from "./pages/ServiceAreas";
 import EmailMoreInfo from "./pages/EmailMoreInfo";
 import EmailSignedUp from "./pages/EmailSignedUp";
+import ContactThanks from "./pages/ContactThanks";
 import ThankYou from "./pages/ThankYou";
 import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrScheduleCall";
 
@@ -156,6 +157,7 @@ const App = () => (
           <Route path="/climate-performance" element={<ServiceAreas />} />
           <Route path="/email-more-info" element={<EmailMoreInfo />} />
           <Route path="/email-signed-up" element={<EmailSignedUp />} />
+          <Route path="/contact-thanks" element={<ContactThanks />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/buy-your-anywhere-sauna" element={<ReservationPaymentOrScheduleCall />} />
           <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
