@@ -11,38 +11,49 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import nordicaImg from "@/assets/compare-nordica.png.asset.json";
+import barrelImg from "@/assets/compare-barrel.png.asset.json";
+import plungeImg from "@/assets/compare-plunge.png.asset.json";
+import infraredImg from "@/assets/compare-infrared.png.asset.json";
 
 type Cell = string | "yes" | "no" | "yes-anywhere";
-type Row = { label: string; anywhere: Cell; nordica: Cell; barrel: Cell; plunge: Cell };
+type Row = {
+  label: string;
+  anywhere: Cell;
+  nordica: Cell;
+  barrel: Cell;
+  plunge: Cell;
+  infrared: Cell;
+};
 
 const summaryRows: Row[] = [
-  { label: "Standard Outlet (110/120V, 20A)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
-  { label: "Renter Friendly", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
-  { label: "Traditional Finnish Temps (~176°F)", anywhere: "yes-anywhere", nordica: "yes", barrel: "yes", plunge: "yes" },
-  { label: "No Electrician Required", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
-  { label: "All-in Cost", anywhere: "$4,799", nordica: "$6,149+", barrel: "$5,399+", plunge: "$11,089+" },
+  { label: "Standard Outlet (110/120V, 20A)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no", infrared: "yes" },
+  { label: "Renter Friendly", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no", infrared: "yes" },
+  { label: "Traditional Finnish Temps (~176°F)", anywhere: "yes-anywhere", nordica: "yes", barrel: "yes", plunge: "yes", infrared: "no" },
+  { label: "No Electrician Required", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no", infrared: "yes" },
+  { label: "All-in Cost", anywhere: "$4,799", nordica: "$6,149+", barrel: "$5,399+", plunge: "$11,089+", infrared: "$2,299+" },
 ];
 
 const fullRows: Row[] = [
-  { label: "Traditional Finnish Temps (~176°F)", anywhere: "yes-anywhere", nordica: "yes", barrel: "yes", plunge: "yes" },
-  { label: "Standard Outlet (110/120V, 20A circuit breaker)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
-  { label: "Full Body Heat (incl. legs and feet)", anywhere: "yes-anywhere", nordica: "yes", barrel: "no", plunge: "yes" },
-  { label: "Renter Friendly", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
-  { label: "Install Without Permits or Landlord Approval", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
-  { label: "Works on Any Level Surface (No Site Prep)", anywhere: "yes-anywhere", nordica: "yes", barrel: "no", plunge: "no" },
-  { label: "No Electrician Required", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
-  { label: "Setup Time", anywhere: "~2 hours", nordica: "~8 hours", barrel: "~8 hours", plunge: "~2 hours" },
-  { label: "Exterior Dimensions", anywhere: "TBD", nordica: '54" × 52" × 82"', barrel: '72" × 72" × 78"', plunge: '52" × 57" × 94"' },
-  { label: "Heated Space", anywhere: "57 cu ft", nordica: "93 cu ft", barrel: "147 cu ft", plunge: "161 cu ft" },
-  { label: "Wood Type", anywhere: "Red Cedar", nordica: "Spruce", barrel: "Red Cedar", plunge: "Red Cedar" },
-  { label: "Longevity", anywhere: "~30 years", nordica: "~15 years", barrel: "~30 years", plunge: "~30 years" },
-  { label: "Heater Included", anywhere: "no", nordica: "no", barrel: "yes", plunge: "yes" },
-  { label: "Compatible with Heater Inferno (shipping 2027)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
-  { label: "Unit Cost", anywhere: "$3,649", nordica: "$3,999", barrel: "$4,399", plunge: "$9,590" },
-  { label: "Heater Cost", anywhere: "$200 – $900", nordica: "$200 – $900", barrel: "$0", plunge: "$0" },
-  { label: "Shipping Cost", anywhere: "$950", nordica: "$950", barrel: "$0", plunge: "$499" },
-  { label: "Electrician Cost", anywhere: "$0", nordica: "$1–3k", barrel: "$1–3k", plunge: "$1–3k" },
-  { label: "All-in Cost", anywhere: "$4,799", nordica: "$6,149+", barrel: "$5,399+", plunge: "$11,089+" },
+  { label: "Traditional Finnish Temps (~176°F)", anywhere: "yes-anywhere", nordica: "yes", barrel: "yes", plunge: "yes", infrared: "no" },
+  { label: "Standard Outlet (110/120V, 20A circuit breaker)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no", infrared: "yes" },
+  { label: "Full Body Heat (incl. legs and feet)", anywhere: "yes-anywhere", nordica: "yes", barrel: "no", plunge: "yes", infrared: "yes" },
+  { label: "Renter Friendly", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no", infrared: "yes" },
+  { label: "Install Without Permits or Landlord Approval", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no", infrared: "yes" },
+  { label: "Works on Any Level Surface (No Site Prep)", anywhere: "yes-anywhere", nordica: "yes", barrel: "no", plunge: "no", infrared: "yes" },
+  { label: "No Electrician Required", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no", infrared: "yes" },
+  { label: "Setup Time", anywhere: "~2 hours", nordica: "~8 hours", barrel: "~8 hours", plunge: "~2 hours", infrared: "~2 hours" },
+  { label: "Exterior Dimensions", anywhere: '63" × 49" × 92"', nordica: '54" × 52" × 82"', barrel: '72" × 72" × 78"', plunge: '52" × 57" × 94"', infrared: '48" × 42" × 75"' },
+  { label: "Heated Space", anywhere: "57 cu ft", nordica: "93 cu ft", barrel: "147 cu ft", plunge: "161 cu ft", infrared: "65 cu ft" },
+  { label: "Wood Type", anywhere: "Red Cedar", nordica: "Spruce", barrel: "Red Cedar", plunge: "Red Cedar", infrared: "Various" },
+  { label: "Longevity", anywhere: "~30 years", nordica: "~15 years", barrel: "~30 years", plunge: "~30 years", infrared: "Various" },
+  { label: "Heater Included", anywhere: "no", nordica: "no", barrel: "yes", plunge: "yes", infrared: "yes" },
+  { label: "Compatible with Heater Inferno (shipping 2027)", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no", infrared: "no" },
+  { label: "Unit Cost", anywhere: "$3,649", nordica: "$3,999", barrel: "$4,399", plunge: "$9,590", infrared: "$2,299+" },
+  { label: "Heater Cost", anywhere: "$200 – $900", nordica: "$200 – $900", barrel: "$0", plunge: "$0", infrared: "$0" },
+  { label: "Shipping Cost", anywhere: "$950", nordica: "$950", barrel: "$0", plunge: "$499", infrared: "Various" },
+  { label: "Electrician Cost", anywhere: "$0", nordica: "$1–3k", barrel: "$1–3k", plunge: "$1–3k", infrared: "$0" },
+  { label: "All-in Cost", anywhere: "$4,799", nordica: "$6,149+", barrel: "$5,399+", plunge: "$11,089+", infrared: "$2,299+" },
 ];
 
 const renderCell = (value: Cell, highlight = false) => {
@@ -69,25 +80,29 @@ const HeaderImage = ({ src, alt }: { src: string; alt: string }) => (
 
 const ComparisonBlock = ({ rows }: { rows: Row[] }) => (
   <div className="overflow-x-auto rounded-2xl border border-border bg-card">
-    <Table className="min-w-[800px]">
+    <Table className="min-w-[960px]">
       <TableHeader>
         <TableRow className="hover:bg-transparent border-b border-border">
-          <TableHead className="w-[28%] text-foreground font-medium" />
+          <TableHead className="w-[24%] text-foreground font-medium" />
           <TableHead className="text-center font-semibold text-foreground bg-[hsl(33_40%_92%)] align-bottom">
             <HeaderImage src="/images/sauna-type-anywhere.jpg" alt="Anywhere Sauna" />
             Anywhere Sauna
           </TableHead>
           <TableHead className="text-center font-medium text-muted-foreground align-bottom">
-            <HeaderImage src="/images/sauna-type-barrel.jpg" alt="Nordica SaunaLife" />
+            <HeaderImage src={nordicaImg.url} alt="Nordica SaunaLife" />
             Nordica SaunaLife
           </TableHead>
           <TableHead className="text-center font-medium text-muted-foreground align-bottom">
-            <HeaderImage src="/images/sauna-type-cabin.jpg" alt="Barrel Sauna (Costco)" />
+            <HeaderImage src={barrelImg.url} alt="Barrel Sauna (Costco)" />
             Barrel Sauna (Costco)
           </TableHead>
           <TableHead className="text-center font-medium text-muted-foreground align-bottom">
-            <HeaderImage src="/images/sauna-type-infrared.jpg" alt="Plunge Sauna Mini" />
+            <HeaderImage src={plungeImg.url} alt="Plunge Sauna Mini" />
             Plunge Sauna Mini
+          </TableHead>
+          <TableHead className="text-center font-medium text-muted-foreground align-bottom">
+            <HeaderImage src={infraredImg.url} alt="Infrared Sauna" />
+            Infrared Sauna
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -109,6 +124,7 @@ const ComparisonBlock = ({ rows }: { rows: Row[] }) => (
             <TableCell className="text-center align-middle">{renderCell(row.nordica)}</TableCell>
             <TableCell className="text-center align-middle">{renderCell(row.barrel)}</TableCell>
             <TableCell className="text-center align-middle">{renderCell(row.plunge)}</TableCell>
+            <TableCell className="text-center align-middle">{renderCell(row.infrared)}</TableCell>
           </TableRow>
         ))}
       </TableBody>
@@ -124,7 +140,7 @@ const Compare = () => {
       <Header />
       <main className="flex-grow pt-20">
         <section className="py-16 md:py-24 bg-cedar-section">
-          <div className="container mx-auto px-4 max-w-[960px]">
+          <div className="container mx-auto px-4 max-w-[1100px]">
             <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-heading text-center">
               Why The Anywhere Sauna?
             </h2>
