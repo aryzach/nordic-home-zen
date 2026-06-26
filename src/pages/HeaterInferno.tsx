@@ -19,14 +19,13 @@ const HeaterInferno = () => {
               Heater Inferno Sauna Heater
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              The Heater Inferno is the next step in making real sauna
-              heat accessible to everyone. A new type of battery-augmented sauna
-              heater designed from the ground up to deliver fast, intense heat
-              from a standard American outlet.
+              A new type of battery-augmented sauna heater designed from the
+              ground up to deliver fast, intense heat from a standard American
+              outlet.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              We're targeting 170°F in under 5 minutes, and over 190°F in under
-              10 minutes.
+              Heat your sauna to 170°F in under 5 minutes and over 190°F in
+              under 10 minutes.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               Built to be fully compatible with the Anywhere Sauna.
