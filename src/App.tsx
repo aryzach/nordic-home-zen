@@ -152,7 +152,7 @@ const App = () => (
           <Route path="/install-power" element={<InstallPower />} />
           <Route path="/policies" element={<Policies />} />
           <Route path="/learn" element={<LearnHub />} />
-          <Route path="/reserve-your-sauna" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
+          <Route path="/reserve-your-sauna" element={<Navigate to="/deposit" replace />} />
           <Route path="/learn-more" element={<LearnMore />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/media" element={<Media />} />
@@ -161,8 +161,8 @@ const App = () => (
           <Route path="/email-signed-up" element={<EmailSignedUp />} />
           <Route path="/contact-thanks" element={<ContactThanks />} />
           <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/buy-your-anywhere-sauna" element={<ReservationPaymentOrScheduleCall />} />
-          <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
+          <Route path="/buy-your-anywhere-sauna" element={<Navigate to="/deposit" replace />} />
+          <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/deposit" replace />} />
           
           <Route path="/sauna-planning-consultation" element={<SaunaPlanningConsultation />} />
           <Route path="/sauna-electrical-fit-consultation" element={<Navigate to="/sauna-planning-consultation" replace />} />
