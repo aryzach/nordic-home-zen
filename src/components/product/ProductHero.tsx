@@ -53,7 +53,7 @@ const ProductHero = () => {
                 <video
                   key={current.src}
                   src={current.src}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                   autoPlay
                   muted
                   loop
@@ -61,6 +61,7 @@ const ProductHero = () => {
                   controls
                   aria-label={current.alt}
                 />
+
               ) : (
                 <img
                   src={current.src}
