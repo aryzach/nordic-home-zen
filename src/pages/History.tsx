@@ -63,7 +63,7 @@ const History = () => {
                     {/* Dot */}
                     <div className="w-3 h-3 rounded-full bg-accent border-2 border-background z-10" />
                     <div className="mt-4">
-                      <span className="block text-lg font-semibold text-accent mb-1.5">
+                      <span className="block text-lg font-semibold text-foreground mb-1.5">
                         {event.year}
                       </span>
                       {event.items.map((item, j) => (
@@ -78,7 +78,7 @@ const History = () => {
                         <p className="text-xs mt-2">
                           <Link
                             to={event.subtext.href}
-                            className="text-accent hover:underline"
+                            className="text-foreground underline hover:opacity-70"
                           >
                             {event.subtext.text}
                           </Link>
@@ -97,7 +97,7 @@ const History = () => {
                 {timelineEvents.map((event) => (
                   <div key={event.year} className="relative pl-8">
                     <div className="absolute left-0 top-1.5 w-3 h-3 rounded-full bg-accent border-2 border-background z-10" />
-                    <span className="block text-lg font-semibold text-accent mb-1">
+                    <span className="block text-lg font-semibold text-foreground mb-1">
                       {event.year}
                     </span>
                     {event.items.map((item, j) => (
@@ -107,7 +107,7 @@ const History = () => {
                     ))}
                     {event.subtext && (
                       <p className="text-xs mt-2">
-                        <Link to={event.subtext.href} className="text-accent hover:underline">
+                        <Link to={event.subtext.href} className="text-foreground underline hover:opacity-70">
                           {event.subtext.text}
                         </Link>
                       </p>
