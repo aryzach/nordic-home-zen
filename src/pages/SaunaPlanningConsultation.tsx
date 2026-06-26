@@ -201,12 +201,11 @@ const SaunaPlanningConsultation = () => {
                     </div>
                   </div>
                 );
-                return s.name === "Anywhere Sauna" ? (
-                  <Link key={s.name} to="/specs" className="block hover:opacity-90 transition-opacity">
+                const to = s.name === "Anywhere Sauna" ? "/specs" : "/compare";
+                return (
+                  <Link key={s.name} to={to} className="block hover:opacity-90 transition-opacity">
                     {card}
                   </Link>
-                ) : (
-                  <div key={s.name}>{card}</div>
                 );
               })}
             </div>
