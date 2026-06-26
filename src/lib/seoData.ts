@@ -132,7 +132,7 @@ export const seoData = {
   reservationPayment: {
     title: "Complete Your Reservation | Anywhere Sauna",
     description: "Complete your sauna reservation with a reservation fee or schedule a video call to discuss your options.",
-    canonical: "https://sfsaunarental.com/buy-your-anywhere-sauna"
+    canonical: "https://sfsaunarental.com/deposit"
   },
 
   // Utility Pages
