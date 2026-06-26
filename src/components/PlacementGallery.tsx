@@ -21,10 +21,10 @@ const PlacementGallery = () => {
     <section id="installs" className="py-16 md:py-24 bg-cedar-section">
       <div className="container mx-auto px-4 max-w-[1100px]">
         <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-heading text-center">
-          Put It Anywhere
+          The world's only 200°F plug-in sauna
         </h2>
         <p className="text-base md:text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto leading-relaxed">
-          Homes, apartments, living rooms, backyards, garages, Anywhere.
+          So you can put it Anywhere.
         </p>
         <div className="grid grid-cols-2 gap-6 md:gap-8">
           {placements.map((p, i) => (
