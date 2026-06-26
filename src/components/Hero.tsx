@@ -60,7 +60,7 @@ const Hero = () => {
         <img
           src={heroImage.url}
           alt="Anywhere Sauna in a sunlit forest"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover lg:object-contain lg:bg-black"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/35 to-black/85" />
         <div className="relative z-10 max-w-xl text-left ml-auto">
