@@ -173,34 +173,42 @@ const SaunaPlanningConsultation = () => {
             <p className="eyebrow mb-3 text-center">Common sauna types</p>
             <h2 className="text-center mb-8">What we'll compare</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {saunaTypes.map((s) => (
-                <div key={s.name} className="border border-border bg-white flex flex-col">
-                  <img
-                    src={s.image}
-                    alt={s.name}
-                    loading="lazy"
-                    width={800}
-                    height={600}
-                    className="w-full aspect-[4/3] object-contain bg-[#f5f5f5]"
-
-                  />
-                  <div className="p-4 flex-1 flex flex-col">
-                    <h3 className="text-[14px] font-bold tracking-[0.025em] uppercase mb-3 text-[#1c1d1d]">
-                      {s.name}
-                    </h3>
-                    <dl className="space-y-2 text-[13px] text-[#1c1d1d]">
-                      <div>
-                        <dt className="font-bold">Best for</dt>
-                        <dd>{s.bestFor}</dd>
-                      </div>
-                      <div>
-                        <dt className="font-bold">Install difficulty</dt>
-                        <dd>{s.difficulty}</dd>
-                      </div>
-                    </dl>
+              {saunaTypes.map((s) => {
+                const card = (
+                  <div className="border border-border bg-white flex flex-col h-full">
+                    <img
+                      src={s.image}
+                      alt={s.name}
+                      loading="lazy"
+                      width={800}
+                      height={600}
+                      className="w-full aspect-[4/3] object-contain bg-[#f5f5f5]"
+                    />
+                    <div className="p-4 flex-1 flex flex-col">
+                      <h3 className="text-[14px] font-bold tracking-[0.025em] uppercase mb-3 text-[#1c1d1d]">
+                        {s.name}
+                      </h3>
+                      <dl className="space-y-2 text-[13px] text-[#1c1d1d]">
+                        <div>
+                          <dt className="font-bold">Best for</dt>
+                          <dd>{s.bestFor}</dd>
+                        </div>
+                        <div>
+                          <dt className="font-bold">Install difficulty</dt>
+                          <dd>{s.difficulty}</dd>
+                        </div>
+                      </dl>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+                return s.name === "Anywhere Sauna" ? (
+                  <Link key={s.name} to="/specs" className="block hover:opacity-90 transition-opacity">
+                    {card}
+                  </Link>
+                ) : (
+                  <div key={s.name}>{card}</div>
+                );
+              })}
             </div>
           </div>
         </section>
