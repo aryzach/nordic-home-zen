@@ -16,7 +16,7 @@ const DualCTAs = () => {
               trackAndNavigate(
                 "buy_now_click",
                 { button_text: "Buy now for $4,599", location: "dual_ctas" },
-                () => navigate("/buy-your-anywhere-sauna")
+                () => navigate("/deposit")
               )
             }
           >

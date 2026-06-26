@@ -28,7 +28,7 @@ import EmailMoreInfo from "./pages/EmailMoreInfo";
 import EmailSignedUp from "./pages/EmailSignedUp";
 import ContactThanks from "./pages/ContactThanks";
 import ThankYou from "./pages/ThankYou";
-import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrScheduleCall";
+
 
 import SaunaPlanningConsultation from "./pages/SaunaPlanningConsultation";
 import ElectricalCompatibilityQuiz from "./pages/ElectricalCompatibilityQuiz";
@@ -58,7 +58,7 @@ const ScrollToTop = () => {
 };
 
 const VIEW_CONTENT_ROUTES: Record<string, { content_name: string; content_category: string }> = {
-  "/buy-your-anywhere-sauna": { content_name: "Anywhere Sauna", content_category: "Product" },
+  "/deposit": { content_name: "Anywhere Sauna", content_category: "Product" },
   "/electrical-compatibility-quiz": { content_name: "Electrical Compatibility Quiz", content_category: "Quiz" },
   "/sauna-planning-consultation": { content_name: "Sauna Planning Consultation", content_category: "Consultation" },
 };
@@ -152,7 +152,7 @@ const App = () => (
           <Route path="/install-power" element={<InstallPower />} />
           <Route path="/policies" element={<Policies />} />
           <Route path="/learn" element={<LearnHub />} />
-          <Route path="/reserve-your-sauna" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
+          <Route path="/reserve-your-sauna" element={<Navigate to="/deposit" replace />} />
           <Route path="/learn-more" element={<LearnMore />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/media" element={<Media />} />
@@ -161,8 +161,8 @@ const App = () => (
           <Route path="/email-signed-up" element={<EmailSignedUp />} />
           <Route path="/contact-thanks" element={<ContactThanks />} />
           <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/buy-your-anywhere-sauna" element={<ReservationPaymentOrScheduleCall />} />
-          <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/buy-your-anywhere-sauna" replace />} />
+          <Route path="/buy-your-anywhere-sauna" element={<Navigate to="/deposit" replace />} />
+          <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/deposit" replace />} />
           
           <Route path="/sauna-planning-consultation" element={<SaunaPlanningConsultation />} />
           <Route path="/sauna-electrical-fit-consultation" element={<Navigate to="/sauna-planning-consultation" replace />} />

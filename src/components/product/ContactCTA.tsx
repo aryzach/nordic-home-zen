@@ -18,7 +18,7 @@ const ContactCTA = () => (
       </p>
       <div className="flex flex-col sm:flex-row sm:justify-center gap-3 max-w-md mx-auto sm:max-w-none">
         <Link
-          to="/buy-your-anywhere-sauna"
+          to="/deposit"
           className="group block sm:inline-block bg-[#111111] text-white text-center font-bold text-[16px] tracking-[0.025em] px-6 py-[11px] hover:bg-black transition-colors"
         >
           Reserve Yours

@@ -26,7 +26,7 @@ export const routes = [
   { path: '/sauna-review/fitness-sf-fillmore', priority: 0.7, changefreq: 'monthly' },
   { path: '/email-more-info', priority: 0.5, changefreq: 'monthly' },
   { path: '/thank-you', priority: 0.3, changefreq: 'monthly' },
-  { path: '/buy-your-anywhere-sauna', priority: 0.6, changefreq: 'monthly' },
+  { path: '/deposit', priority: 0.6, changefreq: 'monthly' },
   
   { path: '/electrical-compatibility-quiz', priority: 0.8, changefreq: 'monthly' },
   { path: '/7-questions-before-buying-a-home-sauna', priority: 0.7, changefreq: 'monthly' },
