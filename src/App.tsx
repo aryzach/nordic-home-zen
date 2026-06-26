@@ -58,7 +58,7 @@ const ScrollToTop = () => {
 };
 
 const VIEW_CONTENT_ROUTES: Record<string, { content_name: string; content_category: string }> = {
-  "/buy-your-anywhere-sauna": { content_name: "Anywhere Sauna", content_category: "Product" },
+  "/deposit": { content_name: "Anywhere Sauna", content_category: "Product" },
   "/electrical-compatibility-quiz": { content_name: "Electrical Compatibility Quiz", content_category: "Quiz" },
   "/sauna-planning-consultation": { content_name: "Sauna Planning Consultation", content_category: "Consultation" },
 };
