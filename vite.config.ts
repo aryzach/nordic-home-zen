@@ -24,7 +24,7 @@ export const routes = [
   '/climate-performance',
   '/email-more-info',
   '/thank-you',
-  '/buy-your-anywhere-sauna',
+  '/deposit',
   
 ];
 
