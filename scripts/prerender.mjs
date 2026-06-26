@@ -36,7 +36,7 @@ const routes = [
   '/sauna-review/fitness-sf-fillmore',
   '/email-more-info',
   '/thank-you',
-  '/buy-your-anywhere-sauna',
+  '/deposit',
   '/electrical-compatibility-quiz',
   '/sauna-planning-consultation',
   '/specs',
