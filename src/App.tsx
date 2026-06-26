@@ -11,6 +11,7 @@ import FAQPage from "./pages/FAQPage";
 import Deposit from "./pages/Deposit";
 import DepositSuccess from "./pages/DepositSuccess";
 import Compare from "./pages/Compare";
+import Terms from "./pages/Terms";
 
 
 import HowItStarted from "./pages/HowItStarted";
@@ -143,6 +144,7 @@ const App = () => (
           <Route path="/deposit" element={<Deposit />} />
           <Route path="/deposit-success" element={<DepositSuccess />} />
           <Route path="/compare" element={<Compare />} />
+          <Route path="/terms" element={<Terms />} />
           
           
           <Route path="/how-it-started" element={<HowItStarted />} />

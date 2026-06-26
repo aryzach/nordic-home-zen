@@ -4,12 +4,20 @@ import { Plug, Users, Flame, Home, ExternalLink } from "lucide-react";
 import { trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
 
-const gallery = [
-  { src: "/installs/specs-1.jpg", alt: "Anywhere Sauna exterior in a backyard" },
-  { src: "/installs/specs-2.jpg", alt: "Anywhere Sauna installed" },
-  { src: "/assets/about-sauna-1.jpeg", alt: "Anywhere Sauna interior with heater" },
-  { src: "/assets/about-sauna-2.jpeg", alt: "Anywhere Sauna cedar bench detail" },
-  { src: "/assets/about-sauna-3.jpeg", alt: "Anywhere Sauna interior thermometer" },
+const anywhereVideoUrl = `${import.meta.env.BASE_URL}anywhere-design.mp4`;
+const STRIPE_DEPOSIT_URL = "https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B";
+
+type GalleryItem =
+  | { type: "video"; src: string; alt: string }
+  | { type: "image"; src: string; alt: string; fit?: "contain" | "cover" };
+
+const gallery: GalleryItem[] = [
+  { type: "video", src: anywhereVideoUrl, alt: "Anywhere Sauna design video" },
+  { type: "image", src: "/installs/specs-1.jpg", alt: "Anywhere Sauna exterior in a backyard", fit: "contain" },
+  { type: "image", src: "/installs/specs-2.jpg", alt: "Anywhere Sauna installed", fit: "contain" },
+  { type: "image", src: "/assets/about-sauna-1.jpeg", alt: "Anywhere Sauna interior with heater", fit: "cover" },
+  { type: "image", src: "/assets/about-sauna-2.jpeg", alt: "Anywhere Sauna cedar bench detail", fit: "cover" },
+  { type: "image", src: "/assets/about-sauna-3.jpeg", alt: "Anywhere Sauna interior thermometer", fit: "cover" },
 ];
 
 const benefits = [
@@ -21,6 +29,18 @@ const benefits = [
 
 const ProductHero = () => {
   const [active, setActive] = useState(0);
+  const current = gallery[active];
+
+  const handleReserveClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    trackAndNavigate(
+      "deposit_checkout_started",
+      { location: "specs_page", amount: 500, currency: "USD" },
+      () => {
+        window.open(STRIPE_DEPOSIT_URL, "_blank", "noopener,noreferrer");
+      }
+    );
+  };
 
   return (
     <section className="bg-white">
@@ -29,24 +49,53 @@ const ProductHero = () => {
           {/* Gallery */}
           <div>
             <div className="aspect-square w-full bg-[#f5f5f5] overflow-hidden">
-              <img
-                src={gallery[active].src}
-                alt={gallery[active].alt}
-                className={`w-full h-full ${active < 2 ? "object-contain" : "object-cover"}`}
-              />
+              {current.type === "video" ? (
+                <video
+                  key={current.src}
+                  src={current.src}
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  aria-label={current.alt}
+                />
+              ) : (
+                <img
+                  src={current.src}
+                  alt={current.alt}
+                  className={`w-full h-full ${current.fit === "contain" ? "object-contain" : "object-cover"}`}
+                />
+              )}
             </div>
-            <div className="mt-3 grid grid-cols-5 gap-2">
+            <div className="mt-3 grid grid-cols-6 gap-2">
               {gallery.map((g, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => setActive(i)}
-                  aria-label={`View image ${i + 1}`}
-                  className={`aspect-square overflow-hidden bg-[#f5f5f5] border ${
+                  aria-label={`View media ${i + 1}`}
+                  className={`relative aspect-square overflow-hidden bg-[#f5f5f5] border ${
                     active === i ? "border-[#1c1d1d]" : "border-[#e8e8e1]"
                   }`}
                 >
-                  <img src={g.src} alt={g.alt} className="w-full h-full object-cover" />
+                  {g.type === "video" ? (
+                    <>
+                      <video
+                        src={g.src}
+                        className="w-full h-full object-cover"
+                        muted
+                        playsInline
+                        preload="metadata"
+                      />
+                      <span className="absolute inset-0 flex items-center justify-center bg-black/20">
+                        <span className="block w-0 h-0 border-y-[6px] border-y-transparent border-l-[10px] border-l-white" />
+                      </span>
+                    </>
+                  ) : (
+                    <img src={g.src} alt={g.alt} className="w-full h-full object-cover" />
+                  )}
                 </button>
               ))}
             </div>
@@ -83,15 +132,22 @@ const ProductHero = () => {
             </ul>
 
             <div className="flex flex-col">
-              <Link
-                to="/deposit"
-                className="group block w-full bg-[#111111] text-white text-center font-bold text-[16px] tracking-[0.025em] mb-2.5 px-5 py-[11px] hover:bg-black transition-colors"
+              <a
+                href={STRIPE_DEPOSIT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleReserveClick}
+                className="group inline-flex items-center justify-center gap-2 w-full bg-[#111111] text-white text-center font-bold text-[16px] tracking-[0.025em] mb-2 px-5 py-[11px] hover:bg-black transition-colors"
               >
                 Reserve With $500 Refundable Deposit
-                <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
+              </a>
+              <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-3">
+                Fully refundable for 3 weeks. Delivery planned September 2027.{" "}
+                <Link to="/terms" className="underline hover:no-underline font-medium text-[#1c1d1d]">
+                  Terms
+                </Link>
+              </p>
               <button
                 type="button"
                 onClick={() =>
