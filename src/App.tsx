@@ -28,7 +28,7 @@ import EmailMoreInfo from "./pages/EmailMoreInfo";
 import EmailSignedUp from "./pages/EmailSignedUp";
 import ContactThanks from "./pages/ContactThanks";
 import ThankYou from "./pages/ThankYou";
-import ReservationPaymentOrScheduleCall from "./pages/ReservationPaymentOrScheduleCall";
+
 
 import SaunaPlanningConsultation from "./pages/SaunaPlanningConsultation";
 import ElectricalCompatibilityQuiz from "./pages/ElectricalCompatibilityQuiz";
