@@ -144,7 +144,7 @@ const ProductHero = () => {
                 <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </a>
               <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-3">
-                Fully refundable for 3 weeks. Delivery planned September 2027.{" "}
+                Fully refundable for 3 weeks. Delivery planned September 2026.{" "}
                 <Link to="/terms" className="underline hover:no-underline font-medium text-[#1c1d1d]">
                   Terms
                 </Link>
