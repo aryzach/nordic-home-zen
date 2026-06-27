@@ -42,7 +42,7 @@ const Deposit = () => {
                   $500.00
                 </p>
                 <p className="text-[14px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d] mb-6">
-                  Fully refundable for 3 weeks. Delivery planned September 2027.
+                  Fully refundable for 3 weeks. Delivery planned September 2026.
                 </p>
 
                 <div className="flex flex-col mb-3">
