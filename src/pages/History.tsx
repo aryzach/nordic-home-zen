@@ -143,7 +143,7 @@ const History = () => {
               I decided to buy an infrared sauna, which can plug into a standard US outlet, but this didn't satiate my desire for the real dry and hot heat of the good saunas I've used at spas and gyms.
             </p>
 
-            <figure className="my-8">
+            <figure className="my-8 md:hidden">
               <img
                 src={historyImg.url}
                 alt="Early Anywhere Sauna prototype"
@@ -156,7 +156,23 @@ const History = () => {
               I wanted a hotter sauna, so I bought a 110/120V heater to try out. I put in my infrared sauna and see I could get it hotter. While it got warmer, my legs were still cold and the sauna seemed to be losing a lot of heat.
             </p>
 
-            <figure className="my-8">
+            {/* Desktop: side-by-side under the paragraph above */}
+            <figure className="my-8 hidden md:grid md:grid-cols-2 gap-4">
+              <img
+                src={historyImg.url}
+                alt="Early Anywhere Sauna prototype"
+                loading="lazy"
+                className="w-full h-auto rounded"
+              />
+              <img
+                src={historyGif.url}
+                alt="Pouring water on sauna stones"
+                loading="lazy"
+                className="w-full h-auto rounded"
+              />
+            </figure>
+
+            <figure className="my-8 md:hidden">
               <img
                 src={historyGif.url}
                 alt="Pouring water on sauna stones"
