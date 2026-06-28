@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
+import historyImg from "@/assets/history-img-8323.jpg.asset.json";
+import historyGif from "@/assets/history-0626.gif.asset.json";
 
 const timelineEvents = [
   {
