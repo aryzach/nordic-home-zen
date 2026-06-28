@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
+import historyImg from "@/assets/history-img-8323.jpg.asset.json";
+import historyGif from "@/assets/history-0626.gif.asset.json";
 
 const timelineEvents = [
   {
@@ -141,9 +143,27 @@ const History = () => {
               I decided to buy an infrared sauna, which can plug into a standard US outlet, but this didn't satiate my desire for the real dry and hot heat of the good saunas I've used at spas and gyms.
             </p>
 
+            <figure className="my-8">
+              <img
+                src={historyImg.url}
+                alt="Early Anywhere Sauna prototype"
+                loading="lazy"
+                className="w-full h-auto rounded"
+              />
+            </figure>
+
             <p className="text-lg text-muted-foreground leading-relaxed">
               I wanted a hotter sauna, so I bought a 110/120V heater to try out. I put in my infrared sauna and see I could get it hotter. While it got warmer, my legs were still cold and the sauna seemed to be losing a lot of heat.
             </p>
+
+            <figure className="my-8">
+              <img
+                src={historyGif.url}
+                alt="Pouring water on sauna stones"
+                loading="lazy"
+                className="w-full h-auto rounded"
+              />
+            </figure>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
               From there, I spent months modifying the sauna enclosure, trying countless improvements to get the heat I wanted, while still only using the 110/120V sauna heater.
