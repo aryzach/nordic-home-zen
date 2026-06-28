@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
-import historyImg from "@/assets/history-img-8323.jpg.asset.json";
-import historyGif from "@/assets/history-0626.gif.asset.json";
+
+const historyImg = "/history-img-8323.jpg";
+const historyGif = "/history-0626.gif";
 
 const timelineEvents = [
   {
@@ -145,7 +146,7 @@ const History = () => {
 
             <figure className="my-8 md:hidden">
               <img
-                src={historyImg.url}
+                src={historyImg}
                 alt="Early Anywhere Sauna prototype"
                 loading="lazy"
                 className="w-full h-auto rounded"
@@ -159,13 +160,13 @@ const History = () => {
             {/* Desktop: side-by-side under the paragraph above */}
             <figure className="my-8 hidden md:grid md:grid-cols-2 gap-4">
               <img
-                src={historyImg.url}
+                src={historyImg}
                 alt="Early Anywhere Sauna prototype"
                 loading="lazy"
                 className="w-full h-auto rounded"
               />
               <img
-                src={historyGif.url}
+                src={historyGif}
                 alt="Pouring water on sauna stones"
                 loading="lazy"
                 className="w-full h-auto rounded"
@@ -174,7 +175,7 @@ const History = () => {
 
             <figure className="my-8 md:hidden">
               <img
-                src={historyGif.url}
+                src={historyGif}
                 alt="Pouring water on sauna stones"
                 loading="lazy"
                 className="w-full h-auto rounded"
