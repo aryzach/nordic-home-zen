@@ -766,21 +766,21 @@ const HeroSection = ({ onStart }: { onStart: () => void }) => (
       loading="eager"
     />
     <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/20 to-transparent" />
-    <div className="relative z-10 max-w-xl px-6 md:px-12 pt-10 md:pt-16 pb-16 mx-auto">
+    <div className="relative z-10 max-w-xl px-6 md:px-12 pt-10 md:pt-16 pb-16 mx-auto md:mx-0 md:ml-0">
       <h1 className="sr-only">What Sauna Will Actually Work In Your Home?</h1>
-      <p className="text-white text-[24px] md:text-[54px] leading-[1.1] md:leading-[1.02] font-semibold md:font-bold tracking-tight mb-4 text-center md:text-left">
+      <p className="text-white text-[30px] md:text-[54px] leading-[1.1] md:leading-[1.02] font-bold tracking-tight mb-4 text-center md:text-left">
         What Sauna Will Actually Work In Your Home?
       </p>
       <div className="flex flex-col items-center md:items-start gap-3">
         <button
           type="button"
           onClick={onStart}
-          className="bg-white text-[#171717] hover:bg-white/90 text-base font-bold px-5 py-3 inline-flex items-center gap-2"
+          className="bg-white text-[#171717] hover:bg-white/90 text-[16px] font-bold px-5 py-[11px] inline-flex items-center gap-2"
         >
           Take the 2-Minute Compatibility Quiz
           <ArrowRight size={16} />
         </button>
-        <p className="text-[15px] md:text-[16px] leading-[1.6] text-white/80 max-w-sm md:max-w-md text-center md:text-left">
+        <p className="text-[15px] md:text-[16px] leading-[1.6] text-white/80 font-normal max-w-sm md:max-w-md text-center md:text-left">
           Get personalized recommendations, electrical requirements, expected
           temperatures, and estimated installation costs.
         </p>
