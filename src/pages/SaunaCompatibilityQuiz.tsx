@@ -385,6 +385,8 @@ const SaunaCompatibilityQuiz = () => {
 
   return (
     <Shell className={view === "hero" ? "pb-0" : ""}>
+      {view === "hero" && <HeroSection onStart={startQuiz} />}
+
       <div className="container-x">
         {view !== "hero" && (
           <div className="max-w-2xl mx-auto mb-3">
@@ -399,10 +401,6 @@ const SaunaCompatibilityQuiz = () => {
         )}
 
         {view === "quiz" && <Progress step={step} />}
-
-        {view === "hero" && (
-          <HeroSection onStart={startQuiz} />
-        )}
 
         {view === "quiz" && (
           <Card>
@@ -750,7 +748,8 @@ const SaunaCompatibilityQuiz = () => {
 /* ---------------- Sub-components ---------------- */
 
 const HeroSection = ({ onStart }: { onStart: () => void }) => (
-  <div className="relative -mx-4 sm:-mx-6 lg:-mx-8 -mt-6 mb-0 overflow-hidden min-h-[max(216vw,calc(100vh-96px))] md:min-h-[max(66.67vw,calc(100vh-96px))]">
+  <div className="relative -mt-6 mb-0 overflow-hidden min-h-[max(216vw,calc(100vh-96px))] md:min-h-[max(66.67vw,calc(100vh-96px))]">
+
     {/* Mobile hero: portrait */}
     <img
       src="/quiz-hero.jpg"
