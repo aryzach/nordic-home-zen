@@ -439,7 +439,7 @@ const SaunaCompatibilityQuiz = () => {
               <>
                 <QuestionHeader title="What type of home do you live in?" />
                 <div className="space-y-3">
-                  {["Apartment", "Condo", "Single-family home"].map((o) => (
+                  {["Apartment", "Condo", "House"].map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
