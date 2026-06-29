@@ -30,7 +30,7 @@ type Answers = {
   twentyAmp: string;
   priorities: string[];
   temperature: string;
-  budget: string;
+  budget: string[];
   timeline: string;
 };
 
@@ -45,7 +45,7 @@ const initialAnswers: Answers = {
   twentyAmp: "",
   priorities: [],
   temperature: "",
-  budget: "",
+  budget: [],
   timeline: "",
 };
 
