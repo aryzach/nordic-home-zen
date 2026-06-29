@@ -1007,7 +1007,7 @@ const SummaryCard = ({
       {rec.isAnywhere && (
         <div className="mt-3">
           <Button onClick={onBuyAnywhere} size="sm" variant="outline">
-            See the Anywhere Sauna
+            Learn More
           </Button>
         </div>
       )}
@@ -1059,7 +1059,7 @@ const BestMatchCard = ({
         size="lg"
         className="w-full sm:w-auto max-w-full whitespace-normal h-auto py-3 text-center"
       >
-        See the Anywhere Sauna
+        Learn More
         <ArrowRight size={18} />
       </Button>
     )}
@@ -1092,7 +1092,7 @@ const OtherOptionCard = ({
     {rec.isAnywhere && (
       <div className="mt-5">
         <Button onClick={onBuyAnywhere} variant="outline">
-          See the Anywhere Sauna
+          Learn More
         </Button>
       </div>
     )}
