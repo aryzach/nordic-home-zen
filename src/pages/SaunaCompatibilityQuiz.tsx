@@ -382,7 +382,7 @@ const SaunaCompatibilityQuiz = () => {
   /* ---------------- Render ---------------- */
 
   return (
-    <Shell>
+    <Shell className={view === "hero" ? "pb-0" : ""}>
       <div className="container-x">
         {view !== "hero" && (
           <div className="max-w-2xl mx-auto mb-3">
