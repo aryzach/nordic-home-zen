@@ -11,10 +11,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import nordicaImg from "@/assets/compare-nordica.png.asset.json";
-import barrelImg from "@/assets/compare-barrel.png.asset.json";
-import plungeImg from "@/assets/compare-plunge.png.asset.json";
-import infraredImg from "@/assets/compare-infrared.png.asset.json";
+const nordicaImg = { url: "/images/compare-nordica.png" };
+const barrelImg = { url: "/images/compare-barrel.png" };
+const plungeImg = { url: "/images/compare-plunge.png" };
+const infraredImg = { url: "/images/compare-infrared.png" };
 
 type Cell = string | "yes" | "no" | "yes-anywhere";
 type Row = {
