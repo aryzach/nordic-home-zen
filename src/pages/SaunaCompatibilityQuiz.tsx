@@ -740,7 +740,7 @@ const SaunaCompatibilityQuiz = () => {
             }}
           />
         )}
-      </div>
+      </HeroShell>
     </Shell>
   );
 };
