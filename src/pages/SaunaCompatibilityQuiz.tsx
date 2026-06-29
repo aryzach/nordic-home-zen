@@ -742,11 +742,19 @@ const SaunaCompatibilityQuiz = () => {
 /* ---------------- Sub-components ---------------- */
 
 const HeroSection = ({ onStart }: { onStart: () => void }) => (
-  <div className="relative -mx-4 sm:-mx-6 lg:-mx-8 -mt-6 mb-4 overflow-hidden min-h-[216vw] md:min-h-[85vh]">
+  <div className="relative -mx-4 sm:-mx-6 lg:-mx-8 -mt-6 mb-4 overflow-hidden min-h-[216vw] md:min-h-[66.67vw]">
+    {/* Mobile hero: portrait */}
     <img
       src="/quiz-hero.jpg"
       alt="Lineup of sauna types with prices: Anywhere Sauna, SaunaLife, Barrel Sauna, Plunge Mini, Infrared Sauna"
-      className="absolute inset-0 w-full h-full object-cover"
+      className="absolute inset-0 w-full h-full object-cover object-bottom md:hidden"
+      loading="eager"
+    />
+    {/* Desktop hero: landscape */}
+    <img
+      src="/quiz-hero-desktop.jpg"
+      alt="Lineup of sauna types with prices: Anywhere Sauna, SaunaLife, Barrel Sauna, Plunge Mini, Infrared Sauna"
+      className="absolute inset-0 w-full h-full object-cover hidden md:block"
       loading="eager"
     />
     <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/20 to-transparent" />
