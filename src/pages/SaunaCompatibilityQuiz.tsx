@@ -742,29 +742,35 @@ const SaunaCompatibilityQuiz = () => {
 /* ---------------- Sub-components ---------------- */
 
 const HeroSection = ({ onStart }: { onStart: () => void }) => (
-  <div className="max-w-3xl mx-auto text-center pt-6 pb-4">
-    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-[#171717]/5 mb-6">
-      <Sparkles size={26} className="text-[#171717]" />
-    </div>
-    <h1 className="hero-title text-[34px] md:text-[52px] leading-[1.05] font-semibold tracking-tight mb-5">
-      What Sauna Will Actually Work In Your Home?
-    </h1>
-    <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-      Answer a few questions about your space, electrical setup, budget, and
-      goals to see which sauna options are compatible.
-    </p>
-    <div className="flex flex-col items-center gap-3">
-      <Button onClick={onStart} size="lg">
-        Take the 2-Minute Compatibility Quiz
-        <ArrowRight size={18} />
-      </Button>
-      <p className="text-sm text-muted-foreground max-w-md">
-        Get personalized recommendations, electrical requirements, expected
-        temperatures, and estimated installation costs.
+  <div className="relative -mx-4 sm:-mx-6 lg:-mx-8 -mt-6 mb-4 overflow-hidden rounded-none">
+    <img
+      src="/quiz-hero.jpg"
+      alt="Lineup of sauna types with prices: Anywhere Sauna, SaunaLife, Barrel Sauna, Plunge Mini, Infrared Sauna"
+      className="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/75" />
+    <div className="relative z-10 max-w-3xl mx-auto text-center px-4 py-16 md:py-28">
+      <h1 className="hero-title text-white text-[34px] md:text-[52px] leading-[1.05] font-semibold tracking-tight mb-5">
+        What Sauna Will Actually Work In Your Home?
+      </h1>
+      <p className="text-base md:text-lg text-white/85 max-w-2xl mx-auto mb-8">
+        Answer a few questions about your space, electrical setup, budget, and
+        goals to see which sauna options are compatible.
       </p>
-      <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mt-4">
-        Trusted by 26+ sauna lovers
-      </p>
+      <div className="flex flex-col items-center gap-3">
+        <Button onClick={onStart} size="lg" className="bg-white text-[#171717] hover:bg-white/90">
+          Take the 2-Minute Compatibility Quiz
+          <ArrowRight size={18} />
+        </Button>
+        <p className="text-sm text-white/80 max-w-md">
+          Get personalized recommendations, electrical requirements, expected
+          temperatures, and estimated installation costs.
+        </p>
+        <p className="text-xs uppercase tracking-[0.18em] text-white/70 mt-4">
+          Trusted by 26+ sauna lovers
+        </p>
+      </div>
     </div>
   </div>
 );
