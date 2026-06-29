@@ -947,7 +947,12 @@ const ResultsView = ({
           We'll review your space, electrical setup, and goals with you
           personally.
         </p>
-        <Button onClick={onBookConsult} size="lg" variant="outline">
+        <Button
+          onClick={onBookConsult}
+          size="lg"
+          variant="outline"
+          className="max-w-full whitespace-normal h-auto py-3 text-center"
+        >
           Book Free Sauna Consultation
           <ExternalLink size={16} />
         </Button>
