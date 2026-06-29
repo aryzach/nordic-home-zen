@@ -990,7 +990,7 @@ const SummaryCard = ({
       <img
         src={rec.image}
         alt={rec.name}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
         loading="lazy"
       />
     </div>
