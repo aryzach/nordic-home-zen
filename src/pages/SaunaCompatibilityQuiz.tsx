@@ -584,15 +584,11 @@ const SaunaCompatibilityQuiz = () => {
                 />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
-                    "Traditional steam sauna",
-                    "Dry sauna",
-                    "Infrared sauna",
-                    "Red-light therapy",
-                    "Highest possible temperatures",
-                    "Fast heat-up",
+                    "High temps (190 - 230°F)",
                     "Portable/renter-friendly",
-                    "Attractive design",
-                    "Lowest installation cost",
+                    "Red-light therapy",
+                    "Aesthetic design",
+                    "Low installation cost",
                     "Muscle recovery",
                     "Relaxation",
                     "Daily wellness routine",
@@ -600,6 +596,7 @@ const SaunaCompatibilityQuiz = () => {
                     <OptionButton
                       key={o}
                       label={o}
+                      multi
                       selected={answers.priorities.includes(o)}
                       onClick={() => toggleMulti("priorities", o)}
                     />
