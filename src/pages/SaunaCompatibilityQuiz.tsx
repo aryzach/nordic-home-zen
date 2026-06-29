@@ -62,7 +62,9 @@ const Shell = ({
 }) => (
   <div className="min-h-screen flex flex-col bg-background">
     <Header />
-    <main className={`flex-grow pt-24 pb-20 ${className || ""}`}>{children}</main>
+    <main className={`flex-grow pt-24 ${className ? className : "pb-20"}`}>
+      {children}
+    </main>
     <Footer />
   </div>
 );
