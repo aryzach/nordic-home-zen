@@ -233,6 +233,8 @@ const PinCard = ({ pin }: { pin: Pin }) => {
           loading="lazy"
           decoding="async"
           draggable={false}
+          width={1000}
+          height={Math.round(1000 * img.aspect)}
           className="block w-[216px] sm:w-[288px] md:w-[336px] h-auto bg-white select-none transition-shadow duration-300 group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
           style={{
             width: scaledWidth,
@@ -240,6 +242,7 @@ const PinCard = ({ pin }: { pin: Pin }) => {
             boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
           }}
         />
+
       </div>
     </div>
   );
