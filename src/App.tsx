@@ -135,48 +135,48 @@ const App = () => (
         <ScrollToTop />
         <ScrollToHash />
         <GAPageView />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/specs" element={<Specs />} />
-          <Route path="/installs" element={<Installs />} />
-          <Route path="/faq" element={<FAQPage />} />
-          <Route path="/deposit" element={<Deposit />} />
-          <Route path="/deposit-success" element={<DepositSuccess />} />
-          <Route path="/compare" element={<Compare />} />
-          <Route path="/terms" element={<Terms />} />
-          
-          
-          <Route path="/how-it-started" element={<HowItStarted />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/heater-inferno" element={<HeaterInferno />} />
-          <Route path="/superhotsuperfast" element={<Navigate to="/heater-inferno" replace />} />
-          <Route path="/install-power" element={<InstallPower />} />
-          <Route path="/policies" element={<Policies />} />
-          <Route path="/learn" element={<LearnHub />} />
-          <Route path="/reserve-your-sauna" element={<Navigate to="/deposit" replace />} />
-          <Route path="/learn-more" element={<LearnMore />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/media" element={<Media />} />
-          <Route path="/climate-performance" element={<ServiceAreas />} />
-          <Route path="/email-more-info" element={<EmailMoreInfo />} />
-          <Route path="/email-signed-up" element={<EmailSignedUp />} />
-          <Route path="/contact-thanks" element={<ContactThanks />} />
-          <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/buy-your-anywhere-sauna" element={<Navigate to="/deposit" replace />} />
-          <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/deposit" replace />} />
-          
-          <Route path="/sauna-planning-consultation" element={<SaunaPlanningConsultation />} />
-          <Route path="/sauna-electrical-fit-consultation" element={<Navigate to="/sauna-planning-consultation" replace />} />
-          <Route path="/electric-checklist" element={<Navigate to="/sauna-planning-consultation" replace />} />
-          <Route path="/leave-review" element={<LeaveReview />} />
-          <Route path="/electrical-compatibility-quiz" element={<ElectricalCompatibilityQuiz />} />
-          <Route path="/sauna-compatibility-quiz" element={<SaunaCompatibilityQuiz />} />
-          <Route path="/electrical-assessment-submitted" element={<ElectricalAssessmentSubmitted />} />
-          <Route path="/7-questions-before-buying-a-home-sauna" element={<SevenQuestionsHomeSauna />} />
-          <Route path="/old-hero-video" element={<OldHeroVideo />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/specs" element={<Specs />} />
+            <Route path="/installs" element={<Installs />} />
+            <Route path="/faq" element={<FAQPage />} />
+            <Route path="/deposit" element={<Deposit />} />
+            <Route path="/deposit-success" element={<DepositSuccess />} />
+            <Route path="/compare" element={<Compare />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/how-it-started" element={<HowItStarted />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/heater-inferno" element={<HeaterInferno />} />
+            <Route path="/superhotsuperfast" element={<Navigate to="/heater-inferno" replace />} />
+            <Route path="/install-power" element={<InstallPower />} />
+            <Route path="/policies" element={<Policies />} />
+            <Route path="/learn" element={<LearnHub />} />
+            <Route path="/reserve-your-sauna" element={<Navigate to="/deposit" replace />} />
+            <Route path="/learn-more" element={<LearnMore />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/media" element={<Media />} />
+            <Route path="/climate-performance" element={<ServiceAreas />} />
+            <Route path="/email-more-info" element={<EmailMoreInfo />} />
+            <Route path="/email-signed-up" element={<EmailSignedUp />} />
+            <Route path="/contact-thanks" element={<ContactThanks />} />
+            <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/buy-your-anywhere-sauna" element={<Navigate to="/deposit" replace />} />
+            <Route path="/reservation-payment-or-schedule-call" element={<Navigate to="/deposit" replace />} />
+            <Route path="/sauna-planning-consultation" element={<SaunaPlanningConsultation />} />
+            <Route path="/sauna-electrical-fit-consultation" element={<Navigate to="/sauna-planning-consultation" replace />} />
+            <Route path="/electric-checklist" element={<Navigate to="/sauna-planning-consultation" replace />} />
+            <Route path="/leave-review" element={<LeaveReview />} />
+            <Route path="/electrical-compatibility-quiz" element={<ElectricalCompatibilityQuiz />} />
+            <Route path="/sauna-compatibility-quiz" element={<SaunaCompatibilityQuiz />} />
+            <Route path="/electrical-assessment-submitted" element={<ElectricalAssessmentSubmitted />} />
+            <Route path="/7-questions-before-buying-a-home-sauna" element={<SevenQuestionsHomeSauna />} />
+            <Route path="/old-hero-video" element={<OldHeroVideo />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
