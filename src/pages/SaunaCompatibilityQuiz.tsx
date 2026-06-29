@@ -628,7 +628,10 @@ const SaunaCompatibilityQuiz = () => {
 
             {step === 9 && (
               <>
-                <QuestionHeader title="What's your total budget?" />
+                <QuestionHeader
+                  title="What budget ranges are you considering?"
+                  multi
+                />
                 <div className="space-y-3">
                   {[
                     "Under $3,000",
@@ -640,12 +643,13 @@ const SaunaCompatibilityQuiz = () => {
                     <OptionButton
                       key={o}
                       label={o}
-                      selected={answers.budget === o}
-                      onClick={() => setSingle("budget", o)}
+                      multi
+                      selected={answers.budget.includes(o)}
+                      onClick={() => toggleMulti("budget", o)}
                     />
                   ))}
                 </div>
-                <NextRow disabled={!answers.budget} onNext={advance} />
+                <NextRow disabled={answers.budget.length === 0} onNext={advance} />
               </>
             )}
 
