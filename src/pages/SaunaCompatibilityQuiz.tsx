@@ -758,17 +758,17 @@ const HeroSection = ({ onStart }: { onStart: () => void }) => (
       loading="eager"
     />
     <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/20 to-transparent" />
-    <div className="relative z-10 max-w-xl px-6 md:px-12 pt-10 md:pt-16 pb-16">
+    <div className="relative z-10 max-w-xl px-6 md:px-12 pt-10 md:pt-16 pb-16 mx-auto">
       <h1 className="sr-only">What Sauna Will Actually Work In Your Home?</h1>
-      <p className="text-white text-[20px] md:text-[32px] leading-[1.1] font-semibold tracking-tight mb-4">
+      <p className="text-white text-[20px] md:text-[32px] leading-[1.1] font-semibold tracking-tight mb-4 text-center md:text-left">
         What Sauna Will Actually Work In Your Home?
       </p>
-      <div className="flex flex-col items-start gap-3">
+      <div className="flex flex-col items-center md:items-start gap-3">
         <Button onClick={onStart} className="bg-white text-[#171717] hover:bg-white/90 text-[0.75rem] px-5 py-3">
           Take the 2-Minute Compatibility Quiz
           <ArrowRight size={16} />
         </Button>
-        <p className="text-sm text-white/85 max-w-md">
+        <p className="text-sm text-white/85 max-w-md text-center md:text-left">
           Get personalized recommendations, electrical requirements, expected
           temperatures, and estimated installation costs.
         </p>
