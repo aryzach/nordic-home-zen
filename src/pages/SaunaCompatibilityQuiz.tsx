@@ -153,26 +153,24 @@ function buildRecommendations(a: Answers): Recommendation[] {
   const wantsHighTemp =
     a.temperature === "200°F" ||
     a.temperature === "230°F" ||
-    a.priorities.includes("Highest possible temperatures") ||
-    a.priorities.includes("Traditional steam sauna") ||
-    a.priorities.includes("Dry sauna");
-  const wantsInfrared =
-    a.priorities.includes("Infrared sauna") ||
-    a.priorities.includes("Red-light therapy");
+    a.priorities.includes("High temps (190 - 230°F)");
+  const wantsInfrared = a.priorities.includes("Red-light therapy");
   const budgetTier =
-    a.budget === "Under $3,000"
-      ? 1
-      : a.budget === "$3,000-$5,000"
-        ? 2
-        : a.budget === "$5,000-$8,000"
+    a.budget.includes("$12,000+")
+      ? 5
+      : a.budget.includes("$8,000-$12,000")
+        ? 4
+        : a.budget.includes("$5,000-$8,000")
           ? 3
-          : a.budget === "$8,000-$12,000"
-            ? 4
-            : 5;
+          : a.budget.includes("$3,000-$5,000")
+            ? 2
+            : a.budget.includes("Under $3,000")
+              ? 1
+              : 3;
   const noElectrician =
-    a.twentyAmp !== "Yes" || a.priorities.includes("Lowest installation cost");
+    a.twentyAmp !== "Yes" || a.priorities.includes("Low installation cost");
   const outdoor =
-    a.placement.includes("Backyard") || a.placement.includes("Patio / Deck");
+    a.placement.includes("Backyard") || a.placement.includes("Deck");
 
   // Anywhere Sauna
   let anywhereScore = 70;
