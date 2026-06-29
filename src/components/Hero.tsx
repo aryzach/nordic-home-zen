@@ -1,7 +1,12 @@
 import { Star, ExternalLink } from "lucide-react";
 import { trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
-const heroImage = { url: "/hero-sauna-forest.png" };
+const HERO_MOBILE_AVIF = "/hero-mobile.avif";
+const HERO_MOBILE_WEBP = "/hero-mobile.webp";
+const HERO_MOBILE_JPG = "/hero-mobile.jpg";
+const HERO_DESKTOP_AVIF = "/hero-desktop.avif";
+const HERO_DESKTOP_WEBP = "/hero-desktop.webp";
+const HERO_DESKTOP_JPG = "/hero-desktop.jpg";
 
 const Hero = () => {
   const cta = (
