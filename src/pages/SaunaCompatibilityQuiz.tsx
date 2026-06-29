@@ -385,6 +385,8 @@ const SaunaCompatibilityQuiz = () => {
 
   return (
     <Shell className={view === "hero" ? "pb-0" : ""}>
+      {view === "hero" && <HeroSection onStart={startQuiz} />}
+
       <div className="container-x">
         {view !== "hero" && (
           <div className="max-w-2xl mx-auto mb-3">
@@ -399,10 +401,6 @@ const SaunaCompatibilityQuiz = () => {
         )}
 
         {view === "quiz" && <Progress step={step} />}
-
-        {view === "hero" && (
-          <HeroSection onStart={startQuiz} />
-        )}
 
         {view === "quiz" && (
           <Card>
