@@ -40,8 +40,33 @@ const Header = () => {
     lightOnHero ? "text-white/90 hover:text-white" : "text-foreground/85 hover:text-foreground"
   );
 
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const headerHeight = window.innerWidth >= 1024 ? 96 : 78;
+    const y = el.getBoundingClientRect().top + window.scrollY - headerHeight;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  const handleNavClick = (to: string, id?: string) => {
+    setIsMobileMenuOpen(false);
+    if (id && location.pathname === to) {
+      scrollToSection(id);
+    } else {
+      navigate(to);
+    }
+  };
+
+  const handleBuyNow = () => {
+    if (location.pathname === "/specs") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/specs");
+    }
+  };
+
   const navItems = [
-    { label: "Specs", to: "/specs" },
+    { label: "Specs", to: "/specs", id: "about-the-sauna" },
     { label: "Installs", to: "/installs" },
     { label: "FAQ", to: "/faq" },
     { label: "Contact", to: "/contact" },
