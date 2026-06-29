@@ -359,7 +359,10 @@ const SaunaCompatibilityQuiz = () => {
     setStep((s) => s - 1);
   };
 
-  const toggleMulti = (key: "placement" | "priorities", value: string) => {
+  const toggleMulti = (
+    key: "placement" | "priorities" | "budget",
+    value: string
+  ) => {
     setAnswers((a) => {
       const current = a[key];
       return current.includes(value)
