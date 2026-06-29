@@ -971,6 +971,45 @@ const RankBadge = ({ rank }: { rank: number }) => {
   );
 };
 
+const SummaryCard = ({
+  rec,
+  rank,
+  onBuyAnywhere,
+}: {
+  rec: Recommendation;
+  rank: number;
+  onBuyAnywhere: () => void;
+}) => (
+  <div className="bg-card border border-border rounded-2xl p-5 md:p-6 flex items-center gap-4 md:gap-6">
+    <div className="w-24 h-24 md:w-32 md:h-32 shrink-0 rounded-xl overflow-hidden bg-secondary/40">
+      <img
+        src={rec.image}
+        alt={rec.name}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+    <div className="flex-1 min-w-0">
+      <div className="mb-2">
+        <RankBadge rank={rank} />
+      </div>
+      <h3 className="text-[18px] md:text-[22px] font-semibold leading-tight mb-1">
+        {rec.name}
+      </h3>
+      <p className="text-[14px] text-muted-foreground">
+        {rec.totalCost} · {rec.plugIn ? "Plug-in" : "Not plug-in"}
+      </p>
+      {rec.isAnywhere && (
+        <div className="mt-3">
+          <Button onClick={onBuyAnywhere} size="sm" variant="outline">
+            See the Anywhere Sauna
+          </Button>
+        </div>
+      )}
+    </div>
+  </div>
+);
+
 const Row = ({ label, value }: { label: string; value: string }) => (
   <div className="py-3 border-b border-border last:border-b-0 grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-1 sm:gap-4">
     <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
