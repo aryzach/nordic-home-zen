@@ -77,13 +77,13 @@ const Card = ({ children }: { children: React.ReactNode }) => (
 
 const Progress = ({ step }: { step: number }) => (
   <div className="w-full max-w-2xl mx-auto mb-6">
-    <div className="h-1.5 w-full rounded-full bg-secondary overflow-hidden">
+    <div className="h-1.5 w-full rounded-full bg-white/20 overflow-hidden">
       <div
-        className="h-full bg-[#171717] transition-all duration-500 ease-out"
+        className="h-full bg-white transition-all duration-500 ease-out"
         style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
       />
     </div>
-    <p className="mt-2 text-xs tracking-[0.18em] uppercase text-muted-foreground text-center">
+    <p className="mt-2 text-xs tracking-[0.18em] uppercase text-white/80 text-center">
       Question {step} of {TOTAL_STEPS}
     </p>
   </div>
