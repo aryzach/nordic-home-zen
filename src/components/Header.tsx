@@ -50,8 +50,11 @@ const Header = () => {
 
   const handleNavClick = (to: string, id?: string) => {
     setIsMobileMenuOpen(false);
-    if (id && location.pathname === to) {
+    const [basePath] = to.split("#");
+    if (id && location.pathname === basePath) {
       scrollToSection(id);
+    } else if (id) {
+      navigate(`${basePath}#${id}`);
     } else {
       navigate(to);
     }
