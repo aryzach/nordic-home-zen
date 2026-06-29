@@ -30,7 +30,7 @@ type Answers = {
   twentyAmp: string;
   priorities: string[];
   temperature: string;
-  budget: string;
+  budget: string[];
   timeline: string;
 };
 
@@ -45,7 +45,7 @@ const initialAnswers: Answers = {
   twentyAmp: "",
   priorities: [],
   temperature: "",
-  budget: "",
+  budget: [],
   timeline: "",
 };
 
@@ -93,23 +93,38 @@ const OptionButton = ({
   label,
   selected,
   onClick,
+  multi,
 }: {
   label: string;
   selected?: boolean;
   onClick: () => void;
+  multi?: boolean;
 }) => (
   <button
     type="button"
     onClick={onClick}
     className={[
-      "w-full text-left px-5 py-4 border rounded-xl transition-colors duration-150",
+      "w-full text-left px-5 py-4 border rounded-xl transition-colors duration-150 flex items-center gap-3",
       "text-[15px] leading-snug",
       selected
         ? "border-[#171717] bg-[#171717] text-white"
         : "border-border bg-card hover:border-[#171717]/60 text-foreground",
     ].join(" ")}
   >
-    {label}
+    {multi && (
+      <span
+        aria-hidden
+        className={[
+          "h-5 w-5 shrink-0 rounded border flex items-center justify-center transition-colors",
+          selected
+            ? "bg-white border-white text-[#171717]"
+            : "bg-transparent border-muted-foreground/50",
+        ].join(" ")}
+      >
+        {selected && <CheckCircle2 size={14} className="text-[#171717]" />}
+      </span>
+    )}
+    <span className="flex-1">{label}</span>
   </button>
 );
 
@@ -143,6 +158,9 @@ type Recommendation = {
   estInstallCost: string;
   useCase: string;
   whyFit: string;
+  image: string;
+  totalCost: string;
+  plugIn: boolean;
   isAnywhere?: boolean;
 };
 
@@ -153,26 +171,24 @@ function buildRecommendations(a: Answers): Recommendation[] {
   const wantsHighTemp =
     a.temperature === "200°F" ||
     a.temperature === "230°F" ||
-    a.priorities.includes("Highest possible temperatures") ||
-    a.priorities.includes("Traditional steam sauna") ||
-    a.priorities.includes("Dry sauna");
-  const wantsInfrared =
-    a.priorities.includes("Infrared sauna") ||
-    a.priorities.includes("Red-light therapy");
+    a.priorities.includes("High temps (190 - 230°F)");
+  const wantsInfrared = a.priorities.includes("Red-light therapy");
   const budgetTier =
-    a.budget === "Under $3,000"
-      ? 1
-      : a.budget === "$3,000-$5,000"
-        ? 2
-        : a.budget === "$5,000-$8,000"
+    a.budget.includes("$12,000+")
+      ? 5
+      : a.budget.includes("$8,000-$12,000")
+        ? 4
+        : a.budget.includes("$5,000-$8,000")
           ? 3
-          : a.budget === "$8,000-$12,000"
-            ? 4
-            : 5;
+          : a.budget.includes("$3,000-$5,000")
+            ? 2
+            : a.budget.includes("Under $3,000")
+              ? 1
+              : 3;
   const noElectrician =
-    a.twentyAmp !== "Yes" || a.priorities.includes("Lowest installation cost");
+    a.twentyAmp !== "Yes" || a.priorities.includes("Low installation cost");
   const outdoor =
-    a.placement.includes("Backyard") || a.placement.includes("Patio / Deck");
+    a.placement.includes("Backyard") || a.placement.includes("Deck");
 
   // Anywhere Sauna
   let anywhereScore = 70;
@@ -219,6 +235,9 @@ function buildRecommendations(a: Answers): Recommendation[] {
       whyFit: renter
         ? "Runs on a standard 3-prong outlet, so you can install it without modifying your unit — ideal for renters."
         : "Reaches traditional Finnish temperatures on a normal household outlet, with no permits or electrical work.",
+      image: "/images/sauna-type-anywhere.jpg",
+      totalCost: "$4,599 delivered",
+      plugIn: true,
       isAnywhere: true,
     },
     {
@@ -230,6 +249,9 @@ function buildRecommendations(a: Answers): Recommendation[] {
       useCase: "Compact indoor/outdoor traditional sauna for homeowners",
       whyFit:
         "Solid traditional heat in a smaller prefab footprint, but requires a dedicated high-voltage circuit.",
+      image: "/images/compare-nordica.png",
+      totalCost: "~$6,000–$8,000 with install",
+      plugIn: false,
     },
     {
       name: "Almost Heaven (Barrel / Cabin)",
@@ -240,6 +262,9 @@ function buildRecommendations(a: Answers): Recommendation[] {
       useCase: "Backyard barrel or cabin sauna for homeowners with outdoor space",
       whyFit:
         "Great traditional outdoor experience if you own your home and can run a dedicated 240V line outside.",
+      image: "/images/compare-barrel.png",
+      totalCost: "~$7,000–$10,500 with install",
+      plugIn: false,
     },
     {
       name: "Clearlight Infrared",
@@ -251,6 +276,9 @@ function buildRecommendations(a: Answers): Recommendation[] {
       whyFit: wantsInfrared
         ? "Best fit if your priority is infrared heat and red-light therapy rather than steam."
         : "Easy to install, but won't deliver the high heat of a traditional steam sauna.",
+      image: "/images/compare-infrared.png",
+      totalCost: "~$5,500",
+      plugIn: true,
     },
   ];
 
@@ -331,7 +359,10 @@ const SaunaCompatibilityQuiz = () => {
     setStep((s) => s - 1);
   };
 
-  const toggleMulti = (key: "placement" | "priorities", value: string) => {
+  const toggleMulti = (
+    key: "placement" | "priorities" | "budget",
+    value: string
+  ) => {
     setAnswers((a) => {
       const current = a[key];
       return current.includes(value)
@@ -408,7 +439,7 @@ const SaunaCompatibilityQuiz = () => {
               <>
                 <QuestionHeader title="What type of home do you live in?" />
                 <div className="space-y-3">
-                  {["Apartment", "Condo", "Single-family home"].map((o) => (
+                  {["Apartment", "Condo", "House"].map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
@@ -455,18 +486,18 @@ const SaunaCompatibilityQuiz = () => {
                 />
                 <div className="space-y-3">
                   {[
-                    "Bedroom",
-                    "Living room",
-                    "Garage",
-                    "Basement",
-                    "Patio / Deck",
+                    "Living Room",
                     "Backyard",
+                    "Bedroom",
+                    "Deck",
                     "Balcony",
+                    "Basement",
                     "Home Gym",
                   ].map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
+                      multi
                       selected={answers.placement.includes(o)}
                       onClick={() => toggleMulti("placement", o)}
                     />
@@ -553,15 +584,11 @@ const SaunaCompatibilityQuiz = () => {
                 />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
-                    "Traditional steam sauna",
-                    "Dry sauna",
-                    "Infrared sauna",
-                    "Red-light therapy",
-                    "Highest possible temperatures",
-                    "Fast heat-up",
+                    "High temps (190 - 230°F)",
                     "Portable/renter-friendly",
-                    "Attractive design",
-                    "Lowest installation cost",
+                    "Red-light therapy",
+                    "Aesthetic design",
+                    "Low installation cost",
                     "Muscle recovery",
                     "Relaxation",
                     "Daily wellness routine",
@@ -569,6 +596,7 @@ const SaunaCompatibilityQuiz = () => {
                     <OptionButton
                       key={o}
                       label={o}
+                      multi
                       selected={answers.priorities.includes(o)}
                       onClick={() => toggleMulti("priorities", o)}
                     />
@@ -600,7 +628,10 @@ const SaunaCompatibilityQuiz = () => {
 
             {step === 9 && (
               <>
-                <QuestionHeader title="What's your total budget?" />
+                <QuestionHeader
+                  title="What budget ranges are you considering?"
+                  multi
+                />
                 <div className="space-y-3">
                   {[
                     "Under $3,000",
@@ -612,12 +643,13 @@ const SaunaCompatibilityQuiz = () => {
                     <OptionButton
                       key={o}
                       label={o}
-                      selected={answers.budget === o}
-                      onClick={() => setSingle("budget", o)}
+                      multi
+                      selected={answers.budget.includes(o)}
+                      onClick={() => toggleMulti("budget", o)}
                     />
                   ))}
                 </div>
-                <NextRow disabled={!answers.budget} onNext={advance} />
+                <NextRow disabled={answers.budget.length === 0} onNext={advance} />
               </>
             )}
 
@@ -868,16 +900,38 @@ const ResultsView = ({
   const [best, ...rest] = recommendations;
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="text-center mb-10">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">
+      <div className="text-center mb-8">
+        <p className="text-xs uppercase tracking-[0.2em] text-white mb-3">
           Your personalized results
         </p>
-        <h1 className="text-[32px] md:text-[44px] leading-[1.1] font-semibold mb-3">
+        <h1 className="text-[32px] md:text-[44px] leading-[1.1] font-semibold mb-3 text-white">
           Best Match
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-white">
           Based on your space, electrical setup, budget, and goals.
         </p>
+      </div>
+
+      <div className="bg-card border border-border rounded-2xl p-5 md:p-6 mb-8 flex items-center gap-4 md:gap-6">
+        <div className="w-24 h-24 md:w-32 md:h-32 shrink-0 rounded-xl overflow-hidden bg-secondary/40">
+          <img
+            src={best.image}
+            alt={best.name}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="mb-2">
+            <ScorePill score={best.score} />
+          </div>
+          <h3 className="text-[18px] md:text-[22px] font-semibold leading-tight mb-1">
+            {best.name}
+          </h3>
+          <p className="text-[14px] text-muted-foreground">
+            {best.totalCost} · {best.plugIn ? "Plug-in" : "Not plug-in"}
+          </p>
+        </div>
       </div>
 
       <BestMatchCard rec={best} onBuyAnywhere={onBuyAnywhere} />
@@ -1012,7 +1066,7 @@ function flattenAnswers(a: Answers): Record<string, string> {
     outlet_20a: a.twentyAmp,
     priorities: a.priorities.join(", "),
     temperature: a.temperature,
-    budget: a.budget,
+    budget: a.budget.join(", "),
     timeline: a.timeline,
   };
 }
