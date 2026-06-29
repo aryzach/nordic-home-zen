@@ -541,7 +541,7 @@ const SaunaCompatibilityQuiz = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [view, step]);
 
-  const recommendations = useMemo(
+  const recommendationResult = useMemo(
     () => buildRecommendations(answers),
     [answers]
   );
