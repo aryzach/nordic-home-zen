@@ -1105,84 +1105,18 @@ const OtherInput = ({
   </div>
 );
 
-const ResultsView = ({
-  recommendations,
-  answers,
-  onBookConsult,
-  onBuyAnywhere,
-}: {
-  recommendations: Recommendation[];
-  answers: Answers;
-  onBookConsult: () => void;
-  onBuyAnywhere: () => void;
-}) => {
-  const [best, second, third, ...rest] = recommendations;
-  const topThree = [best, second, third].filter(Boolean);
-  return (
-    <div className="max-w-3xl mx-auto">
-      <div className="text-center mb-8">
-        <p className="text-xs uppercase tracking-[0.2em] text-white mb-3">
-          Your personalized results
-        </p>
-        <h1 className="text-[32px] md:text-[44px] leading-[1.1] font-semibold mb-3 text-white">
-          Best Match
-        </h1>
-        <p className="text-white">
-          Based on your space, electrical setup, budget, and goals.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 mb-8">
-        {topThree.map((rec, idx) => (
-          <SummaryCard
-            key={rec.name}
-            rec={rec}
-            rank={idx + 1}
-            onBuyAnywhere={onBuyAnywhere}
-          />
-        ))}
-      </div>
-
-      <BestMatchCard rec={best} onBuyAnywhere={onBuyAnywhere} />
-
-      <h2 className="text-[22px] md:text-[28px] font-semibold mt-14 mb-5 text-center text-white">
-        Other Options To Consider
-      </h2>
-      <div className="space-y-4">
-        {rest.map((r) => (
-          <OtherOptionCard
-            key={r.name}
-            rec={r}
-            onBuyAnywhere={onBuyAnywhere}
-          />
-        ))}
-      </div>
-
-      <div className="mt-16 bg-card border border-border rounded-2xl p-8 md:p-12 text-center">
-        <h2 className="text-[26px] md:text-[34px] font-semibold mb-3">
-          Still not sure?
-        </h2>
-        <p className="text-muted-foreground max-w-xl mx-auto mb-6">
-          We'll review your space, electrical setup, and goals with you
-          personally.
-        </p>
-        <Button
-          onClick={onBookConsult}
-          size="lg"
-          variant="outline"
-          className="max-w-full whitespace-normal h-auto py-3 text-center"
-        >
-          Book Free Sauna Consultation
-          <ExternalLink size={16} />
-        </Button>
-      </div>
-    </div>
-  );
+const TIER_CLASSES: Record<Tier, string> = {
+  "Excellent Match": "bg-emerald-600 text-white",
+  "Good Match": "bg-[#171717] text-white",
+  "Possible Fit": "bg-amber-500 text-white",
+  "Not Recommended": "bg-muted text-muted-foreground",
 };
 
-const ScorePill = ({ score }: { score: number }) => (
-  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171717] text-white text-xs uppercase tracking-[0.15em]">
-    {score}% compatibility
+const TierBadge = ({ tier }: { tier: Tier }) => (
+  <div
+    className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs uppercase tracking-[0.15em] ${TIER_CLASSES[tier]}`}
+  >
+    {tier}
   </div>
 );
 
@@ -1190,10 +1124,57 @@ const RankBadge = ({ rank }: { rank: number }) => {
   const labels = ["1st", "2nd", "3rd"];
   return (
     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171717] text-white text-xs uppercase tracking-[0.15em]">
-      {labels[rank - 1] || `${rank}th`} match
+      {labels[rank - 1] || `${rank}th`} recommendation
     </div>
   );
 };
+
+const Row = ({ label, value }: { label: string; value: string }) => (
+  <div className="py-3 border-b border-border last:border-b-0 grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-1 sm:gap-4">
+    <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+      {label}
+    </div>
+    <div className="text-[15px] text-foreground">{value}</div>
+  </div>
+);
+
+const ConsultCTA = ({
+  heading,
+  body,
+  onBookConsult,
+  emphasized,
+}: {
+  heading: string;
+  body: string;
+  onBookConsult: () => void;
+  emphasized?: boolean;
+}) => (
+  <div
+    className={`mt-12 rounded-2xl p-8 md:p-12 text-center ${
+      emphasized
+        ? "bg-[#171717] text-white border border-[#171717]"
+        : "bg-card text-foreground border border-border"
+    }`}
+  >
+    <h2 className="text-[26px] md:text-[34px] font-semibold mb-3">{heading}</h2>
+    <p
+      className={`max-w-xl mx-auto mb-6 ${
+        emphasized ? "text-white/80" : "text-muted-foreground"
+      }`}
+    >
+      {body}
+    </p>
+    <Button
+      onClick={onBookConsult}
+      size="lg"
+      variant={emphasized ? "secondary" : "outline"}
+      className="max-w-full whitespace-normal h-auto py-3 text-center"
+    >
+      Book Free 15-Minute Consultation
+      <ExternalLink size={16} />
+    </Button>
+  </div>
+);
 
 const SummaryCard = ({
   rec,
@@ -1214,8 +1195,9 @@ const SummaryCard = ({
       />
     </div>
     <div className="flex-1 min-w-0">
-      <div className="mb-2">
+      <div className="mb-2 flex flex-wrap items-center gap-2">
         <RankBadge rank={rank} />
+        <TierBadge tier={rec.tier} />
       </div>
       <h3 className="text-[18px] md:text-[22px] font-semibold leading-tight mb-1">
         {rec.name}
@@ -1231,15 +1213,6 @@ const SummaryCard = ({
         </div>
       )}
     </div>
-  </div>
-);
-
-const Row = ({ label, value }: { label: string; value: string }) => (
-  <div className="py-3 border-b border-border last:border-b-0 grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-1 sm:gap-4">
-    <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
-      {label}
-    </div>
-    <div className="text-[15px] text-foreground">{value}</div>
   </div>
 );
 
@@ -1260,16 +1233,17 @@ const BestMatchCard = ({
           {rec.name}
         </h3>
       </div>
-      <ScorePill score={rec.score} />
+      <TierBadge tier={rec.tier} />
     </div>
     <div className="mb-6">
       <Row label="Expected temps" value={rec.tempRange} />
       <Row label="Install complexity" value={rec.installComplexity} />
       <Row label="Est. install cost" value={rec.estInstallCost} />
+      <Row label="All-in cost" value={rec.totalCost} />
       <Row label="Best use case" value={rec.useCase} />
     </div>
     <p className="text-[15px] leading-relaxed text-foreground mb-7">
-      <span className="font-semibold">Why this fits: </span>
+      <span className="font-semibold">Why we recommended this: </span>
       {rec.whyFit}
     </p>
     {rec.isAnywhere && (
@@ -1297,12 +1271,13 @@ const OtherOptionCard = ({
       <h3 className="text-[20px] md:text-[22px] font-semibold leading-tight">
         {rec.name}
       </h3>
-      <ScorePill score={rec.score} />
+      <TierBadge tier={rec.tier} />
     </div>
     <div className="mb-3">
       <Row label="Expected temps" value={rec.tempRange} />
       <Row label="Install complexity" value={rec.installComplexity} />
       <Row label="Est. install cost" value={rec.estInstallCost} />
+      <Row label="All-in cost" value={rec.totalCost} />
       <Row label="Best use case" value={rec.useCase} />
     </div>
     <p className="text-[14px] text-muted-foreground leading-relaxed">
@@ -1317,6 +1292,109 @@ const OtherOptionCard = ({
     )}
   </div>
 );
+
+const ResultsView = ({
+  result,
+  answers,
+  onBookConsult,
+  onBuyAnywhere,
+}: {
+  result: RecommendationResult;
+  answers: Answers;
+  onBookConsult: () => void;
+  onBuyAnywhere: () => void;
+}) => {
+  const { recommendations, consultationStrongly, allDisqualified } = result;
+
+  if (allDisqualified) {
+    return (
+      <div className="max-w-2xl mx-auto">
+        <div className="text-center mb-8">
+          <p className="text-xs uppercase tracking-[0.2em] text-white mb-3">
+            Your personalized results
+          </p>
+          <h1 className="text-[32px] md:text-[44px] leading-[1.1] font-semibold mb-3 text-white">
+            Let's Find a Creative Fit
+          </h1>
+        </div>
+        <div className="bg-card border border-border rounded-2xl p-6 md:p-10 text-center">
+          <p className="text-[16px] leading-relaxed text-foreground mb-6">
+            No sauna appears to be an ideal fit based on your current space,
+            electrical setup, and goals. Schedule a consultation and we'll see
+            if there's a creative solution for your home.
+          </p>
+          <Button
+            onClick={onBookConsult}
+            size="lg"
+            className="max-w-full whitespace-normal h-auto py-3 text-center"
+          >
+            Book Free 15-Minute Consultation
+            <ExternalLink size={16} />
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  const eligible = recommendations.filter((r) => !r.disqualified);
+  const disqualified = recommendations.filter((r) => r.disqualified);
+  const [best, second, third, ...restEligible] = eligible;
+  const topThree = [best, second, third].filter(Boolean);
+  const others = [...restEligible, ...disqualified];
+
+  return (
+    <div className="max-w-3xl mx-auto">
+      <div className="text-center mb-8">
+        <p className="text-xs uppercase tracking-[0.2em] text-white mb-3">
+          Your personalized results
+        </p>
+        <h1 className="text-[32px] md:text-[44px] leading-[1.1] font-semibold mb-3 text-white">
+          Your Personalized Sauna Recommendations
+        </h1>
+        <p className="text-white">
+          Based on your space, electrical setup, budget, and goals.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 mb-8">
+        {topThree.map((rec, idx) => (
+          <SummaryCard
+            key={rec.name}
+            rec={rec}
+            rank={idx + 1}
+            onBuyAnywhere={onBuyAnywhere}
+          />
+        ))}
+      </div>
+
+      {best && <BestMatchCard rec={best} onBuyAnywhere={onBuyAnywhere} />}
+
+      {others.length > 0 && (
+        <>
+          <h2 className="text-[22px] md:text-[28px] font-semibold mt-14 mb-5 text-center text-white">
+            Other Options To Consider
+          </h2>
+          <div className="space-y-4">
+            {others.map((r) => (
+              <OtherOptionCard
+                key={r.name}
+                rec={r}
+                onBuyAnywhere={onBuyAnywhere}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
+      <ConsultCTA
+        emphasized={consultationStrongly}
+        heading="Want a Second Opinion?"
+        body="Book a free 15-minute consultation and we'll review your space, electrical setup, and goals together."
+        onBookConsult={onBookConsult}
+      />
+    </div>
+  );
+};
 
 /* ---------------- helpers ---------------- */
 
