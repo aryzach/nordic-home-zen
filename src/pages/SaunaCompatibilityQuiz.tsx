@@ -70,7 +70,7 @@ const Shell = ({
 );
 
 const Card = ({ children }: { children: React.ReactNode }) => (
-  <div className="bg-card border border-border rounded-2xl p-6 md:p-10 max-w-2xl mx-auto">
+  <div className="bg-card text-foreground border border-border rounded-2xl p-6 md:p-10 max-w-2xl mx-auto shadow-xl">
     {children}
   </div>
 );
