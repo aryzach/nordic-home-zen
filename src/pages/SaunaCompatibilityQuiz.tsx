@@ -150,9 +150,18 @@ const QuestionHeader = ({
 
 /* ---------------- Recommendation engine ---------------- */
 
+type Tier =
+  | "Excellent Match"
+  | "Good Match"
+  | "Possible Fit"
+  | "Not Recommended";
+
 type Recommendation = {
+  id: "anywhere" | "saunalife" | "barrel" | "plunge" | "infrared";
   name: string;
   score: number;
+  tier: Tier;
+  disqualified: boolean;
   tempRange: string;
   installComplexity: string;
   estInstallCost: string;
@@ -164,125 +173,335 @@ type Recommendation = {
   isAnywhere?: boolean;
 };
 
-function buildRecommendations(a: Answers): Recommendation[] {
+export type RecommendationResult = {
+  recommendations: Recommendation[];
+  consultationStrongly: boolean;
+  allDisqualified: boolean;
+};
+
+const BUDGET_TIER: Record<string, number> = {
+  "Under $3,000": 1,
+  "$3,000-$5,000": 2,
+  "$5,000-$8,000": 3,
+  "$8,000-$12,000": 4,
+  "$12,000+": 5,
+};
+
+function tierFromScore(score: number, disqualified: boolean): Tier {
+  if (disqualified) return "Not Recommended";
+  if (score >= 130) return "Excellent Match";
+  if (score >= 95) return "Good Match";
+  if (score >= 60) return "Possible Fit";
+  return "Not Recommended";
+}
+
+function buildRecommendations(a: Answers): RecommendationResult {
+  const apartment = a.homeType === "Apartment";
+  const condo = a.homeType === "Condo";
+  const house = a.homeType === "House";
   const renter = a.ownRent === "Rent";
-  const tightSpace =
-    a.space === "Less than 4' x 4'" || a.space === "~4' × 4'";
-  const wantsHighTemp =
-    a.temperature === "200°F" ||
-    a.temperature === "230°F" ||
-    a.priorities.includes("High temps (190 - 230°F)");
+  const owner = a.ownRent === "Own";
+
+  const balcony = a.placement.includes("Balcony");
+  const backyard = a.placement.includes("Backyard");
+  const livingRoom = a.placement.includes("Living Room");
+  const homeGym = a.placement.includes("Home Gym");
+
+  const spaceLt4 = a.space === "Less than 4' x 4'";
+  const space4 = a.space === "~4' × 4'";
+  const space5x6 = a.space === "~5' × 6'";
+  const spaceLarger = a.space === "Larger than 5' × 6'";
+  const spaceUnsure = a.space === "Not sure";
+  const smallerThan5x5 = spaceLt4 || space4;
+  const smallerThan5x6 = spaceLt4 || space4; // ~5×6 counts as 5×6+
+
+  const outletYes = a.outletNearby === "Yes";
+  const outletNo = a.outletNearby === "No";
+  const outletUnsure = a.outletNearby === "Not sure";
+
+  const ampYes = a.twentyAmp === "Yes";
+  const ampNo = a.twentyAmp === "No";
+  const ampUnsure = a.twentyAmp === "Not sure";
+
+  const wantsHigh = a.priorities.includes("High temps (190 - 230°F)");
+  const wantsPortable = a.priorities.includes("Portable/renter-friendly");
   const wantsInfrared = a.priorities.includes("Red-light therapy");
-  const budgetTier =
-    a.budget.includes("$12,000+")
-      ? 5
-      : a.budget.includes("$8,000-$12,000")
-        ? 4
-        : a.budget.includes("$5,000-$8,000")
-          ? 3
-          : a.budget.includes("$3,000-$5,000")
-            ? 2
-            : a.budget.includes("Under $3,000")
-              ? 1
-              : 3;
-  const noElectrician =
-    a.twentyAmp !== "Yes" || a.priorities.includes("Low installation cost");
-  const outdoor =
-    a.placement.includes("Backyard") || a.placement.includes("Deck");
+  const wantsAesthetic = a.priorities.includes("Aesthetic design");
+  const wantsLowInstall = a.priorities.includes("Low installation cost");
+  const wantsRecovery = a.priorities.includes("Muscle recovery");
+  const wantsRelax = a.priorities.includes("Relaxation");
+  const wantsDaily = a.priorities.includes("Daily wellness routine");
 
-  // Anywhere Sauna
-  let anywhereScore = 70;
-  if (renter) anywhereScore += 10;
-  if (a.outletNearby === "Yes") anywhereScore += 8;
-  if (noElectrician) anywhereScore += 8;
-  if (wantsHighTemp) anywhereScore += 6;
-  if (budgetTier >= 2 && budgetTier <= 3) anywhereScore += 4;
-  if (wantsInfrared) anywhereScore -= 15;
-  if (a.space === "Less than 4' x 4'") anywhereScore -= 8;
-  anywhereScore = Math.min(98, Math.max(40, anywhereScore));
+  const temp150 = a.temperature === "150°F";
+  const temp170 = a.temperature === "170°F";
+  const temp200 = a.temperature === "200°F";
+  const temp230 = a.temperature === "230°F";
+  const wants200plus = temp200 || temp230 || wantsHigh;
 
-  // SaunaLife (compact prefab traditional)
-  let saunaLifeScore = 55;
-  if (wantsHighTemp) saunaLifeScore += 8;
-  if (outdoor) saunaLifeScore += 8;
-  if (budgetTier >= 4) saunaLifeScore += 6;
-  if (renter) saunaLifeScore -= 10;
-  if (a.twentyAmp !== "Yes") saunaLifeScore -= 8;
+  const budgetTiers = a.budget.map((b) => BUDGET_TIER[b]).filter(Boolean);
+  const maxBudget = budgetTiers.length ? Math.max(...budgetTiers) : 0;
+  const multipleBudgets = a.budget.length > 1;
+  const budgetU3k = a.budget.includes("Under $3,000");
+  const budget3to5k = a.budget.includes("$3,000-$5,000");
+  const budget5to8k = a.budget.includes("$5,000-$8,000");
+  const budget8to12k = a.budget.includes("$8,000-$12,000");
+  const budget12kPlus = a.budget.includes("$12,000+");
 
-  // Almost Heaven (barrel/cabin)
-  let almostHeavenScore = 50;
-  if (outdoor) almostHeavenScore += 12;
-  if (wantsHighTemp) almostHeavenScore += 6;
-  if (budgetTier >= 3) almostHeavenScore += 6;
-  if (renter) almostHeavenScore -= 12;
-  if (tightSpace) almostHeavenScore -= 10;
+  // Initialize
+  const scores = { anywhere: 50, saunalife: 50, barrel: 50, plunge: 50, infrared: 50 };
+  const disq = { anywhere: false, saunalife: false, barrel: false, plunge: false, infrared: false };
 
-  // Clearlight Infrared
-  let infraredScore = 45;
-  if (wantsInfrared) infraredScore += 30;
-  if (a.outletNearby === "Yes") infraredScore += 6;
-  if (budgetTier >= 2) infraredScore += 4;
-  if (wantsHighTemp) infraredScore -= 15;
+  // Stage 1: hard disqualifiers
+  if (outletNo) disq.anywhere = true;
 
-  const recs: Recommendation[] = [
-    {
-      name: "Anywhere Sauna",
-      score: anywhereScore,
-      tempRange: "Up to 200°F",
-      installComplexity: "Plug-and-play — no electrician",
-      estInstallCost: "$0 install (plugs into standard 120V outlet)",
-      useCase: "Traditional steam sauna inside homes, apartments, or rentals",
-      whyFit: renter
-        ? "Runs on a standard 3-prong outlet, so you can install it without modifying your unit — ideal for renters."
+  if (renter || apartment || balcony || (maxBudget && maxBudget < 3) || smallerThan5x5 || outletNo)
+    disq.saunalife = true;
+
+  if (apartment || (maxBudget && maxBudget < 3) || wants200plus || smallerThan5x6 || outletNo)
+    disq.barrel = true;
+
+  if ((maxBudget && maxBudget < 4) || apartment || renter || smallerThan5x5 || outletNo)
+    disq.plunge = true;
+
+  if (wants200plus) disq.infrared = true;
+
+  // Stage 2: weighted scoring
+  // Home type
+  if (apartment) {
+    scores.anywhere += 40; scores.infrared += 35;
+    scores.saunalife -= 100; scores.barrel -= 100; scores.plunge -= 100;
+  } else if (condo) {
+    scores.anywhere += 20; scores.saunalife += 10; scores.infrared += 20;
+  } else if (house) {
+    scores.anywhere += 10; scores.saunalife += 25; scores.barrel += 25;
+    scores.plunge += 25; scores.infrared += 5;
+  }
+
+  // Own / rent
+  if (renter) {
+    scores.anywhere += 35; scores.infrared += 30;
+    scores.saunalife -= 40; scores.barrel -= 40; scores.plunge -= 50;
+  } else if (owner) {
+    scores.anywhere += 10; scores.saunalife += 20; scores.barrel += 20;
+    scores.plunge += 20; scores.infrared += 5;
+  }
+
+  // Location
+  if (balcony) {
+    scores.anywhere += 40; scores.infrared += 30;
+    scores.saunalife -= 100; scores.barrel -= 100; scores.plunge -= 100;
+  }
+  if (backyard) {
+    scores.barrel += 25; scores.saunalife += 20; scores.plunge += 20; scores.anywhere += 10;
+  }
+  if (livingRoom) {
+    scores.anywhere += 25; scores.infrared += 25; scores.plunge += 10;
+  }
+  if (homeGym) {
+    scores.plunge += 20; scores.anywhere += 15; scores.infrared += 15;
+  }
+
+  // Space
+  if (spaceLt4) {
+    scores.anywhere -= 50; scores.saunalife -= 100; scores.barrel -= 100;
+    scores.plunge -= 100; scores.infrared -= 20;
+  } else if (space4) {
+    scores.anywhere += 20; scores.infrared += 20;
+    scores.saunalife -= 30; scores.barrel -= 100; scores.plunge -= 30;
+  } else if (space5x6) {
+    scores.anywhere += 10; scores.saunalife += 20; scores.barrel += 20;
+    scores.plunge += 20; scores.infrared += 10;
+  } else if (spaceLarger) {
+    scores.anywhere += 5; scores.saunalife += 15; scores.barrel += 20;
+    scores.plunge += 20; scores.infrared += 5;
+  }
+
+  // Outlet
+  if (outletNo) {
+    disq.anywhere = true; disq.saunalife = true; disq.barrel = true;
+    disq.plunge = true; disq.infrared = true;
+  } else if (outletUnsure) {
+    scores.anywhere -= 10; scores.saunalife -= 10; scores.barrel -= 10;
+    scores.plunge -= 10; scores.infrared -= 10;
+  }
+
+  // 20 amp
+  if (ampYes) scores.anywhere += 30;
+  else if (ampNo) scores.anywhere -= 25;
+  else if (ampUnsure) scores.anywhere += 10;
+
+  // Priorities
+  if (wantsHigh) {
+    scores.anywhere += 35; scores.saunalife += 35; scores.plunge += 35;
+    scores.barrel -= 20; scores.infrared -= 100;
+  }
+  if (wantsPortable) {
+    scores.anywhere += 50; scores.infrared += 30;
+    scores.saunalife -= 25; scores.barrel -= 25; scores.plunge -= 25;
+  }
+  if (wantsInfrared) scores.infrared += 50;
+  if (wantsAesthetic) {
+    scores.barrel += 35; scores.plunge += 30; scores.saunalife += 25;
+  }
+  if (wantsLowInstall) {
+    scores.anywhere += 40; scores.infrared += 30;
+    scores.saunalife -= 30; scores.barrel -= 30; scores.plunge -= 30;
+  }
+  if (wantsRecovery) {
+    scores.anywhere += 20; scores.saunalife += 20; scores.plunge += 20;
+  }
+  if (wantsRelax) {
+    scores.barrel += 15; scores.infrared += 15; scores.anywhere += 10;
+  }
+  if (wantsDaily) {
+    scores.infrared += 20; scores.anywhere += 15;
+  }
+
+  // Desired temperature
+  if (temp150) scores.infrared += 40;
+  else if (temp170) { scores.barrel += 15; scores.anywhere += 10; }
+  else if (temp200) {
+    scores.anywhere += 30; scores.saunalife += 30; scores.plunge += 30;
+  } else if (temp230) {
+    scores.anywhere += 35; scores.saunalife += 35; scores.plunge += 40;
+    scores.barrel -= 40; scores.infrared -= 100;
+  }
+
+  // Budget
+  if (budgetU3k) {
+    scores.infrared += 50; scores.anywhere -= 50;
+    scores.saunalife -= 100; scores.barrel -= 100; scores.plunge -= 100;
+  }
+  if (budget3to5k) {
+    scores.anywhere += 40; scores.infrared += 20;
+    scores.barrel -= 20; scores.saunalife -= 30; scores.plunge -= 100;
+  }
+  if (budget5to8k) {
+    scores.anywhere += 20; scores.barrel += 20; scores.saunalife += 20;
+  }
+  if (budget8to12k) {
+    scores.plunge += 30; scores.saunalife += 20; scores.barrel += 15;
+  }
+  if (budget12kPlus) {
+    scores.plunge += 40; scores.saunalife += 20;
+  }
+
+  // Anywhere tie-breaker
+  if (!disq.anywhere) {
+    const competitors = (["saunalife", "barrel", "plunge", "infrared"] as const)
+      .filter((k) => !disq[k])
+      .map((k) => scores[k]);
+    const top = competitors.length ? Math.max(...competitors) : -Infinity;
+    if (top > scores.anywhere && Math.abs(scores.anywhere - top) <= 15) {
+      scores.anywhere += 16;
+    }
+  }
+
+  const consultationStrongly =
+    outletUnsure ||
+    ampUnsure ||
+    spaceUnsure ||
+    multipleBudgets ||
+    a.timeline === "This week" ||
+    a.timeline === "This month" ||
+    a.timeline === "Within 3 months";
+
+  const reasons = {
+    anywhere: renter
+      ? "Runs on a standard 3-prong outlet, so you can install it without modifying your unit — ideal for renters."
+      : apartment || balcony
+        ? "The only steam sauna that works in apartments and balconies — no electrician, no permits."
         : "Reaches traditional Finnish temperatures on a normal household outlet, with no permits or electrical work.",
+    saunalife:
+      "Solid traditional prefab heat at a compact footprint, but requires a dedicated 240V circuit and an electrician.",
+    barrel:
+      "Beautiful outdoor traditional experience for homeowners with backyard space and a dedicated 240V line.",
+    plunge:
+      "Premium high-heat experience with great design — best if you have the budget and a dedicated circuit.",
+    infrared: wantsInfrared
+      ? "Best fit if your priority is infrared heat and red-light therapy rather than steam."
+      : "Easy to plug in, but won't deliver the high heat or steam of a traditional sauna.",
+  };
+
+  const base: Omit<Recommendation, "score" | "tier" | "disqualified" | "whyFit">[] = [
+    {
+      id: "anywhere",
+      name: "Anywhere Sauna",
+      tempRange: "200–230°F",
+      installComplexity: "Plug-and-play — no electrician",
+      estInstallCost: "$0 install (standard 120V outlet)",
+      useCase: "Steam sauna for apartments, rentals, condos, and homes",
       image: "/images/sauna-type-anywhere.jpg",
       totalCost: "$4,599 delivered",
       plugIn: true,
       isAnywhere: true,
     },
     {
-      name: "SaunaLife",
-      score: saunaLifeScore,
-      tempRange: "170–190°F",
-      installComplexity: "Moderate — 240V circuit + electrician",
-      estInstallCost: "$800–$2,500 for dedicated 240V circuit",
-      useCase: "Compact indoor/outdoor traditional sauna for homeowners",
-      whyFit:
-        "Solid traditional heat in a smaller prefab footprint, but requires a dedicated high-voltage circuit.",
+      id: "saunalife",
+      name: "SaunaLife CL3G Cube",
+      tempRange: "200–230°F",
+      installComplexity: "High — 240V dedicated circuit + electrician",
+      estInstallCost: "$800–$2,500 for 240V circuit",
+      useCase: "Compact prefab traditional sauna for homeowners",
       image: "/images/compare-nordica.png",
-      totalCost: "~$6,000–$8,000 with install",
+      totalCost: "$6,149+ all-in",
       plugIn: false,
     },
     {
-      name: "Almost Heaven (Barrel / Cabin)",
-      score: almostHeavenScore,
-      tempRange: "170–195°F",
+      id: "barrel",
+      name: "Barrel Sauna",
+      tempRange: "160–190°F",
       installComplexity: "High — site prep + 240V electrician",
-      estInstallCost: "$1,500–$4,000 (site prep + electrical)",
-      useCase: "Backyard barrel or cabin sauna for homeowners with outdoor space",
-      whyFit:
-        "Great traditional outdoor experience if you own your home and can run a dedicated 240V line outside.",
+      estInstallCost: "$1,500–$4,000 site prep + electrical",
+      useCase: "Outdoor backyard sauna for homeowners",
       image: "/images/compare-barrel.png",
-      totalCost: "~$7,000–$10,500 with install",
+      totalCost: "$5,399+ all-in",
       plugIn: false,
     },
     {
-      name: "Clearlight Infrared",
-      score: infraredScore,
-      tempRange: "120–140°F (infrared)",
+      id: "plunge",
+      name: "Plunge Mini Sauna",
+      tempRange: "Up to 230°F",
+      installComplexity: "High — 240V dedicated circuit",
+      estInstallCost: "$800–$2,500 for 240V circuit",
+      useCase: "Premium high-heat sauna with designer aesthetic",
+      image: "/images/compare-plunge.png",
+      totalCost: "$11,089+ all-in",
+      plugIn: false,
+    },
+    {
+      id: "infrared",
+      name: "Infrared Sauna",
+      tempRange: "~150°F (infrared)",
       installComplexity: "Low — plugs into a standard outlet",
       estInstallCost: "$0 install",
-      useCase: "Low-heat infrared + red-light therapy for daily wellness",
-      whyFit: wantsInfrared
-        ? "Best fit if your priority is infrared heat and red-light therapy rather than steam."
-        : "Easy to install, but won't deliver the high heat of a traditional steam sauna.",
+      useCase: "Low-heat infrared + red-light therapy",
       image: "/images/compare-infrared.png",
-      totalCost: "~$5,500",
+      totalCost: "$2,299+ all-in",
       plugIn: true,
     },
   ];
 
-  return recs.sort((x, y) => y.score - x.score);
+  const recs: Recommendation[] = base.map((b) => {
+    const score = scores[b.id];
+    const disqualified = disq[b.id];
+    return {
+      ...b,
+      score,
+      disqualified,
+      tier: tierFromScore(score, disqualified),
+      whyFit: reasons[b.id],
+    };
+  });
+
+  // Sort: non-disqualified first by score desc, then disqualified by score desc
+  recs.sort((a, b) => {
+    if (a.disqualified !== b.disqualified) return a.disqualified ? 1 : -1;
+    return b.score - a.score;
+  });
+
+  const allDisqualified = recs.every((r) => r.disqualified);
+  return { recommendations: recs, consultationStrongly, allDisqualified };
 }
 
 /* ---------------- Page ---------------- */
@@ -322,7 +541,7 @@ const SaunaCompatibilityQuiz = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [view, step]);
 
-  const recommendations = useMemo(
+  const recommendationResult = useMemo(
     () => buildRecommendations(answers),
     [answers]
   );
@@ -751,7 +970,7 @@ const SaunaCompatibilityQuiz = () => {
 
         {view === "results" && (
           <ResultsView
-            recommendations={recommendations}
+            result={recommendationResult}
             answers={answers}
             onBookConsult={() => {
               trackAndNavigate(
@@ -886,84 +1105,18 @@ const OtherInput = ({
   </div>
 );
 
-const ResultsView = ({
-  recommendations,
-  answers,
-  onBookConsult,
-  onBuyAnywhere,
-}: {
-  recommendations: Recommendation[];
-  answers: Answers;
-  onBookConsult: () => void;
-  onBuyAnywhere: () => void;
-}) => {
-  const [best, second, third, ...rest] = recommendations;
-  const topThree = [best, second, third].filter(Boolean);
-  return (
-    <div className="max-w-3xl mx-auto">
-      <div className="text-center mb-8">
-        <p className="text-xs uppercase tracking-[0.2em] text-white mb-3">
-          Your personalized results
-        </p>
-        <h1 className="text-[32px] md:text-[44px] leading-[1.1] font-semibold mb-3 text-white">
-          Best Match
-        </h1>
-        <p className="text-white">
-          Based on your space, electrical setup, budget, and goals.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 mb-8">
-        {topThree.map((rec, idx) => (
-          <SummaryCard
-            key={rec.name}
-            rec={rec}
-            rank={idx + 1}
-            onBuyAnywhere={onBuyAnywhere}
-          />
-        ))}
-      </div>
-
-      <BestMatchCard rec={best} onBuyAnywhere={onBuyAnywhere} />
-
-      <h2 className="text-[22px] md:text-[28px] font-semibold mt-14 mb-5 text-center text-white">
-        Other Options To Consider
-      </h2>
-      <div className="space-y-4">
-        {rest.map((r) => (
-          <OtherOptionCard
-            key={r.name}
-            rec={r}
-            onBuyAnywhere={onBuyAnywhere}
-          />
-        ))}
-      </div>
-
-      <div className="mt-16 bg-card border border-border rounded-2xl p-8 md:p-12 text-center">
-        <h2 className="text-[26px] md:text-[34px] font-semibold mb-3">
-          Still not sure?
-        </h2>
-        <p className="text-muted-foreground max-w-xl mx-auto mb-6">
-          We'll review your space, electrical setup, and goals with you
-          personally.
-        </p>
-        <Button
-          onClick={onBookConsult}
-          size="lg"
-          variant="outline"
-          className="max-w-full whitespace-normal h-auto py-3 text-center"
-        >
-          Book Free Sauna Consultation
-          <ExternalLink size={16} />
-        </Button>
-      </div>
-    </div>
-  );
+const TIER_CLASSES: Record<Tier, string> = {
+  "Excellent Match": "bg-emerald-600 text-white",
+  "Good Match": "bg-[#171717] text-white",
+  "Possible Fit": "bg-amber-500 text-white",
+  "Not Recommended": "bg-muted text-muted-foreground",
 };
 
-const ScorePill = ({ score }: { score: number }) => (
-  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171717] text-white text-xs uppercase tracking-[0.15em]">
-    {score}% compatibility
+const TierBadge = ({ tier }: { tier: Tier }) => (
+  <div
+    className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs uppercase tracking-[0.15em] ${TIER_CLASSES[tier]}`}
+  >
+    {tier}
   </div>
 );
 
@@ -971,10 +1124,57 @@ const RankBadge = ({ rank }: { rank: number }) => {
   const labels = ["1st", "2nd", "3rd"];
   return (
     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171717] text-white text-xs uppercase tracking-[0.15em]">
-      {labels[rank - 1] || `${rank}th`} match
+      {labels[rank - 1] || `${rank}th`} recommendation
     </div>
   );
 };
+
+const Row = ({ label, value }: { label: string; value: string }) => (
+  <div className="py-3 border-b border-border last:border-b-0 grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-1 sm:gap-4">
+    <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+      {label}
+    </div>
+    <div className="text-[15px] text-foreground">{value}</div>
+  </div>
+);
+
+const ConsultCTA = ({
+  heading,
+  body,
+  onBookConsult,
+  emphasized,
+}: {
+  heading: string;
+  body: string;
+  onBookConsult: () => void;
+  emphasized?: boolean;
+}) => (
+  <div
+    className={`mt-12 rounded-2xl p-8 md:p-12 text-center ${
+      emphasized
+        ? "bg-[#171717] text-white border border-[#171717]"
+        : "bg-card text-foreground border border-border"
+    }`}
+  >
+    <h2 className="text-[26px] md:text-[34px] font-semibold mb-3">{heading}</h2>
+    <p
+      className={`max-w-xl mx-auto mb-6 ${
+        emphasized ? "text-white/80" : "text-muted-foreground"
+      }`}
+    >
+      {body}
+    </p>
+    <Button
+      onClick={onBookConsult}
+      size="lg"
+      variant={emphasized ? "secondary" : "outline"}
+      className="max-w-full whitespace-normal h-auto py-3 text-center"
+    >
+      Book Free 15-Minute Consultation
+      <ExternalLink size={16} />
+    </Button>
+  </div>
+);
 
 const SummaryCard = ({
   rec,
@@ -995,8 +1195,9 @@ const SummaryCard = ({
       />
     </div>
     <div className="flex-1 min-w-0">
-      <div className="mb-2">
+      <div className="mb-2 flex flex-wrap items-center gap-2">
         <RankBadge rank={rank} />
+        <TierBadge tier={rec.tier} />
       </div>
       <h3 className="text-[18px] md:text-[22px] font-semibold leading-tight mb-1">
         {rec.name}
@@ -1012,15 +1213,6 @@ const SummaryCard = ({
         </div>
       )}
     </div>
-  </div>
-);
-
-const Row = ({ label, value }: { label: string; value: string }) => (
-  <div className="py-3 border-b border-border last:border-b-0 grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-1 sm:gap-4">
-    <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
-      {label}
-    </div>
-    <div className="text-[15px] text-foreground">{value}</div>
   </div>
 );
 
@@ -1041,16 +1233,17 @@ const BestMatchCard = ({
           {rec.name}
         </h3>
       </div>
-      <ScorePill score={rec.score} />
+      <TierBadge tier={rec.tier} />
     </div>
     <div className="mb-6">
       <Row label="Expected temps" value={rec.tempRange} />
       <Row label="Install complexity" value={rec.installComplexity} />
       <Row label="Est. install cost" value={rec.estInstallCost} />
+      <Row label="All-in cost" value={rec.totalCost} />
       <Row label="Best use case" value={rec.useCase} />
     </div>
     <p className="text-[15px] leading-relaxed text-foreground mb-7">
-      <span className="font-semibold">Why this fits: </span>
+      <span className="font-semibold">Why we recommended this: </span>
       {rec.whyFit}
     </p>
     {rec.isAnywhere && (
@@ -1078,12 +1271,13 @@ const OtherOptionCard = ({
       <h3 className="text-[20px] md:text-[22px] font-semibold leading-tight">
         {rec.name}
       </h3>
-      <ScorePill score={rec.score} />
+      <TierBadge tier={rec.tier} />
     </div>
     <div className="mb-3">
       <Row label="Expected temps" value={rec.tempRange} />
       <Row label="Install complexity" value={rec.installComplexity} />
       <Row label="Est. install cost" value={rec.estInstallCost} />
+      <Row label="All-in cost" value={rec.totalCost} />
       <Row label="Best use case" value={rec.useCase} />
     </div>
     <p className="text-[14px] text-muted-foreground leading-relaxed">
@@ -1098,6 +1292,109 @@ const OtherOptionCard = ({
     )}
   </div>
 );
+
+const ResultsView = ({
+  result,
+  answers,
+  onBookConsult,
+  onBuyAnywhere,
+}: {
+  result: RecommendationResult;
+  answers: Answers;
+  onBookConsult: () => void;
+  onBuyAnywhere: () => void;
+}) => {
+  const { recommendations, consultationStrongly, allDisqualified } = result;
+
+  if (allDisqualified) {
+    return (
+      <div className="max-w-2xl mx-auto">
+        <div className="text-center mb-8">
+          <p className="text-xs uppercase tracking-[0.2em] text-white mb-3">
+            Your personalized results
+          </p>
+          <h1 className="text-[32px] md:text-[44px] leading-[1.1] font-semibold mb-3 text-white">
+            Let's Find a Creative Fit
+          </h1>
+        </div>
+        <div className="bg-card border border-border rounded-2xl p-6 md:p-10 text-center">
+          <p className="text-[16px] leading-relaxed text-foreground mb-6">
+            No sauna appears to be an ideal fit based on your current space,
+            electrical setup, and goals. Schedule a consultation and we'll see
+            if there's a creative solution for your home.
+          </p>
+          <Button
+            onClick={onBookConsult}
+            size="lg"
+            className="max-w-full whitespace-normal h-auto py-3 text-center"
+          >
+            Book Free 15-Minute Consultation
+            <ExternalLink size={16} />
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  const eligible = recommendations.filter((r) => !r.disqualified);
+  const disqualified = recommendations.filter((r) => r.disqualified);
+  const [best, second, third, ...restEligible] = eligible;
+  const topThree = [best, second, third].filter(Boolean);
+  const others = [...restEligible, ...disqualified];
+
+  return (
+    <div className="max-w-3xl mx-auto">
+      <div className="text-center mb-8">
+        <p className="text-xs uppercase tracking-[0.2em] text-white mb-3">
+          Your personalized results
+        </p>
+        <h1 className="text-[32px] md:text-[44px] leading-[1.1] font-semibold mb-3 text-white">
+          Your Personalized Sauna Recommendations
+        </h1>
+        <p className="text-white">
+          Based on your space, electrical setup, budget, and goals.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 mb-8">
+        {topThree.map((rec, idx) => (
+          <SummaryCard
+            key={rec.name}
+            rec={rec}
+            rank={idx + 1}
+            onBuyAnywhere={onBuyAnywhere}
+          />
+        ))}
+      </div>
+
+      {best && <BestMatchCard rec={best} onBuyAnywhere={onBuyAnywhere} />}
+
+      {others.length > 0 && (
+        <>
+          <h2 className="text-[22px] md:text-[28px] font-semibold mt-14 mb-5 text-center text-white">
+            Other Options To Consider
+          </h2>
+          <div className="space-y-4">
+            {others.map((r) => (
+              <OtherOptionCard
+                key={r.name}
+                rec={r}
+                onBuyAnywhere={onBuyAnywhere}
+              />
+            ))}
+          </div>
+        </>
+      )}
+
+      <ConsultCTA
+        emphasized={consultationStrongly}
+        heading="Want a Second Opinion?"
+        body="Book a free 15-minute consultation and we'll review your space, electrical setup, and goals together."
+        onBookConsult={onBookConsult}
+      />
+    </div>
+  );
+};
 
 /* ---------------- helpers ---------------- */
 
