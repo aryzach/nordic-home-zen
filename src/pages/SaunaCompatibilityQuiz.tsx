@@ -1044,7 +1044,7 @@ function flattenAnswers(a: Answers): Record<string, string> {
     outlet_20a: a.twentyAmp,
     priorities: a.priorities.join(", "),
     temperature: a.temperature,
-    budget: a.budget,
+    budget: a.budget.join(", "),
     timeline: a.timeline,
   };
 }
