@@ -1,42 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 
-import r1 from "@/assets/reviews/local/review-1.png";
-import r2 from "@/assets/reviews/local/review-2.png";
-import r3 from "@/assets/reviews/local/review-3.png";
-import r4 from "@/assets/reviews/local/review-4.png";
-import r5 from "@/assets/reviews/local/review-5.png";
-import r6 from "@/assets/reviews/local/review-6.png";
-import r7 from "@/assets/reviews/local/review-7.png";
-import r8 from "@/assets/reviews/local/review-8.png";
-import r9 from "@/assets/reviews/local/review-9.png";
-import r10 from "@/assets/reviews/local/review-10.png";
-import r11 from "@/assets/reviews/local/review-11.png";
-import r12 from "@/assets/reviews/local/review-12.png";
-import r13 from "@/assets/reviews/local/review-13.png";
-import r14 from "@/assets/reviews/local/review-14.png";
-import r15 from "@/assets/reviews/local/review-15.png";
-import r16 from "@/assets/reviews/local/review-16.png";
-
 type ReviewImg = { src: string; alt: string; aspect: number };
 
 const IMAGES: ReviewImg[] = [
-  { src: r1, alt: "Customer review: That sauna is so great. It's really changed my life!", aspect: 358 / 724 },
-  { src: r2, alt: "Google review: I can not recommend this company enough!", aspect: 210 / 510 },
-  { src: r3, alt: "Google review: Life with Sauna is way better than life without.", aspect: 174 / 680 },
-  { src: r4, alt: "Google review: I love having a sauna at home!", aspect: 336 / 1540 },
-  { src: r5, alt: "Google review: this shit is hot. the guy was solid as well.", aspect: 186 / 488 },
-  { src: r6, alt: "Google review: Zach is incredibly kind and accommodating! 10/10 recommend!", aspect: 166 / 696 },
-  { src: r7, alt: "Google review: Zach is a great guy, extremely professional.", aspect: 318 / 1120 },
-  { src: r8, alt: "Customer review: Sauna has been such a wonderful life addition!", aspect: 154 / 1112 },
-  { src: r9, alt: "Google review: One of the best decisions I've made in a long time!", aspect: 216 / 1108 },
-  { src: r10, alt: "Customer review: the sauna is so easy with just a plug into one outlet.", aspect: 172 / 620 },
-  { src: r11, alt: "Google review: Zach is chill and professional, sauna is easy.", aspect: 1156 / 1206 },
-  { src: r12, alt: "Google review: The sauna is beautiful and easy to use.", aspect: 414 / 1330 },
-  { src: r13, alt: "Google review: Good sauna.", aspect: 224 / 462 },
-  { src: r14, alt: "Google review: This is the life upgrade I have been wanting.", aspect: 510 / 1194 },
-  { src: r15, alt: "Google review: Honestly amazing. Fits two people comfortably.", aspect: 464 / 1396 },
-  { src: r16, alt: "Google review: Great quality saunas. Get your rental asap!", aspect: 542 / 1179 },
+  { src: "/reviews/review-1.png", alt: "Customer review: That sauna is so great. It's really changed my life!", aspect: 358 / 724 },
+  { src: "/reviews/review-2.png", alt: "Google review: I can not recommend this company enough!", aspect: 210 / 510 },
+  { src: "/reviews/review-3.png", alt: "Google review: Life with Sauna is way better than life without.", aspect: 174 / 680 },
+  { src: "/reviews/review-4.png", alt: "Google review: I love having a sauna at home!", aspect: 336 / 1540 },
+  { src: "/reviews/review-5.png", alt: "Google review: this shit is hot. the guy was solid as well.", aspect: 186 / 488 },
+  { src: "/reviews/review-6.png", alt: "Google review: Zach is incredibly kind and accommodating! 10/10 recommend!", aspect: 166 / 696 },
+  { src: "/reviews/review-7.png", alt: "Google review: Zach is a great guy, extremely professional.", aspect: 318 / 1120 },
+  { src: "/reviews/review-8.png", alt: "Customer review: Sauna has been such a wonderful life addition!", aspect: 154 / 1112 },
+  { src: "/reviews/review-9.png", alt: "Google review: One of the best decisions I've made in a long time!", aspect: 216 / 1108 },
+  { src: "/reviews/review-10.png", alt: "Customer review: the sauna is so easy with just a plug into one outlet.", aspect: 172 / 620 },
+  { src: "/reviews/review-11.png", alt: "Google review: Zach is chill and professional, sauna is easy.", aspect: 1156 / 1206 },
+  { src: "/reviews/review-12.png", alt: "Google review: The sauna is beautiful and easy to use.", aspect: 414 / 1330 },
+  { src: "/reviews/review-13.png", alt: "Google review: Good sauna.", aspect: 224 / 462 },
+  { src: "/reviews/review-14.png", alt: "Google review: This is the life upgrade I have been wanting.", aspect: 510 / 1194 },
+  { src: "/reviews/review-15.png", alt: "Google review: Honestly amazing. Fits two people comfortably.", aspect: 464 / 1396 },
+  { src: "/reviews/review-16.png", alt: "Google review: Great quality saunas. Get your rental asap!", aspect: 542 / 1179 },
 ];
+
 
 type Pin = {
   id: string;
@@ -249,6 +233,8 @@ const PinCard = ({ pin }: { pin: Pin }) => {
           loading="lazy"
           decoding="async"
           draggable={false}
+          width={1000}
+          height={Math.round(1000 * img.aspect)}
           className="block w-[216px] sm:w-[288px] md:w-[336px] h-auto bg-white select-none transition-shadow duration-300 group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
           style={{
             width: scaledWidth,
@@ -256,6 +242,7 @@ const PinCard = ({ pin }: { pin: Pin }) => {
             boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
           }}
         />
+
       </div>
     </div>
   );
