@@ -33,6 +33,7 @@ import ThankYou from "./pages/ThankYou";
 
 import SaunaPlanningConsultation from "./pages/SaunaPlanningConsultation";
 import ElectricalCompatibilityQuiz from "./pages/ElectricalCompatibilityQuiz";
+import SaunaCompatibilityQuiz from "./pages/SaunaCompatibilityQuiz";
 import ElectricalAssessmentSubmitted from "./pages/ElectricalAssessmentSubmitted";
 import LeaveReview from "./pages/LeaveReview";
 import SevenQuestionsHomeSauna from "./pages/SevenQuestionsHomeSauna";
