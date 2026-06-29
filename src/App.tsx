@@ -3,44 +3,42 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { Suspense, lazy, useEffect, useRef } from "react";
 import Index from "./pages/Index";
-import Specs from "./pages/Specs";
-import Installs from "./pages/Installs";
-import FAQPage from "./pages/FAQPage";
-import Deposit from "./pages/Deposit";
-import DepositSuccess from "./pages/DepositSuccess";
-import Compare from "./pages/Compare";
-import Terms from "./pages/Terms";
 
-
-import HowItStarted from "./pages/HowItStarted";
-import History from "./pages/History";
-import HeaterInferno from "./pages/HeaterInferno";
-import InstallPower from "./pages/InstallPower";
-import Policies from "./pages/Policies";
-import LearnHub from "./pages/LearnHub";
-
-import ContactPage from "./pages/ContactPage";
-import Media from "./pages/Media";
-import LearnMore from "./pages/LearnMore";
-import ServiceAreas from "./pages/ServiceAreas";
-import EmailMoreInfo from "./pages/EmailMoreInfo";
-import EmailSignedUp from "./pages/EmailSignedUp";
-import ContactThanks from "./pages/ContactThanks";
-import ThankYou from "./pages/ThankYou";
-
-
-import SaunaPlanningConsultation from "./pages/SaunaPlanningConsultation";
-import ElectricalCompatibilityQuiz from "./pages/ElectricalCompatibilityQuiz";
-import SaunaCompatibilityQuiz from "./pages/SaunaCompatibilityQuiz";
-import ElectricalAssessmentSubmitted from "./pages/ElectricalAssessmentSubmitted";
-import LeaveReview from "./pages/LeaveReview";
-import SevenQuestionsHomeSauna from "./pages/SevenQuestionsHomeSauna";
-import NotFound from "./pages/NotFound";
-import OldHeroVideo from "./pages/OldHeroVideo";
+// Route-level code splitting: every non-homepage route is a separate chunk.
+const Specs = lazy(() => import("./pages/Specs"));
+const Installs = lazy(() => import("./pages/Installs"));
+const FAQPage = lazy(() => import("./pages/FAQPage"));
+const Deposit = lazy(() => import("./pages/Deposit"));
+const DepositSuccess = lazy(() => import("./pages/DepositSuccess"));
+const Compare = lazy(() => import("./pages/Compare"));
+const Terms = lazy(() => import("./pages/Terms"));
+const HowItStarted = lazy(() => import("./pages/HowItStarted"));
+const History = lazy(() => import("./pages/History"));
+const HeaterInferno = lazy(() => import("./pages/HeaterInferno"));
+const InstallPower = lazy(() => import("./pages/InstallPower"));
+const Policies = lazy(() => import("./pages/Policies"));
+const LearnHub = lazy(() => import("./pages/LearnHub"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const Media = lazy(() => import("./pages/Media"));
+const LearnMore = lazy(() => import("./pages/LearnMore"));
+const ServiceAreas = lazy(() => import("./pages/ServiceAreas"));
+const EmailMoreInfo = lazy(() => import("./pages/EmailMoreInfo"));
+const EmailSignedUp = lazy(() => import("./pages/EmailSignedUp"));
+const ContactThanks = lazy(() => import("./pages/ContactThanks"));
+const ThankYou = lazy(() => import("./pages/ThankYou"));
+const SaunaPlanningConsultation = lazy(() => import("./pages/SaunaPlanningConsultation"));
+const ElectricalCompatibilityQuiz = lazy(() => import("./pages/ElectricalCompatibilityQuiz"));
+const SaunaCompatibilityQuiz = lazy(() => import("./pages/SaunaCompatibilityQuiz"));
+const ElectricalAssessmentSubmitted = lazy(() => import("./pages/ElectricalAssessmentSubmitted"));
+const LeaveReview = lazy(() => import("./pages/LeaveReview"));
+const SevenQuestionsHomeSauna = lazy(() => import("./pages/SevenQuestionsHomeSauna"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const OldHeroVideo = lazy(() => import("./pages/OldHeroVideo"));
 
 import { trackEvent } from "./lib/analytics";
+
 
 const queryClient = new QueryClient();
 

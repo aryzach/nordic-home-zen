@@ -1,14 +1,16 @@
+import { lazy } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import VideoTestimonials from "@/components/VideoTestimonials";
-import ReviewWall from "@/components/ReviewWall";
-
-import ComparisonTable from "@/components/ComparisonTable";
-import ConsultationCallout from "@/components/ConsultationCallout";
-import AnywhereDesign from "@/components/AnywhereDesign";
-import Footer from "@/components/Footer";
+import LazyMount from "@/components/LazyMount";
 import { useSEO } from "@/hooks/useSEO";
 import { seoData } from "@/lib/seoData";
+
+const ReviewWall = lazy(() => import("@/components/ReviewWall"));
+const AnywhereDesign = lazy(() => import("@/components/AnywhereDesign"));
+const VideoTestimonials = lazy(() => import("@/components/VideoTestimonials"));
+const ComparisonTable = lazy(() => import("@/components/ComparisonTable"));
+const ConsultationCallout = lazy(() => import("@/components/ConsultationCallout"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   useSEO(seoData.home);
@@ -18,16 +20,27 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <ReviewWall />
-        <AnywhereDesign />
-        <VideoTestimonials />
-        <ComparisonTable />
-        <ConsultationCallout />
+        <LazyMount minHeight={260} rootMargin="200px 0px">
+          <ReviewWall />
+        </LazyMount>
+        <LazyMount minHeight={600}>
+          <AnywhereDesign />
+        </LazyMount>
+        <LazyMount minHeight={500}>
+          <VideoTestimonials />
+        </LazyMount>
+        <LazyMount minHeight={600}>
+          <ComparisonTable />
+        </LazyMount>
+        <LazyMount minHeight={300}>
+          <ConsultationCallout />
+        </LazyMount>
       </main>
-      <Footer />
+      <LazyMount minHeight={300}>
+        <Footer />
+      </LazyMount>
     </div>
   );
 };
 
 export default Index;
-
