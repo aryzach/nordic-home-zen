@@ -104,7 +104,7 @@ const Header = () => {
             {/* Desktop Nav */}
             <nav className="hidden lg:flex flex-1 justify-center items-center gap-9">
               {navItems.map(item => (
-                <button key={item.to} onClick={() => navigate(item.to)} className={navLinkClass}>{item.label}</button>
+                <button key={item.to} onClick={() => handleNavClick(item.to, item.id)} className={navLinkClass}>{item.label}</button>
               ))}
             </nav>
 
@@ -132,7 +132,7 @@ const Header = () => {
                   trackAndNavigate(
                     "buy_now_click",
                     { button_text: "Buy Now", location: "header" },
-                    () => navigate("/specs")
+                    handleBuyNow
                   )
                 }
               >
@@ -157,16 +157,16 @@ const Header = () => {
       {isMobileMenuOpen && typeof document !== "undefined" && createPortal(
         <div className="lg:hidden fixed inset-0 top-[78px] bg-background z-[100] overflow-y-auto">
           <nav className="container-x py-10 flex flex-col">
-            {navItems.map((item) => (
-              <button
-                key={item.to}
-                type="button"
-                onClick={() => { setIsMobileMenuOpen(false); navigate(item.to); }}
-                className="text-left text-[24px] font-semibold text-foreground py-5 border-b border-border"
-              >
-                {item.label}
-              </button>
-            ))}
+              {navItems.map((item) => (
+                <button
+                  key={item.to}
+                  type="button"
+                  onClick={() => handleNavClick(item.to, item.id)}
+                  className="text-left text-[24px] font-semibold text-foreground py-5 border-b border-border"
+                >
+                  {item.label}
+                </button>
+              ))}
             <button
               type="button"
               className="btn-dark-outline mt-8 w-full inline-flex items-center justify-center gap-2"
@@ -182,20 +182,20 @@ const Header = () => {
               Book Free Consultation
               <ExternalLink className="w-4 h-4" aria-hidden="true" />
             </button>
-            <button
-              type="button"
-              className="btn-primary mt-3 w-full"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                trackAndNavigate(
-                  "buy_now_click",
-                  { button_text: "Buy Now", location: "header_mobile" },
-                  () => navigate("/specs")
-                );
-              }}
-            >
-              Buy Now
-            </button>
+              <button
+                type="button"
+                className="btn-primary mt-3 w-full"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  trackAndNavigate(
+                    "buy_now_click",
+                    { button_text: "Buy Now", location: "header_mobile" },
+                    handleBuyNow
+                  );
+                }}
+              >
+                Buy Now
+              </button>
           </nav>
         </div>,
         document.body
