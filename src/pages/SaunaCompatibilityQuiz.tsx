@@ -143,6 +143,9 @@ type Recommendation = {
   estInstallCost: string;
   useCase: string;
   whyFit: string;
+  image: string;
+  totalCost: string;
+  plugIn: boolean;
   isAnywhere?: boolean;
 };
 
