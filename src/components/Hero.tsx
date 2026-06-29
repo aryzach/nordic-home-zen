@@ -1,7 +1,12 @@
 import { Star, ExternalLink } from "lucide-react";
 import { trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
-const heroImage = { url: "/hero-sauna-forest.png" };
+const HERO_MOBILE_AVIF = "/hero-mobile.avif";
+const HERO_MOBILE_WEBP = "/hero-mobile.webp";
+const HERO_MOBILE_JPG = "/hero-mobile.jpg";
+const HERO_DESKTOP_AVIF = "/hero-desktop.avif";
+const HERO_DESKTOP_WEBP = "/hero-desktop.webp";
+const HERO_DESKTOP_JPG = "/hero-desktop.jpg";
 
 const Hero = () => {
   const cta = (
@@ -37,11 +42,20 @@ const Hero = () => {
     <section className="relative min-h-[78vh] overflow-hidden bg-background">
       {/* MOBILE: full-bleed image with overlay text */}
       <div className="md:hidden relative w-full h-[78vh] min-h-[520px]">
-        <img
-          src={heroImage.url}
-          alt="Anywhere Sauna in a sunlit forest"
-          className="absolute inset-0 w-full h-full object-cover object-[11%_center]"
-        />
+        <picture>
+          <source type="image/avif" srcSet={HERO_MOBILE_AVIF} />
+          <source type="image/webp" srcSet={HERO_MOBILE_WEBP} />
+          <img
+            src={HERO_MOBILE_JPG}
+            alt="Anywhere Sauna in a sunlit forest"
+            width={800}
+            height={600}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover object-[11%_center]"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/70" />
         <div className="relative z-10 h-full flex flex-col justify-end items-start px-5 pb-10 pt-8 text-left">
           {rating}
@@ -57,11 +71,20 @@ const Hero = () => {
 
       {/* DESKTOP: full-width image with text overlay on the right */}
       <div className="hidden md:flex relative w-full min-h-[78vh] items-center justify-end px-10 lg:px-20 py-12 pt-32">
-        <img
-          src={heroImage.url}
-          alt="Anywhere Sauna in a sunlit forest"
-          className="absolute inset-0 w-full h-full object-cover object-[25%_25%]"
-        />
+        <picture>
+          <source type="image/avif" srcSet={HERO_DESKTOP_AVIF} />
+          <source type="image/webp" srcSet={HERO_DESKTOP_WEBP} />
+          <img
+            src={HERO_DESKTOP_JPG}
+            alt="Anywhere Sauna in a sunlit forest"
+            width={1600}
+            height={1200}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover object-[25%_25%]"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/35 to-black/85" />
         <div className="relative z-10 max-w-xl text-left ml-auto">
           {rating}
