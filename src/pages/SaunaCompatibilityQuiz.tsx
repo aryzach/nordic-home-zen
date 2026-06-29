@@ -742,22 +742,23 @@ const SaunaCompatibilityQuiz = () => {
 /* ---------------- Sub-components ---------------- */
 
 const HeroSection = ({ onStart }: { onStart: () => void }) => (
-  <div className="relative -mx-4 sm:-mx-6 lg:-mx-8 -mt-6 mb-4 overflow-hidden min-h-[80vh] md:min-h-[85vh]">
+  <div className="relative -mx-4 sm:-mx-6 lg:-mx-8 -mt-6 mb-4 overflow-hidden min-h-[216vw] md:min-h-[85vh]">
     <img
       src="/quiz-hero.jpg"
       alt="Lineup of sauna types with prices: Anywhere Sauna, SaunaLife, Barrel Sauna, Plunge Mini, Infrared Sauna"
-      className="absolute inset-0 w-full h-full object-cover object-bottom sm:object-cover sm:object-center"
+      className="absolute inset-0 w-full h-full object-cover"
       loading="eager"
     />
     <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/20 to-transparent" />
     <div className="relative z-10 max-w-xl px-6 md:px-12 pt-10 md:pt-16 pb-16">
-      <h1 className="hero-title text-white text-[32px] md:text-[48px] leading-[1.05] font-semibold tracking-tight mb-5">
+      <h1 className="sr-only">What Sauna Will Actually Work In Your Home?</h1>
+      <p className="text-white text-[20px] md:text-[32px] leading-[1.1] font-semibold tracking-tight mb-4">
         What Sauna Will Actually Work In Your Home?
-      </h1>
+      </p>
       <div className="flex flex-col items-start gap-3">
-        <Button onClick={onStart} size="lg" className="bg-white text-[#171717] hover:bg-white/90">
+        <Button onClick={onStart} className="bg-white text-[#171717] hover:bg-white/90 text-[0.75rem] px-5 py-3">
           Take the 2-Minute Compatibility Quiz
-          <ArrowRight size={18} />
+          <ArrowRight size={16} />
         </Button>
         <p className="text-sm text-white/85 max-w-md">
           Get personalized recommendations, electrical requirements, expected
