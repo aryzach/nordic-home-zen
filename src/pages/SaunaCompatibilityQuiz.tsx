@@ -93,23 +93,38 @@ const OptionButton = ({
   label,
   selected,
   onClick,
+  multi,
 }: {
   label: string;
   selected?: boolean;
   onClick: () => void;
+  multi?: boolean;
 }) => (
   <button
     type="button"
     onClick={onClick}
     className={[
-      "w-full text-left px-5 py-4 border rounded-xl transition-colors duration-150",
+      "w-full text-left px-5 py-4 border rounded-xl transition-colors duration-150 flex items-center gap-3",
       "text-[15px] leading-snug",
       selected
         ? "border-[#171717] bg-[#171717] text-white"
         : "border-border bg-card hover:border-[#171717]/60 text-foreground",
     ].join(" ")}
   >
-    {label}
+    {multi && (
+      <span
+        aria-hidden
+        className={[
+          "h-5 w-5 shrink-0 rounded border flex items-center justify-center transition-colors",
+          selected
+            ? "bg-white border-white text-[#171717]"
+            : "bg-transparent border-muted-foreground/50",
+        ].join(" ")}
+      >
+        {selected && <CheckCircle2 size={14} className="text-[#171717]" />}
+      </span>
+    )}
+    <span className="flex-1">{label}</span>
   </button>
 );
 
