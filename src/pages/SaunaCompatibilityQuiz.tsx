@@ -53,10 +53,16 @@ const TOTAL_STEPS = 10; // 10 questions (split budget out as Q9, timeline Q10)
 
 /* ---------------- Small primitives ---------------- */
 
-const Shell = ({ children }: { children: React.ReactNode }) => (
+const Shell = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => (
   <div className="min-h-screen flex flex-col bg-background">
     <Header />
-    <main className="flex-grow pt-24 pb-20">{children}</main>
+    <main className={`flex-grow pt-24 pb-20 ${className || ""}`}>{children}</main>
     <Footer />
   </div>
 );
