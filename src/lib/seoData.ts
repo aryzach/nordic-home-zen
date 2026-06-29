@@ -5,7 +5,7 @@ export const seoData = {
   // Main Pages
   home: {
     title: "Anywhere Sauna",
-    description: "The only traditional steam sauna that uses a standard home outlet.",
+    description: "Traditional sauna experience with no electrician required. Reaches 200°F on a standard outlet. Designed for apartments, rentals, and homes.",
     canonical: "https://getanywheresauna.com/"
   },
   pricing: {
