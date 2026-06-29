@@ -897,7 +897,8 @@ const ResultsView = ({
   onBookConsult: () => void;
   onBuyAnywhere: () => void;
 }) => {
-  const [best, ...rest] = recommendations;
+  const [best, second, third, ...rest] = recommendations;
+  const topThree = [best, second, third].filter(Boolean);
   return (
     <div className="max-w-3xl mx-auto">
       <div className="text-center mb-8">
@@ -912,31 +913,20 @@ const ResultsView = ({
         </p>
       </div>
 
-      <div className="bg-card border border-border rounded-2xl p-5 md:p-6 mb-8 flex items-center gap-4 md:gap-6">
-        <div className="w-24 h-24 md:w-32 md:h-32 shrink-0 rounded-xl overflow-hidden bg-secondary/40">
-          <img
-            src={best.image}
-            alt={best.name}
-            className="w-full h-full object-cover"
-            loading="lazy"
+      <div className="grid grid-cols-1 gap-4 mb-8">
+        {topThree.map((rec, idx) => (
+          <SummaryCard
+            key={rec.name}
+            rec={rec}
+            rank={idx + 1}
+            onBuyAnywhere={onBuyAnywhere}
           />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="mb-2">
-            <ScorePill score={best.score} />
-          </div>
-          <h3 className="text-[18px] md:text-[22px] font-semibold leading-tight mb-1">
-            {best.name}
-          </h3>
-          <p className="text-[14px] text-muted-foreground">
-            {best.totalCost} · {best.plugIn ? "Plug-in" : "Not plug-in"}
-          </p>
-        </div>
+        ))}
       </div>
 
       <BestMatchCard rec={best} onBuyAnywhere={onBuyAnywhere} />
 
-      <h2 className="text-[22px] md:text-[28px] font-semibold mt-14 mb-5 text-center">
+      <h2 className="text-[22px] md:text-[28px] font-semibold mt-14 mb-5 text-center text-white">
         Other Options To Consider
       </h2>
       <div className="space-y-4">
@@ -969,6 +959,54 @@ const ResultsView = ({
 const ScorePill = ({ score }: { score: number }) => (
   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171717] text-white text-xs uppercase tracking-[0.15em]">
     {score}% compatibility
+  </div>
+);
+
+const RankBadge = ({ rank }: { rank: number }) => {
+  const labels = ["1st", "2nd", "3rd"];
+  return (
+    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171717] text-white text-xs uppercase tracking-[0.15em]">
+      {labels[rank - 1] || `${rank}th`} match
+    </div>
+  );
+};
+
+const SummaryCard = ({
+  rec,
+  rank,
+  onBuyAnywhere,
+}: {
+  rec: Recommendation;
+  rank: number;
+  onBuyAnywhere: () => void;
+}) => (
+  <div className="bg-card border border-border rounded-2xl p-5 md:p-6 flex items-center gap-4 md:gap-6">
+    <div className="w-24 h-24 md:w-32 md:h-32 shrink-0 rounded-xl overflow-hidden bg-secondary/40">
+      <img
+        src={rec.image}
+        alt={rec.name}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+    <div className="flex-1 min-w-0">
+      <div className="mb-2">
+        <RankBadge rank={rank} />
+      </div>
+      <h3 className="text-[18px] md:text-[22px] font-semibold leading-tight mb-1">
+        {rec.name}
+      </h3>
+      <p className="text-[14px] text-muted-foreground">
+        {rec.totalCost} · {rec.plugIn ? "Plug-in" : "Not plug-in"}
+      </p>
+      {rec.isAnywhere && (
+        <div className="mt-3">
+          <Button onClick={onBuyAnywhere} size="sm" variant="outline">
+            See the Anywhere Sauna
+          </Button>
+        </div>
+      )}
+    </div>
   </div>
 );
 
