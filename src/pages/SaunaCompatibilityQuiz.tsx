@@ -486,18 +486,18 @@ const SaunaCompatibilityQuiz = () => {
                 />
                 <div className="space-y-3">
                   {[
-                    "Bedroom",
-                    "Living room",
-                    "Garage",
-                    "Basement",
-                    "Patio / Deck",
+                    "Living Room",
                     "Backyard",
+                    "Bedroom",
+                    "Deck",
                     "Balcony",
+                    "Basement",
                     "Home Gym",
                   ].map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
+                      multi
                       selected={answers.placement.includes(o)}
                       onClick={() => toggleMulti("placement", o)}
                     />
