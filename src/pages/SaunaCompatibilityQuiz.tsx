@@ -947,7 +947,12 @@ const ResultsView = ({
           We'll review your space, electrical setup, and goals with you
           personally.
         </p>
-        <Button onClick={onBookConsult} size="lg" variant="outline">
+        <Button
+          onClick={onBookConsult}
+          size="lg"
+          variant="outline"
+          className="max-w-full whitespace-normal h-auto py-3 text-center"
+        >
           Book Free Sauna Consultation
           <ExternalLink size={16} />
         </Button>
@@ -1049,7 +1054,11 @@ const BestMatchCard = ({
       {rec.whyFit}
     </p>
     {rec.isAnywhere && (
-      <Button onClick={onBuyAnywhere} size="lg" className="w-full sm:w-auto">
+      <Button
+        onClick={onBuyAnywhere}
+        size="lg"
+        className="w-full sm:w-auto max-w-full whitespace-normal h-auto py-3 text-center"
+      >
         See the Anywhere Sauna
         <ArrowRight size={18} />
       </Button>
