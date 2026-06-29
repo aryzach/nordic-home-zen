@@ -742,16 +742,16 @@ const SaunaCompatibilityQuiz = () => {
 /* ---------------- Sub-components ---------------- */
 
 const HeroSection = ({ onStart }: { onStart: () => void }) => (
-  <div className="relative -mx-4 sm:-mx-6 lg:-mx-8 -mt-6 mb-4 overflow-hidden min-h-[80vh] md:min-h-[85vh] bg-[#171717]">
+  <div className="relative -mx-4 sm:-mx-6 lg:-mx-8 -mt-6 mb-4 overflow-hidden min-h-[216vw] md:min-h-[85vh]">
     <img
       src="/quiz-hero.jpg"
       alt="Lineup of sauna types with prices: Anywhere Sauna, SaunaLife, Barrel Sauna, Plunge Mini, Infrared Sauna"
-      className="absolute inset-0 w-full h-full object-contain object-left sm:object-cover sm:object-center"
+      className="absolute inset-0 w-full h-full object-cover"
       loading="eager"
     />
     <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/20 to-transparent" />
     <div className="relative z-10 max-w-xl px-6 md:px-12 pt-10 md:pt-16 pb-16">
-      <h1 className="hero-title text-white text-[20px] md:text-[28px] leading-[1.1] font-semibold tracking-tight mb-4">
+      <h1 className="hero-title text-white text-[20px] md:text-[29px] leading-[1.1] font-semibold tracking-tight mb-4">
         What Sauna Will Actually Work In Your Home?
       </h1>
       <div className="flex flex-col items-start gap-3">
