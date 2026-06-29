@@ -970,7 +970,7 @@ const SaunaCompatibilityQuiz = () => {
 
         {view === "results" && (
           <ResultsView
-            recommendations={recommendations}
+            result={recommendationResult}
             answers={answers}
             onBookConsult={() => {
               trackAndNavigate(
