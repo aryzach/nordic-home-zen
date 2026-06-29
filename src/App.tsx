@@ -172,6 +172,7 @@ const App = () => (
           <Route path="/electric-checklist" element={<Navigate to="/sauna-planning-consultation" replace />} />
           <Route path="/leave-review" element={<LeaveReview />} />
           <Route path="/electrical-compatibility-quiz" element={<ElectricalCompatibilityQuiz />} />
+          <Route path="/sauna-compatibility-quiz" element={<SaunaCompatibilityQuiz />} />
           <Route path="/electrical-assessment-submitted" element={<ElectricalAssessmentSubmitted />} />
           <Route path="/7-questions-before-buying-a-home-sauna" element={<SevenQuestionsHomeSauna />} />
           <Route path="/old-hero-video" element={<OldHeroVideo />} />
