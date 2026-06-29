@@ -70,20 +70,20 @@ const Shell = ({
 );
 
 const Card = ({ children }: { children: React.ReactNode }) => (
-  <div className="bg-card border border-border rounded-2xl p-6 md:p-10 max-w-2xl mx-auto">
+  <div className="bg-card text-foreground border border-border rounded-2xl p-6 md:p-10 max-w-2xl mx-auto shadow-xl">
     {children}
   </div>
 );
 
 const Progress = ({ step }: { step: number }) => (
   <div className="w-full max-w-2xl mx-auto mb-6">
-    <div className="h-1.5 w-full rounded-full bg-secondary overflow-hidden">
+    <div className="h-1.5 w-full rounded-full bg-white/20 overflow-hidden">
       <div
-        className="h-full bg-[#171717] transition-all duration-500 ease-out"
+        className="h-full bg-white transition-all duration-500 ease-out"
         style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
       />
     </div>
-    <p className="mt-2 text-xs tracking-[0.18em] uppercase text-muted-foreground text-center">
+    <p className="mt-2 text-xs tracking-[0.18em] uppercase text-white/80 text-center">
       Question {step} of {TOTAL_STEPS}
     </p>
   </div>
@@ -384,16 +384,16 @@ const SaunaCompatibilityQuiz = () => {
   /* ---------------- Render ---------------- */
 
   return (
-    <Shell className={view === "hero" ? "pb-0" : ""}>
-      {view === "hero" && <HeroSection onStart={startQuiz} />}
+    <Shell className="pb-0">
+      <HeroShell>
+        {view === "hero" && <HeroContent onStart={startQuiz} />}
 
-      <div className="container-x">
         {view !== "hero" && (
           <div className="max-w-2xl mx-auto mb-3">
             <button
               type="button"
               onClick={goBack}
-              className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white transition-colors"
             >
               <ArrowLeft size={16} /> Back
             </button>
@@ -740,16 +740,15 @@ const SaunaCompatibilityQuiz = () => {
             }}
           />
         )}
-      </div>
+      </HeroShell>
     </Shell>
   );
 };
 
 /* ---------------- Sub-components ---------------- */
 
-const HeroSection = ({ onStart }: { onStart: () => void }) => (
-  <div className="relative -mt-6 mb-0 overflow-hidden min-h-[max(216vw,calc(100vh-96px))] md:min-h-[max(66.67vw,calc(100vh-96px))]">
-
+const HeroShell = ({ children }: { children: React.ReactNode }) => (
+  <div className="relative -mt-6 mb-0 overflow-hidden min-h-[max(216vw,calc(100vh-96px))] md:min-h-[calc(100vh-96px)]">
     {/* Mobile hero: portrait */}
     <img
       src="/quiz-hero.jpg"
@@ -764,25 +763,31 @@ const HeroSection = ({ onStart }: { onStart: () => void }) => (
       className="absolute inset-0 w-full h-full object-cover hidden md:block"
       loading="eager"
     />
-    <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/20 to-transparent" />
-    <div className="relative z-10 max-w-xl px-6 md:px-12 pt-10 md:pt-16 pb-16 mx-auto md:mx-0 md:ml-0">
-      <h1 className="sr-only">What Sauna Will Actually Work In Your Home?</h1>
-      <p className="text-white text-[30px] md:text-[54px] leading-[1.1] md:leading-[1.02] font-bold tracking-tight mb-4 text-center md:text-left">
-        What Sauna Will Actually Work In Your Home?
+    <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/30" />
+    <div className="relative z-10 w-full px-6 md:px-12 pt-10 md:pt-16 pb-16">
+      {children}
+    </div>
+  </div>
+);
+
+const HeroContent = ({ onStart }: { onStart: () => void }) => (
+  <div className="max-w-xl mx-auto md:mx-0">
+    <h1 className="sr-only">What Sauna Will Actually Work In Your Home?</h1>
+    <p className="text-white text-[30px] md:text-[54px] leading-[1.1] md:leading-[1.02] font-bold tracking-tight mb-4 text-center md:text-left">
+      What Sauna Will Actually Work In Your Home?
+    </p>
+    <div className="flex flex-col items-center md:items-start gap-3">
+      <button
+        type="button"
+        onClick={onStart}
+        className="bg-white text-[#171717] hover:bg-white/90 text-[16px] font-bold px-5 py-[11px] inline-flex items-center gap-2"
+      >
+        Take the 2-Minute Compatibility Quiz
+        <ArrowRight size={16} />
+      </button>
+      <p className="text-[15px] md:text-[16px] leading-[1.6] text-white/80 font-normal max-w-sm md:max-w-md text-center md:text-left">
+        Get personalized recommendations. Answer a few questions about your space, electrical setup, budget, and goals to see which sauna options are compatible.
       </p>
-      <div className="flex flex-col items-center md:items-start gap-3">
-        <button
-          type="button"
-          onClick={onStart}
-          className="bg-white text-[#171717] hover:bg-white/90 text-[16px] font-bold px-5 py-[11px] inline-flex items-center gap-2"
-        >
-          Take the 2-Minute Compatibility Quiz
-          <ArrowRight size={16} />
-        </button>
-        <p className="text-[15px] md:text-[16px] leading-[1.6] text-white/80 font-normal max-w-sm md:max-w-md text-center md:text-left">
-          Get personalized recommendations. Answer a few questions about your space, electrical setup, budget, and goals to see which sauna options are compatible.
-        </p>
-      </div>
     </div>
   </div>
 );
