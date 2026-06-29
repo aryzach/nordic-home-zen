@@ -71,11 +71,20 @@ const Hero = () => {
 
       {/* DESKTOP: full-width image with text overlay on the right */}
       <div className="hidden md:flex relative w-full min-h-[78vh] items-center justify-end px-10 lg:px-20 py-12 pt-32">
-        <img
-          src={heroImage.url}
-          alt="Anywhere Sauna in a sunlit forest"
-          className="absolute inset-0 w-full h-full object-cover object-[25%_25%]"
-        />
+        <picture>
+          <source type="image/avif" srcSet={HERO_DESKTOP_AVIF} />
+          <source type="image/webp" srcSet={HERO_DESKTOP_WEBP} />
+          <img
+            src={HERO_DESKTOP_JPG}
+            alt="Anywhere Sauna in a sunlit forest"
+            width={1600}
+            height={1200}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover object-[25%_25%]"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/35 to-black/85" />
         <div className="relative z-10 max-w-xl text-left ml-auto">
           {rating}
