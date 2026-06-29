@@ -384,16 +384,16 @@ const SaunaCompatibilityQuiz = () => {
   /* ---------------- Render ---------------- */
 
   return (
-    <Shell className={view === "hero" ? "pb-0" : ""}>
-      {view === "hero" && <HeroSection onStart={startQuiz} />}
+    <Shell className="pb-0">
+      <HeroShell>
+        {view === "hero" && <HeroContent onStart={startQuiz} />}
 
-      <div className="container-x">
         {view !== "hero" && (
           <div className="max-w-2xl mx-auto mb-3">
             <button
               type="button"
               onClick={goBack}
-              className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white transition-colors"
             >
               <ArrowLeft size={16} /> Back
             </button>
