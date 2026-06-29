@@ -747,9 +747,8 @@ const SaunaCompatibilityQuiz = () => {
 
 /* ---------------- Sub-components ---------------- */
 
-const HeroSection = ({ onStart }: { onStart: () => void }) => (
-  <div className="relative -mt-6 mb-0 overflow-hidden min-h-[max(216vw,calc(100vh-96px))] md:min-h-[max(66.67vw,calc(100vh-96px))]">
-
+const HeroShell = ({ children }: { children: React.ReactNode }) => (
+  <div className="relative -mt-6 mb-0 overflow-hidden min-h-[max(216vw,calc(100vh-96px))] md:min-h-[calc(100vh-96px)]">
     {/* Mobile hero: portrait */}
     <img
       src="/quiz-hero.jpg"
@@ -764,25 +763,31 @@ const HeroSection = ({ onStart }: { onStart: () => void }) => (
       className="absolute inset-0 w-full h-full object-cover hidden md:block"
       loading="eager"
     />
-    <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/20 to-transparent" />
-    <div className="relative z-10 max-w-xl px-6 md:px-12 pt-10 md:pt-16 pb-16 mx-auto md:mx-0 md:ml-0">
-      <h1 className="sr-only">What Sauna Will Actually Work In Your Home?</h1>
-      <p className="text-white text-[30px] md:text-[54px] leading-[1.1] md:leading-[1.02] font-bold tracking-tight mb-4 text-center md:text-left">
-        What Sauna Will Actually Work In Your Home?
+    <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/30" />
+    <div className="relative z-10 w-full px-6 md:px-12 pt-10 md:pt-16 pb-16">
+      {children}
+    </div>
+  </div>
+);
+
+const HeroContent = ({ onStart }: { onStart: () => void }) => (
+  <div className="max-w-xl mx-auto md:mx-0">
+    <h1 className="sr-only">What Sauna Will Actually Work In Your Home?</h1>
+    <p className="text-white text-[30px] md:text-[54px] leading-[1.1] md:leading-[1.02] font-bold tracking-tight mb-4 text-center md:text-left">
+      What Sauna Will Actually Work In Your Home?
+    </p>
+    <div className="flex flex-col items-center md:items-start gap-3">
+      <button
+        type="button"
+        onClick={onStart}
+        className="bg-white text-[#171717] hover:bg-white/90 text-[16px] font-bold px-5 py-[11px] inline-flex items-center gap-2"
+      >
+        Take the 2-Minute Compatibility Quiz
+        <ArrowRight size={16} />
+      </button>
+      <p className="text-[15px] md:text-[16px] leading-[1.6] text-white/80 font-normal max-w-sm md:max-w-md text-center md:text-left">
+        Get personalized recommendations. Answer a few questions about your space, electrical setup, budget, and goals to see which sauna options are compatible.
       </p>
-      <div className="flex flex-col items-center md:items-start gap-3">
-        <button
-          type="button"
-          onClick={onStart}
-          className="bg-white text-[#171717] hover:bg-white/90 text-[16px] font-bold px-5 py-[11px] inline-flex items-center gap-2"
-        >
-          Take the 2-Minute Compatibility Quiz
-          <ArrowRight size={16} />
-        </button>
-        <p className="text-[15px] md:text-[16px] leading-[1.6] text-white/80 font-normal max-w-sm md:max-w-md text-center md:text-left">
-          Get personalized recommendations. Answer a few questions about your space, electrical setup, budget, and goals to see which sauna options are compatible.
-        </p>
-      </div>
     </div>
   </div>
 );
