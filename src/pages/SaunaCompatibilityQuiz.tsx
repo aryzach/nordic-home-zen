@@ -746,7 +746,7 @@ const HeroSection = ({ onStart }: { onStart: () => void }) => (
     <img
       src="/quiz-hero.jpg"
       alt="Lineup of sauna types with prices: Anywhere Sauna, SaunaLife, Barrel Sauna, Plunge Mini, Infrared Sauna"
-      className="absolute inset-0 w-full h-full object-cover"
+      className="absolute inset-0 w-full h-full object-cover object-bottom sm:object-cover sm:object-center"
       loading="eager"
     />
     <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/20 to-transparent" />
@@ -754,10 +754,6 @@ const HeroSection = ({ onStart }: { onStart: () => void }) => (
       <h1 className="hero-title text-white text-[32px] md:text-[48px] leading-[1.05] font-semibold tracking-tight mb-5">
         What Sauna Will Actually Work In Your Home?
       </h1>
-      <p className="text-base md:text-lg text-white/90 mb-7 max-w-md">
-        Answer a few questions about your space, electrical setup, budget, and
-        goals to see which sauna options are compatible.
-      </p>
       <div className="flex flex-col items-start gap-3">
         <Button onClick={onStart} size="lg" className="bg-white text-[#171717] hover:bg-white/90">
           Take the 2-Minute Compatibility Quiz
@@ -766,9 +762,6 @@ const HeroSection = ({ onStart }: { onStart: () => void }) => (
         <p className="text-sm text-white/85 max-w-md">
           Get personalized recommendations, electrical requirements, expected
           temperatures, and estimated installation costs.
-        </p>
-        <p className="text-xs uppercase tracking-[0.18em] text-white/75 mt-3">
-          Trusted by 26+ sauna lovers
         </p>
       </div>
     </div>
