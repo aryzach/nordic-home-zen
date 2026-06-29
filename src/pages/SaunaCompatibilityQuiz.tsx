@@ -220,6 +220,9 @@ function buildRecommendations(a: Answers): Recommendation[] {
       whyFit: renter
         ? "Runs on a standard 3-prong outlet, so you can install it without modifying your unit — ideal for renters."
         : "Reaches traditional Finnish temperatures on a normal household outlet, with no permits or electrical work.",
+      image: "/images/sauna-type-anywhere.jpg",
+      totalCost: "$4,599 delivered",
+      plugIn: true,
       isAnywhere: true,
     },
     {
@@ -231,6 +234,9 @@ function buildRecommendations(a: Answers): Recommendation[] {
       useCase: "Compact indoor/outdoor traditional sauna for homeowners",
       whyFit:
         "Solid traditional heat in a smaller prefab footprint, but requires a dedicated high-voltage circuit.",
+      image: "/images/compare-nordica.png",
+      totalCost: "~$6,000–$8,000 with install",
+      plugIn: false,
     },
     {
       name: "Almost Heaven (Barrel / Cabin)",
@@ -241,6 +247,9 @@ function buildRecommendations(a: Answers): Recommendation[] {
       useCase: "Backyard barrel or cabin sauna for homeowners with outdoor space",
       whyFit:
         "Great traditional outdoor experience if you own your home and can run a dedicated 240V line outside.",
+      image: "/images/compare-barrel.png",
+      totalCost: "~$7,000–$10,500 with install",
+      plugIn: false,
     },
     {
       name: "Clearlight Infrared",
@@ -252,6 +261,9 @@ function buildRecommendations(a: Answers): Recommendation[] {
       whyFit: wantsInfrared
         ? "Best fit if your priority is infrared heat and red-light therapy rather than steam."
         : "Easy to install, but won't deliver the high heat of a traditional steam sauna.",
+      image: "/images/compare-infrared.png",
+      totalCost: "~$5,500",
+      plugIn: true,
     },
   ];
 
