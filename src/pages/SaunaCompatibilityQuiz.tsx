@@ -1505,6 +1505,8 @@ function flattenAnswers(a: Answers): Record<string, string> {
     space: a.space,
     outlet_within_50ft: a.outletNearby,
     outlet_20a: a.twentyAmp,
+    has_240v_outlet: a.has240V,
+    open_to_install_240v: a.install240V,
     priorities: a.priorities.join(", "),
     temperature: a.temperature,
     budget: a.budget.join(", "),
