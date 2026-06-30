@@ -175,12 +175,14 @@ type Recommendation = {
   totalCost: string;
   plugIn: boolean;
   isAnywhere?: boolean;
+  requires240V?: boolean;
 };
 
 export type RecommendationResult = {
   recommendations: Recommendation[];
   consultationStrongly: boolean;
   allDisqualified: boolean;
+  electricalAssessmentRecommended: boolean;
 };
 
 const BUDGET_TIER: Record<string, number> = {
