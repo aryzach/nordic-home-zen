@@ -1470,7 +1470,12 @@ const ResultsView = ({
   onBookConsult: () => void;
   onBuyAnywhere: () => void;
 }) => {
-  const { recommendations, consultationStrongly, allDisqualified } = result;
+  const {
+    recommendations,
+    consultationStrongly,
+    allDisqualified,
+    electricalAssessmentRecommended,
+  } = result;
 
   if (allDisqualified) {
     return (
