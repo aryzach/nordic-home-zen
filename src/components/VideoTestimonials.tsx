@@ -15,7 +15,7 @@ const VideoTestimonials = () => {
   };
 
   return (
-    <section className="py-12 md:py-16 bg-background">
+    <section className="pt-12 md:pt-16 pb-6 md:pb-8 bg-background">
       <div className="container mx-auto px-4 max-w-4xl">
         <h2 className="text-3xl md:text-4xl font-heading text-center text-foreground mb-8">
           Hear From Our Customers
