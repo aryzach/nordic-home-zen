@@ -174,6 +174,33 @@ const Compare = () => {
             )}
           </div>
         </section>
+
+        <section className="py-16 md:py-20 bg-background">
+          <div className="container mx-auto px-4 max-w-3xl">
+            <div className="border border-border rounded-2xl p-8 md:p-12 text-center bg-card">
+              <h2 className="text-2xl md:text-3xl font-heading font-semibold mb-3 text-heading">
+                Still unsure which sauna is right for you?
+              </h2>
+              <p className="text-muted-foreground mb-6 max-w-xl mx-auto leading-relaxed">
+                Book a free 30-minute consultation and we'll review your space, electrical setup, and goals together.
+              </p>
+              <button
+                type="button"
+                onClick={() =>
+                  trackAndNavigate(
+                    "consultation_booking_click",
+                    { button_text: "Book Free Consultation", location: "compare_page_bottom" },
+                    openBookingUrl
+                  )
+                }
+                className="btn-primary inline-flex items-center justify-center gap-2"
+              >
+                Book Free Consultation
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
