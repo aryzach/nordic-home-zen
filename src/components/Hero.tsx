@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Star, ExternalLink, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { trackEvent, trackAndNavigate } from "@/lib/analytics";
