@@ -866,27 +866,7 @@ const SaunaCompatibilityQuiz = () => {
             {step === 6 && (
               <>
                 <QuestionHeader
-                  title="Do you know if that outlet is on a 20 amp circuit?"
-                  helper="Most people aren't sure. That's okay."
-                />
-                <div className="space-y-3">
-                  {["Yes", "No", "Not sure"].map((o) => (
-                    <OptionButton
-                      key={o}
-                      label={o}
-                      selected={answers.twentyAmp === o}
-                      onClick={() => setSingle("twentyAmp", o)}
-                    />
-                  ))}
-                </div>
-                <NextRow disabled={!answers.twentyAmp} onNext={advance} />
-              </>
-            )}
-
-            {step === 7 && (
-              <>
-                <QuestionHeader
-                  title="Do you already have a 240V electrical outlet available for a sauna?"
+                  title="Do you have a 240V electrical outlet available for a sauna, or would you consider installing one?"
                   helper={
                     <>
                       <p className="mb-2">Examples include:</p>
@@ -900,7 +880,7 @@ const SaunaCompatibilityQuiz = () => {
                   }
                 />
                 <div className="space-y-3">
-                  {["Yes", "No", "Not sure"].map((o) => (
+                  {["Yes", "Maybe", "No", "Not sure"].map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
@@ -913,27 +893,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 8 && (
-              <>
-                <QuestionHeader
-                  title="If needed, would you be open to installing a new 240V electrical circuit?"
-                  helper="Many traditional saunas require a dedicated 240V circuit installed by an electrician. Typical installation costs range from approximately $1,000–$3,000 depending on your home's electrical setup."
-                />
-                <div className="space-y-3">
-                  {["Yes", "Maybe", "No", "Not sure"].map((o) => (
-                    <OptionButton
-                      key={o}
-                      label={o}
-                      selected={answers.install240V === o}
-                      onClick={() => setSingle("install240V", o)}
-                    />
-                  ))}
-                </div>
-                <NextRow disabled={!answers.install240V} onNext={advance} />
-              </>
-            )}
-
-            {step === 9 && (
+            {step === 7 && (
               <>
                 <QuestionHeader
                   title="What's most important to you in a sauna?"
