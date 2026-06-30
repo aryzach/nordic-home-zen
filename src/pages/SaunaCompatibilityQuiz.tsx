@@ -229,6 +229,13 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const ampNo = a.twentyAmp === "No";
   const ampUnsure = a.twentyAmp === "Not sure";
 
+  const has240VYes = a.has240V === "Yes";
+  const has240VUnsure = a.has240V === "Not sure";
+  const install240VYes = a.install240V === "Yes";
+  const install240VMaybe = a.install240V === "Maybe";
+  const install240VNo = a.install240V === "No";
+  const install240VUnsure = a.install240V === "Not sure";
+
   const wantsHigh = a.priorities.includes("High temps (190 - 230°F)");
   const wantsPortable = a.priorities.includes("Portable/renter-friendly");
   const wantsInfrared = a.priorities.includes("Red-light therapy");
