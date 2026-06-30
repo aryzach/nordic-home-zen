@@ -218,12 +218,10 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const renter = a.ownRent === "Rent";
   const owner = a.ownRent === "Own";
 
-  const balcony = a.placement.includes("Balcony");
+  const deckBalcony = a.placement.includes("Deck/Balcony");
   const backyard = a.placement.includes("Backyard");
   const livingRoom = a.placement.includes("Living Room");
   const bedroom = a.placement.includes("Bedroom");
-  const basement = a.placement.includes("Basement");
-  const homeGym = a.placement.includes("Home Gym");
 
   const spaceLt4 = a.space === "Less than 4' x 4'";
   const space4 = a.space === "~4' × 4'";
@@ -237,17 +235,16 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const outletNo = a.outletNearby === "No";
   const outletUnsure = a.outletNearby === "Not sure";
 
-  const ampYes = a.twentyAmp === "Yes";
-  const ampNo = a.twentyAmp === "No";
-  const ampUnsure = a.twentyAmp === "Not sure";
-
   const has240VYes = a.has240V === "Yes";
+  const has240VMaybe = a.has240V === "Maybe";
+  const has240VNo = a.has240V === "No";
   const has240VUnsure = a.has240V === "Not sure";
 
-  const install240VYes = a.install240V === "Yes";
-  const install240VMaybe = a.install240V === "Maybe";
-  const install240VNo = a.install240V === "No";
-  const install240VUnsure = a.install240V === "Not sure";
+  // Combined 240V readiness for scoring compatibility.
+  const install240VYes = has240VYes || has240VMaybe;
+  const install240VMaybe = has240VMaybe;
+  const install240VNo = has240VNo;
+  const install240VUnsure = has240VUnsure;
 
   // True when the user has no path to 240V right now.
   const closed240V = !has240VYes && install240VNo;
