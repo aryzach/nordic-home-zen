@@ -648,6 +648,9 @@ const SaunaCompatibilityQuiz = () => {
   );
 
   const startQuiz = () => {
+    trackEvent("sauna_compatibility_quiz_started", {
+      button_text: "Take the 2-Minute Compatibility Quiz",
+    });
     trackEvent("compatibility_quiz_started", {});
     setView("quiz");
     setStep(1);
