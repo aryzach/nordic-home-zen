@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   ExternalLink,
   Sparkles,
+  Zap,
 } from "lucide-react";
 import { trackEvent, trackAndNavigate } from "@/lib/analytics";
 import { BOOKING_URL, openBookingUrl } from "@/lib/booking";
