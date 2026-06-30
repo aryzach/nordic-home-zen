@@ -298,8 +298,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
   // committed to traditional high heat (230°F or "high temps" priority).
   if (temp230 || (wantsHigh && !temp150 && !temp170)) disq.infrared = true;
 
-  // SaunaLife (5×5, 240V): needs space + at least $5k budget; not for balconies.
-  if (smallSpace || balcony || (maxBudget && maxBudget < 3)) {
+  // SaunaLife (5×5, 240V): needs space + at least $5k budget; not for decks/balconies.
+  if (smallSpace || deckBalcony || (maxBudget && maxBudget < 3)) {
     disq.saunalife = true;
   } else if (closed240V) {
     // Escape valve: a homeowner with space who wants high heat could still install
@@ -308,8 +308,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
     else disq.saunalife = true;
   }
 
-  // Barrel (5×6+, outdoor, 240V): not for apartments, balconies, or small footprints.
-  if (smallSpace || balcony || apartment || (maxBudget && maxBudget < 3)) {
+  // Barrel (5×6+, outdoor, 240V): not for apartments, decks/balconies, or small footprints.
+  if (smallSpace || deckBalcony || apartment || (maxBudget && maxBudget < 3)) {
     disq.barrel = true;
   } else if (closed240V) {
     if (owner && house && space5plus) tentative.barrel = true;
@@ -317,7 +317,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
   }
 
   // Plunge Mini (5×5, 240V, premium): homeowner-only, requires $8k+ budget.
-  if (smallSpace || balcony || apartment || renter || (maxBudget && maxBudget < 4)) {
+  if (smallSpace || deckBalcony || apartment || renter || (maxBudget && maxBudget < 4)) {
     disq.plunge = true;
   } else if (closed240V) {
     if (owner && house && space5plus && wantsHighHeat) tentative.plunge = true;
@@ -332,18 +332,13 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (condo) scores.anywhere += 4;
   if (house) scores.anywhere += 1;
   if (renter) scores.anywhere += 5;
-  if (balcony) scores.anywhere += 4;
+  if (deckBalcony) scores.anywhere += 4;
   if (livingRoom) scores.anywhere += 3;
   if (bedroom) scores.anywhere += 2;
-  if (homeGym) scores.anywhere += 2;
   if (backyard) scores.anywhere += 1;
-  if (basement) scores.anywhere += 1;
   if (space4) scores.anywhere += 4;
   if (spaceLt4) scores.anywhere -= 2;
   if (space5plus) scores.anywhere += 1;
-  if (ampYes) scores.anywhere += 4;
-  if (ampUnsure) scores.anywhere += 2;
-  if (ampNo) scores.anywhere -= 2;
   if (install240VNo) scores.anywhere += 4;
   if (install240VMaybe) scores.anywhere += 2;
   if (install240VUnsure) scores.anywhere += 2;
@@ -366,7 +361,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (apartment) scores.infrared += 4;
   if (renter) scores.infrared += 3;
   if (condo) scores.infrared += 2;
-  if (balcony) scores.infrared += 2;
+  if (deckBalcony) scores.infrared += 2;
   if (livingRoom) scores.infrared += 3;
   if (bedroom) scores.infrared += 2;
   if (smallSpace) scores.infrared += 2;
@@ -380,15 +375,12 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (wantsRelax) scores.infrared += 2;
   if (wantsLowInstall) scores.infrared += 3;
   if (wantsPortable) scores.infrared += 2;
-  if (ampNo) scores.infrared += 2;
   if (closed240V) scores.infrared += 1;
 
   // SaunaLife
   if (house) scores.saunalife += 3;
   if (owner) scores.saunalife += 3;
   if (backyard) scores.saunalife += 2;
-  if (basement) scores.saunalife += 3;
-  if (homeGym) scores.saunalife += 2;
   if (space5x6) scores.saunalife += 3;
   if (spaceLarger) scores.saunalife += 3;
   if (has240VYes) scores.saunalife += 5;
@@ -429,8 +421,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (house) scores.plunge += 3;
   if (owner) scores.plunge += 3;
   if (backyard) scores.plunge += 2;
-  if (basement) scores.plunge += 1;
-  if (homeGym) scores.plunge += 2;
   if (space5x6) scores.plunge += 2;
   if (spaceLarger) scores.plunge += 3;
   if (has240VYes) scores.plunge += 5;
