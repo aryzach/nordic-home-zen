@@ -1133,12 +1133,12 @@ const SaunaCompatibilityQuiz = () => {
                 openBookingUrl
               );
             }}
-            onBuyAnywhere={() => {
-              trackEvent("compatibility_buy_now_clicked", {
+            onCompareClick={() => {
+              trackEvent("compatibility_compare_clicked", {
                 location: "compatibility_results",
                 ...flattenAnswers(answers),
               });
-              navigate("/specs");
+              navigate("/compare");
             }}
           />
         )}
