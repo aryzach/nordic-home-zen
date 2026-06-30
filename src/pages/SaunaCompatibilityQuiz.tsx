@@ -28,6 +28,8 @@ type Answers = {
   space: string;
   outletNearby: string;
   twentyAmp: string;
+  has240V: string;
+  install240V: string;
   priorities: string[];
   temperature: string;
   budget: string[];
@@ -43,13 +45,15 @@ const initialAnswers: Answers = {
   space: "",
   outletNearby: "",
   twentyAmp: "",
+  has240V: "",
+  install240V: "",
   priorities: [],
   temperature: "",
   budget: [],
   timeline: "",
 };
 
-const TOTAL_STEPS = 10; // 10 questions (split budget out as Q9, timeline Q10)
+const TOTAL_STEPS = 12;
 
 /* ---------------- Small primitives ---------------- */
 
