@@ -795,15 +795,12 @@ const SaunaCompatibilityQuiz = () => {
                   multi
                 />
                 <div className="space-y-3">
-                  {[
-                    "Living Room",
-                    "Backyard",
-                    "Bedroom",
-                    "Deck",
-                    "Balcony",
-                    "Basement",
-                    "Home Gym",
-                  ].map((o) => (
+                {[
+                  "Living Room",
+                  "Backyard",
+                  "Bedroom",
+                  "Deck/Balcony",
+                ].map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
