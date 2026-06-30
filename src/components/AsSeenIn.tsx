@@ -3,7 +3,7 @@ import vitalityDigestLogo from "@/assets/vitality-digest-logo.png";
 
 const AsSeenIn = () => {
   return (
-    <section className="py-12 md:py-16 bg-background">
+    <section className="pt-6 md:pt-8 pb-12 md:pb-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center">
           <p className="text-sm text-muted-foreground mb-4">As seen in</p>
