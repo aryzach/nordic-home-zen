@@ -969,7 +969,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 10 && (
+            {step === 12 && (
               <>
                 <QuestionHeader title="When are you hoping to buy?" />
                 <div className="space-y-3">
