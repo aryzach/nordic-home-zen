@@ -28,9 +28,7 @@ type Answers = {
   placementOther: string;
   space: string;
   outletNearby: string;
-  twentyAmp: string;
   has240V: string;
-  install240V: string;
   priorities: string[];
   temperature: string;
   budget: string[];
@@ -45,9 +43,7 @@ const initialAnswers: Answers = {
   placementOther: "",
   space: "",
   outletNearby: "",
-  twentyAmp: "",
   has240V: "",
-  install240V: "",
   priorities: [],
   temperature: "",
   budget: [],
