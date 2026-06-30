@@ -1382,41 +1382,20 @@ const ElectricalAssessmentBanner = ({
   onBookConsult: () => void;
 }) => (
   <div className="mb-8 rounded-2xl border border-[#171717] bg-[#171717] text-white p-6 md:p-10 shadow-xl">
-    <div className="flex items-center gap-3 mb-3">
+    <div className="flex items-center gap-3 mb-4">
       <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
         <Zap size={20} />
       </div>
-      <p className="text-xs uppercase tracking-[0.2em] text-white/70">
-        Expert guidance
-      </p>
+      <h2 className="text-[22px] md:text-[28px] leading-[1.2] font-semibold text-white">
+        Recommended: Schedule an Electrical Assessment
+      </h2>
     </div>
-    <h2 className="text-[24px] md:text-[30px] leading-[1.2] font-semibold mb-4 text-white">
-      Recommended: Schedule an Electrical Assessment
-    </h2>
-    <p className="text-white/85 leading-relaxed mb-4">
-      Your home's available electrical power is often the #1 factor in determining:
+    <p className="text-white/85 leading-relaxed mb-3">
+      Your home's available electrical power is often the #1 factor in determining which sauna options will work in your space.
     </p>
-    <ul className="space-y-2 mb-5 text-white/85">
-      {[
-        "Which sauna options will work in your space",
-        "Whether a sauna can reach its advertised temperatures",
-        "Whether additional electrical work is required",
-        "The true total cost of ownership",
-      ].map((t) => (
-        <li key={t} className="flex items-start gap-2">
-          <CheckCircle2 size={16} className="mt-1 shrink-0 text-white" />
-          <span>{t}</span>
-        </li>
-      ))}
-    </ul>
-    <p className="text-white/85 leading-relaxed mb-5">
-      Many homeowners and renters aren't sure what electrical service they have available, which is completely normal. A quick electrical assessment can often save thousands of dollars and eliminate unsuitable options.
+    <p className="text-white/85 leading-relaxed mb-6">
+      A quick electrical assessment can often save thousands of dollars and eliminate unsuitable options.
     </p>
-    <div className="rounded-xl border border-white/20 bg-white/5 p-4 mb-6">
-      <p className="text-white">
-        Based on your answers, we recommend confirming your electrical setup before making a final sauna decision.
-      </p>
-    </div>
     <Button
       onClick={onBookConsult}
       size="lg"
