@@ -1307,7 +1307,7 @@ const ConsultCTA = ({
         : "bg-card text-foreground border border-border"
     }`}
   >
-    <h2 className="text-[26px] md:text-[34px] font-semibold mb-3">{heading}</h2>
+    <h2 className="text-[26px] md:text-[34px] font-semibold mb-3 text-white">{heading}</h2>
     <p
       className={`max-w-xl mx-auto mb-6 ${
         emphasized ? "text-white/80" : "text-muted-foreground"
