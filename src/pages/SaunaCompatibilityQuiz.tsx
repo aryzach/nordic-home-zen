@@ -1414,14 +1414,25 @@ const ElectricalAssessmentBanner = ({
 
 const BestMatchCard = ({
   rec,
-  onBuyAnywhere,
+  onCardClick,
   showElectricalNote,
 }: {
   rec: Recommendation;
-  onBuyAnywhere: () => void;
+  onCardClick: () => void;
   showElectricalNote?: boolean;
 }) => (
-  <div className="bg-card border border-[#171717] rounded-2xl p-6 md:p-10">
+  <div
+    role="button"
+    tabIndex={0}
+    onClick={onCardClick}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onCardClick();
+      }
+    }}
+    className="bg-card border border-[#171717] rounded-2xl p-6 md:p-10 cursor-pointer transition-shadow hover:shadow-lg"
+  >
     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
       <div>
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
@@ -1445,29 +1456,30 @@ const BestMatchCard = ({
       {rec.whyFit}
     </p>
     {showElectricalNote && rec.requires240V && <ElectricalNote />}
-    {rec.isAnywhere && (
-      <Button
-        onClick={onBuyAnywhere}
-        size="lg"
-        className="mt-7 w-full sm:w-auto max-w-full whitespace-normal h-auto py-3 text-center"
-      >
-        Learn More
-        <ArrowRight size={18} />
-      </Button>
-    )}
   </div>
 );
 
 const OtherOptionCard = ({
   rec,
-  onBuyAnywhere,
+  onCardClick,
   showElectricalNote,
 }: {
   rec: Recommendation;
-  onBuyAnywhere: () => void;
+  onCardClick: () => void;
   showElectricalNote?: boolean;
 }) => (
-  <div className="bg-card border border-border rounded-2xl p-6">
+  <div
+    role="button"
+    tabIndex={0}
+    onClick={onCardClick}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onCardClick();
+      }
+    }}
+    className="bg-card border border-border rounded-2xl p-6 cursor-pointer transition-colors hover:border-[#171717]"
+  >
     <div className="flex items-start justify-between gap-3 mb-3">
       <h3 className="text-[20px] md:text-[22px] font-semibold leading-tight">
         {rec.name}
@@ -1485,13 +1497,6 @@ const OtherOptionCard = ({
       {rec.whyFit}
     </p>
     {showElectricalNote && rec.requires240V && <ElectricalNote />}
-    {rec.isAnywhere && (
-      <div className="mt-5">
-        <Button onClick={onBuyAnywhere} variant="outline">
-          Learn More
-        </Button>
-      </div>
-    )}
   </div>
 );
 
