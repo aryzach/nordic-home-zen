@@ -55,7 +55,8 @@ const Hero = () => {
       </button>
     </form>
   );
-    const rating = (
+  const rating = (
+    <div className="flex items-center justify-start gap-2 font-sans text-[14px] font-normal mb-4 text-white/90">
       <div className="flex">
         {[...Array(5)].map((_, i) => (
           <Star key={i} className="fill-yellow-400 text-yellow-400" size={14} />
