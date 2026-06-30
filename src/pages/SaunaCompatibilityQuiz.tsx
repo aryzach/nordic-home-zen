@@ -1330,13 +1330,24 @@ const ConsultCTA = ({
 const SummaryCard = ({
   rec,
   rank,
-  onBuyAnywhere,
+  onCardClick,
 }: {
   rec: Recommendation;
   rank: number;
-  onBuyAnywhere: () => void;
+  onCardClick: () => void;
 }) => (
-  <div className="bg-card border border-border rounded-2xl p-5 md:p-6 flex items-center gap-4 md:gap-6">
+  <div
+    role="button"
+    tabIndex={0}
+    onClick={onCardClick}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onCardClick();
+      }
+    }}
+    className="bg-card border border-border rounded-2xl p-5 md:p-6 flex items-center gap-4 md:gap-6 cursor-pointer transition-colors hover:border-[#171717]"
+  >
     <div className="w-24 h-24 md:w-32 md:h-32 shrink-0 rounded-xl overflow-hidden bg-secondary/40">
       <img
         src={rec.image}
@@ -1356,13 +1367,6 @@ const SummaryCard = ({
       <p className="text-[14px] text-muted-foreground">
         {rec.totalCost} · {rec.plugIn ? "Plug-in" : "Not plug-in"}
       </p>
-      {rec.isAnywhere && (
-        <div className="mt-3">
-          <Button onClick={onBuyAnywhere} size="sm" variant="outline">
-            Learn More
-          </Button>
-        </div>
-      )}
     </div>
   </div>
 );
