@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   ExternalLink,
   Sparkles,
+  Zap,
 } from "lucide-react";
 import { trackEvent, trackAndNavigate } from "@/lib/analytics";
 import { BOOKING_URL, openBookingUrl } from "@/lib/booking";
@@ -28,6 +29,8 @@ type Answers = {
   space: string;
   outletNearby: string;
   twentyAmp: string;
+  has240V: string;
+  install240V: string;
   priorities: string[];
   temperature: string;
   budget: string[];
@@ -43,13 +46,15 @@ const initialAnswers: Answers = {
   space: "",
   outletNearby: "",
   twentyAmp: "",
+  has240V: "",
+  install240V: "",
   priorities: [],
   temperature: "",
   budget: [],
   timeline: "",
 };
 
-const TOTAL_STEPS = 10; // 10 questions (split budget out as Q9, timeline Q10)
+const TOTAL_STEPS = 12;
 
 /* ---------------- Small primitives ---------------- */
 
@@ -134,7 +139,7 @@ const QuestionHeader = ({
   multi,
 }: {
   title: string;
-  helper?: string;
+  helper?: React.ReactNode;
   multi?: boolean;
 }) => (
   <div className="mb-6">
@@ -144,7 +149,7 @@ const QuestionHeader = ({
     {multi && (
       <p className="text-sm text-muted-foreground">Select all that apply.</p>
     )}
-    {helper && <p className="text-sm text-muted-foreground">{helper}</p>}
+    {helper && <div className="text-sm text-muted-foreground">{helper}</div>}
   </div>
 );
 
@@ -171,12 +176,14 @@ type Recommendation = {
   totalCost: string;
   plugIn: boolean;
   isAnywhere?: boolean;
+  requires240V?: boolean;
 };
 
 export type RecommendationResult = {
   recommendations: Recommendation[];
   consultationStrongly: boolean;
   allDisqualified: boolean;
+  electricalAssessmentRecommended: boolean;
 };
 
 const BUDGET_TIER: Record<string, number> = {
@@ -222,6 +229,13 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const ampYes = a.twentyAmp === "Yes";
   const ampNo = a.twentyAmp === "No";
   const ampUnsure = a.twentyAmp === "Not sure";
+
+  const has240VYes = a.has240V === "Yes";
+  const has240VUnsure = a.has240V === "Not sure";
+  const install240VYes = a.install240V === "Yes";
+  const install240VMaybe = a.install240V === "Maybe";
+  const install240VNo = a.install240V === "No";
+  const install240VUnsure = a.install240V === "Not sure";
 
   const wantsHigh = a.priorities.includes("High temps (190 - 230°F)");
   const wantsPortable = a.priorities.includes("Portable/renter-friendly");
@@ -386,6 +400,20 @@ function buildRecommendations(a: Answers): RecommendationResult {
     scores.plunge += 40; scores.saunalife += 20;
   }
 
+  // 240V availability / willingness
+  if (has240VYes) {
+    scores.saunalife += 30; scores.barrel += 30; scores.plunge += 30;
+  } else if (install240VYes) {
+    scores.saunalife += 15; scores.barrel += 15; scores.plunge += 15;
+  } else if (install240VMaybe) {
+    scores.saunalife += 5; scores.barrel += 5; scores.plunge += 5;
+  } else if (install240VNo) {
+    scores.saunalife -= 50; scores.barrel -= 50; scores.plunge -= 50;
+    scores.anywhere += 15; scores.infrared += 15;
+  } else if (install240VUnsure) {
+    scores.anywhere += 5; scores.infrared += 5;
+  }
+
   // Anywhere tie-breaker
   if (!disq.anywhere) {
     const competitors = (["saunalife", "barrel", "plunge", "infrared"] as const)
@@ -397,9 +425,15 @@ function buildRecommendations(a: Answers): RecommendationResult {
     }
   }
 
-  const consultationStrongly =
-    outletUnsure ||
+  const electricalAssessmentRecommended =
     ampUnsure ||
+    has240VUnsure ||
+    install240VMaybe ||
+    install240VUnsure ||
+    outletUnsure;
+
+  const consultationStrongly =
+    electricalAssessmentRecommended ||
     spaceUnsure ||
     multipleBudgets ||
     a.timeline === "This week" ||
@@ -446,6 +480,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
       image: "/images/compare-nordica.png",
       totalCost: "$6,149+ all-in",
       plugIn: false,
+      requires240V: true,
     },
     {
       id: "barrel",
@@ -457,6 +492,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
       image: "/images/compare-barrel.png",
       totalCost: "$5,399+ all-in",
       plugIn: false,
+      requires240V: true,
     },
     {
       id: "plunge",
@@ -468,6 +504,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
       image: "/images/compare-plunge.png",
       totalCost: "$11,089+ all-in",
       plugIn: false,
+      requires240V: true,
     },
     {
       id: "infrared",
@@ -485,11 +522,17 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const recs: Recommendation[] = base.map((b) => {
     const score = scores[b.id];
     const disqualified = disq[b.id];
+    let tier = tierFromScore(score, disqualified);
+    // Downgrade confidence by one level for 240V saunas if electrical is uncertain
+    if (electricalAssessmentRecommended && b.requires240V && !disqualified) {
+      if (tier === "Excellent Match") tier = "Good Match";
+      else if (tier === "Good Match") tier = "Possible Fit";
+    }
     return {
       ...b,
       score,
       disqualified,
-      tier: tierFromScore(score, disqualified),
+      tier,
       whyFit: reasons[b.id],
     };
   });
@@ -501,7 +544,12 @@ function buildRecommendations(a: Answers): RecommendationResult {
   });
 
   const allDisqualified = recs.every((r) => r.disqualified);
-  return { recommendations: recs, consultationStrongly, allDisqualified };
+  return {
+    recommendations: recs,
+    consultationStrongly,
+    allDisqualified,
+    electricalAssessmentRecommended,
+  };
 }
 
 /* ---------------- Page ---------------- */
@@ -798,6 +846,56 @@ const SaunaCompatibilityQuiz = () => {
             {step === 7 && (
               <>
                 <QuestionHeader
+                  title="Do you already have a 240V electrical outlet available for a sauna?"
+                  helper={
+                    <>
+                      <p className="mb-2">Examples include:</p>
+                      <ul className="list-disc pl-5 space-y-1">
+                        <li>An EV charger outlet</li>
+                        <li>An electric dryer outlet</li>
+                        <li>A hot tub hookup</li>
+                        <li>A dedicated 240V circuit installed by an electrician</li>
+                      </ul>
+                    </>
+                  }
+                />
+                <div className="space-y-3">
+                  {["Yes", "No", "Not sure"].map((o) => (
+                    <OptionButton
+                      key={o}
+                      label={o}
+                      selected={answers.has240V === o}
+                      onClick={() => setSingle("has240V", o)}
+                    />
+                  ))}
+                </div>
+                <NextRow disabled={!answers.has240V} onNext={advance} />
+              </>
+            )}
+
+            {step === 8 && (
+              <>
+                <QuestionHeader
+                  title="If needed, would you be open to installing a new 240V electrical circuit?"
+                  helper="Many traditional saunas require a dedicated 240V circuit installed by an electrician. Typical installation costs range from approximately $1,000–$3,000 depending on your home's electrical setup."
+                />
+                <div className="space-y-3">
+                  {["Yes", "Maybe", "No", "Not sure"].map((o) => (
+                    <OptionButton
+                      key={o}
+                      label={o}
+                      selected={answers.install240V === o}
+                      onClick={() => setSingle("install240V", o)}
+                    />
+                  ))}
+                </div>
+                <NextRow disabled={!answers.install240V} onNext={advance} />
+              </>
+            )}
+
+            {step === 9 && (
+              <>
+                <QuestionHeader
                   title="What's most important to you in a sauna?"
                   multi
                 />
@@ -828,7 +926,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 8 && (
+            {step === 10 && (
               <>
                 <QuestionHeader title="What temperature would you like your sauna?" />
                 <div className="space-y-3">
@@ -845,7 +943,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 9 && (
+            {step === 11 && (
               <>
                 <QuestionHeader
                   title="What budget ranges are you considering?"
@@ -872,7 +970,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 10 && (
+            {step === 12 && (
               <>
                 <QuestionHeader title="When are you hoping to buy?" />
                 <div className="space-y-3">
@@ -1216,12 +1314,76 @@ const SummaryCard = ({
   </div>
 );
 
+const ElectricalNote = () => (
+  <div className="mt-4 flex items-start gap-2 rounded-lg border border-amber-300/60 bg-amber-50 px-3 py-2 text-[13px] text-amber-900">
+    <Zap size={14} className="mt-0.5 shrink-0" />
+    <span>
+      Final recommendation depends on confirming your available electrical service.
+    </span>
+  </div>
+);
+
+const ElectricalAssessmentBanner = ({
+  onBookConsult,
+}: {
+  onBookConsult: () => void;
+}) => (
+  <div className="mb-8 rounded-2xl border border-[#171717] bg-[#171717] text-white p-6 md:p-10 shadow-xl">
+    <div className="flex items-center gap-3 mb-3">
+      <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
+        <Zap size={20} />
+      </div>
+      <p className="text-xs uppercase tracking-[0.2em] text-white/70">
+        Expert guidance
+      </p>
+    </div>
+    <h2 className="text-[24px] md:text-[30px] leading-[1.2] font-semibold mb-4">
+      Recommended: Schedule an Electrical Assessment
+    </h2>
+    <p className="text-white/85 leading-relaxed mb-4">
+      Your home's available electrical power is often the #1 factor in determining:
+    </p>
+    <ul className="space-y-2 mb-5 text-white/85">
+      {[
+        "Which sauna options will work in your space",
+        "Whether a sauna can reach its advertised temperatures",
+        "Whether additional electrical work is required",
+        "The true total cost of ownership",
+      ].map((t) => (
+        <li key={t} className="flex items-start gap-2">
+          <CheckCircle2 size={16} className="mt-1 shrink-0 text-white" />
+          <span>{t}</span>
+        </li>
+      ))}
+    </ul>
+    <p className="text-white/85 leading-relaxed mb-5">
+      Many homeowners and renters aren't sure what electrical service they have available, which is completely normal. A quick electrical assessment can often save thousands of dollars and eliminate unsuitable options.
+    </p>
+    <div className="rounded-xl border border-white/20 bg-white/5 p-4 mb-6">
+      <p className="text-white">
+        Based on your answers, we recommend confirming your electrical setup before making a final sauna decision.
+      </p>
+    </div>
+    <Button
+      onClick={onBookConsult}
+      size="lg"
+      variant="secondary"
+      className="max-w-full whitespace-normal h-auto py-3 text-center"
+    >
+      Schedule Free Electrical Assessment
+      <ExternalLink size={16} />
+    </Button>
+  </div>
+);
+
 const BestMatchCard = ({
   rec,
   onBuyAnywhere,
+  showElectricalNote,
 }: {
   rec: Recommendation;
   onBuyAnywhere: () => void;
+  showElectricalNote?: boolean;
 }) => (
   <div className="bg-card border border-[#171717] rounded-2xl p-6 md:p-10">
     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
@@ -1242,15 +1404,16 @@ const BestMatchCard = ({
       <Row label="All-in cost" value={rec.totalCost} />
       <Row label="Best use case" value={rec.useCase} />
     </div>
-    <p className="text-[15px] leading-relaxed text-foreground mb-7">
+    <p className="text-[15px] leading-relaxed text-foreground mb-2">
       <span className="font-semibold">Why we recommended this: </span>
       {rec.whyFit}
     </p>
+    {showElectricalNote && rec.requires240V && <ElectricalNote />}
     {rec.isAnywhere && (
       <Button
         onClick={onBuyAnywhere}
         size="lg"
-        className="w-full sm:w-auto max-w-full whitespace-normal h-auto py-3 text-center"
+        className="mt-7 w-full sm:w-auto max-w-full whitespace-normal h-auto py-3 text-center"
       >
         Learn More
         <ArrowRight size={18} />
@@ -1262,9 +1425,11 @@ const BestMatchCard = ({
 const OtherOptionCard = ({
   rec,
   onBuyAnywhere,
+  showElectricalNote,
 }: {
   rec: Recommendation;
   onBuyAnywhere: () => void;
+  showElectricalNote?: boolean;
 }) => (
   <div className="bg-card border border-border rounded-2xl p-6">
     <div className="flex items-start justify-between gap-3 mb-3">
@@ -1283,6 +1448,7 @@ const OtherOptionCard = ({
     <p className="text-[14px] text-muted-foreground leading-relaxed">
       {rec.whyFit}
     </p>
+    {showElectricalNote && rec.requires240V && <ElectricalNote />}
     {rec.isAnywhere && (
       <div className="mt-5">
         <Button onClick={onBuyAnywhere} variant="outline">
@@ -1304,7 +1470,12 @@ const ResultsView = ({
   onBookConsult: () => void;
   onBuyAnywhere: () => void;
 }) => {
-  const { recommendations, consultationStrongly, allDisqualified } = result;
+  const {
+    recommendations,
+    consultationStrongly,
+    allDisqualified,
+    electricalAssessmentRecommended,
+  } = result;
 
   if (allDisqualified) {
     return (
@@ -1356,6 +1527,10 @@ const ResultsView = ({
         </p>
       </div>
 
+      {electricalAssessmentRecommended && (
+        <ElectricalAssessmentBanner onBookConsult={onBookConsult} />
+      )}
+
       <div className="grid grid-cols-1 gap-4 mb-8">
         {topThree.map((rec, idx) => (
           <SummaryCard
@@ -1367,7 +1542,13 @@ const ResultsView = ({
         ))}
       </div>
 
-      {best && <BestMatchCard rec={best} onBuyAnywhere={onBuyAnywhere} />}
+      {best && (
+        <BestMatchCard
+          rec={best}
+          onBuyAnywhere={onBuyAnywhere}
+          showElectricalNote={electricalAssessmentRecommended}
+        />
+      )}
 
       {others.length > 0 && (
         <>
@@ -1380,6 +1561,7 @@ const ResultsView = ({
                 key={r.name}
                 rec={r}
                 onBuyAnywhere={onBuyAnywhere}
+                showElectricalNote={electricalAssessmentRecommended}
               />
             ))}
           </div>
@@ -1408,6 +1590,8 @@ function flattenAnswers(a: Answers): Record<string, string> {
     space: a.space,
     outlet_within_50ft: a.outletNearby,
     outlet_20a: a.twentyAmp,
+    has_240v_outlet: a.has240V,
+    open_to_install_240v: a.install240V,
     priorities: a.priorities.join(", "),
     temperature: a.temperature,
     budget: a.budget.join(", "),
