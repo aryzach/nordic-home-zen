@@ -30,6 +30,9 @@ const Index = () => {
         <LazyMount minHeight={500}>
           <VideoTestimonials />
         </LazyMount>
+        <LazyMount minHeight={200}>
+          <AsSeenIn />
+        </LazyMount>
         <LazyMount minHeight={600}>
           <ComparisonTable />
         </LazyMount>
