@@ -1133,12 +1133,12 @@ const SaunaCompatibilityQuiz = () => {
                 openBookingUrl
               );
             }}
-            onBuyAnywhere={() => {
-              trackEvent("compatibility_buy_now_clicked", {
+            onCompareClick={() => {
+              trackEvent("compatibility_compare_clicked", {
                 location: "compatibility_results",
                 ...flattenAnswers(answers),
               });
-              navigate("/specs");
+              navigate("/compare");
             }}
           />
         )}
@@ -1330,13 +1330,24 @@ const ConsultCTA = ({
 const SummaryCard = ({
   rec,
   rank,
-  onBuyAnywhere,
+  onCardClick,
 }: {
   rec: Recommendation;
   rank: number;
-  onBuyAnywhere: () => void;
+  onCardClick: () => void;
 }) => (
-  <div className="bg-card border border-border rounded-2xl p-5 md:p-6 flex items-center gap-4 md:gap-6">
+  <div
+    role="button"
+    tabIndex={0}
+    onClick={onCardClick}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onCardClick();
+      }
+    }}
+    className="bg-card border border-border rounded-2xl p-5 md:p-6 flex items-center gap-4 md:gap-6 cursor-pointer transition-colors hover:border-[#171717]"
+  >
     <div className="w-24 h-24 md:w-32 md:h-32 shrink-0 rounded-xl overflow-hidden bg-secondary/40">
       <img
         src={rec.image}
@@ -1356,13 +1367,6 @@ const SummaryCard = ({
       <p className="text-[14px] text-muted-foreground">
         {rec.totalCost} · {rec.plugIn ? "Plug-in" : "Not plug-in"}
       </p>
-      {rec.isAnywhere && (
-        <div className="mt-3">
-          <Button onClick={onBuyAnywhere} size="sm" variant="outline">
-            Learn More
-          </Button>
-        </div>
-      )}
     </div>
   </div>
 );
@@ -1382,41 +1386,20 @@ const ElectricalAssessmentBanner = ({
   onBookConsult: () => void;
 }) => (
   <div className="mb-8 rounded-2xl border border-[#171717] bg-[#171717] text-white p-6 md:p-10 shadow-xl">
-    <div className="flex items-center gap-3 mb-3">
+    <div className="flex items-center gap-3 mb-4">
       <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
         <Zap size={20} />
       </div>
-      <p className="text-xs uppercase tracking-[0.2em] text-white/70">
-        Expert guidance
-      </p>
+      <h2 className="text-[22px] md:text-[28px] leading-[1.2] font-semibold text-white">
+        Recommended: Schedule an Electrical Assessment
+      </h2>
     </div>
-    <h2 className="text-[24px] md:text-[30px] leading-[1.2] font-semibold mb-4 text-white">
-      Recommended: Schedule an Electrical Assessment
-    </h2>
-    <p className="text-white/85 leading-relaxed mb-4">
-      Your home's available electrical power is often the #1 factor in determining:
+    <p className="text-white/85 leading-relaxed mb-3">
+      Your home's available electrical power is often the #1 factor in determining which sauna options will work in your space.
     </p>
-    <ul className="space-y-2 mb-5 text-white/85">
-      {[
-        "Which sauna options will work in your space",
-        "Whether a sauna can reach its advertised temperatures",
-        "Whether additional electrical work is required",
-        "The true total cost of ownership",
-      ].map((t) => (
-        <li key={t} className="flex items-start gap-2">
-          <CheckCircle2 size={16} className="mt-1 shrink-0 text-white" />
-          <span>{t}</span>
-        </li>
-      ))}
-    </ul>
-    <p className="text-white/85 leading-relaxed mb-5">
-      Many homeowners and renters aren't sure what electrical service they have available, which is completely normal. A quick electrical assessment can often save thousands of dollars and eliminate unsuitable options.
+    <p className="text-white/85 leading-relaxed mb-6">
+      A quick electrical assessment can often save thousands of dollars and eliminate unsuitable options.
     </p>
-    <div className="rounded-xl border border-white/20 bg-white/5 p-4 mb-6">
-      <p className="text-white">
-        Based on your answers, we recommend confirming your electrical setup before making a final sauna decision.
-      </p>
-    </div>
     <Button
       onClick={onBookConsult}
       size="lg"
@@ -1431,14 +1414,25 @@ const ElectricalAssessmentBanner = ({
 
 const BestMatchCard = ({
   rec,
-  onBuyAnywhere,
+  onCardClick,
   showElectricalNote,
 }: {
   rec: Recommendation;
-  onBuyAnywhere: () => void;
+  onCardClick: () => void;
   showElectricalNote?: boolean;
 }) => (
-  <div className="bg-card border border-[#171717] rounded-2xl p-6 md:p-10">
+  <div
+    role="button"
+    tabIndex={0}
+    onClick={onCardClick}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onCardClick();
+      }
+    }}
+    className="bg-card border border-[#171717] rounded-2xl p-6 md:p-10 cursor-pointer transition-shadow hover:shadow-lg"
+  >
     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
       <div>
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
@@ -1462,29 +1456,30 @@ const BestMatchCard = ({
       {rec.whyFit}
     </p>
     {showElectricalNote && rec.requires240V && <ElectricalNote />}
-    {rec.isAnywhere && (
-      <Button
-        onClick={onBuyAnywhere}
-        size="lg"
-        className="mt-7 w-full sm:w-auto max-w-full whitespace-normal h-auto py-3 text-center"
-      >
-        Learn More
-        <ArrowRight size={18} />
-      </Button>
-    )}
   </div>
 );
 
 const OtherOptionCard = ({
   rec,
-  onBuyAnywhere,
+  onCardClick,
   showElectricalNote,
 }: {
   rec: Recommendation;
-  onBuyAnywhere: () => void;
+  onCardClick: () => void;
   showElectricalNote?: boolean;
 }) => (
-  <div className="bg-card border border-border rounded-2xl p-6">
+  <div
+    role="button"
+    tabIndex={0}
+    onClick={onCardClick}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onCardClick();
+      }
+    }}
+    className="bg-card border border-border rounded-2xl p-6 cursor-pointer transition-colors hover:border-[#171717]"
+  >
     <div className="flex items-start justify-between gap-3 mb-3">
       <h3 className="text-[20px] md:text-[22px] font-semibold leading-tight">
         {rec.name}
@@ -1502,13 +1497,6 @@ const OtherOptionCard = ({
       {rec.whyFit}
     </p>
     {showElectricalNote && rec.requires240V && <ElectricalNote />}
-    {rec.isAnywhere && (
-      <div className="mt-5">
-        <Button onClick={onBuyAnywhere} variant="outline">
-          Learn More
-        </Button>
-      </div>
-    )}
   </div>
 );
 
@@ -1516,12 +1504,12 @@ const ResultsView = ({
   result,
   answers,
   onBookConsult,
-  onBuyAnywhere,
+  onCompareClick,
 }: {
   result: RecommendationResult;
   answers: Answers;
   onBookConsult: () => void;
-  onBuyAnywhere: () => void;
+  onCompareClick: () => void;
 }) => {
   const {
     recommendations,
@@ -1552,7 +1540,7 @@ const ResultsView = ({
             size="lg"
             className="max-w-full whitespace-normal h-auto py-3 text-center"
           >
-            Book Free 15-Minute Consultation
+            Book Free 30-Minute Consultation
             <ExternalLink size={16} />
           </Button>
         </div>
@@ -1580,27 +1568,40 @@ const ResultsView = ({
         </p>
       </div>
 
-      {electricalAssessmentRecommended && (
-        <ElectricalAssessmentBanner onBookConsult={onBookConsult} />
-      )}
-
       <div className="grid grid-cols-1 gap-4 mb-8">
         {topThree.map((rec, idx) => (
           <SummaryCard
             key={rec.name}
             rec={rec}
             rank={idx + 1}
-            onBuyAnywhere={onBuyAnywhere}
+            onCardClick={onCompareClick}
           />
         ))}
       </div>
 
+      {electricalAssessmentRecommended && (
+        <ElectricalAssessmentBanner onBookConsult={onBookConsult} />
+      )}
+
       {best && (
         <BestMatchCard
           rec={best}
-          onBuyAnywhere={onBuyAnywhere}
+          onCardClick={onCompareClick}
           showElectricalNote={electricalAssessmentRecommended}
         />
+      )}
+
+      {topThree.slice(1).length > 0 && (
+        <div className="space-y-4 mt-6">
+          {topThree.slice(1).map((r) => (
+            <OtherOptionCard
+              key={r.name}
+              rec={r}
+              onCardClick={onCompareClick}
+              showElectricalNote={electricalAssessmentRecommended}
+            />
+          ))}
+        </div>
       )}
 
       {others.length > 0 && (
@@ -1613,7 +1614,7 @@ const ResultsView = ({
               <OtherOptionCard
                 key={r.name}
                 rec={r}
-                onBuyAnywhere={onBuyAnywhere}
+                onCardClick={onCompareClick}
                 showElectricalNote={electricalAssessmentRecommended}
               />
             ))}
