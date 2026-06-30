@@ -1,5 +1,6 @@
-import { Star, ExternalLink } from "lucide-react";
-import { trackAndNavigate } from "@/lib/analytics";
+import { Star, ExternalLink, ArrowRight } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { trackEvent, trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
 const HERO_MOBILE_AVIF = "/hero-mobile.avif";
 const HERO_MOBILE_WEBP = "/hero-mobile.webp";
@@ -25,6 +26,34 @@ const Hero = () => {
     </button>
   );
 
+  const emailSignup = (
+    <form
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      onSubmit={() => {
+        trackEvent("newsletter_signup", { location: "hero" });
+        try { (window as any).fbq?.('track', 'Lead', { content_name: 'Hero Email Capture' }); } catch {}
+      }}
+      className="flex w-full md:w-auto"
+    >
+      <input type="hidden" name="access_key" value="dbdd31bb-6234-4a4f-93cd-679cefbf3f78" />
+      <input type="hidden" name="redirect" value={`${window.location.origin}/email-signed-up`} />
+      <Input
+        type="email"
+        name="email"
+        required
+        placeholder="Email for updates"
+        className="flex-1 md:w-[220px] bg-white text-[#111] placeholder:text-[#111]/50 border-0 rounded-none h-[46px] text-[14px] px-4"
+      />
+      <button
+        type="submit"
+        className="bg-[#111] text-white h-[46px] px-4 flex items-center justify-center font-semibold text-[13px] uppercase tracking-wider hover:bg-black transition-colors"
+        aria-label="Subscribe"
+      >
+        <ArrowRight className="w-4 h-4" aria-hidden="true" />
+      </button>
+    </form>
+  );
   const rating = (
     <div className="flex items-center justify-start gap-2 font-sans text-[14px] font-normal mb-4 text-white/90">
       <div className="flex">
@@ -62,7 +91,10 @@ const Hero = () => {
           <h1 className="hero-title font-heading text-white mb-4">
             The world's only 200°F plug-in sauna.
           </h1>
-          <div className="flex justify-start w-full mb-6">{cta}</div>
+          <div className="flex flex-col gap-3 justify-start w-full mb-6">
+            {cta}
+            {emailSignup}
+          </div>
           <p className="font-sans text-[15px] leading-[1.6] text-white/80 font-normal max-w-sm">
             Works in 97% of homes and apartments. No electrician. Confirm your compatibility with a 30-minute call.
           </p>
@@ -91,7 +123,10 @@ const Hero = () => {
           <h1 className="hero-title font-heading text-white mb-6">
             The world's only 200°F plug-in sauna.
           </h1>
-          <div className="flex justify-start w-full mb-6">{cta}</div>
+          <div className="flex flex-col md:flex-row gap-3 justify-start w-full mb-6">
+            {cta}
+            {emailSignup}
+          </div>
           <p className="font-sans text-[16px] leading-[1.6] text-white/80 font-normal max-w-md">
             Works in 97% of homes and apartments. No electrician. Confirm your compatibility with a 30-minute call.
           </p>
