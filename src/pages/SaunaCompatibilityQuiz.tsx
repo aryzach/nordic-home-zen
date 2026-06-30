@@ -521,11 +521,17 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const recs: Recommendation[] = base.map((b) => {
     const score = scores[b.id];
     const disqualified = disq[b.id];
+    let tier = tierFromScore(score, disqualified);
+    // Downgrade confidence by one level for 240V saunas if electrical is uncertain
+    if (electricalAssessmentRecommended && b.requires240V && !disqualified) {
+      if (tier === "Excellent Match") tier = "Good Match";
+      else if (tier === "Good Match") tier = "Possible Fit";
+    }
     return {
       ...b,
       score,
       disqualified,
-      tier: tierFromScore(score, disqualified),
+      tier,
       whyFit: reasons[b.id],
     };
   });
@@ -537,7 +543,12 @@ function buildRecommendations(a: Answers): RecommendationResult {
   });
 
   const allDisqualified = recs.every((r) => r.disqualified);
-  return { recommendations: recs, consultationStrongly, allDisqualified };
+  return {
+    recommendations: recs,
+    consultationStrongly,
+    allDisqualified,
+    electricalAssessmentRecommended,
+  };
 }
 
 /* ---------------- Page ---------------- */
