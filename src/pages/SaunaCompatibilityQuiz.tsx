@@ -1314,12 +1314,76 @@ const SummaryCard = ({
   </div>
 );
 
+const ElectricalNote = () => (
+  <div className="mt-4 flex items-start gap-2 rounded-lg border border-amber-300/60 bg-amber-50 px-3 py-2 text-[13px] text-amber-900">
+    <Zap size={14} className="mt-0.5 shrink-0" />
+    <span>
+      Final recommendation depends on confirming your available electrical service.
+    </span>
+  </div>
+);
+
+const ElectricalAssessmentBanner = ({
+  onBookConsult,
+}: {
+  onBookConsult: () => void;
+}) => (
+  <div className="mb-8 rounded-2xl border border-[#171717] bg-[#171717] text-white p-6 md:p-10 shadow-xl">
+    <div className="flex items-center gap-3 mb-3">
+      <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
+        <Zap size={20} />
+      </div>
+      <p className="text-xs uppercase tracking-[0.2em] text-white/70">
+        Expert guidance
+      </p>
+    </div>
+    <h2 className="text-[24px] md:text-[30px] leading-[1.2] font-semibold mb-4">
+      Recommended: Schedule an Electrical Assessment
+    </h2>
+    <p className="text-white/85 leading-relaxed mb-4">
+      Your home's available electrical power is often the #1 factor in determining:
+    </p>
+    <ul className="space-y-2 mb-5 text-white/85">
+      {[
+        "Which sauna options will work in your space",
+        "Whether a sauna can reach its advertised temperatures",
+        "Whether additional electrical work is required",
+        "The true total cost of ownership",
+      ].map((t) => (
+        <li key={t} className="flex items-start gap-2">
+          <CheckCircle2 size={16} className="mt-1 shrink-0 text-white" />
+          <span>{t}</span>
+        </li>
+      ))}
+    </ul>
+    <p className="text-white/85 leading-relaxed mb-5">
+      Many homeowners and renters aren't sure what electrical service they have available, which is completely normal. A quick electrical assessment can often save thousands of dollars and eliminate unsuitable options.
+    </p>
+    <div className="rounded-xl border border-white/20 bg-white/5 p-4 mb-6">
+      <p className="text-white">
+        Based on your answers, we recommend confirming your electrical setup before making a final sauna decision.
+      </p>
+    </div>
+    <Button
+      onClick={onBookConsult}
+      size="lg"
+      variant="secondary"
+      className="max-w-full whitespace-normal h-auto py-3 text-center"
+    >
+      Schedule Free Electrical Assessment
+      <ExternalLink size={16} />
+    </Button>
+  </div>
+);
+
 const BestMatchCard = ({
   rec,
   onBuyAnywhere,
+  showElectricalNote,
 }: {
   rec: Recommendation;
   onBuyAnywhere: () => void;
+  showElectricalNote?: boolean;
 }) => (
   <div className="bg-card border border-[#171717] rounded-2xl p-6 md:p-10">
     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
@@ -1340,15 +1404,16 @@ const BestMatchCard = ({
       <Row label="All-in cost" value={rec.totalCost} />
       <Row label="Best use case" value={rec.useCase} />
     </div>
-    <p className="text-[15px] leading-relaxed text-foreground mb-7">
+    <p className="text-[15px] leading-relaxed text-foreground mb-2">
       <span className="font-semibold">Why we recommended this: </span>
       {rec.whyFit}
     </p>
+    {showElectricalNote && rec.requires240V && <ElectricalNote />}
     {rec.isAnywhere && (
       <Button
         onClick={onBuyAnywhere}
         size="lg"
-        className="w-full sm:w-auto max-w-full whitespace-normal h-auto py-3 text-center"
+        className="mt-7 w-full sm:w-auto max-w-full whitespace-normal h-auto py-3 text-center"
       >
         Learn More
         <ArrowRight size={18} />
@@ -1360,9 +1425,11 @@ const BestMatchCard = ({
 const OtherOptionCard = ({
   rec,
   onBuyAnywhere,
+  showElectricalNote,
 }: {
   rec: Recommendation;
   onBuyAnywhere: () => void;
+  showElectricalNote?: boolean;
 }) => (
   <div className="bg-card border border-border rounded-2xl p-6">
     <div className="flex items-start justify-between gap-3 mb-3">
@@ -1381,6 +1448,7 @@ const OtherOptionCard = ({
     <p className="text-[14px] text-muted-foreground leading-relaxed">
       {rec.whyFit}
     </p>
+    {showElectricalNote && rec.requires240V && <ElectricalNote />}
     {rec.isAnywhere && (
       <div className="mt-5">
         <Button onClick={onBuyAnywhere} variant="outline">
