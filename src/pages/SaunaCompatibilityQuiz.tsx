@@ -194,11 +194,24 @@ const BUDGET_TIER: Record<string, number> = {
   "$12,000+": 5,
 };
 
+/**
+ * Advisory recommendation engine.
+ *
+ * Internally we compute a numeric fit signal per sauna using rule-based
+ * boosts/penalties, but we never surface raw scores to users. Results are
+ * framed as "best fit based on your answers" with confidence tiers.
+ *
+ * Order:
+ *   1. Determine feasibility (hard disqualification or "tentative" path)
+ *   2. Score remaining options against buyer lane rules
+ *   3. Pick top 1–3 recommendations above an inclusion threshold
+ *   4. Downgrade confidence when electrical setup is uncertain
+ */
 function tierFromScore(score: number, disqualified: boolean): Tier {
   if (disqualified) return "Not Recommended";
-  if (score >= 130) return "Excellent Match";
-  if (score >= 95) return "Good Match";
-  if (score >= 60) return "Possible Fit";
+  if (score >= 22) return "Excellent Match";
+  if (score >= 14) return "Good Match";
+  if (score >= 6) return "Possible Fit";
   return "Not Recommended";
 }
 
@@ -212,6 +225,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const balcony = a.placement.includes("Balcony");
   const backyard = a.placement.includes("Backyard");
   const livingRoom = a.placement.includes("Living Room");
+  const bedroom = a.placement.includes("Bedroom");
+  const basement = a.placement.includes("Basement");
   const homeGym = a.placement.includes("Home Gym");
 
   const spaceLt4 = a.space === "Less than 4' x 4'";
@@ -219,8 +234,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const space5x6 = a.space === "~5' × 6'";
   const spaceLarger = a.space === "Larger than 5' × 6'";
   const spaceUnsure = a.space === "Not sure";
-  const smallerThan5x5 = spaceLt4 || space4;
-  const smallerThan5x6 = spaceLt4 || space4; // ~5×6 counts as 5×6+
+  const space5plus = space5x6 || spaceLarger;
+  const smallSpace = spaceLt4 || space4;
 
   const outletYes = a.outletNearby === "Yes";
   const outletNo = a.outletNearby === "No";
@@ -232,10 +247,14 @@ function buildRecommendations(a: Answers): RecommendationResult {
 
   const has240VYes = a.has240V === "Yes";
   const has240VUnsure = a.has240V === "Not sure";
+
   const install240VYes = a.install240V === "Yes";
   const install240VMaybe = a.install240V === "Maybe";
   const install240VNo = a.install240V === "No";
   const install240VUnsure = a.install240V === "Not sure";
+
+  // True when the user has no path to 240V right now.
+  const closed240V = !has240VYes && install240VNo;
 
   const wantsHigh = a.priorities.includes("High temps (190 - 230°F)");
   const wantsPortable = a.priorities.includes("Portable/renter-friendly");
@@ -250,7 +269,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const temp170 = a.temperature === "170°F";
   const temp200 = a.temperature === "200°F";
   const temp230 = a.temperature === "230°F";
-  const wants200plus = temp200 || temp230 || wantsHigh;
+  const wantsHighHeat = temp200 || temp230 || wantsHigh;
 
   const budgetTiers = a.budget.map((b) => BUDGET_TIER[b]).filter(Boolean);
   const maxBudget = budgetTiers.length ? Math.max(...budgetTiers) : 0;
@@ -261,207 +280,220 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const budget8to12k = a.budget.includes("$8,000-$12,000");
   const budget12kPlus = a.budget.includes("$12,000+");
 
-  // Initialize
-  const scores = { anywhere: 50, saunalife: 50, barrel: 50, plunge: 50, infrared: 50 };
-  const disq = { anywhere: false, saunalife: false, barrel: false, plunge: false, infrared: false };
-
-  // Stage 1: hard disqualifiers
-  if (outletNo) disq.anywhere = true;
-
-  if (renter || apartment || balcony || (maxBudget && maxBudget < 3) || smallerThan5x5 || outletNo)
-    disq.saunalife = true;
-
-  if (apartment || (maxBudget && maxBudget < 3) || wants200plus || smallerThan5x6 || outletNo)
-    disq.barrel = true;
-
-  if ((maxBudget && maxBudget < 4) || apartment || renter || smallerThan5x5 || outletNo)
-    disq.plunge = true;
-
-  if (wants200plus) disq.infrared = true;
-
-  // Stage 2: weighted scoring
-  // Home type
-  if (apartment) {
-    scores.anywhere += 40; scores.infrared += 35;
-    scores.saunalife -= 100; scores.barrel -= 100; scores.plunge -= 100;
-  } else if (condo) {
-    scores.anywhere += 20; scores.saunalife += 10; scores.infrared += 20;
-  } else if (house) {
-    scores.anywhere += 10; scores.saunalife += 25; scores.barrel += 25;
-    scores.plunge += 25; scores.infrared += 5;
-  }
-
-  // Own / rent
-  if (renter) {
-    scores.anywhere += 35; scores.infrared += 30;
-    scores.saunalife -= 40; scores.barrel -= 40; scores.plunge -= 50;
-  } else if (owner) {
-    scores.anywhere += 10; scores.saunalife += 20; scores.barrel += 20;
-    scores.plunge += 20; scores.infrared += 5;
-  }
-
-  // Location
-  if (balcony) {
-    scores.anywhere += 40; scores.infrared += 30;
-    scores.saunalife -= 100; scores.barrel -= 100; scores.plunge -= 100;
-  }
-  if (backyard) {
-    scores.barrel += 25; scores.saunalife += 20; scores.plunge += 20; scores.anywhere += 10;
-  }
-  if (livingRoom) {
-    scores.anywhere += 25; scores.infrared += 25; scores.plunge += 10;
-  }
-  if (homeGym) {
-    scores.plunge += 20; scores.anywhere += 15; scores.infrared += 15;
-  }
-
-  // Space
-  if (spaceLt4) {
-    scores.anywhere -= 50; scores.saunalife -= 100; scores.barrel -= 100;
-    scores.plunge -= 100; scores.infrared -= 20;
-  } else if (space4) {
-    scores.anywhere += 20; scores.infrared += 20;
-    scores.saunalife -= 30; scores.barrel -= 100; scores.plunge -= 30;
-  } else if (space5x6) {
-    scores.anywhere += 10; scores.saunalife += 20; scores.barrel += 20;
-    scores.plunge += 20; scores.infrared += 10;
-  } else if (spaceLarger) {
-    scores.anywhere += 5; scores.saunalife += 15; scores.barrel += 20;
-    scores.plunge += 20; scores.infrared += 5;
-  }
-
-  // Outlet
-  if (outletNo) {
-    disq.anywhere = true; disq.saunalife = true; disq.barrel = true;
-    disq.plunge = true; disq.infrared = true;
-  } else if (outletUnsure) {
-    scores.anywhere -= 10; scores.saunalife -= 10; scores.barrel -= 10;
-    scores.plunge -= 10; scores.infrared -= 10;
-  }
-
-  // 20 amp
-  if (ampYes) scores.anywhere += 30;
-  else if (ampNo) scores.anywhere -= 25;
-  else if (ampUnsure) scores.anywhere += 10;
-
-  // Priorities
-  if (wantsHigh) {
-    scores.anywhere += 35; scores.saunalife += 35; scores.plunge += 35;
-    scores.barrel -= 20; scores.infrared -= 100;
-  }
-  if (wantsPortable) {
-    scores.anywhere += 50; scores.infrared += 30;
-    scores.saunalife -= 25; scores.barrel -= 25; scores.plunge -= 25;
-  }
-  if (wantsInfrared) scores.infrared += 50;
-  if (wantsAesthetic) {
-    scores.barrel += 35; scores.plunge += 30; scores.saunalife += 25;
-  }
-  if (wantsLowInstall) {
-    scores.anywhere += 40; scores.infrared += 30;
-    scores.saunalife -= 30; scores.barrel -= 30; scores.plunge -= 30;
-  }
-  if (wantsRecovery) {
-    scores.anywhere += 20; scores.saunalife += 20; scores.plunge += 20;
-  }
-  if (wantsRelax) {
-    scores.barrel += 15; scores.infrared += 15; scores.anywhere += 10;
-  }
-  if (wantsDaily) {
-    scores.infrared += 20; scores.anywhere += 15;
-  }
-
-  // Desired temperature
-  if (temp150) scores.infrared += 40;
-  else if (temp170) { scores.barrel += 15; scores.anywhere += 10; }
-  else if (temp200) {
-    scores.anywhere += 30; scores.saunalife += 30; scores.plunge += 30;
-  } else if (temp230) {
-    scores.anywhere += 35; scores.saunalife += 35; scores.plunge += 40;
-    scores.barrel -= 40; scores.infrared -= 100;
-  }
-
-  // Budget
-  if (budgetU3k) {
-    scores.infrared += 50; scores.anywhere -= 50;
-    scores.saunalife -= 100; scores.barrel -= 100; scores.plunge -= 100;
-  }
-  if (budget3to5k) {
-    scores.anywhere += 40; scores.infrared += 20;
-    scores.barrel -= 20; scores.saunalife -= 30; scores.plunge -= 100;
-  }
-  if (budget5to8k) {
-    scores.anywhere += 20; scores.barrel += 20; scores.saunalife += 20;
-  }
-  if (budget8to12k) {
-    scores.plunge += 30; scores.saunalife += 20; scores.barrel += 15;
-  }
-  if (budget12kPlus) {
-    scores.plunge += 40; scores.saunalife += 20;
-  }
-
-  // 240V availability / willingness
-  if (has240VYes) {
-    scores.saunalife += 30; scores.barrel += 30; scores.plunge += 30;
-  } else if (install240VYes) {
-    scores.saunalife += 15; scores.barrel += 15; scores.plunge += 15;
-  } else if (install240VMaybe) {
-    scores.saunalife += 5; scores.barrel += 5; scores.plunge += 5;
-  } else if (install240VNo) {
-    scores.saunalife -= 50; scores.barrel -= 50; scores.plunge -= 50;
-    scores.anywhere += 15; scores.infrared += 15;
-  } else if (install240VUnsure) {
-    scores.anywhere += 5; scores.infrared += 5;
-  }
-
-  // Anywhere tie-breaker
-  if (!disq.anywhere) {
-    const competitors = (["saunalife", "barrel", "plunge", "infrared"] as const)
-      .filter((k) => !disq[k])
-      .map((k) => scores[k]);
-    const top = competitors.length ? Math.max(...competitors) : -Infinity;
-    if (top > scores.anywhere && Math.abs(scores.anywhere - top) <= 15) {
-      scores.anywhere += 16;
-    }
-  }
-
+  // ---------- Electrical assessment flag ----------
   const electricalAssessmentRecommended =
+    outletNo ||
+    outletUnsure ||
     ampUnsure ||
     has240VUnsure ||
     install240VMaybe ||
     install240VUnsure ||
-    outletUnsure;
+    (wantsHighHeat && (ampUnsure || has240VUnsure || install240VUnsure)) ||
+    (temp230 && !has240VYes && !install240VYes);
+
+  // ---------- Feasibility ----------
+  const disq = { anywhere: false, saunalife: false, barrel: false, plunge: false, infrared: false };
+  const tentative = { anywhere: false, saunalife: false, barrel: false, plunge: false, infrared: false };
+
+  // Anywhere: if no outlet within 50ft, only show as tentative for apt/renter/condo
+  // or anyone wanting high heat (per ground-truth examples).
+  if (outletNo) {
+    if (apartment || renter || condo || wantsHighHeat) tentative.anywhere = true;
+    else disq.anywhere = true;
+  }
+
+  // Infrared: not a high-heat sauna; rule out only when the user is clearly
+  // committed to traditional high heat (230°F or "high temps" priority).
+  if (temp230 || (wantsHigh && !temp150 && !temp170)) disq.infrared = true;
+
+  // SaunaLife (5×5, 240V): needs space + at least $5k budget; not for balconies.
+  if (smallSpace || balcony || (maxBudget && maxBudget < 3)) {
+    disq.saunalife = true;
+  } else if (closed240V) {
+    // Escape valve: a homeowner with space who wants high heat could still install
+    // 240V later — show as "Possible Fit" and prompt for consultation.
+    if (owner && house && space5plus && wantsHighHeat) tentative.saunalife = true;
+    else disq.saunalife = true;
+  }
+
+  // Barrel (5×6+, outdoor, 240V): not for apartments, balconies, or small footprints.
+  if (smallSpace || balcony || apartment || (maxBudget && maxBudget < 3)) {
+    disq.barrel = true;
+  } else if (closed240V) {
+    if (owner && house && space5plus) tentative.barrel = true;
+    else disq.barrel = true;
+  }
+
+  // Plunge Mini (5×5, 240V, premium): homeowner-only, requires $8k+ budget.
+  if (smallSpace || balcony || apartment || renter || (maxBudget && maxBudget < 4)) {
+    disq.plunge = true;
+  } else if (closed240V) {
+    if (owner && house && space5plus && wantsHighHeat) tentative.plunge = true;
+    else disq.plunge = true;
+  }
+
+  // ---------- Scoring ----------
+  const scores = { anywhere: 0, saunalife: 0, barrel: 0, plunge: 0, infrared: 0 };
+
+  // Anywhere Sauna
+  if (apartment) scores.anywhere += 6;
+  if (condo) scores.anywhere += 4;
+  if (house) scores.anywhere += 1;
+  if (renter) scores.anywhere += 5;
+  if (balcony) scores.anywhere += 4;
+  if (livingRoom) scores.anywhere += 3;
+  if (bedroom) scores.anywhere += 2;
+  if (homeGym) scores.anywhere += 2;
+  if (backyard) scores.anywhere += 1;
+  if (basement) scores.anywhere += 1;
+  if (space4) scores.anywhere += 4;
+  if (spaceLt4) scores.anywhere -= 2;
+  if (space5plus) scores.anywhere += 1;
+  if (ampYes) scores.anywhere += 4;
+  if (ampUnsure) scores.anywhere += 2;
+  if (ampNo) scores.anywhere -= 2;
+  if (install240VNo) scores.anywhere += 4;
+  if (install240VMaybe) scores.anywhere += 2;
+  if (install240VUnsure) scores.anywhere += 2;
+  if (wantsPortable) scores.anywhere += 5;
+  if (wantsLowInstall) scores.anywhere += 5;
+  if (wantsHigh) scores.anywhere += 3;
+  if (wantsRecovery) scores.anywhere += 2;
+  if (wantsRelax) scores.anywhere += 1;
+  if (wantsDaily) scores.anywhere += 2;
+  if (temp200) scores.anywhere += 4;
+  if (temp230) scores.anywhere += 4;
+  if (temp170) scores.anywhere += 2;
+  if (temp150) scores.anywhere -= 2;
+  if (budgetU3k) scores.anywhere -= 3;
+  if (budget3to5k) scores.anywhere += 4;
+  if (budget5to8k) scores.anywhere += 3;
+  if (tentative.anywhere) scores.anywhere -= 5;
+
+  // Infrared
+  if (apartment) scores.infrared += 4;
+  if (renter) scores.infrared += 3;
+  if (condo) scores.infrared += 2;
+  if (balcony) scores.infrared += 2;
+  if (livingRoom) scores.infrared += 3;
+  if (bedroom) scores.infrared += 2;
+  if (smallSpace) scores.infrared += 2;
+  if (temp150) scores.infrared += 8;
+  if (temp170) scores.infrared -= 2;
+  if (temp200) scores.infrared -= 4;
+  if (budgetU3k) scores.infrared += 8;
+  if (budget3to5k) scores.infrared += 2;
+  if (wantsInfrared) scores.infrared += 8;
+  if (wantsDaily) scores.infrared += 4;
+  if (wantsRelax) scores.infrared += 2;
+  if (wantsLowInstall) scores.infrared += 3;
+  if (wantsPortable) scores.infrared += 2;
+  if (ampNo) scores.infrared += 2;
+  if (closed240V) scores.infrared += 1;
+
+  // SaunaLife
+  if (house) scores.saunalife += 3;
+  if (owner) scores.saunalife += 3;
+  if (backyard) scores.saunalife += 2;
+  if (basement) scores.saunalife += 3;
+  if (homeGym) scores.saunalife += 2;
+  if (space5x6) scores.saunalife += 3;
+  if (spaceLarger) scores.saunalife += 3;
+  if (has240VYes) scores.saunalife += 5;
+  if (install240VYes) scores.saunalife += 3;
+  if (install240VMaybe) scores.saunalife += 1;
+  if (temp200) scores.saunalife += 5;
+  if (temp230) scores.saunalife += 5;
+  if (temp170) scores.saunalife += 1;
+  if (wantsHigh) scores.saunalife += 3;
+  if (wantsRecovery) scores.saunalife += 2;
+  if (wantsAesthetic) scores.saunalife += 1;
+  if (budget5to8k) scores.saunalife += 4;
+  if (budget8to12k) scores.saunalife += 3;
+  if (budget12kPlus) scores.saunalife += 2;
+  if (tentative.saunalife) scores.saunalife -= 4;
+
+  // Barrel
+  if (house) scores.barrel += 3;
+  if (owner) scores.barrel += 3;
+  if (backyard) scores.barrel += 5;
+  if (spaceLarger) scores.barrel += 3;
+  if (space5x6) scores.barrel += 2;
+  if (has240VYes) scores.barrel += 4;
+  if (install240VYes) scores.barrel += 2;
+  if (install240VMaybe) scores.barrel += 1;
+  if (temp170) scores.barrel += 5;
+  if (temp200) scores.barrel -= 1;
+  if (temp230) scores.barrel -= 8;
+  if (wantsAesthetic) scores.barrel += 5;
+  if (wantsRelax) scores.barrel += 3;
+  if (wantsDaily) scores.barrel += 1;
+  if (budget5to8k) scores.barrel += 3;
+  if (budget8to12k) scores.barrel += 1;
+  if (budget12kPlus) scores.barrel += 0;
+  if (tentative.barrel) scores.barrel -= 4;
+
+  // Plunge Mini
+  if (house) scores.plunge += 3;
+  if (owner) scores.plunge += 3;
+  if (backyard) scores.plunge += 2;
+  if (basement) scores.plunge += 1;
+  if (homeGym) scores.plunge += 2;
+  if (space5x6) scores.plunge += 2;
+  if (spaceLarger) scores.plunge += 3;
+  if (has240VYes) scores.plunge += 5;
+  if (install240VYes) scores.plunge += 3;
+  if (install240VMaybe) scores.plunge += 1;
+  if (temp200) scores.plunge += 3;
+  if (temp230) scores.plunge += 5;
+  if (temp170) scores.plunge += 1;
+  if (wantsAesthetic) scores.plunge += 4;
+  if (wantsHigh) scores.plunge += 3;
+  if (wantsRelax) scores.plunge += 1;
+  if (budget5to8k) scores.plunge -= 2;
+  if (budget8to12k) scores.plunge += 8;
+  if (budget12kPlus) scores.plunge += 10;
+  if (tentative.plunge) scores.plunge -= 4;
 
   const consultationStrongly =
     electricalAssessmentRecommended ||
     spaceUnsure ||
     multipleBudgets ||
+    tentative.anywhere ||
+    tentative.saunalife ||
+    tentative.barrel ||
+    tentative.plunge ||
     a.timeline === "This week" ||
     a.timeline === "This month" ||
     a.timeline === "Within 3 months";
 
   const reasons = {
-    anywhere: renter
-      ? "Runs on a standard 3-prong outlet, so you can install it without modifying your unit — ideal for renters."
-      : apartment || balcony
-        ? "The only steam sauna that works in apartments and balconies — no electrician, no permits."
-        : "Reaches traditional Finnish temperatures on a normal household outlet, with no permits or electrical work.",
-    saunalife:
-      "Solid traditional prefab heat at a compact footprint, but requires a dedicated 240V circuit and an electrician.",
-    barrel:
-      "Beautiful outdoor traditional experience for homeowners with backyard space and a dedicated 240V line.",
-    plunge:
-      "Premium high-heat experience with great design — best if you have the budget and a dedicated circuit.",
+    anywhere: tentative.anywhere
+      ? "Best fit on paper for your space and goals, but we'd need to confirm a safe power source before recommending it. Final feasibility depends on finding an outlet that works."
+      : renter || apartment || condo
+        ? "Best fit because you want a real sauna experience without modifying your unit. The Anywhere Sauna runs on a standard 120V outlet, so there's no electrician, no permits, and no 240V install."
+        : install240VNo || wantsLowInstall || wantsPortable
+          ? "Best fit because you want high temperatures with low installation complexity. The Anywhere Sauna is designed for small-space 120V setups and can reach traditional sauna temperatures without a 240V circuit."
+          : "Likely best option — reaches traditional Finnish temperatures on a normal household outlet with no permits or electrical work.",
+    saunalife: tentative.saunalife
+      ? "Worth considering if you're open to installing a dedicated 240V circuit. Final feasibility depends on confirming your electrical setup."
+      : "Best fit if you want a more permanent traditional sauna and are willing to use or install 240V power. Final recommendation depends on confirming your electrical setup.",
+    barrel: tentative.barrel
+      ? "Worth considering for the outdoor aesthetic, but it requires 240V — we'd need to confirm your electrical options first."
+      : "Best fit if aesthetics, backyard design, and relaxation matter more than maximum heat. Barrel saunas look great, but typically don't deliver the same even high-heat experience as cube-style saunas.",
+    plunge: tentative.plunge
+      ? "Worth considering for the premium design and high heat, but requires 240V — we'd need to confirm your electrical options first."
+      : "Best fit for a higher-budget buyer who wants a premium, design-forward sauna with high heat and 240V power already available.",
     infrared: wantsInfrared
       ? "Best fit if your priority is infrared heat and red-light therapy rather than steam."
-      : "Easy to plug in, but won't deliver the high heat or steam of a traditional sauna.",
+      : "Best fit if your priority is a low-cost daily wellness routine around 150°F. It's not a traditional high-heat sauna, but it works well for small spaces and standard outlets.",
   };
 
   const base: Omit<Recommendation, "score" | "tier" | "disqualified" | "whyFit">[] = [
     {
       id: "anywhere",
       name: "Anywhere Sauna",
-      tempRange: "200–230°F",
+      tempRange: "170–230°F",
       installComplexity: "Plug-and-play — no electrician",
       estInstallCost: "$0 install (standard 120V outlet)",
       useCase: "Steam sauna for apartments, rentals, condos, and homes",
@@ -473,7 +505,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
     {
       id: "saunalife",
       name: "SaunaLife CL3G Cube",
-      tempRange: "200–230°F",
+      tempRange: "170–230°F",
       installComplexity: "High — 240V dedicated circuit + electrician",
       estInstallCost: "$800–$2,500 for 240V circuit",
       useCase: "Compact prefab traditional sauna for homeowners",
@@ -497,7 +529,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
     {
       id: "plunge",
       name: "Plunge Mini Sauna",
-      tempRange: "Up to 230°F",
+      tempRange: "170–230°F",
       installComplexity: "High — 240V dedicated circuit",
       estInstallCost: "$800–$2,500 for 240V circuit",
       useCase: "Premium high-heat sauna with designer aesthetic",
@@ -523,10 +555,18 @@ function buildRecommendations(a: Answers): RecommendationResult {
     const score = scores[b.id];
     const disqualified = disq[b.id];
     let tier = tierFromScore(score, disqualified);
-    // Downgrade confidence by one level for 240V saunas if electrical is uncertain
-    if (electricalAssessmentRecommended && b.requires240V && !disqualified) {
+    // Downgrade confidence by one level for 240V saunas when power is uncertain.
+    if (
+      electricalAssessmentRecommended &&
+      (b.requires240V || (b.id === "anywhere" && tentative.anywhere)) &&
+      !disqualified
+    ) {
       if (tier === "Excellent Match") tier = "Good Match";
       else if (tier === "Good Match") tier = "Possible Fit";
+    }
+    // Anywhere-as-tentative caps at "Possible Fit"
+    if (b.id === "anywhere" && tentative.anywhere && tier === "Good Match") {
+      tier = "Possible Fit";
     }
     return {
       ...b,
@@ -537,15 +577,28 @@ function buildRecommendations(a: Answers): RecommendationResult {
     };
   });
 
-  // Sort: non-disqualified first by score desc, then disqualified by score desc
+  // Sort eligible by score desc; disqualified last.
   recs.sort((a, b) => {
     if (a.disqualified !== b.disqualified) return a.disqualified ? 1 : -1;
     return b.score - a.score;
   });
 
-  const allDisqualified = recs.every((r) => r.disqualified);
+  // Inclusion: top recommendation always included if not disqualified.
+  // Additional recommendations only if they clear an "actually worth showing" bar.
+  const eligible = recs.filter((r) => !r.disqualified);
+  const INCLUDE_THRESHOLD = 8;
+  const trimmed: Recommendation[] = [];
+  eligible.forEach((r, idx) => {
+    if (idx === 0) trimmed.push(r);
+    else if (trimmed.length < 3 && r.score >= INCLUDE_THRESHOLD) trimmed.push(r);
+  });
+
+  // Replace the recommendations array: keep top eligible, then disqualified for "Other Options"
+  const finalRecs = [...trimmed, ...recs.filter((r) => r.disqualified)];
+
+  const allDisqualified = eligible.length === 0;
   return {
-    recommendations: recs,
+    recommendations: finalRecs,
     consultationStrongly,
     allDisqualified,
     electricalAssessmentRecommended,
