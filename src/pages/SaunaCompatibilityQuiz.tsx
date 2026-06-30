@@ -479,6 +479,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
       image: "/images/compare-nordica.png",
       totalCost: "$6,149+ all-in",
       plugIn: false,
+      requires240V: true,
     },
     {
       id: "barrel",
@@ -490,6 +491,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
       image: "/images/compare-barrel.png",
       totalCost: "$5,399+ all-in",
       plugIn: false,
+      requires240V: true,
     },
     {
       id: "plunge",
@@ -501,6 +503,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
       image: "/images/compare-plunge.png",
       totalCost: "$11,089+ all-in",
       plugIn: false,
+      requires240V: true,
     },
     {
       id: "infrared",
