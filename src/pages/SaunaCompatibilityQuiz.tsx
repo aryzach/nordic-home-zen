@@ -702,6 +702,11 @@ const SaunaCompatibilityQuiz = () => {
     e.preventDefault();
     if (!email) return;
     setSubmitting(true);
+    trackEvent("sauna_compatibility_quiz_submitted", {
+      email,
+      phone: phone.trim() || undefined,
+      ...flattenAnswers(answers),
+    });
     trackEvent("compatibility_email_submitted", {
       email,
       ...flattenAnswers(answers),
