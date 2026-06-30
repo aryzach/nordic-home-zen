@@ -845,6 +845,56 @@ const SaunaCompatibilityQuiz = () => {
             {step === 7 && (
               <>
                 <QuestionHeader
+                  title="Do you already have a 240V electrical outlet available for a sauna?"
+                  helper={
+                    <>
+                      <p className="mb-2">Examples include:</p>
+                      <ul className="list-disc pl-5 space-y-1">
+                        <li>An EV charger outlet</li>
+                        <li>An electric dryer outlet</li>
+                        <li>A hot tub hookup</li>
+                        <li>A dedicated 240V circuit installed by an electrician</li>
+                      </ul>
+                    </>
+                  }
+                />
+                <div className="space-y-3">
+                  {["Yes", "No", "Not sure"].map((o) => (
+                    <OptionButton
+                      key={o}
+                      label={o}
+                      selected={answers.has240V === o}
+                      onClick={() => setSingle("has240V", o)}
+                    />
+                  ))}
+                </div>
+                <NextRow disabled={!answers.has240V} onNext={advance} />
+              </>
+            )}
+
+            {step === 8 && (
+              <>
+                <QuestionHeader
+                  title="If needed, would you be open to installing a new 240V electrical circuit?"
+                  helper="Many traditional saunas require a dedicated 240V circuit installed by an electrician. Typical installation costs range from approximately $1,000–$3,000 depending on your home's electrical setup."
+                />
+                <div className="space-y-3">
+                  {["Yes", "Maybe", "No", "Not sure"].map((o) => (
+                    <OptionButton
+                      key={o}
+                      label={o}
+                      selected={answers.install240V === o}
+                      onClick={() => setSingle("install240V", o)}
+                    />
+                  ))}
+                </div>
+                <NextRow disabled={!answers.install240V} onNext={advance} />
+              </>
+            )}
+
+            {step === 9 && (
+              <>
+                <QuestionHeader
                   title="What's most important to you in a sauna?"
                   multi
                 />
@@ -875,7 +925,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 8 && (
+            {step === 10 && (
               <>
                 <QuestionHeader title="What temperature would you like your sauna?" />
                 <div className="space-y-3">
@@ -892,7 +942,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 9 && (
+            {step === 11 && (
               <>
                 <QuestionHeader
                   title="What budget ranges are you considering?"
