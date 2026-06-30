@@ -28,9 +28,7 @@ type Answers = {
   placementOther: string;
   space: string;
   outletNearby: string;
-  twentyAmp: string;
   has240V: string;
-  install240V: string;
   priorities: string[];
   temperature: string;
   budget: string[];
@@ -45,16 +43,14 @@ const initialAnswers: Answers = {
   placementOther: "",
   space: "",
   outletNearby: "",
-  twentyAmp: "",
   has240V: "",
-  install240V: "",
   priorities: [],
   temperature: "",
   budget: [],
   timeline: "",
 };
 
-const TOTAL_STEPS = 12;
+const TOTAL_STEPS = 10;
 
 /* ---------------- Small primitives ---------------- */
 
@@ -222,12 +218,10 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const renter = a.ownRent === "Rent";
   const owner = a.ownRent === "Own";
 
-  const balcony = a.placement.includes("Balcony");
+  const deckBalcony = a.placement.includes("Deck/Balcony");
   const backyard = a.placement.includes("Backyard");
   const livingRoom = a.placement.includes("Living Room");
   const bedroom = a.placement.includes("Bedroom");
-  const basement = a.placement.includes("Basement");
-  const homeGym = a.placement.includes("Home Gym");
 
   const spaceLt4 = a.space === "Less than 4' x 4'";
   const space4 = a.space === "~4' × 4'";
@@ -241,17 +235,16 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const outletNo = a.outletNearby === "No";
   const outletUnsure = a.outletNearby === "Not sure";
 
-  const ampYes = a.twentyAmp === "Yes";
-  const ampNo = a.twentyAmp === "No";
-  const ampUnsure = a.twentyAmp === "Not sure";
-
   const has240VYes = a.has240V === "Yes";
+  const has240VMaybe = a.has240V === "Maybe";
+  const has240VNo = a.has240V === "No";
   const has240VUnsure = a.has240V === "Not sure";
 
-  const install240VYes = a.install240V === "Yes";
-  const install240VMaybe = a.install240V === "Maybe";
-  const install240VNo = a.install240V === "No";
-  const install240VUnsure = a.install240V === "Not sure";
+  // Combined 240V readiness for scoring compatibility.
+  const install240VYes = has240VYes || has240VMaybe;
+  const install240VMaybe = has240VMaybe;
+  const install240VNo = has240VNo;
+  const install240VUnsure = has240VUnsure;
 
   // True when the user has no path to 240V right now.
   const closed240V = !has240VYes && install240VNo;
@@ -284,11 +277,10 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const electricalAssessmentRecommended =
     outletNo ||
     outletUnsure ||
-    ampUnsure ||
     has240VUnsure ||
     install240VMaybe ||
     install240VUnsure ||
-    (wantsHighHeat && (ampUnsure || has240VUnsure || install240VUnsure)) ||
+    (wantsHighHeat && (has240VUnsure || install240VUnsure)) ||
     (temp230 && !has240VYes && !install240VYes);
 
   // ---------- Feasibility ----------
@@ -306,8 +298,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
   // committed to traditional high heat (230°F or "high temps" priority).
   if (temp230 || (wantsHigh && !temp150 && !temp170)) disq.infrared = true;
 
-  // SaunaLife (5×5, 240V): needs space + at least $5k budget; not for balconies.
-  if (smallSpace || balcony || (maxBudget && maxBudget < 3)) {
+  // SaunaLife (5×5, 240V): needs space + at least $5k budget; not for decks/balconies.
+  if (smallSpace || deckBalcony || (maxBudget && maxBudget < 3)) {
     disq.saunalife = true;
   } else if (closed240V) {
     // Escape valve: a homeowner with space who wants high heat could still install
@@ -316,8 +308,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
     else disq.saunalife = true;
   }
 
-  // Barrel (5×6+, outdoor, 240V): not for apartments, balconies, or small footprints.
-  if (smallSpace || balcony || apartment || (maxBudget && maxBudget < 3)) {
+  // Barrel (5×6+, outdoor, 240V): not for apartments, decks/balconies, or small footprints.
+  if (smallSpace || deckBalcony || apartment || (maxBudget && maxBudget < 3)) {
     disq.barrel = true;
   } else if (closed240V) {
     if (owner && house && space5plus) tentative.barrel = true;
@@ -325,7 +317,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
   }
 
   // Plunge Mini (5×5, 240V, premium): homeowner-only, requires $8k+ budget.
-  if (smallSpace || balcony || apartment || renter || (maxBudget && maxBudget < 4)) {
+  if (smallSpace || deckBalcony || apartment || renter || (maxBudget && maxBudget < 4)) {
     disq.plunge = true;
   } else if (closed240V) {
     if (owner && house && space5plus && wantsHighHeat) tentative.plunge = true;
@@ -340,18 +332,13 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (condo) scores.anywhere += 4;
   if (house) scores.anywhere += 1;
   if (renter) scores.anywhere += 5;
-  if (balcony) scores.anywhere += 4;
+  if (deckBalcony) scores.anywhere += 4;
   if (livingRoom) scores.anywhere += 3;
   if (bedroom) scores.anywhere += 2;
-  if (homeGym) scores.anywhere += 2;
   if (backyard) scores.anywhere += 1;
-  if (basement) scores.anywhere += 1;
   if (space4) scores.anywhere += 4;
   if (spaceLt4) scores.anywhere -= 2;
   if (space5plus) scores.anywhere += 1;
-  if (ampYes) scores.anywhere += 4;
-  if (ampUnsure) scores.anywhere += 2;
-  if (ampNo) scores.anywhere -= 2;
   if (install240VNo) scores.anywhere += 4;
   if (install240VMaybe) scores.anywhere += 2;
   if (install240VUnsure) scores.anywhere += 2;
@@ -374,7 +361,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (apartment) scores.infrared += 4;
   if (renter) scores.infrared += 3;
   if (condo) scores.infrared += 2;
-  if (balcony) scores.infrared += 2;
+  if (deckBalcony) scores.infrared += 2;
   if (livingRoom) scores.infrared += 3;
   if (bedroom) scores.infrared += 2;
   if (smallSpace) scores.infrared += 2;
@@ -388,15 +375,12 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (wantsRelax) scores.infrared += 2;
   if (wantsLowInstall) scores.infrared += 3;
   if (wantsPortable) scores.infrared += 2;
-  if (ampNo) scores.infrared += 2;
   if (closed240V) scores.infrared += 1;
 
   // SaunaLife
   if (house) scores.saunalife += 3;
   if (owner) scores.saunalife += 3;
   if (backyard) scores.saunalife += 2;
-  if (basement) scores.saunalife += 3;
-  if (homeGym) scores.saunalife += 2;
   if (space5x6) scores.saunalife += 3;
   if (spaceLarger) scores.saunalife += 3;
   if (has240VYes) scores.saunalife += 5;
@@ -437,8 +421,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (house) scores.plunge += 3;
   if (owner) scores.plunge += 3;
   if (backyard) scores.plunge += 2;
-  if (basement) scores.plunge += 1;
-  if (homeGym) scores.plunge += 2;
   if (space5x6) scores.plunge += 2;
   if (spaceLarger) scores.plunge += 3;
   if (has240VYes) scores.plunge += 5;
@@ -813,15 +795,12 @@ const SaunaCompatibilityQuiz = () => {
                   multi
                 />
                 <div className="space-y-3">
-                  {[
-                    "Living Room",
-                    "Backyard",
-                    "Bedroom",
-                    "Deck",
-                    "Balcony",
-                    "Basement",
-                    "Home Gym",
-                  ].map((o) => (
+                {[
+                  "Living Room",
+                  "Backyard",
+                  "Bedroom",
+                  "Deck/Balcony",
+                ].map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
@@ -887,27 +866,7 @@ const SaunaCompatibilityQuiz = () => {
             {step === 6 && (
               <>
                 <QuestionHeader
-                  title="Do you know if that outlet is on a 20 amp circuit?"
-                  helper="Most people aren't sure. That's okay."
-                />
-                <div className="space-y-3">
-                  {["Yes", "No", "Not sure"].map((o) => (
-                    <OptionButton
-                      key={o}
-                      label={o}
-                      selected={answers.twentyAmp === o}
-                      onClick={() => setSingle("twentyAmp", o)}
-                    />
-                  ))}
-                </div>
-                <NextRow disabled={!answers.twentyAmp} onNext={advance} />
-              </>
-            )}
-
-            {step === 7 && (
-              <>
-                <QuestionHeader
-                  title="Do you already have a 240V electrical outlet available for a sauna?"
+                  title="Do you have a 240V electrical outlet available for a sauna, or would you consider installing one?"
                   helper={
                     <>
                       <p className="mb-2">Examples include:</p>
@@ -921,7 +880,7 @@ const SaunaCompatibilityQuiz = () => {
                   }
                 />
                 <div className="space-y-3">
-                  {["Yes", "No", "Not sure"].map((o) => (
+                  {["Yes", "Maybe", "No", "Not sure"].map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
@@ -934,27 +893,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 8 && (
-              <>
-                <QuestionHeader
-                  title="If needed, would you be open to installing a new 240V electrical circuit?"
-                  helper="Many traditional saunas require a dedicated 240V circuit installed by an electrician. Typical installation costs range from approximately $1,000–$3,000 depending on your home's electrical setup."
-                />
-                <div className="space-y-3">
-                  {["Yes", "Maybe", "No", "Not sure"].map((o) => (
-                    <OptionButton
-                      key={o}
-                      label={o}
-                      selected={answers.install240V === o}
-                      onClick={() => setSingle("install240V", o)}
-                    />
-                  ))}
-                </div>
-                <NextRow disabled={!answers.install240V} onNext={advance} />
-              </>
-            )}
-
-            {step === 9 && (
+            {step === 7 && (
               <>
                 <QuestionHeader
                   title="What's most important to you in a sauna?"
@@ -987,7 +926,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 10 && (
+            {step === 8 && (
               <>
                 <QuestionHeader title="What temperature would you like your sauna?" />
                 <div className="space-y-3">
@@ -1004,7 +943,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 11 && (
+            {step === 9 && (
               <>
                 <QuestionHeader
                   title="What budget ranges are you considering?"
@@ -1031,7 +970,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 12 && (
+            {step === 10 && (
               <>
                 <QuestionHeader title="When are you hoping to buy?" />
                 <div className="space-y-3">
@@ -1651,9 +1590,7 @@ function flattenAnswers(a: Answers): Record<string, string> {
       (a.placementOther ? ` | other: ${a.placementOther}` : ""),
     space: a.space,
     outlet_within_50ft: a.outletNearby,
-    outlet_20a: a.twentyAmp,
-    has_240v_outlet: a.has240V,
-    open_to_install_240v: a.install240V,
+    has_240v_outlet_or_willing: a.has240V,
     priorities: a.priorities.join(", "),
     temperature: a.temperature,
     budget: a.budget.join(", "),
