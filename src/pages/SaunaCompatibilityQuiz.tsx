@@ -1504,12 +1504,12 @@ const ResultsView = ({
   result,
   answers,
   onBookConsult,
-  onBuyAnywhere,
+  onCompareClick,
 }: {
   result: RecommendationResult;
   answers: Answers;
   onBookConsult: () => void;
-  onBuyAnywhere: () => void;
+  onCompareClick: () => void;
 }) => {
   const {
     recommendations,
@@ -1540,7 +1540,7 @@ const ResultsView = ({
             size="lg"
             className="max-w-full whitespace-normal h-auto py-3 text-center"
           >
-            Book Free 15-Minute Consultation
+            Book Free 30-Minute Consultation
             <ExternalLink size={16} />
           </Button>
         </div>
@@ -1568,27 +1568,40 @@ const ResultsView = ({
         </p>
       </div>
 
-      {electricalAssessmentRecommended && (
-        <ElectricalAssessmentBanner onBookConsult={onBookConsult} />
-      )}
-
       <div className="grid grid-cols-1 gap-4 mb-8">
         {topThree.map((rec, idx) => (
           <SummaryCard
             key={rec.name}
             rec={rec}
             rank={idx + 1}
-            onBuyAnywhere={onBuyAnywhere}
+            onCardClick={onCompareClick}
           />
         ))}
       </div>
 
+      {electricalAssessmentRecommended && (
+        <ElectricalAssessmentBanner onBookConsult={onBookConsult} />
+      )}
+
       {best && (
         <BestMatchCard
           rec={best}
-          onBuyAnywhere={onBuyAnywhere}
+          onCardClick={onCompareClick}
           showElectricalNote={electricalAssessmentRecommended}
         />
+      )}
+
+      {topThree.slice(1).length > 0 && (
+        <div className="space-y-4 mt-6">
+          {topThree.slice(1).map((r) => (
+            <OtherOptionCard
+              key={r.name}
+              rec={r}
+              onCardClick={onCompareClick}
+              showElectricalNote={electricalAssessmentRecommended}
+            />
+          ))}
+        </div>
       )}
 
       {others.length > 0 && (
@@ -1601,7 +1614,7 @@ const ResultsView = ({
               <OtherOptionCard
                 key={r.name}
                 rec={r}
-                onBuyAnywhere={onBuyAnywhere}
+                onCardClick={onCompareClick}
                 showElectricalNote={electricalAssessmentRecommended}
               />
             ))}
