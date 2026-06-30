@@ -277,11 +277,10 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const electricalAssessmentRecommended =
     outletNo ||
     outletUnsure ||
-    ampUnsure ||
     has240VUnsure ||
     install240VMaybe ||
     install240VUnsure ||
-    (wantsHighHeat && (ampUnsure || has240VUnsure || install240VUnsure)) ||
+    (wantsHighHeat && (has240VUnsure || install240VUnsure)) ||
     (temp230 && !has240VYes && !install240VYes);
 
   // ---------- Feasibility ----------
