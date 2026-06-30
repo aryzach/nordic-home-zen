@@ -8,6 +8,7 @@ import { seoData } from "@/lib/seoData";
 const ReviewWall = lazy(() => import("@/components/ReviewWall"));
 const AnywhereDesign = lazy(() => import("@/components/AnywhereDesign"));
 const VideoTestimonials = lazy(() => import("@/components/VideoTestimonials"));
+const AsSeenIn = lazy(() => import("@/components/AsSeenIn"));
 const ComparisonTable = lazy(() => import("@/components/ComparisonTable"));
 const ConsultationCallout = lazy(() => import("@/components/ConsultationCallout"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -28,6 +29,9 @@ const Index = () => {
         </LazyMount>
         <LazyMount minHeight={500}>
           <VideoTestimonials />
+        </LazyMount>
+        <LazyMount minHeight={200}>
+          <AsSeenIn />
         </LazyMount>
         <LazyMount minHeight={600}>
           <ComparisonTable />
