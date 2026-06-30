@@ -138,7 +138,7 @@ const QuestionHeader = ({
   multi,
 }: {
   title: string;
-  helper?: string;
+  helper?: React.ReactNode;
   multi?: boolean;
 }) => (
   <div className="mb-6">
@@ -148,7 +148,7 @@ const QuestionHeader = ({
     {multi && (
       <p className="text-sm text-muted-foreground">Select all that apply.</p>
     )}
-    {helper && <p className="text-sm text-muted-foreground">{helper}</p>}
+    {helper && <div className="text-sm text-muted-foreground">{helper}</div>}
   </div>
 );
 
