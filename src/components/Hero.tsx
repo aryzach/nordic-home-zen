@@ -27,7 +27,34 @@ const Hero = () => {
     </button>
   );
 
-  const rating = (
+  const emailSignup = (
+    <form
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      onSubmit={() => {
+        trackEvent("newsletter_signup", { location: "hero" });
+        try { (window as any).fbq?.('track', 'Lead', { content_name: 'Hero Email Capture' }); } catch {}
+      }}
+      className="flex w-full md:w-auto"
+    >
+      <input type="hidden" name="access_key" value="dbdd31bb-6234-4a4f-93cd-679cefbf3f78" />
+      <input type="hidden" name="redirect" value={`${window.location.origin}/email-signed-up`} />
+      <Input
+        type="email"
+        name="email"
+        required
+        placeholder="Email for updates"
+        className="flex-1 md:w-[220px] bg-white text-[#111] placeholder:text-[#111]/50 border-0 rounded-none h-[46px] text-[14px] px-4"
+      />
+      <button
+        type="submit"
+        className="bg-[#111] text-white h-[46px] px-4 flex items-center justify-center font-semibold text-[13px] uppercase tracking-wider hover:bg-black transition-colors"
+        aria-label="Subscribe"
+      >
+        <ArrowRight className="w-4 h-4" aria-hidden="true" />
+      </button>
+    </form>
+  );
     <div className="flex items-center justify-start gap-2 font-sans text-[14px] font-normal mb-4 text-white/90">
       <div className="flex">
         {[...Array(5)].map((_, i) => (
