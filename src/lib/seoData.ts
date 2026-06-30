@@ -4,8 +4,8 @@
 export const seoData = {
   // Main Pages
   home: {
-    title: "Anywhere Sauna",
-    description: "Traditional sauna experience with no electrician required. Reaches 200°F on a standard outlet. Designed for apartments, rentals, and homes.",
+    title: "The Anywhere Sauna",
+    description: "The world's only 200°F plug-in sauna.",
     canonical: "https://getanywheresauna.com/"
   },
   pricing: {
