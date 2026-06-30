@@ -1527,6 +1527,10 @@ const ResultsView = ({
         </p>
       </div>
 
+      {electricalAssessmentRecommended && (
+        <ElectricalAssessmentBanner onBookConsult={onBookConsult} />
+      )}
+
       <div className="grid grid-cols-1 gap-4 mb-8">
         {topThree.map((rec, idx) => (
           <SummaryCard
@@ -1538,7 +1542,13 @@ const ResultsView = ({
         ))}
       </div>
 
-      {best && <BestMatchCard rec={best} onBuyAnywhere={onBuyAnywhere} />}
+      {best && (
+        <BestMatchCard
+          rec={best}
+          onBuyAnywhere={onBuyAnywhere}
+          showElectricalNote={electricalAssessmentRecommended}
+        />
+      )}
 
       {others.length > 0 && (
         <>
@@ -1551,6 +1561,7 @@ const ResultsView = ({
                 key={r.name}
                 rec={r}
                 onBuyAnywhere={onBuyAnywhere}
+                showElectricalNote={electricalAssessmentRecommended}
               />
             ))}
           </div>
