@@ -42,9 +42,9 @@ export function useSEO({ title, description, canonical }: SEOProps) {
 
     // Cleanup: restore defaults on unmount
     return () => {
-      document.title = 'Anywhere Sauna';
+      document.title = 'The Anywhere Sauna';
       if (metaDescription) {
-        metaDescription.setAttribute('content', 'Traditional sauna experience with no electrician required. Reaches 200°F on a standard outlet. Designed for apartments, rentals, and homes.');
+        metaDescription.setAttribute('content', "The world's only 200°F plug-in sauna.");
       }
     };
   }, [title, description, canonical]);
