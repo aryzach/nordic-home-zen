@@ -1,5 +1,7 @@
-import { Star, ExternalLink } from "lucide-react";
-import { trackAndNavigate } from "@/lib/analytics";
+import { useState } from "react";
+import { Star, ExternalLink, ArrowRight } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { trackEvent, trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
 const HERO_MOBILE_AVIF = "/hero-mobile.avif";
 const HERO_MOBILE_WEBP = "/hero-mobile.webp";
