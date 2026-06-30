@@ -399,6 +399,20 @@ function buildRecommendations(a: Answers): RecommendationResult {
     scores.plunge += 40; scores.saunalife += 20;
   }
 
+  // 240V availability / willingness
+  if (has240VYes) {
+    scores.saunalife += 30; scores.barrel += 30; scores.plunge += 30;
+  } else if (install240VYes) {
+    scores.saunalife += 15; scores.barrel += 15; scores.plunge += 15;
+  } else if (install240VMaybe) {
+    scores.saunalife += 5; scores.barrel += 5; scores.plunge += 5;
+  } else if (install240VNo) {
+    scores.saunalife -= 50; scores.barrel -= 50; scores.plunge -= 50;
+    scores.anywhere += 15; scores.infrared += 15;
+  } else if (install240VUnsure) {
+    scores.anywhere += 5; scores.infrared += 5;
+  }
+
   // Anywhere tie-breaker
   if (!disq.anywhere) {
     const competitors = (["saunalife", "barrel", "plunge", "infrared"] as const)
@@ -410,9 +424,15 @@ function buildRecommendations(a: Answers): RecommendationResult {
     }
   }
 
-  const consultationStrongly =
-    outletUnsure ||
+  const electricalAssessmentRecommended =
     ampUnsure ||
+    has240VUnsure ||
+    install240VMaybe ||
+    install240VUnsure ||
+    outletUnsure;
+
+  const consultationStrongly =
+    electricalAssessmentRecommended ||
     spaceUnsure ||
     multipleBudgets ||
     a.timeline === "This week" ||
