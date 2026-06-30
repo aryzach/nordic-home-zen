@@ -1307,7 +1307,7 @@ const ConsultCTA = ({
         : "bg-card text-foreground border border-border"
     }`}
   >
-    <h2 className="text-[26px] md:text-[34px] font-semibold mb-3">{heading}</h2>
+    <h2 className="text-[26px] md:text-[34px] font-semibold mb-3 text-white">{heading}</h2>
     <p
       className={`max-w-xl mx-auto mb-6 ${
         emphasized ? "text-white/80" : "text-muted-foreground"
@@ -1321,7 +1321,7 @@ const ConsultCTA = ({
       variant={emphasized ? "secondary" : "outline"}
       className="max-w-full whitespace-normal h-auto py-3 text-center"
     >
-      Book Free 15-Minute Consultation
+      Book Free 30-Minute Consultation
       <ExternalLink size={16} />
     </Button>
   </div>
@@ -1390,7 +1390,7 @@ const ElectricalAssessmentBanner = ({
         Expert guidance
       </p>
     </div>
-    <h2 className="text-[24px] md:text-[30px] leading-[1.2] font-semibold mb-4">
+    <h2 className="text-[24px] md:text-[30px] leading-[1.2] font-semibold mb-4 text-white">
       Recommended: Schedule an Electrical Assessment
     </h2>
     <p className="text-white/85 leading-relaxed mb-4">
@@ -1624,7 +1624,7 @@ const ResultsView = ({
       <ConsultCTA
         emphasized={consultationStrongly}
         heading="Want a Second Opinion?"
-        body="Book a free 15-minute consultation and we'll review your space, electrical setup, and goals together."
+        body="Book a free 30-minute consultation and we'll review your space, electrical setup, and goals together."
         onBookConsult={onBookConsult}
       />
     </div>
