@@ -92,7 +92,10 @@ const Hero = () => {
           <h1 className="hero-title font-heading text-white mb-4">
             The world's only 200°F plug-in sauna.
           </h1>
-          <div className="flex justify-start w-full mb-6">{cta}</div>
+          <div className="flex flex-col gap-3 justify-start w-full mb-6">
+            {cta}
+            {emailSignup}
+          </div>
           <p className="font-sans text-[15px] leading-[1.6] text-white/80 font-normal max-w-sm">
             Works in 97% of homes and apartments. No electrician. Confirm your compatibility with a 30-minute call.
           </p>
@@ -121,7 +124,10 @@ const Hero = () => {
           <h1 className="hero-title font-heading text-white mb-6">
             The world's only 200°F plug-in sauna.
           </h1>
-          <div className="flex justify-start w-full mb-6">{cta}</div>
+          <div className="flex flex-col md:flex-row gap-3 justify-start w-full mb-6">
+            {cta}
+            {emailSignup}
+          </div>
           <p className="font-sans text-[16px] leading-[1.6] text-white/80 font-normal max-w-md">
             Works in 97% of homes and apartments. No electrician. Confirm your compatibility with a 30-minute call.
           </p>
