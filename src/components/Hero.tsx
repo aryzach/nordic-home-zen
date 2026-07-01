@@ -43,7 +43,7 @@ const Hero = () => {
         name="email"
         required
         placeholder="Email for updates"
-        className="flex-1 md:w-[220px] bg-white text-[#111] placeholder:text-[#111]/50 border-0 rounded-none h-[46px] text-[14px] px-4"
+        className="flex-1 md:w-[220px] bg-white text-[#111] placeholder:text-[#111]/50 border-0 focus:border focus:border-[#111] focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none h-[46px] text-[14px] px-4"
       />
       <button
         type="submit"
