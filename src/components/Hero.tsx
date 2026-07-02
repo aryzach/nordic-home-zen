@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Star, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { trackEvent, trackAndNavigate } from "@/lib/analytics";
-import { openBookingUrl } from "@/lib/booking";
+import { trackEvent } from "@/lib/analytics";
 const HERO_MOBILE_AVIF = "/hero-mobile.avif";
 const HERO_MOBILE_WEBP = "/hero-mobile.webp";
 const HERO_MOBILE_JPG = "/hero-mobile.jpg";
