@@ -1,7 +1,7 @@
-import { Star, ExternalLink, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Star, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { trackEvent, trackAndNavigate } from "@/lib/analytics";
-import { openBookingUrl } from "@/lib/booking";
+import { trackEvent } from "@/lib/analytics";
 const HERO_MOBILE_AVIF = "/hero-mobile.avif";
 const HERO_MOBILE_WEBP = "/hero-mobile.webp";
 const HERO_MOBILE_JPG = "/hero-mobile.jpg";
@@ -10,19 +10,21 @@ const HERO_DESKTOP_WEBP = "/hero-desktop.webp";
 const HERO_DESKTOP_JPG = "/hero-desktop.jpg";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   const cta = (
     <button
       className="btn-outline w-full md:w-auto inline-flex items-center justify-center gap-2"
-      onClick={() =>
-        trackAndNavigate(
-          "consultation_booking_click",
-          { button_text: "Book Free Consultation", location: "hero" },
-          openBookingUrl
-        )
-      }
+      onClick={() => {
+        trackEvent("sauna_compatibility_quiz_started", {
+          button_text: "Take the 2-Minute Compatibility Quiz",
+          location: "hero",
+        });
+        trackEvent("compatibility_quiz_started", { location: "hero" });
+        navigate("/sauna-compatibility-quiz");
+      }}
     >
-      Book Free Consultation
-      <ExternalLink className="w-4 h-4" aria-hidden="true" />
+      Take the 2-Minute Compatibility Quiz
     </button>
   );
 
