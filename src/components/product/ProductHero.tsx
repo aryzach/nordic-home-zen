@@ -23,7 +23,7 @@ const gallery: GalleryItem[] = [
 const benefits = [
   { Icon: Plug, label: "Runs on a standard 110/120V outlet" },
   { Icon: Users, label: "Comfortably fits two people" },
-  { Icon: Flame, label: "Reaches up to ~200°F" },
+  { Icon: Flame, label: "Reaches up to ~230°F" },
   { Icon: Home, label: "Designed for indoor or outdoor use" },
 ];
 
