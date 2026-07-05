@@ -21,7 +21,7 @@ const PlacementGallery = () => {
     <section id="installs" className="py-16 md:py-24 bg-cedar-section">
       <div className="container mx-auto px-4 max-w-[1100px]">
         <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-heading text-center">
-          The world's only 200°F plug-in sauna
+          The world's only 230°F plug-in sauna
         </h2>
         <p className="text-base md:text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto leading-relaxed">
           So you can put it Anywhere.

@@ -7,7 +7,7 @@ const anywhereVideoUrl = `${import.meta.env.BASE_URL}anywhere-design.mp4`;
 const features = [
   {
     eyebrow: "Fast Heat",
-    title: "Up to 200°F in 60 minutes",
+    title: "Up to 230°F in 60 minutes",
     body: "The only sauna where a 120V stove can heat the sauna to traditional Finnish temps.",
   },
   {
