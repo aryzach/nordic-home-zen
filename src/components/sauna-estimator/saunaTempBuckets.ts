@@ -14,7 +14,7 @@ export const SAUNA_BUCKETS: SaunaBucket[] = [
   { label: '165–169°F', minOutdoor: 60, maxOutdoor: 69, quality: 'moderate' },
   { label: '170–189°F', minOutdoor: 70, maxOutdoor: 79, quality: 'warm' },
   { label: '190–199°F', minOutdoor: 80, maxOutdoor: 89, quality: 'hot' },
-  { label: '200°F+', minOutdoor: 90, maxOutdoor: Infinity, quality: 'peak' },
+  { label: '230°F+', minOutdoor: 90, maxOutdoor: Infinity, quality: 'peak' },
 ];
 
 /**
@@ -26,7 +26,7 @@ export function getSaunaTempBucket(outdoorTempF: number): string {
       return bucket.label;
     }
   }
-  return '200°F+';
+  return '230°F+';
 }
 
 /**

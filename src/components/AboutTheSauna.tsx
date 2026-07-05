@@ -38,7 +38,7 @@ const overviewGroup: SpecGroup = {
   highlight: true,
   specs: [
     { label: "Capacity", value: "2 person" },
-    { label: "Max Temperature", value: "~200°F (legal limit dependent)" },
+    { label: "Max Temperature", value: "~230°F (legal limit dependent)" },
     { label: "Heat Type", value: "Traditional dry/steam sauna (electric heater)" },
     {
       label: "Power Requirement",

@@ -35,7 +35,7 @@ const features: Feature[] = [
     eyebrow: "Real Steam",
     heading: "A real heater. Real stones. Real löyly.",
     body:
-      "This is a traditional steam sauna — not infrared. An electric heater, sauna stones, and water you pour yourself. Smaller air volume and high-temp PIR insulation are what let it hit ~200°F on a standard outlet.",
+      "This is a traditional steam sauna — not infrared. An electric heater, sauna stones, and water you pour yourself. Smaller air volume and high-temp PIR insulation are what let it hit ~230°F on a standard outlet.",
     image: heaterImg,
     alt: "Sauna heater with stones",
   },
