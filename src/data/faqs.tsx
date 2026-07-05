@@ -35,7 +35,7 @@ export const faqs: FaqItem[] = [
   {
     question: "I thought a standard outlet couldn't get a sauna hot?",
     answer:
-      "Normally, it can't.\n\nTraditional saunas assume a large space and a 240V heater. This sauna is designed differently:\n\n• smaller air volume\n• elevated seating (so your whole body sits in the heat zone)\n• high-efficiency insulation\n\nThat combination allows a 110/120V heater to reach ~160–200°F in real use.",
+      "Normally, it can't.\n\nTraditional saunas assume a large space and a 240V heater. This sauna is designed differently:\n\n• smaller air volume\n• elevated seating (so your whole body sits in the heat zone)\n• high-efficiency insulation\n\nThat combination allows a 110/120V heater to reach ~160–230°F in real use.",
   },
   {
     question: "Why doesn't it come with a heater?",
@@ -59,7 +59,7 @@ export const faqs: FaqItem[] = [
   {
     question: "How hot does it actually get?",
     answer:
-      "Up to ~200°F (the practical/legal max).\n\nTypical ranges:\n\n• 30–45°F ambient → ~150–170°F\n• 45–60°F ambient → ~170–185°F\n• 60°F+ ambient → ~185–200°F",
+      "Up to ~230°F (the practical/legal max).\n\nTypical ranges:\n\n• 30–45°F ambient → ~150–170°F\n• 45–60°F ambient → ~170–185°F\n• 60°F+ ambient → ~185–230°F",
   },
   {
     question: "How long does it take to heat up?",
