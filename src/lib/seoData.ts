@@ -5,7 +5,7 @@ export const seoData = {
   // Main Pages
   home: {
     title: "The Anywhere Sauna",
-    description: "The world's only 200°F plug-in sauna.",
+    description: "The world's only 230°F plug-in sauna.",
     canonical: "https://getanywheresauna.com/"
   },
   pricing: {
