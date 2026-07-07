@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { useSEO } from "@/hooks/useSEO";
 import {
   ArrowLeft,
@@ -467,6 +468,7 @@ const SaunaCompatibilityQuiz = () => {
   const [answers, setAnswers] = useState<Answers>(initialAnswers);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [questions, setQuestions] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -549,15 +551,23 @@ const SaunaCompatibilityQuiz = () => {
     trackEvent("sauna_compatibility_quiz_submitted", {
       email,
       phone: phone.trim() || undefined,
+      questions: questions.trim() || undefined,
       ...flattenAnswers(answers),
     });
     trackEvent("compatibility_email_submitted", {
       email,
+      questions: questions.trim() || undefined,
       ...flattenAnswers(answers),
     });
     if (phone.trim()) {
       trackEvent("compatibility_phone_submitted", {
         phone,
+        ...flattenAnswers(answers),
+      });
+    }
+    if (questions.trim()) {
+      trackEvent("compatibility_questions_submitted", {
+        questions,
         ...flattenAnswers(answers),
       });
     }
@@ -570,6 +580,7 @@ const SaunaCompatibilityQuiz = () => {
       formData.append("from_name", "Anywhere Sauna — Compatibility Quiz");
       formData.append("email", email);
       if (phone) formData.append("phone", phone);
+      if (questions.trim()) formData.append("message", questions.trim());
       Object.entries(flattenAnswers(answers)).forEach(([k, v]) =>
         formData.append(k, String(v ?? ""))
       );
@@ -861,6 +872,17 @@ const SaunaCompatibilityQuiz = () => {
                   Add your phone number if you'd like us to text your
                   recommendations.
                 </p>
+              </div>
+              <div>
+                <Label htmlFor="questions">Questions? (optional)</Label>
+                <Textarea
+                  id="questions"
+                  name="questions"
+                  value={questions}
+                  onChange={(e) => setQuestions(e.target.value)}
+                  className="mt-1.5 min-h-[100px]"
+                  placeholder="Tell us about your space, timeline, or anything you'd like us to know..."
+                />
               </div>
 
               <Button
