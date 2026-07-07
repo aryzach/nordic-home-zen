@@ -455,7 +455,7 @@ const SaunaCompatibilityQuiz = () => {
   useSEO({
     title: "Sauna Compatibility Quiz | Anywhere Sauna",
     description:
-      "Answer a few questions about your space, electrical setup, budget, and goals to see which sauna options are actually compatible with your home.",
+      "Answer a few questions about your home, electrical setup, budget, and goals to see which sauna options are actually compatible with your home.",
     canonical: "https://sfsaunarental.com/sauna-compatibility-quiz",
   });
 
@@ -944,7 +944,7 @@ const HeroContent = ({ onStart }: { onStart: () => void }) => (
         <ArrowRight size={16} />
       </button>
       <p className="text-[15px] md:text-[16px] leading-[1.6] text-white/80 font-normal max-w-sm md:max-w-md text-center md:text-left">
-        Get personalized recommendations. Answer a few questions about your space, electrical setup, budget, and goals to see which sauna options are compatible.
+        Get personalized recommendations. Answer a few questions about your home, electrical setup, budget, and goals to see which sauna options are compatible.
       </p>
     </div>
   </div>
