@@ -1287,9 +1287,9 @@ const ResultsView = ({
         </div>
         <div className="bg-card border border-border rounded-2xl p-6 md:p-10 text-center">
           <p className="text-[16px] leading-relaxed text-foreground mb-6">
-            No sauna appears to be an ideal fit based on your current space,
-            electrical setup, and goals. Schedule a consultation and we'll see
-            if there's a creative solution for your home.
+            No sauna appears to be an ideal fit based on your current setup and
+            goals. Schedule a consultation and we'll see if there's a creative
+            solution for your home.
           </p>
           <Button
             onClick={onBookConsult}
@@ -1320,7 +1320,7 @@ const ResultsView = ({
           Your Personalized Sauna Recommendations
         </h1>
         <p className="text-white">
-          Based on your space, electrical setup, budget, and goals.
+          Based on your home, electrical setup, budget, and goals.
         </p>
       </div>
 
@@ -1381,7 +1381,7 @@ const ResultsView = ({
       <ConsultCTA
         emphasized={consultationStrongly}
         heading="Want a Second Opinion?"
-        body="Book a free 30-minute consultation and we'll review your space, electrical setup, and goals together."
+        body="Book a free 30-minute consultation and we'll review your home, electrical setup, and goals together."
         onBookConsult={onBookConsult}
       />
     </div>
