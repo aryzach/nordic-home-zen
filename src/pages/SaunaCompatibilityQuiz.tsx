@@ -873,6 +873,17 @@ const SaunaCompatibilityQuiz = () => {
                   recommendations.
                 </p>
               </div>
+              <div>
+                <Label htmlFor="questions">Questions? (optional)</Label>
+                <Textarea
+                  id="questions"
+                  name="questions"
+                  value={questions}
+                  onChange={(e) => setQuestions(e.target.value)}
+                  className="mt-1.5 min-h-[100px]"
+                  placeholder="Tell us about your space, timeline, or anything you'd like us to know..."
+                />
+              </div>
 
               <Button
                 type="submit"
