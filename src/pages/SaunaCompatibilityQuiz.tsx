@@ -687,29 +687,6 @@ const SaunaCompatibilityQuiz = () => {
 
             {step === 4 && (
               <>
-                <QuestionHeader title="Approximately how much space do you have available?" />
-                <div className="space-y-3">
-                  {[
-                    "Less than 4' x 4'",
-                    "~4' × 4'",
-                    "~5' × 6'",
-                    "Larger than 5' × 6'",
-                    "Not sure",
-                  ].map((o) => (
-                    <OptionButton
-                      key={o}
-                      label={o}
-                      selected={answers.space === o}
-                      onClick={() => setSingle("space", o)}
-                    />
-                  ))}
-                </div>
-                <NextRow disabled={!answers.space} onNext={advance} />
-              </>
-            )}
-
-            {step === 5 && (
-              <>
                 <QuestionHeader title="Is there an electrical outlet within 50 feet?" />
                 <div className="space-y-3">
                   {["Yes", "No", "Not sure"].map((o) => (
@@ -725,37 +702,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 6 && (
-              <>
-                <QuestionHeader
-                  title="Do you have a 240V electrical outlet available for a sauna, or would you consider installing one?"
-                  helper={
-                    <>
-                      <p className="mb-2">Examples include:</p>
-                      <ul className="list-disc pl-5 space-y-1">
-                        <li>An EV charger outlet</li>
-                        <li>An electric dryer outlet</li>
-                        <li>A hot tub hookup</li>
-                        <li>A dedicated 240V circuit installed by an electrician</li>
-                      </ul>
-                    </>
-                  }
-                />
-                <div className="space-y-3">
-                  {["Yes", "Maybe", "No", "Not sure"].map((o) => (
-                    <OptionButton
-                      key={o}
-                      label={o}
-                      selected={answers.has240V === o}
-                      onClick={() => setSingle("has240V", o)}
-                    />
-                  ))}
-                </div>
-                <NextRow disabled={!answers.has240V} onNext={advance} />
-              </>
-            )}
-
-            {step === 7 && (
+            {step === 5 && (
               <>
                 <QuestionHeader
                   title="What's most important to you in a sauna?"
@@ -788,7 +735,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 8 && (
+            {step === 6 && (
               <>
                 <QuestionHeader title="What temperature would you like your sauna?" />
                 <div className="space-y-3">
@@ -805,7 +752,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 9 && (
+            {step === 7 && (
               <>
                 <QuestionHeader
                   title="What budget ranges are you considering?"
@@ -832,7 +779,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 10 && (
+            {step === 8 && (
               <>
                 <QuestionHeader title="When are you hoping to buy?" />
                 <div className="space-y-3">
