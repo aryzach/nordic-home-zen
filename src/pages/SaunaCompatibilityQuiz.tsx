@@ -249,46 +249,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const electricalAssessmentRecommended =
     outletNo || outletUnsure || temp230 || wantsHigh;
 
-  // ---------- Feasibility ----------
-  const disq = { anywhere: false, saunalife: false, barrel: false, plunge: false, infrared: false };
-  const tentative = { anywhere: false, saunalife: false, barrel: false, plunge: false, infrared: false };
-
-  // Anywhere: if no outlet within 50ft, only show as tentative for apt/renter/condo
-  // or anyone wanting high heat (per ground-truth examples).
-  if (outletNo) {
-    if (apartment || renter || condo || wantsHighHeat) tentative.anywhere = true;
-    else disq.anywhere = true;
-  }
-
-  // Infrared: not a high-heat sauna; rule out only when the user is clearly
-  // committed to traditional high heat (230°F or "high temps" priority).
-  if (temp230 || (wantsHigh && !temp150 && !temp170)) disq.infrared = true;
-
-  // SaunaLife (5×5, 240V): needs space + at least $5k budget; not for decks/balconies.
-  if (smallSpace || deckBalcony || (maxBudget && maxBudget < 3)) {
-    disq.saunalife = true;
-  } else if (closed240V) {
-    // Escape valve: a homeowner with space who wants high heat could still install
-    // 240V later — show as "Possible Fit" and prompt for consultation.
-    if (owner && house && space5plus && wantsHighHeat) tentative.saunalife = true;
-    else disq.saunalife = true;
-  }
-
-  // Barrel (5×6+, outdoor, 240V): not for apartments, decks/balconies, or small footprints.
-  if (smallSpace || deckBalcony || apartment || (maxBudget && maxBudget < 3)) {
-    disq.barrel = true;
-  } else if (closed240V) {
-    if (owner && house && space5plus) tentative.barrel = true;
-    else disq.barrel = true;
-  }
-
-  // Plunge Mini (5×5, 240V, premium): homeowner-only, requires $8k+ budget.
-  if (smallSpace || deckBalcony || apartment || renter || (maxBudget && maxBudget < 4)) {
-    disq.plunge = true;
-  } else if (closed240V) {
-    if (owner && house && space5plus && wantsHighHeat) tentative.plunge = true;
-    else disq.plunge = true;
-  }
+  // Without explicit space and 240V data, we don't hard-disqualify any sauna.
+  // Placement, home type, and budget still drive the scoring below.
 
   // ---------- Scoring ----------
   const scores = { anywhere: 0, saunalife: 0, barrel: 0, plunge: 0, infrared: 0 };
