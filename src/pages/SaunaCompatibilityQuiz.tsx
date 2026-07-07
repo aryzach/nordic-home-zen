@@ -551,15 +551,23 @@ const SaunaCompatibilityQuiz = () => {
     trackEvent("sauna_compatibility_quiz_submitted", {
       email,
       phone: phone.trim() || undefined,
+      questions: questions.trim() || undefined,
       ...flattenAnswers(answers),
     });
     trackEvent("compatibility_email_submitted", {
       email,
+      questions: questions.trim() || undefined,
       ...flattenAnswers(answers),
     });
     if (phone.trim()) {
       trackEvent("compatibility_phone_submitted", {
         phone,
+        ...flattenAnswers(answers),
+      });
+    }
+    if (questions.trim()) {
+      trackEvent("compatibility_questions_submitted", {
+        questions,
         ...flattenAnswers(answers),
       });
     }
@@ -572,6 +580,7 @@ const SaunaCompatibilityQuiz = () => {
       formData.append("from_name", "Anywhere Sauna — Compatibility Quiz");
       formData.append("email", email);
       if (phone) formData.append("phone", phone);
+      if (questions.trim()) formData.append("message", questions.trim());
       Object.entries(flattenAnswers(answers)).forEach(([k, v]) =>
         formData.append(k, String(v ?? ""))
       );
