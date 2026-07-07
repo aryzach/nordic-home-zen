@@ -104,7 +104,7 @@ const Policies = () => {
 
             <h2 className="text-2xl font-semibold text-foreground mt-8 mb-4">8. Contact</h2>
             <p className="mb-6">
-              For questions about this Privacy Policy, contact us at: <a href="mailto:sfsaunarental@gmail.com" className="text-primary hover:underline">sfsaunarental@gmail.com</a>
+              For questions about this Privacy Policy, contact us at: <a href="mailto:info@sf-sauna.com" className="text-primary hover:underline">info@sf-sauna.com</a>
             </p>
           </div>
         </div>
