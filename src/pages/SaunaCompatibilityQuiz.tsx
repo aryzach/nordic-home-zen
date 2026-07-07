@@ -468,6 +468,7 @@ const SaunaCompatibilityQuiz = () => {
   const [answers, setAnswers] = useState<Answers>(initialAnswers);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [questions, setQuestions] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
