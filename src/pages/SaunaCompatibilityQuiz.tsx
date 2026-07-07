@@ -422,54 +422,29 @@ function buildRecommendations(a: Answers): RecommendationResult {
 
   const recs: Recommendation[] = base.map((b) => {
     const score = scores[b.id];
-    const disqualified = disq[b.id];
-    let tier = tierFromScore(score, disqualified);
-    // Downgrade confidence by one level for 240V saunas when power is uncertain.
-    if (
-      electricalAssessmentRecommended &&
-      (b.requires240V || (b.id === "anywhere" && tentative.anywhere)) &&
-      !disqualified
-    ) {
-      if (tier === "Excellent Match") tier = "Good Match";
-      else if (tier === "Good Match") tier = "Possible Fit";
-    }
-    // Anywhere-as-tentative caps at "Possible Fit"
-    if (b.id === "anywhere" && tentative.anywhere && tier === "Good Match") {
-      tier = "Possible Fit";
-    }
+    const tier = tierFromScore(score, false);
     return {
       ...b,
       score,
-      disqualified,
+      disqualified: false,
       tier,
       whyFit: reasons[b.id],
     };
   });
 
-  // Sort eligible by score desc; disqualified last.
-  recs.sort((a, b) => {
-    if (a.disqualified !== b.disqualified) return a.disqualified ? 1 : -1;
-    return b.score - a.score;
-  });
+  recs.sort((a, b) => b.score - a.score);
 
-  // Inclusion: top recommendation always included if not disqualified.
-  // Additional recommendations only if they clear an "actually worth showing" bar.
-  const eligible = recs.filter((r) => !r.disqualified);
   const INCLUDE_THRESHOLD = 8;
   const trimmed: Recommendation[] = [];
-  eligible.forEach((r, idx) => {
+  recs.forEach((r, idx) => {
     if (idx === 0) trimmed.push(r);
     else if (trimmed.length < 3 && r.score >= INCLUDE_THRESHOLD) trimmed.push(r);
   });
 
-  // Replace the recommendations array: keep top eligible, then disqualified for "Other Options"
-  const finalRecs = [...trimmed, ...recs.filter((r) => r.disqualified)];
-
-  const allDisqualified = eligible.length === 0;
   return {
-    recommendations: finalRecs,
+    recommendations: trimmed,
     consultationStrongly,
-    allDisqualified,
+    allDisqualified: false,
     electricalAssessmentRecommended,
   };
 }
