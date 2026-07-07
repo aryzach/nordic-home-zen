@@ -46,7 +46,7 @@ const initialAnswers: Answers = {
   timeline: "",
 };
 
-const TOTAL_STEPS = 10;
+const TOTAL_STEPS = 8;
 
 /* ---------------- Small primitives ---------------- */
 
