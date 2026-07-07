@@ -1397,9 +1397,7 @@ function flattenAnswers(a: Answers): Record<string, string> {
     placement:
       a.placement.join(", ") +
       (a.placementOther ? ` | other: ${a.placementOther}` : ""),
-    space: a.space,
     outlet_within_50ft: a.outletNearby,
-    has_240v_outlet_or_willing: a.has240V,
     priorities: a.priorities.join(", "),
     temperature: a.temperature,
     budget: a.budget.join(", "),
