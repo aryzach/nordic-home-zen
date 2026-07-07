@@ -26,9 +26,7 @@ type Answers = {
   ownRent: string;
   placement: string[];
   placementOther: string;
-  space: string;
   outletNearby: string;
-  has240V: string;
   priorities: string[];
   temperature: string;
   budget: string[];
@@ -41,16 +39,14 @@ const initialAnswers: Answers = {
   ownRent: "",
   placement: [],
   placementOther: "",
-  space: "",
   outletNearby: "",
-  has240V: "",
   priorities: [],
   temperature: "",
   budget: [],
   timeline: "",
 };
 
-const TOTAL_STEPS = 10;
+const TOTAL_STEPS = 8;
 
 /* ---------------- Small primitives ---------------- */
 
@@ -223,31 +219,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const livingRoom = a.placement.includes("Living Room");
   const bedroom = a.placement.includes("Bedroom");
 
-  const spaceLt4 = a.space === "Less than 4' x 4'";
-  const space4 = a.space === "~4' × 4'";
-  const space5x6 = a.space === "~5' × 6'";
-  const spaceLarger = a.space === "Larger than 5' × 6'";
-  const spaceUnsure = a.space === "Not sure";
-  const space5plus = space5x6 || spaceLarger;
-  const smallSpace = spaceLt4 || space4;
-
-  const outletYes = a.outletNearby === "Yes";
   const outletNo = a.outletNearby === "No";
   const outletUnsure = a.outletNearby === "Not sure";
-
-  const has240VYes = a.has240V === "Yes";
-  const has240VMaybe = a.has240V === "Maybe";
-  const has240VNo = a.has240V === "No";
-  const has240VUnsure = a.has240V === "Not sure";
-
-  // Combined 240V readiness for scoring compatibility.
-  const install240VYes = has240VYes || has240VMaybe;
-  const install240VMaybe = has240VMaybe;
-  const install240VNo = has240VNo;
-  const install240VUnsure = has240VUnsure;
-
-  // True when the user has no path to 240V right now.
-  const closed240V = !has240VYes && install240VNo;
 
   const wantsHigh = a.priorities.includes("High temps (190 - 230°F)");
   const wantsPortable = a.priorities.includes("Portable/renter-friendly");
@@ -262,10 +235,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const temp170 = a.temperature === "170°F";
   const temp200 = a.temperature === "200°F";
   const temp230 = a.temperature === "230°F";
-  const wantsHighHeat = temp200 || temp230 || wantsHigh;
 
   const budgetTiers = a.budget.map((b) => BUDGET_TIER[b]).filter(Boolean);
-  const maxBudget = budgetTiers.length ? Math.max(...budgetTiers) : 0;
   const multipleBudgets = a.budget.length > 1;
   const budgetU3k = a.budget.includes("Under $3,000");
   const budget3to5k = a.budget.includes("$3,000-$5,000");
@@ -273,56 +244,13 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const budget8to12k = a.budget.includes("$8,000-$12,000");
   const budget12kPlus = a.budget.includes("$12,000+");
 
-  // ---------- Electrical assessment flag ----------
+  // Without explicit space and 240V data, we don't hard-disqualify.
+  // We flag when electrical confirmation is needed.
   const electricalAssessmentRecommended =
-    outletNo ||
-    outletUnsure ||
-    has240VUnsure ||
-    install240VMaybe ||
-    install240VUnsure ||
-    (wantsHighHeat && (has240VUnsure || install240VUnsure)) ||
-    (temp230 && !has240VYes && !install240VYes);
+    outletNo || outletUnsure || temp230 || wantsHigh;
 
-  // ---------- Feasibility ----------
-  const disq = { anywhere: false, saunalife: false, barrel: false, plunge: false, infrared: false };
-  const tentative = { anywhere: false, saunalife: false, barrel: false, plunge: false, infrared: false };
-
-  // Anywhere: if no outlet within 50ft, only show as tentative for apt/renter/condo
-  // or anyone wanting high heat (per ground-truth examples).
-  if (outletNo) {
-    if (apartment || renter || condo || wantsHighHeat) tentative.anywhere = true;
-    else disq.anywhere = true;
-  }
-
-  // Infrared: not a high-heat sauna; rule out only when the user is clearly
-  // committed to traditional high heat (230°F or "high temps" priority).
-  if (temp230 || (wantsHigh && !temp150 && !temp170)) disq.infrared = true;
-
-  // SaunaLife (5×5, 240V): needs space + at least $5k budget; not for decks/balconies.
-  if (smallSpace || deckBalcony || (maxBudget && maxBudget < 3)) {
-    disq.saunalife = true;
-  } else if (closed240V) {
-    // Escape valve: a homeowner with space who wants high heat could still install
-    // 240V later — show as "Possible Fit" and prompt for consultation.
-    if (owner && house && space5plus && wantsHighHeat) tentative.saunalife = true;
-    else disq.saunalife = true;
-  }
-
-  // Barrel (5×6+, outdoor, 240V): not for apartments, decks/balconies, or small footprints.
-  if (smallSpace || deckBalcony || apartment || (maxBudget && maxBudget < 3)) {
-    disq.barrel = true;
-  } else if (closed240V) {
-    if (owner && house && space5plus) tentative.barrel = true;
-    else disq.barrel = true;
-  }
-
-  // Plunge Mini (5×5, 240V, premium): homeowner-only, requires $8k+ budget.
-  if (smallSpace || deckBalcony || apartment || renter || (maxBudget && maxBudget < 4)) {
-    disq.plunge = true;
-  } else if (closed240V) {
-    if (owner && house && space5plus && wantsHighHeat) tentative.plunge = true;
-    else disq.plunge = true;
-  }
+  // Without explicit space and 240V data, we don't hard-disqualify any sauna.
+  // Placement, home type, and budget still drive the scoring below.
 
   // ---------- Scoring ----------
   const scores = { anywhere: 0, saunalife: 0, barrel: 0, plunge: 0, infrared: 0 };
@@ -336,12 +264,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (livingRoom) scores.anywhere += 3;
   if (bedroom) scores.anywhere += 2;
   if (backyard) scores.anywhere += 1;
-  if (space4) scores.anywhere += 4;
-  if (spaceLt4) scores.anywhere -= 2;
-  if (space5plus) scores.anywhere += 1;
-  if (install240VNo) scores.anywhere += 4;
-  if (install240VMaybe) scores.anywhere += 2;
-  if (install240VUnsure) scores.anywhere += 2;
   if (wantsPortable) scores.anywhere += 5;
   if (wantsLowInstall) scores.anywhere += 5;
   if (wantsHigh) scores.anywhere += 3;
@@ -355,7 +277,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (budgetU3k) scores.anywhere -= 3;
   if (budget3to5k) scores.anywhere += 4;
   if (budget5to8k) scores.anywhere += 3;
-  if (tentative.anywhere) scores.anywhere -= 5;
 
   // Infrared
   if (apartment) scores.infrared += 4;
@@ -364,7 +285,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (deckBalcony) scores.infrared += 2;
   if (livingRoom) scores.infrared += 3;
   if (bedroom) scores.infrared += 2;
-  if (smallSpace) scores.infrared += 2;
   if (temp150) scores.infrared += 8;
   if (temp170) scores.infrared -= 2;
   if (temp200) scores.infrared -= 4;
@@ -375,17 +295,11 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (wantsRelax) scores.infrared += 2;
   if (wantsLowInstall) scores.infrared += 3;
   if (wantsPortable) scores.infrared += 2;
-  if (closed240V) scores.infrared += 1;
 
   // SaunaLife
   if (house) scores.saunalife += 3;
   if (owner) scores.saunalife += 3;
   if (backyard) scores.saunalife += 2;
-  if (space5x6) scores.saunalife += 3;
-  if (spaceLarger) scores.saunalife += 3;
-  if (has240VYes) scores.saunalife += 5;
-  if (install240VYes) scores.saunalife += 3;
-  if (install240VMaybe) scores.saunalife += 1;
   if (temp200) scores.saunalife += 5;
   if (temp230) scores.saunalife += 5;
   if (temp170) scores.saunalife += 1;
@@ -395,17 +309,11 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (budget5to8k) scores.saunalife += 4;
   if (budget8to12k) scores.saunalife += 3;
   if (budget12kPlus) scores.saunalife += 2;
-  if (tentative.saunalife) scores.saunalife -= 4;
 
   // Barrel
   if (house) scores.barrel += 3;
   if (owner) scores.barrel += 3;
   if (backyard) scores.barrel += 5;
-  if (spaceLarger) scores.barrel += 3;
-  if (space5x6) scores.barrel += 2;
-  if (has240VYes) scores.barrel += 4;
-  if (install240VYes) scores.barrel += 2;
-  if (install240VMaybe) scores.barrel += 1;
   if (temp170) scores.barrel += 5;
   if (temp200) scores.barrel -= 1;
   if (temp230) scores.barrel -= 8;
@@ -414,18 +322,11 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (wantsDaily) scores.barrel += 1;
   if (budget5to8k) scores.barrel += 3;
   if (budget8to12k) scores.barrel += 1;
-  if (budget12kPlus) scores.barrel += 0;
-  if (tentative.barrel) scores.barrel -= 4;
 
   // Plunge Mini
   if (house) scores.plunge += 3;
   if (owner) scores.plunge += 3;
   if (backyard) scores.plunge += 2;
-  if (space5x6) scores.plunge += 2;
-  if (spaceLarger) scores.plunge += 3;
-  if (has240VYes) scores.plunge += 5;
-  if (install240VYes) scores.plunge += 3;
-  if (install240VMaybe) scores.plunge += 1;
   if (temp200) scores.plunge += 3;
   if (temp230) scores.plunge += 5;
   if (temp170) scores.plunge += 1;
@@ -435,37 +336,23 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (budget5to8k) scores.plunge -= 2;
   if (budget8to12k) scores.plunge += 8;
   if (budget12kPlus) scores.plunge += 10;
-  if (tentative.plunge) scores.plunge -= 4;
 
   const consultationStrongly =
     electricalAssessmentRecommended ||
-    spaceUnsure ||
     multipleBudgets ||
-    tentative.anywhere ||
-    tentative.saunalife ||
-    tentative.barrel ||
-    tentative.plunge ||
     a.timeline === "This week" ||
     a.timeline === "This month" ||
     a.timeline === "Within 3 months";
 
   const reasons = {
-    anywhere: tentative.anywhere
-      ? "Best fit on paper for your space and goals, but we'd need to confirm a safe power source before recommending it. Final feasibility depends on finding an outlet that works."
-      : renter || apartment || condo
-        ? "Best fit because you want a real sauna experience without modifying your unit. The Anywhere Sauna runs on a standard 120V outlet, so there's no electrician, no permits, and no 240V install."
-        : install240VNo || wantsLowInstall || wantsPortable
-          ? "Best fit because you want high temperatures with low installation complexity. The Anywhere Sauna is designed for small-space 120V setups and can reach traditional sauna temperatures without a 240V circuit."
-          : "Likely best option — reaches traditional Finnish temperatures on a normal household outlet with no permits or electrical work.",
-    saunalife: tentative.saunalife
-      ? "Worth considering if you're open to installing a dedicated 240V circuit. Final feasibility depends on confirming your electrical setup."
-      : "Best fit if you want a more permanent traditional sauna and are willing to use or install 240V power. Final recommendation depends on confirming your electrical setup.",
-    barrel: tentative.barrel
-      ? "Worth considering for the outdoor aesthetic, but it requires 240V — we'd need to confirm your electrical options first."
-      : "Best fit if aesthetics, backyard design, and relaxation matter more than maximum heat. Barrel saunas look great, but typically don't deliver the same even high-heat experience as cube-style saunas.",
-    plunge: tentative.plunge
-      ? "Worth considering for the premium design and high heat, but requires 240V — we'd need to confirm your electrical options first."
-      : "Best fit for a higher-budget buyer who wants a premium, design-forward sauna with high heat and 240V power already available.",
+    anywhere: renter || apartment || condo
+      ? "Best fit because you want a real sauna experience without modifying your unit. The Anywhere Sauna runs on a standard 120V outlet, so there's no electrician, no permits, and no 240V install."
+      : wantsLowInstall || wantsPortable
+        ? "Best fit because you want high temperatures with low installation complexity. The Anywhere Sauna is designed for plug-and-play 120V setups and can reach traditional sauna temperatures."
+        : "Likely best option — reaches traditional sauna temperatures on a normal household outlet with no permits or electrical work.",
+    saunalife: "Best fit if you want a more permanent traditional sauna for your home and backyard.",
+    barrel: "Best fit if aesthetics, backyard design, and relaxation matter more than maximum heat. Barrel saunas look great, but typically don't deliver the same even high-heat experience as cube-style saunas.",
+    plunge: "Best fit for a higher-budget buyer who wants a premium, design-forward sauna with high heat.",
     infrared: wantsInfrared
       ? "Best fit if your priority is infrared heat and red-light therapy rather than steam."
       : "Best fit if your priority is a low-cost daily wellness routine around 150°F. It's not a traditional high-heat sauna, but it works well for small spaces and standard outlets.",
@@ -535,54 +422,29 @@ function buildRecommendations(a: Answers): RecommendationResult {
 
   const recs: Recommendation[] = base.map((b) => {
     const score = scores[b.id];
-    const disqualified = disq[b.id];
-    let tier = tierFromScore(score, disqualified);
-    // Downgrade confidence by one level for 240V saunas when power is uncertain.
-    if (
-      electricalAssessmentRecommended &&
-      (b.requires240V || (b.id === "anywhere" && tentative.anywhere)) &&
-      !disqualified
-    ) {
-      if (tier === "Excellent Match") tier = "Good Match";
-      else if (tier === "Good Match") tier = "Possible Fit";
-    }
-    // Anywhere-as-tentative caps at "Possible Fit"
-    if (b.id === "anywhere" && tentative.anywhere && tier === "Good Match") {
-      tier = "Possible Fit";
-    }
+    const tier = tierFromScore(score, false);
     return {
       ...b,
       score,
-      disqualified,
+      disqualified: false,
       tier,
       whyFit: reasons[b.id],
     };
   });
 
-  // Sort eligible by score desc; disqualified last.
-  recs.sort((a, b) => {
-    if (a.disqualified !== b.disqualified) return a.disqualified ? 1 : -1;
-    return b.score - a.score;
-  });
+  recs.sort((a, b) => b.score - a.score);
 
-  // Inclusion: top recommendation always included if not disqualified.
-  // Additional recommendations only if they clear an "actually worth showing" bar.
-  const eligible = recs.filter((r) => !r.disqualified);
   const INCLUDE_THRESHOLD = 8;
   const trimmed: Recommendation[] = [];
-  eligible.forEach((r, idx) => {
+  recs.forEach((r, idx) => {
     if (idx === 0) trimmed.push(r);
     else if (trimmed.length < 3 && r.score >= INCLUDE_THRESHOLD) trimmed.push(r);
   });
 
-  // Replace the recommendations array: keep top eligible, then disqualified for "Other Options"
-  const finalRecs = [...trimmed, ...recs.filter((r) => r.disqualified)];
-
-  const allDisqualified = eligible.length === 0;
   return {
-    recommendations: finalRecs,
+    recommendations: trimmed,
     consultationStrongly,
-    allDisqualified,
+    allDisqualified: false,
     electricalAssessmentRecommended,
   };
 }
@@ -593,7 +455,7 @@ const SaunaCompatibilityQuiz = () => {
   useSEO({
     title: "Sauna Compatibility Quiz | Anywhere Sauna",
     description:
-      "Answer a few questions about your space, electrical setup, budget, and goals to see which sauna options are actually compatible with your home.",
+      "Answer a few questions about your home, electrical setup, budget, and goals to see which sauna options are actually compatible with your home.",
     canonical: "https://sfsaunarental.com/sauna-compatibility-quiz",
   });
 
@@ -825,29 +687,6 @@ const SaunaCompatibilityQuiz = () => {
 
             {step === 4 && (
               <>
-                <QuestionHeader title="Approximately how much space do you have available?" />
-                <div className="space-y-3">
-                  {[
-                    "Less than 4' x 4'",
-                    "~4' × 4'",
-                    "~5' × 6'",
-                    "Larger than 5' × 6'",
-                    "Not sure",
-                  ].map((o) => (
-                    <OptionButton
-                      key={o}
-                      label={o}
-                      selected={answers.space === o}
-                      onClick={() => setSingle("space", o)}
-                    />
-                  ))}
-                </div>
-                <NextRow disabled={!answers.space} onNext={advance} />
-              </>
-            )}
-
-            {step === 5 && (
-              <>
                 <QuestionHeader title="Is there an electrical outlet within 50 feet?" />
                 <div className="space-y-3">
                   {["Yes", "No", "Not sure"].map((o) => (
@@ -863,37 +702,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 6 && (
-              <>
-                <QuestionHeader
-                  title="Do you have a 240V electrical outlet available for a sauna, or would you consider installing one?"
-                  helper={
-                    <>
-                      <p className="mb-2">Examples include:</p>
-                      <ul className="list-disc pl-5 space-y-1">
-                        <li>An EV charger outlet</li>
-                        <li>An electric dryer outlet</li>
-                        <li>A hot tub hookup</li>
-                        <li>A dedicated 240V circuit installed by an electrician</li>
-                      </ul>
-                    </>
-                  }
-                />
-                <div className="space-y-3">
-                  {["Yes", "Maybe", "No", "Not sure"].map((o) => (
-                    <OptionButton
-                      key={o}
-                      label={o}
-                      selected={answers.has240V === o}
-                      onClick={() => setSingle("has240V", o)}
-                    />
-                  ))}
-                </div>
-                <NextRow disabled={!answers.has240V} onNext={advance} />
-              </>
-            )}
-
-            {step === 7 && (
+            {step === 5 && (
               <>
                 <QuestionHeader
                   title="What's most important to you in a sauna?"
@@ -926,7 +735,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 8 && (
+            {step === 6 && (
               <>
                 <QuestionHeader title="What temperature would you like your sauna?" />
                 <div className="space-y-3">
@@ -943,7 +752,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 9 && (
+            {step === 7 && (
               <>
                 <QuestionHeader
                   title="What budget ranges are you considering?"
@@ -970,7 +779,7 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 10 && (
+            {step === 8 && (
               <>
                 <QuestionHeader title="When are you hoping to buy?" />
                 <div className="space-y-3">
@@ -1135,7 +944,7 @@ const HeroContent = ({ onStart }: { onStart: () => void }) => (
         <ArrowRight size={16} />
       </button>
       <p className="text-[15px] md:text-[16px] leading-[1.6] text-white/80 font-normal max-w-sm md:max-w-md text-center md:text-left">
-        Get personalized recommendations. Answer a few questions about your space, electrical setup, budget, and goals to see which sauna options are compatible.
+        Get personalized recommendations. Answer a few questions about your home, electrical setup, budget, and goals to see which sauna options are compatible.
       </p>
     </div>
   </div>
@@ -1478,9 +1287,9 @@ const ResultsView = ({
         </div>
         <div className="bg-card border border-border rounded-2xl p-6 md:p-10 text-center">
           <p className="text-[16px] leading-relaxed text-foreground mb-6">
-            No sauna appears to be an ideal fit based on your current space,
-            electrical setup, and goals. Schedule a consultation and we'll see
-            if there's a creative solution for your home.
+            No sauna appears to be an ideal fit based on your current setup and
+            goals. Schedule a consultation and we'll see if there's a creative
+            solution for your home.
           </p>
           <Button
             onClick={onBookConsult}
@@ -1511,7 +1320,7 @@ const ResultsView = ({
           Your Personalized Sauna Recommendations
         </h1>
         <p className="text-white">
-          Based on your space, electrical setup, budget, and goals.
+          Based on your home, electrical setup, budget, and goals.
         </p>
       </div>
 
@@ -1572,7 +1381,7 @@ const ResultsView = ({
       <ConsultCTA
         emphasized={consultationStrongly}
         heading="Want a Second Opinion?"
-        body="Book a free 30-minute consultation and we'll review your space, electrical setup, and goals together."
+        body="Book a free 30-minute consultation and we'll review your home, electrical setup, and goals together."
         onBookConsult={onBookConsult}
       />
     </div>
@@ -1588,9 +1397,7 @@ function flattenAnswers(a: Answers): Record<string, string> {
     placement:
       a.placement.join(", ") +
       (a.placementOther ? ` | other: ${a.placementOther}` : ""),
-    space: a.space,
     outlet_within_50ft: a.outletNearby,
-    has_240v_outlet_or_willing: a.has240V,
     priorities: a.priorities.join(", "),
     temperature: a.temperature,
     budget: a.budget.join(", "),
