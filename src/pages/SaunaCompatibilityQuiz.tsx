@@ -264,12 +264,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (livingRoom) scores.anywhere += 3;
   if (bedroom) scores.anywhere += 2;
   if (backyard) scores.anywhere += 1;
-  if (space4) scores.anywhere += 4;
-  if (spaceLt4) scores.anywhere -= 2;
-  if (space5plus) scores.anywhere += 1;
-  if (install240VNo) scores.anywhere += 4;
-  if (install240VMaybe) scores.anywhere += 2;
-  if (install240VUnsure) scores.anywhere += 2;
   if (wantsPortable) scores.anywhere += 5;
   if (wantsLowInstall) scores.anywhere += 5;
   if (wantsHigh) scores.anywhere += 3;
@@ -283,7 +277,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (budgetU3k) scores.anywhere -= 3;
   if (budget3to5k) scores.anywhere += 4;
   if (budget5to8k) scores.anywhere += 3;
-  if (tentative.anywhere) scores.anywhere -= 5;
 
   // Infrared
   if (apartment) scores.infrared += 4;
@@ -292,7 +285,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (deckBalcony) scores.infrared += 2;
   if (livingRoom) scores.infrared += 3;
   if (bedroom) scores.infrared += 2;
-  if (smallSpace) scores.infrared += 2;
   if (temp150) scores.infrared += 8;
   if (temp170) scores.infrared -= 2;
   if (temp200) scores.infrared -= 4;
@@ -303,17 +295,11 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (wantsRelax) scores.infrared += 2;
   if (wantsLowInstall) scores.infrared += 3;
   if (wantsPortable) scores.infrared += 2;
-  if (closed240V) scores.infrared += 1;
 
   // SaunaLife
   if (house) scores.saunalife += 3;
   if (owner) scores.saunalife += 3;
   if (backyard) scores.saunalife += 2;
-  if (space5x6) scores.saunalife += 3;
-  if (spaceLarger) scores.saunalife += 3;
-  if (has240VYes) scores.saunalife += 5;
-  if (install240VYes) scores.saunalife += 3;
-  if (install240VMaybe) scores.saunalife += 1;
   if (temp200) scores.saunalife += 5;
   if (temp230) scores.saunalife += 5;
   if (temp170) scores.saunalife += 1;
@@ -323,17 +309,11 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (budget5to8k) scores.saunalife += 4;
   if (budget8to12k) scores.saunalife += 3;
   if (budget12kPlus) scores.saunalife += 2;
-  if (tentative.saunalife) scores.saunalife -= 4;
 
   // Barrel
   if (house) scores.barrel += 3;
   if (owner) scores.barrel += 3;
   if (backyard) scores.barrel += 5;
-  if (spaceLarger) scores.barrel += 3;
-  if (space5x6) scores.barrel += 2;
-  if (has240VYes) scores.barrel += 4;
-  if (install240VYes) scores.barrel += 2;
-  if (install240VMaybe) scores.barrel += 1;
   if (temp170) scores.barrel += 5;
   if (temp200) scores.barrel -= 1;
   if (temp230) scores.barrel -= 8;
@@ -342,18 +322,11 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (wantsDaily) scores.barrel += 1;
   if (budget5to8k) scores.barrel += 3;
   if (budget8to12k) scores.barrel += 1;
-  if (budget12kPlus) scores.barrel += 0;
-  if (tentative.barrel) scores.barrel -= 4;
 
   // Plunge Mini
   if (house) scores.plunge += 3;
   if (owner) scores.plunge += 3;
   if (backyard) scores.plunge += 2;
-  if (space5x6) scores.plunge += 2;
-  if (spaceLarger) scores.plunge += 3;
-  if (has240VYes) scores.plunge += 5;
-  if (install240VYes) scores.plunge += 3;
-  if (install240VMaybe) scores.plunge += 1;
   if (temp200) scores.plunge += 3;
   if (temp230) scores.plunge += 5;
   if (temp170) scores.plunge += 1;
@@ -363,37 +336,23 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (budget5to8k) scores.plunge -= 2;
   if (budget8to12k) scores.plunge += 8;
   if (budget12kPlus) scores.plunge += 10;
-  if (tentative.plunge) scores.plunge -= 4;
 
   const consultationStrongly =
     electricalAssessmentRecommended ||
-    spaceUnsure ||
     multipleBudgets ||
-    tentative.anywhere ||
-    tentative.saunalife ||
-    tentative.barrel ||
-    tentative.plunge ||
     a.timeline === "This week" ||
     a.timeline === "This month" ||
     a.timeline === "Within 3 months";
 
   const reasons = {
-    anywhere: tentative.anywhere
-      ? "Best fit on paper for your space and goals, but we'd need to confirm a safe power source before recommending it. Final feasibility depends on finding an outlet that works."
-      : renter || apartment || condo
-        ? "Best fit because you want a real sauna experience without modifying your unit. The Anywhere Sauna runs on a standard 120V outlet, so there's no electrician, no permits, and no 240V install."
-        : install240VNo || wantsLowInstall || wantsPortable
-          ? "Best fit because you want high temperatures with low installation complexity. The Anywhere Sauna is designed for small-space 120V setups and can reach traditional sauna temperatures without a 240V circuit."
-          : "Likely best option — reaches traditional Finnish temperatures on a normal household outlet with no permits or electrical work.",
-    saunalife: tentative.saunalife
-      ? "Worth considering if you're open to installing a dedicated 240V circuit. Final feasibility depends on confirming your electrical setup."
-      : "Best fit if you want a more permanent traditional sauna and are willing to use or install 240V power. Final recommendation depends on confirming your electrical setup.",
-    barrel: tentative.barrel
-      ? "Worth considering for the outdoor aesthetic, but it requires 240V — we'd need to confirm your electrical options first."
-      : "Best fit if aesthetics, backyard design, and relaxation matter more than maximum heat. Barrel saunas look great, but typically don't deliver the same even high-heat experience as cube-style saunas.",
-    plunge: tentative.plunge
-      ? "Worth considering for the premium design and high heat, but requires 240V — we'd need to confirm your electrical options first."
-      : "Best fit for a higher-budget buyer who wants a premium, design-forward sauna with high heat and 240V power already available.",
+    anywhere: renter || apartment || condo
+      ? "Best fit because you want a real sauna experience without modifying your unit. The Anywhere Sauna runs on a standard 120V outlet, so there's no electrician, no permits, and no 240V install."
+      : wantsLowInstall || wantsPortable
+        ? "Best fit because you want high temperatures with low installation complexity. The Anywhere Sauna is designed for plug-and-play 120V setups and can reach traditional sauna temperatures."
+        : "Likely best option — reaches traditional sauna temperatures on a normal household outlet with no permits or electrical work.",
+    saunalife: "Best fit if you want a more permanent traditional sauna for your home and backyard.",
+    barrel: "Best fit if aesthetics, backyard design, and relaxation matter more than maximum heat. Barrel saunas look great, but typically don't deliver the same even high-heat experience as cube-style saunas.",
+    plunge: "Best fit for a higher-budget buyer who wants a premium, design-forward sauna with high heat.",
     infrared: wantsInfrared
       ? "Best fit if your priority is infrared heat and red-light therapy rather than steam."
       : "Best fit if your priority is a low-cost daily wellness routine around 150°F. It's not a traditional high-heat sauna, but it works well for small spaces and standard outlets.",
