@@ -219,31 +219,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const livingRoom = a.placement.includes("Living Room");
   const bedroom = a.placement.includes("Bedroom");
 
-  const spaceLt4 = a.space === "Less than 4' x 4'";
-  const space4 = a.space === "~4' × 4'";
-  const space5x6 = a.space === "~5' × 6'";
-  const spaceLarger = a.space === "Larger than 5' × 6'";
-  const spaceUnsure = a.space === "Not sure";
-  const space5plus = space5x6 || spaceLarger;
-  const smallSpace = spaceLt4 || space4;
-
-  const outletYes = a.outletNearby === "Yes";
   const outletNo = a.outletNearby === "No";
   const outletUnsure = a.outletNearby === "Not sure";
-
-  const has240VYes = a.has240V === "Yes";
-  const has240VMaybe = a.has240V === "Maybe";
-  const has240VNo = a.has240V === "No";
-  const has240VUnsure = a.has240V === "Not sure";
-
-  // Combined 240V readiness for scoring compatibility.
-  const install240VYes = has240VYes || has240VMaybe;
-  const install240VMaybe = has240VMaybe;
-  const install240VNo = has240VNo;
-  const install240VUnsure = has240VUnsure;
-
-  // True when the user has no path to 240V right now.
-  const closed240V = !has240VYes && install240VNo;
 
   const wantsHigh = a.priorities.includes("High temps (190 - 230°F)");
   const wantsPortable = a.priorities.includes("Portable/renter-friendly");
@@ -258,10 +235,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const temp170 = a.temperature === "170°F";
   const temp200 = a.temperature === "200°F";
   const temp230 = a.temperature === "230°F";
-  const wantsHighHeat = temp200 || temp230 || wantsHigh;
 
   const budgetTiers = a.budget.map((b) => BUDGET_TIER[b]).filter(Boolean);
-  const maxBudget = budgetTiers.length ? Math.max(...budgetTiers) : 0;
   const multipleBudgets = a.budget.length > 1;
   const budgetU3k = a.budget.includes("Under $3,000");
   const budget3to5k = a.budget.includes("$3,000-$5,000");
@@ -269,15 +244,10 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const budget8to12k = a.budget.includes("$8,000-$12,000");
   const budget12kPlus = a.budget.includes("$12,000+");
 
-  // ---------- Electrical assessment flag ----------
+  // Without explicit space and 240V data, we don't hard-disqualify.
+  // We flag when electrical confirmation is needed.
   const electricalAssessmentRecommended =
-    outletNo ||
-    outletUnsure ||
-    has240VUnsure ||
-    install240VMaybe ||
-    install240VUnsure ||
-    (wantsHighHeat && (has240VUnsure || install240VUnsure)) ||
-    (temp230 && !has240VYes && !install240VYes);
+    outletNo || outletUnsure || temp230 || wantsHigh;
 
   // ---------- Feasibility ----------
   const disq = { anywhere: false, saunalife: false, barrel: false, plunge: false, infrared: false };
