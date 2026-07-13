@@ -147,8 +147,6 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="/how-it-started" element={<HowItStarted />} />
             <Route path="/history" element={<History />} />
-            <Route path="/heater-inferno" element={<HeaterInferno />} />
-            <Route path="/superhotsuperfast" element={<Navigate to="/heater-inferno" replace />} />
             <Route path="/install-power" element={<InstallPower />} />
             <Route path="/policies" element={<Policies />} />
             <Route path="/learn" element={<LearnHub />} />
