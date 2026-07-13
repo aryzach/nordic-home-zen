@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
@@ -25,16 +25,6 @@ const timelineEvents = [
       "Launch the Anywhere Sauna nationwide to enable anyone to have a sauna, no matter if they rent or own their home or apartment.",
     ],
   },
-  {
-    year: "2027",
-    items: [
-      "Launch the Heater Inferno, our battery-augmented sauna heater that enables 190°F heat in under 10 minutes, using just a standard home outlet. Compatible with the Anywhere Sauna.",
-    ],
-    subtext: {
-      text: "Learn about the Heater Inferno here.",
-      href: "/heater-inferno",
-    },
-  },
 ];
 
 const History = () => {
@@ -60,7 +50,7 @@ const History = () => {
               {/* Horizontal line */}
               <div className="absolute left-0 right-0 top-3 h-px bg-border" />
 
-              <div className="grid grid-cols-4 gap-6">
+              <div className="grid grid-cols-3 gap-6">
                 {timelineEvents.map((event) => (
                   <div key={event.year} className="relative flex flex-col items-start">
                     {/* Dot */}
@@ -77,16 +67,6 @@ const History = () => {
                           {item}
                         </p>
                       ))}
-                      {event.subtext && (
-                        <p className="text-xs mt-2">
-                          <Link
-                            to={event.subtext.href}
-                            className="text-foreground underline hover:opacity-70"
-                          >
-                            {event.subtext.text}
-                          </Link>
-                        </p>
-                      )}
                     </div>
                   </div>
                 ))}
@@ -108,13 +88,6 @@ const History = () => {
                         {item}
                       </p>
                     ))}
-                    {event.subtext && (
-                      <p className="text-xs mt-2">
-                        <Link to={event.subtext.href} className="text-foreground underline hover:opacity-70">
-                          {event.subtext.text}
-                        </Link>
-                      </p>
-                    )}
                   </div>
                 ))}
               </div>
