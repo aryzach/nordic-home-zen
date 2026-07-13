@@ -16,7 +16,7 @@ const Compare = lazy(() => import("./pages/Compare"));
 const Terms = lazy(() => import("./pages/Terms"));
 const HowItStarted = lazy(() => import("./pages/HowItStarted"));
 const History = lazy(() => import("./pages/History"));
-const HeaterInferno = lazy(() => import("./pages/HeaterInferno"));
+
 const InstallPower = lazy(() => import("./pages/InstallPower"));
 const Policies = lazy(() => import("./pages/Policies"));
 const LearnHub = lazy(() => import("./pages/LearnHub"));
