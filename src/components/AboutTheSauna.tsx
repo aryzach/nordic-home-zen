@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -103,14 +102,6 @@ const moreGroups: SpecGroup[] = [
       },
       { label: "Maximum Heater Dimensions", value: "13″ × 22″ × 9″" },
       { label: "Recommended Power Range", value: "1.8kW – 2.0kW (for standard outlet use)" },
-      {
-        label: "Compatible with HeaterInferno Heater",
-        value: (
-          <Link to="/heater-inferno" className="text-foreground font-medium underline">
-            Yes (shipping 2027)
-          </Link>
-        ),
-      },
       { label: "Heater Mount Compatibility", value: "Wall-mounted" },
       { label: "Heat-Up Time", value: "~40–60 minutes depending on ambient temperature" },
       { label: "Sauna Heater Stones", value: "Any stones made for sauna, available on Amazon" },
