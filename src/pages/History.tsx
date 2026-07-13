@@ -67,16 +67,6 @@ const History = () => {
                           {item}
                         </p>
                       ))}
-                      {event.subtext && (
-                        <p className="text-xs mt-2">
-                          <Link
-                            to={event.subtext.href}
-                            className="text-foreground underline hover:opacity-70"
-                          >
-                            {event.subtext.text}
-                          </Link>
-                        </p>
-                      )}
                     </div>
                   </div>
                 ))}
@@ -98,13 +88,6 @@ const History = () => {
                         {item}
                       </p>
                     ))}
-                    {event.subtext && (
-                      <p className="text-xs mt-2">
-                        <Link to={event.subtext.href} className="text-foreground underline hover:opacity-70">
-                          {event.subtext.text}
-                        </Link>
-                      </p>
-                    )}
                   </div>
                 ))}
               </div>
