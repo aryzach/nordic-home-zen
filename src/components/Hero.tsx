@@ -1,7 +1,12 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Star, ArrowRight } from "lucide-react";
+import { Star, ArrowRight, Check, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { trackEvent } from "@/lib/analytics";
+
+const GHL_WEBHOOK_URL =
+  "https://services.leadconnectorhq.com/hooks/e0BSsuTXiQlmmnAr79FQ/webhook-trigger/2179b14d-5b37-4627-9f14-70b81bd07afc";
+
 const HERO_MOBILE_AVIF = "/hero-mobile.avif";
 const HERO_MOBILE_WEBP = "/hero-mobile.webp";
 const HERO_MOBILE_JPG = "/hero-mobile.jpg";
