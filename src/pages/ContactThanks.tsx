@@ -2,8 +2,7 @@ import { ExternalLink, Phone, FileText, DollarSign } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { trackEvent } from "@/lib/analytics";
-
-const BOOKING_URL = "https://cal.com/sf-sauna/30min";
+import { BOOKING_URL } from "@/lib/booking";
 
 const BookButton = () => (
   <a

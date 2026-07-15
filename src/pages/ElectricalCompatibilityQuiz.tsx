@@ -9,7 +9,7 @@ import { ArrowLeft, ArrowRight, Calendar, CheckCircle2, ShieldCheck, Sparkles } 
 import { trackEvent, trackAndNavigate } from "@/lib/analytics";
 
 
-const BOOKING_URL = "https://calendar.app.google/Q9nw6fTEBMnyNbDf8";
+const BOOKING_URL = "https://api.leadconnectorhq.com/widget/booking/lMhJlRG69K4GP2OaI5EQ";
 const WEB3FORMS_KEY = "02180c68-7a47-43d5-9a5a-38b9e1d73d59";
 const STORAGE_KEY = "ecq_answers_v1";
 
