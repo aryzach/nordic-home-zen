@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import { trackEvent } from "@/lib/analytics";
 
-const BOOKING_URL = "https://api.leadconnectorhq.com/widget/booking/lMhJlRG69K4GP2OaI5EQ";
+const BOOKING_URL = "https://cal.com/sf-sauna/30min";
 
 const BookButton = ({ className = "" }: { className?: string }) => (
   <a
