@@ -33,32 +33,84 @@ const Hero = () => {
     </button>
   );
 
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleEmailSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === "loading" || status === "success") return;
+    setStatus("loading");
+    try {
+      const res = await fetch(GHL_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          firstName: "",
+          source: "Anywhere Homepage Hero Email Capture",
+          businessLine: "Anywhere",
+          customerLifecycle: "Lead",
+        }),
+      });
+      if (!res.ok) {
+        // eslint-disable-next-line no-console
+        console.error("[Hero email capture] Webhook failed", res.status, res.statusText);
+        setStatus("error");
+        return;
+      }
+      trackEvent("newsletter_signup", { location: "hero" });
+      try {
+        (window as any).fbq?.("track", "Lead", { content_name: "Hero Email Capture" });
+      } catch {}
+      setStatus("success");
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error("[Hero email capture] Network error", err);
+      setStatus("error");
+    }
+  };
+
   const emailSignup = (
-    <form
-      action="https://api.web3forms.com/submit"
-      method="POST"
-      onSubmit={() => {
-        trackEvent("newsletter_signup", { location: "hero" });
-        try { (window as any).fbq?.('track', 'Lead', { content_name: 'Hero Email Capture' }); } catch {}
-      }}
-      className="flex w-full md:w-auto"
-    >
-      <input type="hidden" name="access_key" value="dbdd31bb-6234-4a4f-93cd-679cefbf3f78" />
-      <input type="hidden" name="redirect" value={`${window.location.origin}/contact`} />
-      <Input
-        type="email"
-        name="email"
-        required
-        placeholder="Email for updates"
-        className="flex-1 md:w-[220px] bg-white text-[#111] placeholder:text-[#111]/50 border-0 focus:border focus:border-[#111] focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none h-[46px] text-[14px] px-4"
-      />
-      <button
-        type="submit"
-        className="bg-[#111] text-white h-[46px] px-4 flex items-center justify-center font-semibold text-[13px] uppercase tracking-wider hover:bg-black transition-colors"
-        aria-label="Subscribe"
-      >
-        <ArrowRight className="w-4 h-4" aria-hidden="true" />
-      </button>
+    <form onSubmit={handleEmailSubmit} className="flex flex-col w-full md:w-auto">
+      {status === "success" ? (
+        <div
+          role="status"
+          className="flex items-center gap-2 bg-white text-[#111] h-[46px] px-4 text-[14px] font-medium"
+        >
+          <Check className="w-4 h-4" aria-hidden="true" />
+          Thanks — you're on the list.
+        </div>
+      ) : (
+        <div className="flex w-full md:w-auto">
+          <Input
+            type="email"
+            name="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={status === "loading"}
+            placeholder="Email for updates"
+            className="flex-1 md:w-[220px] bg-white text-[#111] placeholder:text-[#111]/50 border-0 focus:border focus:border-[#111] focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none h-[46px] text-[14px] px-4"
+          />
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="bg-[#111] text-white h-[46px] px-4 flex items-center justify-center font-semibold text-[13px] uppercase tracking-wider hover:bg-black transition-colors disabled:opacity-70"
+            aria-label="Subscribe"
+          >
+            {status === "loading" ? (
+              <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+            ) : (
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            )}
+          </button>
+        </div>
+      )}
+      {status === "error" && (
+        <p role="alert" className="mt-2 text-[13px] text-white bg-red-600/80 px-3 py-1.5">
+          Something went wrong. Please try again.
+        </p>
+      )}
     </form>
   );
   const rating = (
