@@ -149,8 +149,8 @@ const App = () => (
             <Route path="/history" element={<History />} />
             <Route path="/install-power" element={<InstallPower />} />
             <Route path="/policies" element={<Policies />} />
-            
             <Route path="/reserve-your-sauna" element={<Navigate to="/deposit" replace />} />
+
             <Route path="/learn-more" element={<LearnMore />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/media" element={<Media />} />
