@@ -6,7 +6,7 @@ import { Calendar, CheckCircle2 } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { trackAndNavigate } from "@/lib/analytics";
 
-const BOOKING_URL = "https://api.leadconnectorhq.com/widget/booking/lMhJlRG69K4GP2OaI5EQ";
+const BOOKING_URL = "https://cal.com/sf-sauna/30min";
 
 const ElectricalAssessmentSubmitted = () => {
   useSEO({
