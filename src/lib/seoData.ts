@@ -38,11 +38,6 @@ export const seoData = {
     description: "Check availability and reserve your home sauna rental in San Francisco. Choose infrared or steam, indoor or outdoor. Fast delivery and professional installation.",
     canonical: "https://sfsaunarental.com/reserve-your-sauna"
   },
-  learnMore: {
-    title: "Ask a Question | Anywhere Sauna",
-    description: "Have questions about sauna rentals? Contact Anywhere Sauna. We'll help you choose the right sauna for your home and answer all your questions.",
-    canonical: "https://sfsaunarental.com/learn-more"
-  },
   
   // SEO/Location Pages
   saunaSanFrancisco: {
@@ -119,11 +114,6 @@ export const seoData = {
   },
 
   // Conversion/Funnel Pages
-  emailMoreInfo: {
-    title: "Thanks for Your Interest | Anywhere Sauna",
-    description: "Thank you for signing up! Fill out the form to tell us about your space and schedule a free sauna fit check.",
-    canonical: "https://sfsaunarental.com/email-more-info"
-  },
   thankYou: {
     title: "Thank You | Anywhere Sauna",
     description: "Thank you for contacting Anywhere Sauna. We'll be in touch shortly about your home sauna rental.",
@@ -140,11 +130,6 @@ export const seoData = {
     title: "Installation & Power Guide | Anywhere Sauna",
     description: "Everything you need to know about sauna setup, 110/120V power requirements, and placement. Our saunas install in 45-60 minutes with no special wiring.",
     canonical: "https://sfsaunarental.com/install-power"
-  },
-  media: {
-    title: "Media Gallery | Anywhere Sauna",
-    description: "See our saunas in action across San Francisco Bay Area homes. Photos and videos of infrared and steam sauna installations.",
-    canonical: "https://sfsaunarental.com/media"
   },
 
 

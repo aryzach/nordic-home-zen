@@ -13,16 +13,12 @@ export const routes = [
   '/policies',
   
   '/reserve-your-sauna',
-  '/learn-more',
   '/contact',
-  '/media',
   '/sauna-san-francisco',
   '/in-home-sauna-san-francisco',
   '/infrared-sauna-san-francisco',
   '/finnish-sauna-san-francisco',
   '/sauna-rental-palo-alto',
-  '/climate-performance',
-  '/email-more-info',
   '/thank-you',
   '/deposit',
   
