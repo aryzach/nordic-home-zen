@@ -577,13 +577,9 @@ const SaunaCompatibilityQuiz = () => {
     try {
       const payload = {
         email,
-        firstName: "",
         phone: phone.trim() || "",
-        message: questions.trim() || "",
-        source: "Anywhere Sauna Compatibility Quiz",
-        businessLine: "Anywhere",
-        customerLifecycle: "Lead",
         ...flattenAnswers(answers),
+        message: questions.trim() || "",
       };
       fetch(GHL_WEBHOOK_URL, {
         method: "POST",
