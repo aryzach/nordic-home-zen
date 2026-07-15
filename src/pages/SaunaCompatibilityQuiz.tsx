@@ -19,7 +19,7 @@ import { BOOKING_URL, openBookingUrl } from "@/lib/booking";
 import { useNavigate } from "react-router-dom";
 
 const GHL_WEBHOOK_URL =
-  "https://services.leadconnectorhq.com/hooks/e0BSsuTXiQlmmnAr79FQ/webhook-trigger/df8ce8a7-58d9-4e76-b509-87e968fc59f4";
+  "https://services.leadconnectorhq.com/hooks/e0BSsuTXiQlmmnAr79FQ/webhook-trigger/e4b4135b-afe5-4666-88f5-069a0344ad32";
 const STORAGE_KEY = "scq_answers_v1";
 
 type Answers = {
