@@ -1047,8 +1047,8 @@ const OtherInput = ({
 );
 
 const TIER_CLASSES: Record<Tier, string> = {
-  "Excellent Match": "bg-emerald-600 text-white",
-  "Good Match": "bg-[#171717] text-white",
+  "Excellent Match": "bg-emerald-700 text-white",
+  "Good Match": "bg-emerald-600 text-white",
   "Possible Fit": "bg-amber-500 text-white",
   "Not Recommended": "bg-muted text-muted-foreground",
 };
