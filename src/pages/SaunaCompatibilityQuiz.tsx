@@ -573,22 +573,37 @@ const SaunaCompatibilityQuiz = () => {
       });
     }
 
-    // Fire-and-forget to Web3Forms so we capture the lead, then show results.
+    // Fire-and-forget to GoHighLevel so we capture the lead, then show results.
     try {
-      const formData = new FormData();
-      formData.append("access_key", WEB3FORMS_KEY);
-      formData.append("subject", "New Sauna Compatibility Quiz Submission");
-      formData.append("from_name", "Anywhere Sauna — Compatibility Quiz");
-      formData.append("email", email);
-      if (phone) formData.append("phone", phone);
-      if (questions.trim()) formData.append("message", questions.trim());
-      Object.entries(flattenAnswers(answers)).forEach(([k, v]) =>
-        formData.append(k, String(v ?? ""))
-      );
-      fetch("https://api.web3forms.com/submit", {
+      const payload = {
+        email,
+        firstName: "",
+        phone: phone.trim() || "",
+        message: questions.trim() || "",
+        source: "Anywhere Sauna Compatibility Quiz",
+        businessLine: "Anywhere",
+        customerLifecycle: "Lead",
+        ...flattenAnswers(answers),
+      };
+      fetch(GHL_WEBHOOK_URL, {
         method: "POST",
-        body: formData,
-      }).catch(() => {});
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            // eslint-disable-next-line no-console
+            console.error(
+              "[Sauna Compatibility Quiz] Webhook failed",
+              res.status,
+              res.statusText
+            );
+          }
+        })
+        .catch((err) => {
+          // eslint-disable-next-line no-console
+          console.error("[Sauna Compatibility Quiz] Network error", err);
+        });
     } catch {}
 
     trackEvent("compatibility_results_viewed", flattenAnswers(answers));
