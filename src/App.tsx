@@ -19,7 +19,7 @@ const History = lazy(() => import("./pages/History"));
 
 const InstallPower = lazy(() => import("./pages/InstallPower"));
 const Policies = lazy(() => import("./pages/Policies"));
-const LearnHub = lazy(() => import("./pages/LearnHub"));
+
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const Media = lazy(() => import("./pages/Media"));
 const LearnMore = lazy(() => import("./pages/LearnMore"));
@@ -149,8 +149,8 @@ const App = () => (
             <Route path="/history" element={<History />} />
             <Route path="/install-power" element={<InstallPower />} />
             <Route path="/policies" element={<Policies />} />
-            <Route path="/learn" element={<LearnHub />} />
             <Route path="/reserve-your-sauna" element={<Navigate to="/deposit" replace />} />
+
             <Route path="/learn-more" element={<LearnMore />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/media" element={<Media />} />

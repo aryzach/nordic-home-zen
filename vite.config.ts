@@ -11,7 +11,7 @@ export const routes = [
   '/how-it-started',
   '/install-power',
   '/policies',
-  '/learn',
+  
   '/reserve-your-sauna',
   '/learn-more',
   '/contact',

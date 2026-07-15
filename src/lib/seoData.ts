@@ -141,11 +141,6 @@ export const seoData = {
     description: "Everything you need to know about sauna setup, 110/120V power requirements, and placement. Our saunas install in 45-60 minutes with no special wiring.",
     canonical: "https://sfsaunarental.com/install-power"
   },
-  learnHub: {
-    title: "Learn About Home Saunas | Anywhere Sauna",
-    description: "Expert guides on infrared vs steam saunas, electricity costs, and landlord-friendly wellness solutions. Tips for getting the most from your home sauna.",
-    canonical: "https://sfsaunarental.com/learn"
-  },
   media: {
     title: "Media Gallery | Anywhere Sauna",
     description: "See our saunas in action across San Francisco Bay Area homes. Photos and videos of infrared and steam sauna installations.",
