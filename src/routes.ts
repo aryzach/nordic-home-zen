@@ -13,18 +13,14 @@ export const routes = [
   { path: '/policies', priority: 0.4, changefreq: 'yearly' },
   
   
-  { path: '/learn-more', priority: 0.7, changefreq: 'monthly' },
   { path: '/contact', priority: 0.8, changefreq: 'monthly' },
-  { path: '/media', priority: 0.6, changefreq: 'monthly' },
   { path: '/sauna-rental-san-francisco', priority: 0.9, changefreq: 'weekly' },
   { path: '/sauna-rental-oakland', priority: 0.8, changefreq: 'weekly' },
   { path: '/sauna-rental-berkeley', priority: 0.8, changefreq: 'weekly' },
   { path: '/sauna-rental-marin', priority: 0.8, changefreq: 'weekly' },
   { path: '/sauna-rental-mountain-view', priority: 0.8, changefreq: 'weekly' },
-  { path: '/climate-performance', priority: 0.7, changefreq: 'monthly' },
   { path: '/sauna-review/south-end-rowing-club', priority: 0.7, changefreq: 'monthly' },
   { path: '/sauna-review/fitness-sf-fillmore', priority: 0.7, changefreq: 'monthly' },
-  { path: '/email-more-info', priority: 0.5, changefreq: 'monthly' },
   { path: '/thank-you', priority: 0.3, changefreq: 'monthly' },
   { path: '/deposit', priority: 0.6, changefreq: 'monthly' },
   
