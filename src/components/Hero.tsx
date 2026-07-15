@@ -39,7 +39,7 @@ const Hero = () => {
       className="flex w-full md:w-auto"
     >
       <input type="hidden" name="access_key" value="dbdd31bb-6234-4a4f-93cd-679cefbf3f78" />
-      <input type="hidden" name="redirect" value={`${window.location.origin}/email-signed-up`} />
+      <input type="hidden" name="redirect" value={`${window.location.origin}/contact`} />
       <Input
         type="email"
         name="email"

@@ -21,7 +21,7 @@ const InstallPower = lazy(() => import("./pages/InstallPower"));
 const Policies = lazy(() => import("./pages/Policies"));
 
 const ContactPage = lazy(() => import("./pages/ContactPage"));
-const EmailSignedUp = lazy(() => import("./pages/EmailSignedUp"));
+
 const ContactThanks = lazy(() => import("./pages/ContactThanks"));
 const ThankYou = lazy(() => import("./pages/ThankYou"));
 const SaunaPlanningConsultation = lazy(() => import("./pages/SaunaPlanningConsultation"));
@@ -148,7 +148,7 @@ const App = () => (
             <Route path="/reserve-your-sauna" element={<Navigate to="/deposit" replace />} />
 
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/email-signed-up" element={<EmailSignedUp />} />
+            
             <Route path="/contact-thanks" element={<ContactThanks />} />
             <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/buy-your-anywhere-sauna" element={<Navigate to="/deposit" replace />} />
