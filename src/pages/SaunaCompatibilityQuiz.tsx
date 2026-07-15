@@ -18,7 +18,8 @@ import { trackEvent, trackAndNavigate } from "@/lib/analytics";
 import { BOOKING_URL, openBookingUrl } from "@/lib/booking";
 import { useNavigate } from "react-router-dom";
 
-const WEB3FORMS_KEY = "91e8aa2d-8afa-4f9b-bab7-bfaca33818bd";
+const GHL_WEBHOOK_URL =
+  "https://services.leadconnectorhq.com/hooks/e0BSsuTXiQlmmnAr79FQ/webhook-trigger/df8ce8a7-58d9-4e76-b509-87e968fc59f4";
 const STORAGE_KEY = "scq_answers_v1";
 
 type Answers = {
