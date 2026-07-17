@@ -505,7 +505,6 @@ const PRIORITY_OPTIONS = [
 
 const PLACEMENT_OPTIONS = [
   "Backyard",
-  "Patio",
   "Garage",
   "Living room",
   "Bedroom",
