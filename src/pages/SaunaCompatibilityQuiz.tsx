@@ -252,7 +252,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
 
   const deckBalcony = a.placement.includes("Deck / Balcony");
   const backyard = a.placement.includes("Backyard");
-  const patio = a.placement.includes("Patio");
   const garage = a.placement.includes("Garage");
   const livingRoom = a.placement.includes("Living room");
   const bedroom = a.placement.includes("Bedroom");
@@ -294,7 +293,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (house) scores.anywhere += 1;
   if (renter) scores.anywhere += 5;
   if (deckBalcony) scores.anywhere += 4;
-  if (patio) scores.anywhere += 3;
   if (livingRoom) scores.anywhere += 3;
   if (bedroom) scores.anywhere += 2;
   if (bathroom) scores.anywhere += 1;
@@ -338,7 +336,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (house) scores.saunalife += 3;
   if (owner) scores.saunalife += 3;
   if (backyard) scores.saunalife += 2;
-  if (patio) scores.saunalife += 1;
   if (garage) scores.saunalife += 1;
   if (temp200) scores.saunalife += 5;
   if (temp230) scores.saunalife += 5;
@@ -354,7 +351,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (house) scores.barrel += 3;
   if (owner) scores.barrel += 3;
   if (backyard) scores.barrel += 5;
-  if (patio) scores.barrel += 2;
   if (temp170) scores.barrel += 5;
   if (temp200) scores.barrel -= 1;
   if (temp230) scores.barrel -= 8;
@@ -368,7 +364,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (house) scores.plunge += 3;
   if (owner) scores.plunge += 3;
   if (backyard) scores.plunge += 2;
-  if (patio) scores.plunge += 1;
   if (temp200) scores.plunge += 3;
   if (temp230) scores.plunge += 5;
   if (temp170) scores.plunge += 1;
