@@ -20,31 +20,85 @@ import { useNavigate } from "react-router-dom";
 
 const GHL_WEBHOOK_URL =
   "https://services.leadconnectorhq.com/hooks/e0BSsuTXiQlmmnAr79FQ/webhook-trigger/e4b4135b-afe5-4666-88f5-069a0344ad32";
-const STORAGE_KEY = "scq_answers_v1";
+const STORAGE_KEY = "scq_answers_v2";
+const LEAD_SOURCE = "Website Sauna Compatibility Quiz";
+
+const US_STATES: { code: string; name: string }[] = [
+  { code: "AL", name: "Alabama" },
+  { code: "AK", name: "Alaska" },
+  { code: "AZ", name: "Arizona" },
+  { code: "AR", name: "Arkansas" },
+  { code: "CA", name: "California" },
+  { code: "CO", name: "Colorado" },
+  { code: "CT", name: "Connecticut" },
+  { code: "DE", name: "Delaware" },
+  { code: "FL", name: "Florida" },
+  { code: "GA", name: "Georgia" },
+  { code: "HI", name: "Hawaii" },
+  { code: "ID", name: "Idaho" },
+  { code: "IL", name: "Illinois" },
+  { code: "IN", name: "Indiana" },
+  { code: "IA", name: "Iowa" },
+  { code: "KS", name: "Kansas" },
+  { code: "KY", name: "Kentucky" },
+  { code: "LA", name: "Louisiana" },
+  { code: "ME", name: "Maine" },
+  { code: "MD", name: "Maryland" },
+  { code: "MA", name: "Massachusetts" },
+  { code: "MI", name: "Michigan" },
+  { code: "MN", name: "Minnesota" },
+  { code: "MS", name: "Mississippi" },
+  { code: "MO", name: "Missouri" },
+  { code: "MT", name: "Montana" },
+  { code: "NE", name: "Nebraska" },
+  { code: "NV", name: "Nevada" },
+  { code: "NH", name: "New Hampshire" },
+  { code: "NJ", name: "New Jersey" },
+  { code: "NM", name: "New Mexico" },
+  { code: "NY", name: "New York" },
+  { code: "NC", name: "North Carolina" },
+  { code: "ND", name: "North Dakota" },
+  { code: "OH", name: "Ohio" },
+  { code: "OK", name: "Oklahoma" },
+  { code: "OR", name: "Oregon" },
+  { code: "PA", name: "Pennsylvania" },
+  { code: "RI", name: "Rhode Island" },
+  { code: "SC", name: "South Carolina" },
+  { code: "SD", name: "South Dakota" },
+  { code: "TN", name: "Tennessee" },
+  { code: "TX", name: "Texas" },
+  { code: "UT", name: "Utah" },
+  { code: "VT", name: "Vermont" },
+  { code: "VA", name: "Virginia" },
+  { code: "WA", name: "Washington" },
+  { code: "WV", name: "West Virginia" },
+  { code: "WI", name: "Wisconsin" },
+  { code: "WY", name: "Wyoming" },
+];
 
 type Answers = {
-  homeType: string;
-  homeTypeOther: string;
-  ownRent: string;
+  priorities: string[];
   placement: string[];
   placementOther: string;
   outletNearby: string;
-  priorities: string[];
   temperature: string;
-  budget: string[];
+  homeType: string;
+  homeTypeOther: string;
+  ownRent: string;
+  budget: string;
   timeline: string;
 };
 
 const initialAnswers: Answers = {
-  homeType: "",
-  homeTypeOther: "",
-  ownRent: "",
+  priorities: [],
   placement: [],
   placementOther: "",
   outletNearby: "",
-  priorities: [],
   temperature: "",
-  budget: [],
+  homeType: "",
+  homeTypeOther: "",
+  ownRent: "",
+  budget: "",
   timeline: "",
 };
 
@@ -180,27 +234,6 @@ export type RecommendationResult = {
   electricalAssessmentRecommended: boolean;
 };
 
-const BUDGET_TIER: Record<string, number> = {
-  "Under $3,000": 1,
-  "$3,000-$5,000": 2,
-  "$5,000-$8,000": 3,
-  "$8,000-$12,000": 4,
-  "$12,000+": 5,
-};
-
-/**
- * Advisory recommendation engine.
- *
- * Internally we compute a numeric fit signal per sauna using rule-based
- * boosts/penalties, but we never surface raw scores to users. Results are
- * framed as "best fit based on your answers" with confidence tiers.
- *
- * Order:
- *   1. Determine feasibility (hard disqualification or "tentative" path)
- *   2. Score remaining options against buyer lane rules
- *   3. Pick top 1–3 recommendations above an inclusion threshold
- *   4. Downgrade confidence when electrical setup is uncertain
- */
 function tierFromScore(score: number, disqualified: boolean): Tier {
   if (disqualified) return "Not Recommended";
   if (score >= 22) return "Excellent Match";
@@ -212,20 +245,24 @@ function tierFromScore(score: number, disqualified: boolean): Tier {
 function buildRecommendations(a: Answers): RecommendationResult {
   const apartment = a.homeType === "Apartment";
   const condo = a.homeType === "Condo";
+  const townhouse = a.homeType === "Townhouse";
   const house = a.homeType === "House";
   const renter = a.ownRent === "Rent";
   const owner = a.ownRent === "Own";
 
-  const deckBalcony = a.placement.includes("Deck/Balcony");
+  const deckBalcony = a.placement.includes("Deck / Balcony");
   const backyard = a.placement.includes("Backyard");
-  const livingRoom = a.placement.includes("Living Room");
+  const patio = a.placement.includes("Patio");
+  const garage = a.placement.includes("Garage");
+  const livingRoom = a.placement.includes("Living room");
   const bedroom = a.placement.includes("Bedroom");
+  const bathroom = a.placement.includes("Bathroom");
 
   const outletNo = a.outletNearby === "No";
   const outletUnsure = a.outletNearby === "Not sure";
 
-  const wantsHigh = a.priorities.includes("High temps (190 - 230°F)");
-  const wantsPortable = a.priorities.includes("Portable/renter-friendly");
+  const wantsHigh = a.priorities.includes("High temperatures");
+  const wantsPortable = a.priorities.includes("Portable / renter-friendly");
   const wantsInfrared = a.priorities.includes("Red-light therapy");
   const wantsAesthetic = a.priorities.includes("Aesthetic design");
   const wantsLowInstall = a.priorities.includes("Low installation cost");
@@ -238,21 +275,14 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const temp200 = a.temperature === "200°F";
   const temp230 = a.temperature === "230°F";
 
-  const budgetTiers = a.budget.map((b) => BUDGET_TIER[b]).filter(Boolean);
-  const multipleBudgets = a.budget.length > 1;
-  const budgetU3k = a.budget.includes("Under $3,000");
-  const budget3to5k = a.budget.includes("$3,000-$5,000");
-  const budget5to8k = a.budget.includes("$5,000-$8,000");
-  const budget8to12k = a.budget.includes("$8,000-$12,000");
-  const budget12kPlus = a.budget.includes("$12,000+");
+  const budgetU3k = a.budget === "Under $3,000";
+  const budget3to5k = a.budget === "$3,000–$5,000";
+  const budget5to8k = a.budget === "$5,000–$8,000";
+  const budget8to12k = a.budget === "$8,000–$12,000";
+  const budget12kPlus = a.budget === "$12,000+";
 
-  // Without explicit space and 240V data, we don't hard-disqualify.
-  // We flag when electrical confirmation is needed.
   const electricalAssessmentRecommended =
     outletNo || outletUnsure || temp230 || wantsHigh;
-
-  // Without explicit space and 240V data, we don't hard-disqualify any sauna.
-  // Placement, home type, and budget still drive the scoring below.
 
   // ---------- Scoring ----------
   const scores = { anywhere: 0, saunalife: 0, barrel: 0, plunge: 0, infrared: 0 };
@@ -260,11 +290,15 @@ function buildRecommendations(a: Answers): RecommendationResult {
   // Anywhere Sauna
   if (apartment) scores.anywhere += 6;
   if (condo) scores.anywhere += 4;
+  if (townhouse) scores.anywhere += 3;
   if (house) scores.anywhere += 1;
   if (renter) scores.anywhere += 5;
   if (deckBalcony) scores.anywhere += 4;
+  if (patio) scores.anywhere += 3;
   if (livingRoom) scores.anywhere += 3;
   if (bedroom) scores.anywhere += 2;
+  if (bathroom) scores.anywhere += 1;
+  if (garage) scores.anywhere += 2;
   if (backyard) scores.anywhere += 1;
   if (wantsPortable) scores.anywhere += 5;
   if (wantsLowInstall) scores.anywhere += 5;
@@ -284,9 +318,11 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (apartment) scores.infrared += 4;
   if (renter) scores.infrared += 3;
   if (condo) scores.infrared += 2;
+  if (townhouse) scores.infrared += 2;
   if (deckBalcony) scores.infrared += 2;
   if (livingRoom) scores.infrared += 3;
   if (bedroom) scores.infrared += 2;
+  if (bathroom) scores.infrared += 1;
   if (temp150) scores.infrared += 8;
   if (temp170) scores.infrared -= 2;
   if (temp200) scores.infrared -= 4;
@@ -302,6 +338,8 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (house) scores.saunalife += 3;
   if (owner) scores.saunalife += 3;
   if (backyard) scores.saunalife += 2;
+  if (patio) scores.saunalife += 1;
+  if (garage) scores.saunalife += 1;
   if (temp200) scores.saunalife += 5;
   if (temp230) scores.saunalife += 5;
   if (temp170) scores.saunalife += 1;
@@ -316,6 +354,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (house) scores.barrel += 3;
   if (owner) scores.barrel += 3;
   if (backyard) scores.barrel += 5;
+  if (patio) scores.barrel += 2;
   if (temp170) scores.barrel += 5;
   if (temp200) scores.barrel -= 1;
   if (temp230) scores.barrel -= 8;
@@ -329,6 +368,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (house) scores.plunge += 3;
   if (owner) scores.plunge += 3;
   if (backyard) scores.plunge += 2;
+  if (patio) scores.plunge += 1;
   if (temp200) scores.plunge += 3;
   if (temp230) scores.plunge += 5;
   if (temp170) scores.plunge += 1;
@@ -341,13 +381,12 @@ function buildRecommendations(a: Answers): RecommendationResult {
 
   const consultationStrongly =
     electricalAssessmentRecommended ||
-    multipleBudgets ||
-    a.timeline === "This week" ||
-    a.timeline === "This month" ||
+    a.timeline === "As soon as possible" ||
+    a.timeline === "Within 1 month" ||
     a.timeline === "Within 3 months";
 
   const reasons = {
-    anywhere: renter || apartment || condo
+    anywhere: renter || apartment || condo || townhouse
       ? "Best fit because you want a real sauna experience without modifying your unit. The Anywhere Sauna runs on a standard 120V outlet, so there's no electrician, no permits, and no 240V install."
       : wantsLowInstall || wantsPortable
         ? "Best fit because you want high temperatures with low installation complexity. The Anywhere Sauna is designed for plug-and-play 120V setups and can reach traditional sauna temperatures."
@@ -453,6 +492,46 @@ function buildRecommendations(a: Answers): RecommendationResult {
 
 /* ---------------- Page ---------------- */
 
+const PRIORITY_OPTIONS = [
+  "High temperatures",
+  "Portable / renter-friendly",
+  "Red-light therapy",
+  "Aesthetic design",
+  "Low installation cost",
+  "Muscle recovery",
+  "Relaxation",
+  "Daily wellness routine",
+];
+
+const PLACEMENT_OPTIONS = [
+  "Backyard",
+  "Patio",
+  "Garage",
+  "Living room",
+  "Bedroom",
+  "Bathroom",
+  "Deck / Balcony",
+];
+
+const HOME_TYPE_OPTIONS = ["Apartment", "Condo", "Townhouse", "House"];
+
+const BUDGET_OPTIONS = [
+  "Under $3,000",
+  "$3,000–$5,000",
+  "$5,000–$8,000",
+  "$8,000–$12,000",
+  "$12,000+",
+  "Not sure",
+];
+
+const TIMELINE_OPTIONS = [
+  "As soon as possible",
+  "Within 1 month",
+  "Within 3 months",
+  "Within 6 months",
+  "Just researching",
+];
+
 const SaunaCompatibilityQuiz = () => {
   useSEO({
     title: "Sauna Compatibility Quiz | Anywhere Sauna",
@@ -467,8 +546,12 @@ const SaunaCompatibilityQuiz = () => {
   >("hero");
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<Answers>(initialAnswers);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [stateVal, setStateVal] = useState("");
   const [questions, setQuestions] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -530,7 +613,7 @@ const SaunaCompatibilityQuiz = () => {
   };
 
   const toggleMulti = (
-    key: "placement" | "priorities" | "budget",
+    key: "placement" | "priorities",
     value: string
   ) => {
     setAnswers((a) => {
@@ -547,40 +630,66 @@ const SaunaCompatibilityQuiz = () => {
 
   const submitCapture = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email) return;
+    if (!firstName || !lastName || !email || !city || !stateVal) return;
     setSubmitting(true);
-    trackEvent("sauna_compatibility_quiz_submitted", {
+
+    const flat = flattenAnswers(answers);
+    const analyticsPayload = {
+      first_name: firstName,
+      last_name: lastName,
       email,
       phone: phone.trim() || undefined,
+      city,
+      state: stateVal,
       questions: questions.trim() || undefined,
-      ...flattenAnswers(answers),
-    });
+      ...flat,
+    };
+    trackEvent("sauna_compatibility_quiz_submitted", analyticsPayload);
     trackEvent("compatibility_email_submitted", {
       email,
       questions: questions.trim() || undefined,
-      ...flattenAnswers(answers),
+      ...flat,
     });
     if (phone.trim()) {
-      trackEvent("compatibility_phone_submitted", {
-        phone,
-        ...flattenAnswers(answers),
-      });
+      trackEvent("compatibility_phone_submitted", { phone, ...flat });
     }
     if (questions.trim()) {
       trackEvent("compatibility_questions_submitted", {
         questions,
-        ...flattenAnswers(answers),
+        ...flat,
       });
     }
 
     // Fire-and-forget to GoHighLevel so we capture the lead, then show results.
     try {
-      const payload = {
+      const payload: Record<string, string> = {
+        first_name: firstName,
+        last_name: lastName,
         email,
-        phone: phone.trim() || "",
-        ...flattenAnswers(answers),
-        message: questions.trim() || "",
+        phone: phone.trim(),
+        city,
+        state: stateVal,
+        home_type: answers.homeType,
+        own_rent: answers.ownRent,
+        placement: answers.placement.join(" | "),
+        outlet_within_50ft: answers.outletNearby,
+        priorities: answers.priorities.join(" | "),
+        temperature: answers.temperature,
+        budget: answers.budget,
+        timeline: answers.timeline,
+        message: questions.trim(),
+        lead_source: LEAD_SOURCE,
       };
+      if (answers.homeType === "Other" && answers.homeTypeOther.trim()) {
+        payload.home_type_other = answers.homeTypeOther.trim();
+      }
+      if (
+        answers.placement.includes("Other") &&
+        answers.placementOther.trim()
+      ) {
+        payload.placement_other = answers.placementOther.trim();
+      }
+
       fetch(GHL_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -602,7 +711,7 @@ const SaunaCompatibilityQuiz = () => {
         });
     } catch {}
 
-    trackEvent("compatibility_results_viewed", flattenAnswers(answers));
+    trackEvent("compatibility_results_viewed", flat);
     setView("results");
     setSubmitting(false);
   };
@@ -632,25 +741,23 @@ const SaunaCompatibilityQuiz = () => {
           <Card>
             {step === 1 && (
               <>
-                <QuestionHeader title="What type of home do you live in?" />
-                <div className="space-y-3">
-                  {["Apartment", "Condo", "House"].map((o) => (
+                <QuestionHeader
+                  title="What's most important to you in a sauna?"
+                  multi
+                />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {PRIORITY_OPTIONS.map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
-                      selected={answers.homeType === o}
-                      onClick={() => setSingle("homeType", o)}
+                      multi
+                      selected={answers.priorities.includes(o)}
+                      onClick={() => toggleMulti("priorities", o)}
                     />
                   ))}
-                  <OtherInput
-                    selected={answers.homeType === "Other"}
-                    onSelect={() => setSingle("homeType", "Other")}
-                    value={answers.homeTypeOther}
-                    onChange={(v) => setSingle("homeTypeOther", v)}
-                  />
                 </div>
                 <NextRow
-                  disabled={!answers.homeType}
+                  disabled={answers.priorities.length === 0}
                   onNext={advance}
                 />
               </>
@@ -658,34 +765,12 @@ const SaunaCompatibilityQuiz = () => {
 
             {step === 2 && (
               <>
-                <QuestionHeader title="Do you own or rent?" />
-                <div className="space-y-3">
-                  {["Own", "Rent"].map((o) => (
-                    <OptionButton
-                      key={o}
-                      label={o}
-                      selected={answers.ownRent === o}
-                      onClick={() => setSingle("ownRent", o)}
-                    />
-                  ))}
-                </div>
-                <NextRow disabled={!answers.ownRent} onNext={advance} />
-              </>
-            )}
-
-            {step === 3 && (
-              <>
                 <QuestionHeader
                   title="Where are you considering putting the sauna?"
                   multi
                 />
                 <div className="space-y-3">
-                {[
-                  "Living Room",
-                  "Backyard",
-                  "Bedroom",
-                  "Deck/Balcony",
-                ].map((o) => (
+                  {PLACEMENT_OPTIONS.map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
@@ -708,9 +793,9 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 4 && (
+            {step === 3 && (
               <>
-                <QuestionHeader title="Is there an electrical outlet within 50 feet?" />
+                <QuestionHeader title="Is there a standard 3-prong electrical outlet within 50 feet?" />
                 <div className="space-y-3">
                   {["Yes", "No", "Not sure"].map((o) => (
                     <OptionButton
@@ -725,42 +810,9 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 5 && (
+            {step === 4 && (
               <>
-                <QuestionHeader
-                  title="What's most important to you in a sauna?"
-                  multi
-                />
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {[
-                    "High temps (190 - 230°F)",
-                    "Portable/renter-friendly",
-                    "Red-light therapy",
-                    "Aesthetic design",
-                    "Low installation cost",
-                    "Muscle recovery",
-                    "Relaxation",
-                    "Daily wellness routine",
-                  ].map((o) => (
-                    <OptionButton
-                      key={o}
-                      label={o}
-                      multi
-                      selected={answers.priorities.includes(o)}
-                      onClick={() => toggleMulti("priorities", o)}
-                    />
-                  ))}
-                </div>
-                <NextRow
-                  disabled={answers.priorities.length === 0}
-                  onNext={advance}
-                />
-              </>
-            )}
-
-            {step === 6 && (
-              <>
-                <QuestionHeader title="What temperature would you like your sauna?" />
+                <QuestionHeader title="What temperature would you like your sauna to reach?" />
                 <div className="space-y-3">
                   {["150°F", "170°F", "200°F", "230°F", "Not sure"].map((o) => (
                     <OptionButton
@@ -775,44 +827,68 @@ const SaunaCompatibilityQuiz = () => {
               </>
             )}
 
-            {step === 7 && (
+            {step === 5 && (
               <>
-                <QuestionHeader
-                  title="What budget ranges are you considering?"
-                  multi
-                />
+                <QuestionHeader title="What type of home do you live in?" />
                 <div className="space-y-3">
-                  {[
-                    "Under $3,000",
-                    "$3,000-$5,000",
-                    "$5,000-$8,000",
-                    "$8,000-$12,000",
-                    "$12,000+",
-                  ].map((o) => (
+                  {HOME_TYPE_OPTIONS.map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
-                      multi
-                      selected={answers.budget.includes(o)}
-                      onClick={() => toggleMulti("budget", o)}
+                      selected={answers.homeType === o}
+                      onClick={() => setSingle("homeType", o)}
+                    />
+                  ))}
+                  <OtherInput
+                    selected={answers.homeType === "Other"}
+                    onSelect={() => setSingle("homeType", "Other")}
+                    value={answers.homeTypeOther}
+                    onChange={(v) => setSingle("homeTypeOther", v)}
+                  />
+                </div>
+                <NextRow disabled={!answers.homeType} onNext={advance} />
+              </>
+            )}
+
+            {step === 6 && (
+              <>
+                <QuestionHeader title="Do you own or rent your home?" />
+                <div className="space-y-3">
+                  {["Own", "Rent"].map((o) => (
+                    <OptionButton
+                      key={o}
+                      label={o}
+                      selected={answers.ownRent === o}
+                      onClick={() => setSingle("ownRent", o)}
                     />
                   ))}
                 </div>
-                <NextRow disabled={answers.budget.length === 0} onNext={advance} />
+                <NextRow disabled={!answers.ownRent} onNext={advance} />
+              </>
+            )}
+
+            {step === 7 && (
+              <>
+                <QuestionHeader title="What's your approximate budget?" />
+                <div className="space-y-3">
+                  {BUDGET_OPTIONS.map((o) => (
+                    <OptionButton
+                      key={o}
+                      label={o}
+                      selected={answers.budget === o}
+                      onClick={() => setSingle("budget", o)}
+                    />
+                  ))}
+                </div>
+                <NextRow disabled={!answers.budget} onNext={advance} />
               </>
             )}
 
             {step === 8 && (
               <>
-                <QuestionHeader title="When are you hoping to buy?" />
+                <QuestionHeader title="When are you hoping to get a sauna?" />
                 <div className="space-y-3">
-                  {[
-                    "This week",
-                    "This month",
-                    "Within 3 months",
-                    "Within 6 months",
-                    "Just researching",
-                  ].map((o) => (
+                  {TIMELINE_OPTIONS.map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
@@ -858,6 +934,32 @@ const SaunaCompatibilityQuiz = () => {
             </ul>
 
             <form onSubmit={submitCapture} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="firstName">First name *</Label>
+                  <Input
+                    id="firstName"
+                    type="text"
+                    required
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="mt-1.5"
+                    placeholder="Jane"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="lastName">Last name *</Label>
+                  <Input
+                    id="lastName"
+                    type="text"
+                    required
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="mt-1.5"
+                    placeholder="Doe"
+                  />
+                </div>
+              </div>
               <div>
                 <Label htmlFor="email">Email address *</Label>
                 <Input
@@ -869,6 +971,37 @@ const SaunaCompatibilityQuiz = () => {
                   className="mt-1.5"
                   placeholder="you@example.com"
                 />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="city">City *</Label>
+                  <Input
+                    id="city"
+                    type="text"
+                    required
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    className="mt-1.5"
+                    placeholder="San Francisco"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="state">State *</Label>
+                  <select
+                    id="state"
+                    required
+                    value={stateVal}
+                    onChange={(e) => setStateVal(e.target.value)}
+                    className="mt-1.5 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  >
+                    <option value="">Select state…</option>
+                    {US_STATES.map((s) => (
+                      <option key={s.code} value={s.name}>
+                        {s.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
               <div>
                 <Label htmlFor="phone">Phone number (optional)</Label>
@@ -899,7 +1032,14 @@ const SaunaCompatibilityQuiz = () => {
 
               <Button
                 type="submit"
-                disabled={submitting || !email}
+                disabled={
+                  submitting ||
+                  !firstName ||
+                  !lastName ||
+                  !email ||
+                  !city ||
+                  !stateVal
+                }
                 className="w-full"
                 size="lg"
               >
@@ -1425,18 +1565,23 @@ const ResultsView = ({
 /* ---------------- helpers ---------------- */
 
 function flattenAnswers(a: Answers): Record<string, string> {
-  return {
-    home_type: a.homeType + (a.homeTypeOther ? ` (${a.homeTypeOther})` : ""),
+  const out: Record<string, string> = {
+    home_type: a.homeType,
     own_rent: a.ownRent,
-    placement:
-      a.placement.join(", ") +
-      (a.placementOther ? ` | other: ${a.placementOther}` : ""),
+    placement: a.placement.join(" | "),
     outlet_within_50ft: a.outletNearby,
-    priorities: a.priorities.join(", "),
+    priorities: a.priorities.join(" | "),
     temperature: a.temperature,
-    budget: a.budget.join(", "),
+    budget: a.budget,
     timeline: a.timeline,
   };
+  if (a.homeType === "Other" && a.homeTypeOther.trim()) {
+    out.home_type_other = a.homeTypeOther.trim();
+  }
+  if (a.placement.includes("Other") && a.placementOther.trim()) {
+    out.placement_other = a.placementOther.trim();
+  }
+  return out;
 }
 
 export default SaunaCompatibilityQuiz;
