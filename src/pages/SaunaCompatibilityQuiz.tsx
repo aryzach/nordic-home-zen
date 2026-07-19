@@ -1086,7 +1086,7 @@ const HeroShell = ({ children }: { children: React.ReactNode }) => (
     <img
       src="/quiz-hero-desktop.jpg"
       alt="Lineup of sauna types with prices: Anywhere Sauna, SaunaLife, Barrel Sauna, Plunge Mini, Infrared Sauna"
-      className="absolute inset-0 w-full h-full object-cover hidden md:block"
+      className="absolute inset-0 w-full h-full object-cover object-bottom hidden md:block"
       loading="eager"
     />
     <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/30" />
