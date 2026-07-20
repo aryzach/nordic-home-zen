@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { Star, ArrowRight, Check, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,11 @@ const HERO_DESKTOP_AVIF = "/hero-desktop.avif";
 const HERO_DESKTOP_WEBP = "/hero-desktop.webp";
 const HERO_DESKTOP_JPG = "/hero-desktop.jpg";
 
-const Hero = () => {
+interface HeroProps {
+  ctaOverride?: ReactNode;
+}
+
+const Hero = ({ ctaOverride }: HeroProps) => {
   const navigate = useNavigate();
 
   const cta = (
@@ -166,7 +170,7 @@ const Hero = () => {
             The world's only plug-in sauna
           </h1>
           <div className="flex flex-col gap-3 justify-start w-full mb-6">
-            {cta}
+            {ctaOverride ?? cta}
             {emailSignup}
           </div>
           <p className="font-sans text-[15px] leading-[1.6] text-white/80 font-normal max-w-sm mb-4">
@@ -199,7 +203,7 @@ const Hero = () => {
             The world's only plug-in sauna
           </h1>
           <div className="flex flex-col md:flex-row gap-3 justify-start w-full mb-6">
-            {cta}
+            {ctaOverride ?? cta}
             {emailSignup}
           </div>
           <p className="font-sans text-[16px] leading-[1.6] text-white/80 font-normal max-w-md mb-4">
