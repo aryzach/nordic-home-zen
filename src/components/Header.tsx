@@ -12,9 +12,9 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isHome = location.pathname === "/";
+  const isHeroPage = ["/", "/schedule"].includes(location.pathname);
   const transparent = !isScrolled && !isMobileMenuOpen;
-  const lightOnHero = isHome && transparent;
+  const lightOnHero = isHeroPage && transparent;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 0);
