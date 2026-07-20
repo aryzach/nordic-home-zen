@@ -624,7 +624,7 @@ const SaunaCompatibilityQuiz = () => {
 
   const submitCapture = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!firstName || !lastName || !email || !city || !stateVal) return;
+    if (!firstName || !lastName || !email || !phone || !city || !stateVal) return;
     setSubmitting(true);
 
     const flat = flattenAnswers(answers);
@@ -966,6 +966,21 @@ const SaunaCompatibilityQuiz = () => {
                   placeholder="you@example.com"
                 />
               </div>
+              <div>
+                <Label htmlFor="phone">Phone number *</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="mt-1.5"
+                  placeholder="(555) 555-5555"
+                />
+                <p className="text-xs text-muted-foreground mt-2">
+                  We'll text your recommendations and may follow up with a quick call.
+                </p>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="city">City *</Label>
@@ -998,21 +1013,6 @@ const SaunaCompatibilityQuiz = () => {
                 </div>
               </div>
               <div>
-                <Label htmlFor="phone">Phone number (optional)</Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="mt-1.5"
-                  placeholder="(555) 555-5555"
-                />
-                <p className="text-xs text-muted-foreground mt-2">
-                  Add your phone number if you'd like us to text your
-                  recommendations.
-                </p>
-              </div>
-              <div>
                 <Label htmlFor="questions">Questions? (optional)</Label>
                 <Textarea
                   id="questions"
@@ -1031,6 +1031,7 @@ const SaunaCompatibilityQuiz = () => {
                   !firstName ||
                   !lastName ||
                   !email ||
+                  !phone ||
                   !city ||
                   !stateVal
                 }
