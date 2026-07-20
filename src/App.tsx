@@ -144,6 +144,7 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="/how-it-started" element={<HowItStarted />} />
             <Route path="/history" element={<History />} />
+            <Route path="/schedule" element={<Schedule />} />
             <Route path="/install-power" element={<InstallPower />} />
             <Route path="/policies" element={<Policies />} />
             <Route path="/reserve-your-sauna" element={<Navigate to="/deposit" replace />} />
