@@ -1031,6 +1031,7 @@ const SaunaCompatibilityQuiz = () => {
                   !firstName ||
                   !lastName ||
                   !email ||
+                  !phone ||
                   !city ||
                   !stateVal
                 }
