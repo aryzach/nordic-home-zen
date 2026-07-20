@@ -76,7 +76,7 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- LeadConnector Chat Widget (passive support chat; A2P SMS compliance) -->
-    <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a5e89c16802349a339ed9f3" data-source="WEB_USER"></script>
+    <!-- LeadConnector chat widget is injected conditionally by <LeadConnectorWidget /> in src/App.tsx.
+         It is intentionally excluded from pages that collect a phone number (A2P SMS compliance). -->
   </body>
 </html>
