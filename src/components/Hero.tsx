@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { Star, ArrowRight, Check, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -14,7 +14,11 @@ const HERO_DESKTOP_AVIF = "/hero-desktop.avif";
 const HERO_DESKTOP_WEBP = "/hero-desktop.webp";
 const HERO_DESKTOP_JPG = "/hero-desktop.jpg";
 
-const Hero = () => {
+interface HeroProps {
+  ctaOverride?: ReactNode;
+}
+
+const Hero = ({ ctaOverride }: HeroProps) => {
   const navigate = useNavigate();
 
   const cta = (
