@@ -8,6 +8,11 @@ export const seoData = {
     description: "The world's only 230°F plug-in sauna.",
     canonical: "https://getanywheresauna.com/"
   },
+  schedule: {
+    title: "Schedule a Free Sauna Compatibility Consultation | Anywhere Sauna",
+    description: "Book a free 30-minute sauna compatibility consultation with SF Sauna. Find out if the Anywhere Sauna works in your home—no electrician required.",
+    canonical: "https://getanywheresauna.com/schedule"
+  },
   pricing: {
     title: "Sauna Rental Pricing | Anywhere Sauna",
     description: "View monthly pricing for infrared and steam sauna rentals in San Francisco. Indoor and outdoor options starting at $169/mo. Free installation on 6+ month leases.",

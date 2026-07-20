@@ -16,6 +16,7 @@ const Compare = lazy(() => import("./pages/Compare"));
 const Terms = lazy(() => import("./pages/Terms"));
 const HowItStarted = lazy(() => import("./pages/HowItStarted"));
 const History = lazy(() => import("./pages/History"));
+const Schedule = lazy(() => import("./pages/Schedule"));
 
 const InstallPower = lazy(() => import("./pages/InstallPower"));
 const Policies = lazy(() => import("./pages/Policies"));
