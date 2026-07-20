@@ -624,7 +624,7 @@ const SaunaCompatibilityQuiz = () => {
 
   const submitCapture = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!firstName || !lastName || !email || !city || !stateVal) return;
+    if (!firstName || !lastName || !email || !phone || !city || !stateVal) return;
     setSubmitting(true);
 
     const flat = flattenAnswers(answers);
