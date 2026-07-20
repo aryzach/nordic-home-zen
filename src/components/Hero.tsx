@@ -33,6 +33,21 @@ const Hero = () => {
     </button>
   );
 
+  const bullets = (
+    <ul className="font-sans text-[15px] md:text-[16px] leading-[1.6] text-white/80 font-normal space-y-1.5">
+      {[
+        "180°F - 230°F",
+        "Real stones, Finnish löyly",
+        "30 minute setup time",
+      ].map((text) => (
+        <li key={text} className="flex items-start gap-2">
+          <Check className="w-4 h-4 mt-0.5 shrink-0 text-white/90" aria-hidden="true" />
+          <span>{text}</span>
+        </li>
+      ))}
+    </ul>
+  );
+
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -148,15 +163,16 @@ const Hero = () => {
         <div className="relative z-10 h-full flex flex-col justify-end items-start px-5 pb-10 pt-8 text-left">
           {rating}
           <h1 className="hero-title font-heading text-white mb-4">
-            The world's only 230°F plug-in sauna.
+            The world's only plug-in sauna
           </h1>
           <div className="flex flex-col gap-3 justify-start w-full mb-6">
             {cta}
             {emailSignup}
           </div>
-          <p className="font-sans text-[15px] leading-[1.6] text-white/80 font-normal max-w-sm">
-            Works in 97% of homes and apartments. No electrician. Confirm your compatibility with a 30-minute call.
+          <p className="font-sans text-[15px] leading-[1.6] text-white/80 font-normal max-w-sm mb-4">
+            Works in 97% of homes and apartments. No electrician.
           </p>
+          {bullets}
         </div>
       </div>
 
@@ -180,15 +196,16 @@ const Hero = () => {
         <div className="relative z-10 max-w-xl text-left ml-auto">
           {rating}
           <h1 className="hero-title font-heading text-white mb-6">
-            The world's only 230°F plug-in sauna.
+            The world's only plug-in sauna
           </h1>
           <div className="flex flex-col md:flex-row gap-3 justify-start w-full mb-6">
             {cta}
             {emailSignup}
           </div>
-          <p className="font-sans text-[16px] leading-[1.6] text-white/80 font-normal max-w-md">
-            Works in 97% of homes and apartments. No electrician. Confirm your compatibility with a 30-minute call.
+          <p className="font-sans text-[16px] leading-[1.6] text-white/80 font-normal max-w-md mb-4">
+            Works in 97% of homes and apartments. No electrician.
           </p>
+          {bullets}
         </div>
       </div>
     </section>
