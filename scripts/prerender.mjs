@@ -41,6 +41,7 @@ const routes = [
   '/sauna-compatibility-quiz',
   '/sauna-planning-consultation',
   '/specs',
+  '/schedule',
 ];
 
 
