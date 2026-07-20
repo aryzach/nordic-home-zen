@@ -103,7 +103,7 @@ const moreGroups: SpecGroup[] = [
       { label: "Maximum Heater Dimensions", value: "13″ × 22″ × 9″" },
       { label: "Recommended Power Range", value: "1.8kW – 2.0kW (for standard outlet use)" },
       { label: "Heater Mount Compatibility", value: "Wall-mounted" },
-      { label: "Heat-Up Time", value: "~40–60 minutes depending on ambient temperature" },
+      { label: "Heat-Up Time", value: "~40–90 minutes depending on ambient temperature" },
       { label: "Sauna Heater Stones", value: "Any stones made for sauna, available on Amazon" },
     ],
   },
@@ -128,7 +128,7 @@ const moreGroups: SpecGroup[] = [
   {
     title: "Setup & Installation",
     specs: [
-      { label: "Assembly Time", value: "~2 hours" },
+      { label: "Assembly Time", value: "30 minutes" },
       { label: "Tools Required", value: "Basic tools (screwdriver, drill recommended)" },
       { label: "Professional Installation", value: "Not required" },
       { label: "Movable After Assembly", value: "Yes (with disassembly)" },
@@ -137,7 +137,7 @@ const moreGroups: SpecGroup[] = [
   {
     title: "Permits & Compliance",
     specs: [
-      { label: "Permits Required", value: "No (in most residential settings)" },
+      { label: "Permits Required", value: "No" },
       { label: "Landlord Approval", value: "Typically not required" },
     ],
   },
