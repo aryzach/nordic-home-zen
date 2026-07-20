@@ -163,15 +163,16 @@ const Hero = () => {
         <div className="relative z-10 h-full flex flex-col justify-end items-start px-5 pb-10 pt-8 text-left">
           {rating}
           <h1 className="hero-title font-heading text-white mb-4">
-            The world's only 230°F plug-in sauna.
+            The world's only plug-in sauna
           </h1>
           <div className="flex flex-col gap-3 justify-start w-full mb-6">
             {cta}
             {emailSignup}
           </div>
-          <p className="font-sans text-[15px] leading-[1.6] text-white/80 font-normal max-w-sm">
-            Works in 97% of homes and apartments. No electrician. Confirm your compatibility with a 30-minute call.
+          <p className="font-sans text-[15px] leading-[1.6] text-white/80 font-normal max-w-sm mb-4">
+            Works in 97% of homes and apartments. No electrician.
           </p>
+          {bullets}
         </div>
       </div>
 
