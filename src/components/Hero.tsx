@@ -203,7 +203,7 @@ const Hero = ({ ctaOverride }: HeroProps) => {
             The world's only plug-in sauna
           </h1>
           <div className="flex flex-col md:flex-row gap-3 justify-start w-full mb-6">
-            {cta}
+            {ctaOverride ?? cta}
             {emailSignup}
           </div>
           <p className="font-sans text-[16px] leading-[1.6] text-white/80 font-normal max-w-md mb-4">
