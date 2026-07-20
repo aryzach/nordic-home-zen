@@ -12,7 +12,8 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isHeroPage = ["/", "/schedule"].includes(location.pathname);
+  const normalizedPath = location.pathname.replace(/\/+$/, "") || "/";
+  const isHeroPage = ["/", "/schedule"].includes(normalizedPath);
   const transparent = !isScrolled && !isMobileMenuOpen;
   const lightOnHero = isHeroPage && transparent;
 
@@ -61,7 +62,7 @@ const Header = () => {
   };
 
   const handleBuyNow = () => {
-    if (location.pathname === "/specs") {
+    if (normalizedPath === "/specs") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       navigate("/specs");
