@@ -1,0 +1,31 @@
+{
+  "$schema": "https://agentskills.io/schemas/index.v0.2.0.json",
+  "version": "0.2.0",
+  "site": {
+    "name": "SF Sauna",
+    "url": "https://sfsauna.com"
+  },
+  "skills": [
+    {
+      "name": "product-overview",
+      "type": "reference",
+      "description": "Overview of the SF Sauna Anywhere: specs, pricing, deposit terms, and delivery timeline.",
+      "url": "https://sfsauna.com/.well-known/agent-skills/product-overview/SKILL.md",
+      "sha256": "2485e32484526aa09a236615f48fb4dd3f929090d0376a7cca8e97fbd16cfd79"
+    },
+    {
+      "name": "compatibility-quiz",
+      "type": "workflow",
+      "description": "Help a prospect determine whether the SF Sauna Anywhere works in their home via a 2-minute quiz.",
+      "url": "https://sfsauna.com/.well-known/agent-skills/compatibility-quiz/SKILL.md",
+      "sha256": "ef29fc22da25bef8e34fa811ecadcf77ec90958cfccf4be0be3093e5a7daff8e"
+    },
+    {
+      "name": "booking-consultation",
+      "type": "workflow",
+      "description": "Book a free 30-minute video consultation with the SF Sauna team.",
+      "url": "https://sfsauna.com/.well-known/agent-skills/booking-consultation/SKILL.md",
+      "sha256": "f1e959c7804dadeed86434146853b544678d79a34824c3b2c454b49cbcc1bd7a"
+    }
+  ]
+}
