@@ -1,30 +1,28 @@
 {
-  "name": "The Anywhere Sauna API Catalog",
-  "description": "Machine-readable resources for The Anywhere Sauna by SF Sauna",
-  "links": [
+  "linkset": [
     {
-      "rel": "service-desc",
-      "href": "/.well-known/service-desc",
-      "type": "application/json",
-      "title": "Service Description"
-    },
-    {
-      "rel": "service-doc",
-      "href": "/docs/api",
-      "type": "text/html",
-      "title": "API Documentation"
-    },
-    {
-      "rel": "describedby",
-      "href": "/llms.txt",
-      "type": "text/plain",
-      "title": "Site Description for LLMs"
-    },
-    {
-      "rel": "sitemap",
-      "href": "/sitemap.xml",
-      "type": "application/xml",
-      "title": "Sitemap"
+      "anchor": "https://getanywheresauna.com",
+      "service-desc": [
+        {
+          "href": "/.well-known/service-desc",
+          "type": "application/json",
+          "title": "OpenAPI-style service description"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "/docs/api",
+          "type": "text/html",
+          "title": "Human-readable API documentation"
+        }
+      ],
+      "status": [
+        {
+          "href": "/.well-known/status",
+          "type": "application/json",
+          "title": "Service status and health endpoint"
+        }
+      ]
     }
   ]
 }

@@ -3,3 +3,9 @@
   Link: </.well-known/service-desc>; rel="service-desc"
   Link: </docs/api>; rel="service-doc"
   Link: </llms.txt>; rel="describedby"
+
+/.well-known/api-catalog
+  Content-Type: application/linkset+json
+
+/.well-known/status
+  Content-Type: application/json
