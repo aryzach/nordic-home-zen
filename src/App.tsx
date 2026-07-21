@@ -35,7 +35,6 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const OldHeroVideo = lazy(() => import("./pages/OldHeroVideo"));
 
 import { trackEvent } from "./lib/analytics";
-import LeadConnectorWidget from "./components/LeadConnectorWidget";
 
 
 const queryClient = new QueryClient();
@@ -133,7 +132,6 @@ const App = () => (
         <ScrollToTop />
         <ScrollToHash />
         <GAPageView />
-        <LeadConnectorWidget />
         <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<Index />} />
