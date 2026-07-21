@@ -1,0 +1,85 @@
+{
+  "name": "Anywhere Sauna",
+  "domain": "getanywheresauna.com",
+  "protocol": "https",
+  "description": "Anywhere Sauna makes a traditional plug-in home sauna capable of reaching approximately 230°F.",
+  "website_url": "https://getanywheresauna.com/",
+  "sitemap_url": "https://getanywheresauna.com/sitemap.xml",
+  "llms_txt_url": "https://getanywheresauna.com/llms.txt",
+  "agent_skills_index_url": "https://getanywheresauna.com/.well-known/agent-skills/index.json",
+  "api_catalog_url": "https://getanywheresauna.com/.well-known/api-catalog",
+  "service_description_url": "https://getanywheresauna.com/.well-known/service-desc",
+  "status_url": "https://getanywheresauna.com/.well-known/status",
+  "resources": [
+    {
+      "name": "Product Specs",
+      "url": "https://getanywheresauna.com/specs",
+      "type": "product_page",
+      "description": "Full product specifications, pricing, gallery, and reservation terms for the Anywhere Sauna.",
+      "formats": ["text/html"]
+    },
+    {
+      "name": "FAQ",
+      "url": "https://getanywheresauna.com/faq",
+      "type": "faq",
+      "description": "Frequently asked questions about the Anywhere Sauna, delivery, returns, and usage.",
+      "formats": ["text/html"]
+    },
+    {
+      "name": "Installation Guide",
+      "url": "https://getanywheresauna.com/installs",
+      "type": "guide",
+      "description": "Installation information, placement options, and electrical requirements for the Anywhere Sauna.",
+      "formats": ["text/html"]
+    },
+    {
+      "name": "Sauna Comparison",
+      "url": "https://getanywheresauna.com/compare",
+      "type": "comparison",
+      "description": "Comparison of the Anywhere Sauna against traditional, infrared, outdoor, barrel, and DIY saunas.",
+      "formats": ["text/html"]
+    },
+    {
+      "name": "Contact",
+      "url": "https://getanywheresauna.com/contact",
+      "type": "contact",
+      "description": "Contact form and information for reaching the Anywhere Sauna team.",
+      "formats": ["text/html"]
+    },
+    {
+      "name": "Book a Consultation",
+      "url": "https://getanywheresauna.com/schedule",
+      "type": "consultation",
+      "description": "Schedule a free 30-minute sauna compatibility consultation via Cal.com.",
+      "formats": ["text/html"]
+    },
+    {
+      "name": "Sauna Compatibility Quiz",
+      "url": "https://getanywheresauna.com/sauna-compatibility-quiz",
+      "type": "quiz",
+      "description": "A 2-minute interactive quiz to determine if the Anywhere Sauna works in a home.",
+      "formats": ["text/html"]
+    },
+    {
+      "name": "Reservation Terms",
+      "url": "https://getanywheresauna.com/terms",
+      "type": "terms",
+      "description": "Full terms and conditions for reserving an Anywhere Sauna with a refundable deposit.",
+      "formats": ["text/html"]
+    },
+    {
+      "name": "Reserve With Deposit",
+      "url": "https://getanywheresauna.com/deposit",
+      "type": "checkout",
+      "description": "Pay a $500 refundable deposit to reserve an Anywhere Sauna.",
+      "formats": ["text/html"]
+    }
+  ],
+  "notes": {
+    "mcp_server": false,
+    "a2a_agent": false,
+    "authenticated_api": false,
+    "autonomous_agent": false,
+    "public_read_only": true
+  }
+}
