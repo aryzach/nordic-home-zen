@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation — The Anywhere Sauna</title>
+    <meta name="description" content="Machine-readable resources and agent documentation for The Anywhere Sauna." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #F4EFEA;
+        --text: #1a1a1a;
+        --muted: #6b6b6b;
+        --accent: #C28C5C;
+        --border: #e0d8d0;
+      }
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Montserrat', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        margin: 0;
+        padding: 4rem 1.5rem;
+      }
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      h1 { font-weight: 600; font-size: 2rem; margin-bottom: 0.25rem; }
+      h2 { font-weight: 600; font-size: 1.25rem; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+      p { color: var(--muted); margin-bottom: 1rem; }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      code, pre {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.875rem;
+      }
+      code {
+        background: rgba(0,0,0,0.04);
+        padding: 0.125rem 0.375rem;
+        border-radius: 4px;
+      }
+      pre {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem;
+        overflow-x: auto;
+      }
+      ul { padding-left: 1.25rem; }
+      li { margin-bottom: 0.5rem; }
+      .back { display: inline-block; margin-top: 2rem; font-weight: 500; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Agent Resources</h1>
+      <p>Machine-readable resources for The Anywhere Sauna. These endpoints are advertised via <code>Link</code> response headers on the homepage per <a href="https://www.rfc-editor.org/rfc/rfc8288">RFC 8288</a>.</p>
+
+      <h2>API Catalog</h2>
+      <p><a href="/.well-known/api-catalog"><code>/.well-known/api-catalog</code></a> — JSON catalog of available service resources and relation types.</p>
+      <pre>Link: &lt;/.well-known/api-catalog&gt;; rel="api-catalog"</pre>
+
+      <h2>Service Description</h2>
+      <p><a href="/.well-known/service-desc"><code>/.well-known/service-desc</code></a> — OpenAPI-style JSON description of site resources and capabilities.</p>
+      <pre>Link: &lt;/.well-known/service-desc&gt;; rel="service-desc"</pre>
+
+      <h2>Service Documentation</h2>
+      <p><a href="/docs/api"><code>/docs/api</code></a> — Human-readable documentation for the resources advertised by the API catalog.</p>
+      <pre>Link: &lt;/docs/api&gt;; rel="service-doc"</pre>
+
+      <h2>Site Description</h2>
+      <p><a href="/llms.txt"><code>/llms.txt</code></a> — Plain-text summary of the site for LLMs and agents.</p>
+      <pre>Link: &lt;/llms.txt&gt;; rel="describedby"</pre>
+
+      <h2>Key Pages</h2>
+      <ul>
+        <li><a href="/">Homepage</a> — product overview and compatibility quiz</li>
+        <li><a href="/specs">Specs</a> — product specifications and pricing</li>
+        <li><a href="/installs">Installs</a> — real customer installation gallery</li>
+        <li><a href="/compare">Compare</a> — comparison with other sauna types</li>
+        <li><a href="/faq">FAQ</a> — frequently asked questions</li>
+        <li><a href="/contact">Contact</a> — customer inquiry form</li>
+        <li><a href="/deposit">Deposit</a> — reserve with a $500 refundable deposit</li>
+      </ul>
+
+      <a class="back" href="/">← Back to The Anywhere Sauna</a>
+    </div>
+  </body>
+</html>

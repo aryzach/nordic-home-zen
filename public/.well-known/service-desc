@@ -1,0 +1,63 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "The Anywhere Sauna",
+    "version": "1.0.0",
+    "description": "Product and contact resources for The Anywhere Sauna — a 230°F plug-in steam sauna."
+  },
+  "servers": [
+    {
+      "url": "https://getanywheresauna.com"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Homepage",
+        "description": "Product overview, lead capture, and compatibility quiz."
+      }
+    },
+    "/specs": {
+      "get": {
+        "summary": "Product specifications",
+        "description": "Detailed product specifications, pricing, and reservation options."
+      }
+    },
+    "/installs": {
+      "get": {
+        "summary": "Installation gallery",
+        "description": "Photos and details of real customer installs."
+      }
+    },
+    "/compare": {
+      "get": {
+        "summary": "Comparison page",
+        "description": "Compare The Anywhere Sauna to other sauna types."
+      }
+    },
+    "/faq": {
+      "get": {
+        "summary": "FAQ",
+        "description": "Frequently asked questions about The Anywhere Sauna."
+      }
+    },
+    "/contact": {
+      "get": {
+        "summary": "Contact form",
+        "description": "Customer inquiry form."
+      }
+    },
+    "/deposit": {
+      "get": {
+        "summary": "Reservation deposit",
+        "description": "Reserve a sauna with a $500 refundable deposit."
+      }
+    },
+    "/sauna-compatibility-quiz": {
+      "get": {
+        "summary": "Sauna compatibility quiz",
+        "description": "Interactive quiz to determine sauna compatibility."
+      }
+    }
+  }
+}
