@@ -1,16 +1,21 @@
 User-agent: Googlebot
 Allow: /
+Content-Signal: ai-train=no, search=yes, ai-input=no
 
 User-agent: Bingbot
 Allow: /
+Content-Signal: ai-train=no, search=yes, ai-input=no
 
 User-agent: Twitterbot
 Allow: /
+Content-Signal: ai-train=no, search=yes, ai-input=no
 
 User-agent: facebookexternalhit
 Allow: /
+Content-Signal: ai-train=no, search=yes, ai-input=no
 
 User-agent: *
 Allow: /
+Content-Signal: ai-train=no, search=yes, ai-input=no
 
 Sitemap: https://sfsaunarental.com/sitemap.xml
