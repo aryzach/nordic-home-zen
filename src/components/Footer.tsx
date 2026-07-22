@@ -28,7 +28,7 @@ const Footer = () => {
             </h3>
             <p className="text-[12px] tracking-[0.18em] uppercase text-white/40 mb-6">By SF Sauna</p>
             <p className="text-[14px] text-white/60 leading-relaxed mb-6 max-w-xs">
-              The world's only 230°F plug-in sauna.
+              The world's only plug-in sauna.
             </p>
             <div className="flex gap-3">
               <a
@@ -136,7 +136,7 @@ const Footer = () => {
         {/* Bottom strip */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-[12px] text-white/40">© 2024 SF Sauna. All rights reserved.</p>
-          <p className="text-[12px] text-white/40 uppercase tracking-[0.18em]">The world's only 230°F plug-in sauna</p>
+          <p className="text-[12px] text-white/40 uppercase tracking-[0.18em]">The world's only plug-in sauna</p>
         </div>
       </div>
     </footer>

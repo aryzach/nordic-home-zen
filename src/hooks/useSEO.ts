@@ -44,7 +44,7 @@ export function useSEO({ title, description, canonical }: SEOProps) {
     return () => {
       document.title = 'The Anywhere Sauna';
       if (metaDescription) {
-        metaDescription.setAttribute('content', "The world's only 230°F plug-in sauna.");
+        metaDescription.setAttribute('content', "The world's only plug-in sauna.");
       }
     };
   }, [title, description, canonical]);
