@@ -485,6 +485,73 @@ function buildRecommendations(a: Answers): RecommendationResult {
   };
 }
 
+/* ---------------- Personalized match bullets ---------------- */
+
+function buildMatchBullets(rec: Recommendation, a: Answers): string[] {
+  const bullets: string[] = [];
+  const home = a.homeType || "your home";
+  const homeLc = home.toLowerCase();
+  const renter = a.ownRent === "Rent";
+  const owner = a.ownRent === "Own";
+  const apartmentLike =
+    a.homeType === "Apartment" ||
+    a.homeType === "Condo" ||
+    a.homeType === "Townhouse";
+  const wantsLowInstall = a.priorities.includes("Low installation cost");
+  const wantsPortable = a.priorities.includes("Portable / renter-friendly");
+  const wantsHigh = a.priorities.includes("High temperatures");
+  const wantsInfrared = a.priorities.includes("Red-light therapy");
+  const wantsAesthetic = a.priorities.includes("Aesthetic design");
+  const budgetU5k =
+    a.budget === "Under $3,000" || a.budget === "$3,000–$5,000";
+  const budget5to8 = a.budget === "$5,000–$8,000";
+  const budget8plus =
+    a.budget === "$8,000–$12,000" || a.budget === "$12,000+";
+  const temp = a.temperature;
+  const backyard = a.placement.includes("Backyard");
+
+  if (rec.id === "anywhere") {
+    if (apartmentLike) bullets.push(`Works in ${homeLc}s — no modifications required`);
+    else if (a.homeType === "House") bullets.push("Works in your house without renovation");
+    if (renter || wantsPortable) bullets.push("Renter-friendly — moves with you");
+    if (wantsLowInstall) bullets.push("No electrician, permits, or 240V circuit");
+    else bullets.push("Runs on a standard 120V outlet");
+    if (temp === "200°F" || temp === "230°F" || wantsHigh)
+      bullets.push(`Reaches your desired ${temp || "high"} temperature`);
+    else if (temp) bullets.push(`Comfortably reaches ${temp}`);
+    if (budgetU5k) bullets.push("Fits inside your budget ($4,599 delivered)");
+    else if (budget5to8) bullets.push("Well under your budget at $4,599 delivered");
+  } else if (rec.id === "saunalife") {
+    if (a.homeType === "House") bullets.push("Suited for houses with dedicated space");
+    if (owner) bullets.push("You own your home — permanent install is realistic");
+    if (temp === "200°F" || temp === "230°F" || wantsHigh)
+      bullets.push(`Reaches your desired ${temp || "high"} temperature`);
+    if (budget5to8 || budget8plus) bullets.push("Fits inside your budget once install is included");
+    bullets.push("Requires a 240V circuit and licensed electrician");
+  } else if (rec.id === "barrel") {
+    if (backyard) bullets.push("Designed for backyard placement");
+    if (wantsAesthetic) bullets.push("Matches your interest in a design-forward look");
+    if (temp === "150°F" || temp === "170°F")
+      bullets.push(`Reaches your desired ${temp}`);
+    if (owner) bullets.push("Best for homeowners — permanent outdoor install");
+    bullets.push("Requires site prep and 240V electrical");
+  } else if (rec.id === "plunge") {
+    if (wantsAesthetic) bullets.push("Premium, design-forward aesthetic");
+    if (temp === "200°F" || temp === "230°F" || wantsHigh)
+      bullets.push(`Reaches your desired ${temp || "high"} temperature`);
+    if (budget8plus) bullets.push("Fits inside your higher budget range");
+    bullets.push("Requires a 240V circuit");
+  } else if (rec.id === "infrared") {
+    if (wantsInfrared) bullets.push("Matches your interest in red-light therapy");
+    if (apartmentLike) bullets.push(`Works in ${homeLc}s on a standard outlet`);
+    if (a.budget === "Under $3,000" || wantsLowInstall)
+      bullets.push("Low upfront cost, no install required");
+    bullets.push("Tops out around 150°F — not a traditional steam sauna");
+  }
+
+  return bullets.slice(0, 5);
+}
+
 /* ---------------- Page ---------------- */
 
 const PRIORITY_OPTIONS = [
