@@ -204,10 +204,10 @@ const QuestionHeader = ({
 /* ---------------- Recommendation engine ---------------- */
 
 type Tier =
-  | "Excellent Match"
-  | "Good Match"
+  | "Excellent Fit"
+  | "Very Good Fit"
   | "Possible Fit"
-  | "Not Recommended";
+  | "Poor Fit";
 
 type Recommendation = {
   id: "anywhere" | "saunalife" | "barrel" | "plunge" | "infrared";
@@ -235,11 +235,11 @@ export type RecommendationResult = {
 };
 
 function tierFromScore(score: number, disqualified: boolean): Tier {
-  if (disqualified) return "Not Recommended";
-  if (score >= 22) return "Excellent Match";
-  if (score >= 14) return "Good Match";
+  if (disqualified) return "Poor Fit";
+  if (score >= 22) return "Excellent Fit";
+  if (score >= 14) return "Very Good Fit";
   if (score >= 6) return "Possible Fit";
-  return "Not Recommended";
+  return "Poor Fit";
 }
 
 function buildRecommendations(a: Answers): RecommendationResult {
