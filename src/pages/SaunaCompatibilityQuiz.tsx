@@ -204,10 +204,10 @@ const QuestionHeader = ({
 /* ---------------- Recommendation engine ---------------- */
 
 type Tier =
-  | "Excellent Match"
-  | "Good Match"
+  | "Excellent Fit"
+  | "Very Good Fit"
   | "Possible Fit"
-  | "Not Recommended";
+  | "Poor Fit";
 
 type Recommendation = {
   id: "anywhere" | "saunalife" | "barrel" | "plunge" | "infrared";
@@ -235,11 +235,11 @@ export type RecommendationResult = {
 };
 
 function tierFromScore(score: number, disqualified: boolean): Tier {
-  if (disqualified) return "Not Recommended";
-  if (score >= 22) return "Excellent Match";
-  if (score >= 14) return "Good Match";
+  if (disqualified) return "Poor Fit";
+  if (score >= 22) return "Excellent Fit";
+  if (score >= 14) return "Very Good Fit";
   if (score >= 6) return "Possible Fit";
-  return "Not Recommended";
+  return "Poor Fit";
 }
 
 function buildRecommendations(a: Answers): RecommendationResult {
@@ -483,6 +483,73 @@ function buildRecommendations(a: Answers): RecommendationResult {
     allDisqualified: false,
     electricalAssessmentRecommended,
   };
+}
+
+/* ---------------- Personalized match bullets ---------------- */
+
+function buildMatchBullets(rec: Recommendation, a: Answers): string[] {
+  const bullets: string[] = [];
+  const home = a.homeType || "your home";
+  const homeLc = home.toLowerCase();
+  const renter = a.ownRent === "Rent";
+  const owner = a.ownRent === "Own";
+  const apartmentLike =
+    a.homeType === "Apartment" ||
+    a.homeType === "Condo" ||
+    a.homeType === "Townhouse";
+  const wantsLowInstall = a.priorities.includes("Low installation cost");
+  const wantsPortable = a.priorities.includes("Portable / renter-friendly");
+  const wantsHigh = a.priorities.includes("High temperatures");
+  const wantsInfrared = a.priorities.includes("Red-light therapy");
+  const wantsAesthetic = a.priorities.includes("Aesthetic design");
+  const budgetU5k =
+    a.budget === "Under $3,000" || a.budget === "$3,000–$5,000";
+  const budget5to8 = a.budget === "$5,000–$8,000";
+  const budget8plus =
+    a.budget === "$8,000–$12,000" || a.budget === "$12,000+";
+  const temp = a.temperature;
+  const backyard = a.placement.includes("Backyard");
+
+  if (rec.id === "anywhere") {
+    if (apartmentLike) bullets.push(`Works in ${homeLc}s — no modifications required`);
+    else if (a.homeType === "House") bullets.push("Works in your house without renovation");
+    if (renter || wantsPortable) bullets.push("Renter-friendly — moves with you");
+    if (wantsLowInstall) bullets.push("No electrician, permits, or 240V circuit");
+    else bullets.push("Runs on a standard 120V outlet");
+    if (temp === "200°F" || temp === "230°F" || wantsHigh)
+      bullets.push(`Reaches your desired ${temp || "high"} temperature`);
+    else if (temp) bullets.push(`Comfortably reaches ${temp}`);
+    if (budgetU5k) bullets.push("Fits inside your budget ($4,599 delivered)");
+    else if (budget5to8) bullets.push("Well under your budget at $4,599 delivered");
+  } else if (rec.id === "saunalife") {
+    if (a.homeType === "House") bullets.push("Suited for houses with dedicated space");
+    if (owner) bullets.push("You own your home — permanent install is realistic");
+    if (temp === "200°F" || temp === "230°F" || wantsHigh)
+      bullets.push(`Reaches your desired ${temp || "high"} temperature`);
+    if (budget5to8 || budget8plus) bullets.push("Fits inside your budget once install is included");
+    bullets.push("Requires a 240V circuit and licensed electrician");
+  } else if (rec.id === "barrel") {
+    if (backyard) bullets.push("Designed for backyard placement");
+    if (wantsAesthetic) bullets.push("Matches your interest in a design-forward look");
+    if (temp === "150°F" || temp === "170°F")
+      bullets.push(`Reaches your desired ${temp}`);
+    if (owner) bullets.push("Best for homeowners — permanent outdoor install");
+    bullets.push("Requires site prep and 240V electrical");
+  } else if (rec.id === "plunge") {
+    if (wantsAesthetic) bullets.push("Premium, design-forward aesthetic");
+    if (temp === "200°F" || temp === "230°F" || wantsHigh)
+      bullets.push(`Reaches your desired ${temp || "high"} temperature`);
+    if (budget8plus) bullets.push("Fits inside your higher budget range");
+    bullets.push("Requires a 240V circuit");
+  } else if (rec.id === "infrared") {
+    if (wantsInfrared) bullets.push("Matches your interest in red-light therapy");
+    if (apartmentLike) bullets.push(`Works in ${homeLc}s on a standard outlet`);
+    if (a.budget === "Under $3,000" || wantsLowInstall)
+      bullets.push("Low upfront cost, no install required");
+    bullets.push("Tops out around 150°F — not a traditional steam sauna");
+  }
+
+  return bullets.slice(0, 5);
 }
 
 /* ---------------- Page ---------------- */
@@ -1182,10 +1249,10 @@ const OtherInput = ({
 );
 
 const TIER_CLASSES: Record<Tier, string> = {
-  "Excellent Match": "bg-emerald-700 text-white",
-  "Good Match": "bg-emerald-600 text-white",
+  "Excellent Fit": "bg-emerald-700 text-white",
+  "Very Good Fit": "bg-emerald-600 text-white",
   "Possible Fit": "bg-amber-500 text-white",
-  "Not Recommended": "bg-muted text-muted-foreground",
+  "Poor Fit": "bg-muted text-muted-foreground",
 };
 
 const TierBadge = ({ tier }: { tier: Tier }) => (
@@ -1305,25 +1372,171 @@ const ElectricalNote = () => (
   </div>
 );
 
-const ElectricalAssessmentBanner = ({
+const CheckLi = ({ children }: { children: React.ReactNode }) => (
+  <li className="flex items-start gap-2 text-[15px] text-foreground">
+    <CheckCircle2 size={16} className="mt-1 shrink-0 text-emerald-600" />
+    <span>{children}</span>
+  </li>
+);
+
+const ConfidenceCard = ({ answers }: { answers: Answers }) => {
+  const items: string[] = [];
+  if (answers.homeType) items.push("Home type");
+  if (answers.placement.length) items.push("Placement");
+  if (answers.budget) items.push("Budget");
+  if (answers.temperature) items.push("Desired temperature");
+  if (answers.priorities.length) items.push("Lifestyle goals");
+  return (
+    <div className="bg-card border border-border rounded-2xl p-6 md:p-8 mb-10">
+      <div className="flex items-center justify-between gap-4 mb-3">
+        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+          Assessment confidence
+        </p>
+        <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-700 text-white text-xs uppercase tracking-[0.15em]">
+          High
+        </span>
+      </div>
+      <p className="text-[15px] leading-relaxed text-foreground mb-2">
+        Based on your answers we can narrow your options considerably.
+      </p>
+      <p className="text-[15px] leading-relaxed text-muted-foreground mb-5">
+        However, one important factor still needs to be verified before making a
+        final recommendation.
+      </p>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-6 mb-5">
+        {items.map((i) => (
+          <CheckLi key={i}>{i}</CheckLi>
+        ))}
+      </ul>
+      <div className="pt-4 border-t border-border">
+        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
+          Remaining uncertainty
+        </p>
+        <div className="flex items-start gap-2 text-[15px] text-foreground">
+          <Zap size={16} className="mt-1 shrink-0 text-amber-600" />
+          <span>Available electrical service</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const RankStripe = ({ rank }: { rank: number }) => {
+  const label = rank === 1 ? "1st recommendation" : rank === 2 ? "2nd recommendation" : rank === 3 ? "3rd recommendation" : `${rank}th`;
+  return (
+    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+      {label}
+    </p>
+  );
+};
+
+const RecommendationCard = ({
+  rec,
+  rank,
+  answers,
+  primary,
+  showElectricalNote,
+}: {
+  rec: Recommendation;
+  rank: number;
+  answers: Answers;
+  primary?: boolean;
+  showElectricalNote?: boolean;
+}) => {
+  const bullets = buildMatchBullets(rec, answers);
+  return (
+    <div
+      className={`bg-card rounded-2xl transition-shadow ${
+        primary
+          ? "border border-[#171717] p-6 md:p-10 shadow-sm"
+          : "border border-border p-6 md:p-8"
+      }`}
+    >
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5">
+        <div>
+          <RankStripe rank={rank} />
+          <h3
+            className={`font-semibold leading-tight mt-2 ${
+              primary ? "text-[26px] md:text-[32px]" : "text-[20px] md:text-[24px]"
+            }`}
+          >
+            {rec.name}
+          </h3>
+          <p className="text-[14px] text-muted-foreground mt-1">
+            {rec.totalCost} · {rec.plugIn ? "Plug-in" : "Requires 240V"}
+          </p>
+        </div>
+        <TierBadge tier={rec.tier} />
+      </div>
+
+      {bullets.length > 0 && (
+        <div className="mb-6">
+          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-3">
+            Why it matches your answers
+          </p>
+          <ul className="space-y-2">
+            {bullets.map((b) => (
+              <CheckLi key={b}>{b}</CheckLi>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="border-t border-border pt-4">
+        <Row label="Expected temps" value={rec.tempRange} />
+        <Row label="Install complexity" value={rec.installComplexity} />
+        <Row label="Est. install cost" value={rec.estInstallCost} />
+        <Row label="All-in cost" value={rec.totalCost} />
+        <Row label="Best use case" value={rec.useCase} />
+      </div>
+
+      {showElectricalNote && rec.requires240V && <ElectricalNote />}
+    </div>
+  );
+};
+
+const FinalCompatibilityCheck = ({
   onBookConsult,
 }: {
   onBookConsult: () => void;
 }) => (
-  <div className="mb-8 rounded-2xl border border-[#171717] bg-[#171717] text-white p-6 md:p-10 shadow-xl">
-    <div className="flex items-center gap-3 mb-4">
-      <div className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center">
-        <Zap size={20} />
-      </div>
-      <h2 className="text-[22px] md:text-[28px] leading-[1.2] font-semibold text-white">
-        Recommended: Schedule an Electrical Assessment
-      </h2>
-    </div>
-    <p className="text-white/85 leading-relaxed mb-3">
-      Your home's available electrical power is often the #1 factor in determining which sauna options will work in your space.
+  <div className="mt-12 rounded-2xl border border-[#171717] bg-[#171717] text-white p-8 md:p-12">
+    <p className="text-xs uppercase tracking-[0.2em] text-white/70 mb-3">
+      Final compatibility check
     </p>
-    <p className="text-white/85 leading-relaxed mb-6">
-      A quick electrical assessment can often save thousands of dollars and eliminate unsuitable options.
+    <h2 className="text-[26px] md:text-[34px] leading-[1.15] font-semibold text-white mb-4">
+      One thing still needs to be verified.
+    </h2>
+    <p className="text-white/85 leading-relaxed mb-3 max-w-2xl">
+      Everything in your assessment points toward these recommendations.
+    </p>
+    <p className="text-white/85 leading-relaxed mb-6 max-w-2xl">
+      Before spending thousands of dollars on a sauna, we recommend confirming
+      your home's electrical setup.
+    </p>
+    <p className="text-white/70 text-[13px] uppercase tracking-[0.18em] mb-3">
+      In a quick video call we'll determine
+    </p>
+    <ul className="space-y-2 mb-6 max-w-2xl">
+      {[
+        "Whether your existing outlets work",
+        "Whether a dedicated circuit is needed",
+        "Which sauna gives you the best value",
+        "Whether there's an even better option than our recommendation",
+        "Any installation issues we notice",
+      ].map((t) => (
+        <li
+          key={t}
+          className="flex items-start gap-2 text-[15px] text-white/90"
+        >
+          <CheckCircle2 size={16} className="mt-1 shrink-0 text-emerald-400" />
+          <span>{t}</span>
+        </li>
+      ))}
+    </ul>
+    <p className="text-white/85 leading-relaxed mb-6 max-w-2xl">
+      <span className="font-semibold text-white">Bottom line: </span>
+      We'll tell you what we'd buy if this were our own house.
     </p>
     <Button
       onClick={onBookConsult}
@@ -1331,97 +1544,125 @@ const ElectricalAssessmentBanner = ({
       variant="secondary"
       className="max-w-full whitespace-normal h-auto py-3 text-center"
     >
-      Schedule Free Electrical Assessment
+      Verify My Home Compatibility
       <ExternalLink size={16} />
     </Button>
   </div>
 );
 
-const BestMatchCard = ({
-  rec,
-  onCardClick,
-  showElectricalNote,
-}: {
-  rec: Recommendation;
-  onCardClick: () => void;
-  showElectricalNote?: boolean;
-}) => (
-  <div
-    role="button"
-    tabIndex={0}
-    onClick={onCardClick}
-    onKeyDown={(e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        onCardClick();
-      }
-    }}
-    className="bg-card border border-[#171717] rounded-2xl p-6 md:p-10 cursor-pointer transition-shadow hover:shadow-lg"
-  >
-    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
-      <div>
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
-          Top recommendation
-        </p>
-        <h3 className="text-[26px] md:text-[32px] font-semibold leading-tight">
-          {rec.name}
-        </h3>
+const ComparisonTable = () => {
+  const cols = [
+    { name: "Anywhere Sauna", highlight: true },
+    { name: "SaunaLife" },
+    { name: "Almost Heaven" },
+    { name: "Traditional custom" },
+  ];
+  const rows: { label: string; values: string[] }[] = [
+    { label: "Price", values: ["$4,599", "$4,500–$6,000", "$5,000–$8,000", "$15,000+"] },
+    { label: "Expected install cost", values: ["$0", "$800–$2,500", "$1,500–$4,000", "$5,000–$20,000"] },
+    { label: "Electrician needed", values: ["No", "Yes (240V)", "Yes (240V)", "Yes"] },
+    { label: "Expected temperature", values: ["170–230°F", "170–230°F", "160–200°F", "180–230°F"] },
+    { label: "Indoor", values: ["Yes", "Yes", "Limited", "Yes"] },
+    { label: "Outdoor", values: ["Yes", "Yes", "Yes", "Yes"] },
+    { label: "Apartment friendly", values: ["Yes", "No", "No", "No"] },
+    { label: "Moveable", values: ["Yes", "No", "No", "No"] },
+    { label: "Est. total installed cost", values: ["$4,599", "$5,300–$8,500", "$6,500–$12,000", "$20,000–$35,000"] },
+  ];
+  return (
+    <div className="mt-12">
+      <p className="text-xs uppercase tracking-[0.2em] text-white/70 mb-3">
+        How the options compare
+      </p>
+      <h2 className="text-[24px] md:text-[30px] font-semibold text-white mb-6">
+        Side-by-side comparison
+      </h2>
+      <div className="bg-card border border-border rounded-2xl overflow-x-auto">
+        <table className="w-full text-left text-[14px]">
+          <thead>
+            <tr className="border-b border-border">
+              <th className="p-4 font-normal text-xs uppercase tracking-[0.15em] text-muted-foreground w-48">
+                &nbsp;
+              </th>
+              {cols.map((c) => (
+                <th
+                  key={c.name}
+                  className={`p-4 font-semibold ${
+                    c.highlight ? "text-foreground" : "text-muted-foreground"
+                  }`}
+                >
+                  {c.name}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.label} className="border-b border-border last:border-b-0">
+                <td className="p-4 text-xs uppercase tracking-[0.15em] text-muted-foreground align-top">
+                  {r.label}
+                </td>
+                {r.values.map((v, i) => (
+                  <td
+                    key={i}
+                    className={`p-4 align-top ${
+                      cols[i].highlight ? "text-foreground font-medium" : "text-muted-foreground"
+                    }`}
+                  >
+                    {v}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      <TierBadge tier={rec.tier} />
     </div>
-    <div className="mb-6">
-      <Row label="Expected temps" value={rec.tempRange} />
-      <Row label="Install complexity" value={rec.installComplexity} />
-      <Row label="Est. install cost" value={rec.estInstallCost} />
-      <Row label="All-in cost" value={rec.totalCost} />
-      <Row label="Best use case" value={rec.useCase} />
-    </div>
-    <p className="text-[15px] leading-relaxed text-foreground mb-2">
-      <span className="font-semibold">Why we recommended this: </span>
-      {rec.whyFit}
+  );
+};
+
+const StillNotSureCTA = ({ onBookConsult }: { onBookConsult: () => void }) => (
+  <div className="mt-12 rounded-2xl border border-border bg-card p-8 md:p-12 text-center">
+    <h2 className="text-[26px] md:text-[34px] font-semibold mb-3">
+      Still Not Sure?
+    </h2>
+    <p className="text-muted-foreground max-w-xl mx-auto mb-2">
+      Every home is different.
     </p>
-    {showElectricalNote && rec.requires240V && <ElectricalNote />}
+    <p className="text-muted-foreground max-w-xl mx-auto mb-6">
+      We'll review your assessment together and tell you honestly whether these
+      recommendations are correct — or if we'd recommend something else.
+    </p>
+    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-6">
+      Free · 10 minute video call
+    </p>
+    <Button
+      onClick={onBookConsult}
+      size="lg"
+      className="max-w-full whitespace-normal h-auto py-3 text-center"
+    >
+      Review My Home Assessment
+      <ExternalLink size={16} />
+    </Button>
   </div>
 );
 
-const OtherOptionCard = ({
-  rec,
-  onCardClick,
-  showElectricalNote,
-}: {
-  rec: Recommendation;
-  onCardClick: () => void;
-  showElectricalNote?: boolean;
-}) => (
-  <div
-    role="button"
-    tabIndex={0}
-    onClick={onCardClick}
-    onKeyDown={(e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        onCardClick();
-      }
-    }}
-    className="bg-card border border-border rounded-2xl p-6 cursor-pointer transition-colors hover:border-[#171717]"
-  >
-    <div className="flex items-start justify-between gap-3 mb-3">
-      <h3 className="text-[20px] md:text-[22px] font-semibold leading-tight">
-        {rec.name}
-      </h3>
-      <TierBadge tier={rec.tier} />
-    </div>
-    <div className="mb-3">
-      <Row label="Expected temps" value={rec.tempRange} />
-      <Row label="Install complexity" value={rec.installComplexity} />
-      <Row label="Est. install cost" value={rec.estInstallCost} />
-      <Row label="All-in cost" value={rec.totalCost} />
-      <Row label="Best use case" value={rec.useCase} />
-    </div>
-    <p className="text-[14px] text-muted-foreground leading-relaxed">
-      {rec.whyFit}
+const TrustSection = () => (
+  <div className="mt-12 mb-4">
+    <p className="text-xs uppercase tracking-[0.2em] text-white/70 mb-3 text-center">
+      Why people book the assessment
     </p>
-    {showElectricalNote && rec.requires240V && <ElectricalNote />}
+    <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          "Average homeowner saves thousands by avoiding the wrong sauna",
+          "No obligation",
+          "We'll recommend competitors if they're genuinely a better fit",
+          "Used by homeowners, renters and apartment owners across the US",
+        ].map((t) => (
+          <CheckLi key={t}>{t}</CheckLi>
+        ))}
+      </ul>
+    </div>
   </div>
 );
 
@@ -1429,7 +1670,7 @@ const ResultsView = ({
   result,
   answers,
   onBookConsult,
-  onCompareClick,
+  onCompareClick: _onCompareClick,
 }: {
   result: RecommendationResult;
   answers: Answers;
@@ -1438,7 +1679,6 @@ const ResultsView = ({
 }) => {
   const {
     recommendations,
-    consultationStrongly,
     allDisqualified,
     electricalAssessmentRecommended,
   } = result;
@@ -1448,7 +1688,7 @@ const ResultsView = ({
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <p className="text-xs uppercase tracking-[0.2em] text-white mb-3">
-            Your personalized results
+            Your home sauna assessment
           </p>
           <h1 className="text-[32px] md:text-[44px] leading-[1.1] font-semibold mb-3 text-white">
             Let's Find a Creative Fit
@@ -1457,7 +1697,7 @@ const ResultsView = ({
         <div className="bg-card border border-border rounded-2xl p-6 md:p-10 text-center">
           <p className="text-[16px] leading-relaxed text-foreground mb-6">
             No sauna appears to be an ideal fit based on your current setup and
-            goals. Schedule a consultation and we'll see if there's a creative
+            goals. Book a video call and we'll see if there's a creative
             solution for your home.
           </p>
           <Button
@@ -1465,7 +1705,7 @@ const ResultsView = ({
             size="lg"
             className="max-w-full whitespace-normal h-auto py-3 text-center"
           >
-            Book Free 30-Minute Consultation
+            Verify My Home Compatibility
             <ExternalLink size={16} />
           </Button>
         </div>
@@ -1474,88 +1714,56 @@ const ResultsView = ({
   }
 
   const eligible = recommendations.filter((r) => !r.disqualified);
-  const disqualified = recommendations.filter((r) => r.disqualified);
-  const [best, second, third, ...restEligible] = eligible;
-  const topThree = [best, second, third].filter(Boolean);
-  const others = [...restEligible, ...disqualified];
+  const [best, ...rest] = eligible;
+  const topThree = [best, ...rest].filter(Boolean).slice(0, 3);
 
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="text-center mb-8">
-        <p className="text-xs uppercase tracking-[0.2em] text-white mb-3">
-          Your personalized results
+      {/* SECTION 1 — Hero */}
+      <div className="text-center mb-10">
+        <p className="text-xs uppercase tracking-[0.2em] text-white/80 mb-3">
+          Your home sauna assessment
         </p>
-        <h1 className="text-[32px] md:text-[44px] leading-[1.1] font-semibold mb-3 text-white">
-          Your Personalized Sauna Recommendations
+        <h1 className="text-[32px] md:text-[44px] leading-[1.1] font-semibold mb-4 text-white">
+          Your Home Sauna Assessment
         </h1>
-        <p className="text-white">
-          Based on your home, electrical setup, budget, and goals.
+        <p className="text-white/85 max-w-2xl mx-auto leading-relaxed">
+          Based on your home, electrical setup, desired temperature, budget, and
+          goals, here are the sauna options most likely to work for your space.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 mb-8">
+      <ConfidenceCard answers={answers} />
+
+      {/* SECTION 2 + 4 — Recommendations with personalized bullets and specs */}
+      <div className="space-y-6">
         {topThree.map((rec, idx) => (
-          <SummaryCard
+          <RecommendationCard
             key={rec.name}
             rec={rec}
             rank={idx + 1}
-            onCardClick={onCompareClick}
+            answers={answers}
+            primary={idx === 0}
+            showElectricalNote={electricalAssessmentRecommended}
           />
         ))}
       </div>
 
-      {electricalAssessmentRecommended && (
-        <ElectricalAssessmentBanner onBookConsult={onBookConsult} />
-      )}
+      {/* SECTION 3 — Final Compatibility Check (moved below recommendations) */}
+      <FinalCompatibilityCheck onBookConsult={onBookConsult} />
 
-      {best && (
-        <BestMatchCard
-          rec={best}
-          onCardClick={onCompareClick}
-          showElectricalNote={electricalAssessmentRecommended}
-        />
-      )}
+      {/* SECTION 5 — Comparison table */}
+      <ComparisonTable />
 
-      {topThree.slice(1).length > 0 && (
-        <div className="space-y-4 mt-6">
-          {topThree.slice(1).map((r) => (
-            <OtherOptionCard
-              key={r.name}
-              rec={r}
-              onCardClick={onCompareClick}
-              showElectricalNote={electricalAssessmentRecommended}
-            />
-          ))}
-        </div>
-      )}
+      {/* SECTION 6 — Bottom CTA */}
+      <StillNotSureCTA onBookConsult={onBookConsult} />
 
-      {others.length > 0 && (
-        <>
-          <h2 className="text-[22px] md:text-[28px] font-semibold mt-14 mb-5 text-center text-white">
-            Other Options To Consider
-          </h2>
-          <div className="space-y-4">
-            {others.map((r) => (
-              <OtherOptionCard
-                key={r.name}
-                rec={r}
-                onCardClick={onCompareClick}
-                showElectricalNote={electricalAssessmentRecommended}
-              />
-            ))}
-          </div>
-        </>
-      )}
-
-      <ConsultCTA
-        emphasized={consultationStrongly}
-        heading="Want a Second Opinion?"
-        body="Book a free 30-minute consultation and we'll review your home, electrical setup, and goals together."
-        onBookConsult={onBookConsult}
-      />
+      {/* SECTION 7 — Trust */}
+      <TrustSection />
     </div>
   );
 };
+
 
 /* ---------------- helpers ---------------- */
 
