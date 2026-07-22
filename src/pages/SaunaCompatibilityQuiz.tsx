@@ -1182,10 +1182,10 @@ const OtherInput = ({
 );
 
 const TIER_CLASSES: Record<Tier, string> = {
-  "Excellent Match": "bg-emerald-700 text-white",
-  "Good Match": "bg-emerald-600 text-white",
+  "Excellent Fit": "bg-emerald-700 text-white",
+  "Very Good Fit": "bg-emerald-600 text-white",
   "Possible Fit": "bg-amber-500 text-white",
-  "Not Recommended": "bg-muted text-muted-foreground",
+  "Poor Fit": "bg-muted text-muted-foreground",
 };
 
 const TierBadge = ({ tier }: { tier: Tier }) => (
