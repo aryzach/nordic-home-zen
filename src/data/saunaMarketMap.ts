@@ -252,7 +252,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Best possible ergonomics", "Fully customized", "Architecturally integrated"],
     cons: ["Most expensive", "Contractor quality risk", "Difficult to reverse or move"],
     examples: [],
-    label: { offsetX: -14, offsetY: 10, anchor: "end" },
+    label: { offsetX: -14, offsetY: -30, anchor: "end" },
   },
   {
     id: "infrared-sauna",
