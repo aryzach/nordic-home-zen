@@ -384,7 +384,7 @@ export const categoryBlobs: CategoryBlob[] = [
     label: "Custom-built sauna",
     displayLabel: "CUSTOM BUILD",
     labelX: 86,
-    labelY: 88,
+    labelY: 106,
     centerX: 91,
     centerY: 94,
     radiusX: 10,
