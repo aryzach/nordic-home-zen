@@ -131,11 +131,9 @@ const SaunaMarketMap = () => {
                   // Base radius: featured slightly larger; non-featured reduced ~23%
                   const baseR = isFeatured ? 2.0 : 1.2;
                   const r = baseR + (isActive ? 0.55 : 0);
-                  // Suppress the "Traditional Prefab" broad-category label entirely
-                  const suppressLabel = o.id === "premium-prefab-sauna";
                   // Show label if featured, selected, or currently hovered/focused
-                  const showLabel =
-                    !suppressLabel && (isFeatured || isSelected || isHovered);
+                  const showLabel = isFeatured || isSelected || isHovered;
+
 
                   // Pill dimensions estimate (fontSize 2.5, char ~1.35 wide)
                   const labelText = o.name;
