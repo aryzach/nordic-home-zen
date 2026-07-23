@@ -177,6 +177,19 @@ const SaunaMarketMap = () => {
                     >
                       {/* Larger invisible hit target for touch */}
                       <circle cx={cx} cy={cy} r={4} fill="transparent" />
+                      {/* Selected outer ring for non-featured dots */}
+                      {isSelected && !isFeatured && (
+                        <circle
+                          cx={cx}
+                          cy={cy}
+                          r={r + 1.2}
+                          fill="none"
+                          stroke="hsl(0,0%,20%)"
+                          strokeWidth={0.35}
+                          opacity={0.55}
+                        />
+                      )}
+
 
                       <circle
                         cx={cx}
