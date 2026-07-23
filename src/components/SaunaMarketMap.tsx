@@ -119,29 +119,6 @@ const SaunaMarketMap = () => {
                   ))}
                 </g>
 
-                {/* Anywhere halo — soft translucent */}
-                {saunaOptions
-                  .filter((o) => o.featured)
-                  .map((o) => (
-                    <g key={`halo-${o.id}`}>
-                      <circle
-                        cx={toX(o.complexityScore)}
-                        cy={toY(o.experienceScore)}
-                        r={5}
-                        fill="hsl(31, 64%, 55%)"
-                        opacity={0.18}
-                      />
-                      <circle
-                        cx={toX(o.complexityScore)}
-                        cy={toY(o.experienceScore)}
-                        r={3.2}
-                        fill="none"
-                        stroke="hsl(31, 64%, 45%)"
-                        strokeWidth={0.35}
-                        opacity={0.6}
-                      />
-                    </g>
-                  ))}
 
                 {/* Dots + labels */}
                 {saunaOptions.map((o) => {
@@ -200,29 +177,7 @@ const SaunaMarketMap = () => {
                     >
                       {/* Larger invisible hit target for touch */}
                       <circle cx={cx} cy={cy} r={4} fill="transparent" />
-                      {/* Selected outer ring */}
-                      {isSelected && !isFeatured && (
-                        <circle
-                          cx={cx}
-                          cy={cy}
-                          r={r + 1.2}
-                          fill="none"
-                          stroke="hsl(0,0%,20%)"
-                          strokeWidth={0.35}
-                          opacity={0.55}
-                        />
-                      )}
-                      {isSelected && isFeatured && (
-                        <circle
-                          cx={cx}
-                          cy={cy}
-                          r={r + 1.4}
-                          fill="none"
-                          stroke="hsl(31, 64%, 40%)"
-                          strokeWidth={0.5}
-                          opacity={0.9}
-                        />
-                      )}
+
                       <circle
                         cx={cx}
                         cy={cy}
