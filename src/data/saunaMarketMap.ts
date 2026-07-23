@@ -126,7 +126,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Real heater and stones", "Recognizable traditional format", "Good outdoor fit"],
     cons: ["Barrel geometry can create cold feet", "Usually requires 240 V", "Hard to move"],
     examples: [{ brand: "Almost Heaven", model: "Representative barrel model", url: "https://almostheaven.com" }],
-    label: { offsetX: 14, offsetY: -10, anchor: "start" },
+    label: { offsetX: 14, offsetY: -12, anchor: "start" },
   },
   {
     id: "costco-barrel-sauna",
@@ -165,7 +165,7 @@ export const saunaOptions: SaunaOption[] = [
         url: "https://www.costco.com/CatalogSearch?dept=All&keyword=sauna",
       },
     ],
-    label: { offsetX: 16, offsetY: -8, anchor: "start" },
+    label: { offsetX: -14, offsetY: 12, anchor: "end" },
   },
   {
     id: "saunalife",
@@ -174,7 +174,7 @@ export const saunaOptions: SaunaOption[] = [
     category: "premium-prefab-sauna",
     classification: "Specific brand",
     experienceScore: 85,
-    complexityScore: 80,
+    complexityScore: 84,
     costs: {
       product: { low: 3500, high: 20000 },
       shipping: { low: 950, high: 950 },
@@ -194,7 +194,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Strong materials", "Excellent sauna potential", "Indoor and outdoor formats"],
     cons: ["High total cost", "Freight and access complexity", "Semi-permanent"],
     examples: [{ brand: "SaunaLife", model: "Representative premium prefab", url: "https://saunalife.com" }],
-    label: { offsetX: 16, offsetY: -6, anchor: "start" },
+    label: { offsetX: 16, offsetY: -4, anchor: "start" },
   },
   {
     id: "plunge-sauna",
@@ -202,8 +202,8 @@ export const saunaOptions: SaunaOption[] = [
     type: "Traditional prefab",
     category: "premium-prefab-sauna",
     classification: "Specific brand",
-    experienceScore: 87,
-    complexityScore: 68,
+    experienceScore: 84,
+    complexityScore: 64,
     costs: {
       product: { low: 10000, high: 20000 },
       shipping: { low: 0, high: 950 },
@@ -223,15 +223,15 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["High heat", "Strong design", "Integrated consumer experience"],
     cons: ["Premium price", "Large footprint", "240 V and delivery complexity"],
     examples: [{ brand: "Plunge", model: "Sauna", url: "https://plunge.com/pages/sauna" }],
-    label: { offsetX: -16, offsetY: -6, anchor: "end" },
+    label: { offsetX: -16, offsetY: -4, anchor: "end" },
   },
   {
     id: "premium-prefab-sauna",
-    name: "Typical Premium Prefab",
+    name: "Traditional Prefab",
     type: "Traditional prefab",
     category: "premium-prefab-sauna",
     classification: "Broad category",
-    experienceScore: 79,
+    experienceScore: 74,
     complexityScore: 83,
     costs: {
       product: { low: 10000, high: 30000 },
@@ -263,8 +263,8 @@ export const saunaOptions: SaunaOption[] = [
     type: "Traditional custom",
     category: "custom-built-sauna",
     classification: "Broad category",
-    experienceScore: 97,
-    complexityScore: 96,
+    experienceScore: 98,
+    complexityScore: 97,
     costs: {
       product: { low: 8000, high: 25000 },
       shipping: { low: 0, high: 5000 },
@@ -284,7 +284,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Best possible ergonomics", "Fully customized", "Architecturally integrated"],
     cons: ["Most expensive", "Contractor quality risk", "Difficult to reverse or move"],
     examples: [],
-    label: { offsetX: -16, offsetY: -6, anchor: "end" },
+    label: { offsetX: -14, offsetY: 10, anchor: "end" },
   },
   {
     id: "infrared-sauna",
