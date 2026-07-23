@@ -90,7 +90,7 @@ export const saunaOptions: SaunaOption[] = [
     summary:
       "High-temperature traditional sauna designed to avoid the usual electrician and construction burden.",
     pros: ["Traditional high heat", "Low installation burden", "No permanent build-out", "Moveable"],
-    cons: ["Smaller than many prefab rooms", "Still needs sensible placement and ventilation"],
+    cons: ["Smaller than many prefab rooms"],
     examples: [{ brand: "Anywhere Sauna", model: "Anywhere Sauna", url: "https://getanywheresauna.com" }],
     label: { offsetX: 15, offsetY: -12, anchor: "start" },
     featured: true,
