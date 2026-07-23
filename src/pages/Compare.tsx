@@ -154,7 +154,12 @@ const Compare = () => {
               Compare the Anywhere Sauna to the other affordable steam saunas on the market.
             </p>
 
+            <div className="mb-16">
+              <SaunaMarketMap />
+            </div>
+
             <ComparisonBlock rows={summaryRows} />
+
 
             <div className="mt-6 flex justify-center">
               <button
