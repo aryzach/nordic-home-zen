@@ -297,9 +297,18 @@ const DetailPanel = ({ option, onClose }: { option: SaunaOption; onClose: () => 
       <div className="mb-4">
         <Row label="Product cost" value={formatCostRange(option.costs.product)} />
         <Row label="Shipping" value={formatCostRange(option.costs.shipping)} />
-        <Row label="Installation" value={formatCostRange(option.costs.installation)} />
-        <Row label="Electrical" value={formatCostRange(option.costs.electrical)} />
-        <Row label="Site prep" value={formatCostRange(option.costs.sitePrep)} />
+        <Row
+          label="Installation"
+          value={option.id === "anywhere-sauna" ? "30 minutes" : formatCostRange(option.costs.installation)}
+        />
+        <Row
+          label="Electrical"
+          value={option.id === "anywhere-sauna" ? "Plug-in" : formatCostRange(option.costs.electrical)}
+        />
+        <Row
+          label="Site prep"
+          value={option.id === "anywhere-sauna" ? "Any level ground" : formatCostRange(option.costs.sitePrep)}
+        />
         <div className="flex justify-between gap-4 py-2 mt-1 text-sm font-semibold">
           <span className="text-foreground">Estimated total installed</span>
           <span className="text-foreground">{formatCostRange(total)}</span>
