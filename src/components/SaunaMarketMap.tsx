@@ -44,7 +44,7 @@ const SaunaMarketMap = () => {
         <p className="text-xs text-muted-foreground tracking-wide">{chartConfig.subtitle}</p>
       </div>
 
-      <div className="grid lg:grid-cols-[minmax(0,1fr)_360px] gap-8 items-start">
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_360px] gap-8 lg:gap-12 items-start">
         {/* Chart */}
         <div className="relative">
           {/* Top label */}
@@ -95,18 +95,52 @@ const SaunaMarketMap = () => {
                 <line x1={50} y1={0} x2={50} y2={100} stroke="hsl(0,0%,70%)" strokeWidth={0.2} />
                 <line x1={0} y1={50} x2={100} y2={50} stroke="hsl(0,0%,70%)" strokeWidth={0.2} />
 
-                {/* Anywhere halo */}
+                {/* Category labels — main scanning layer */}
+                <g aria-hidden="true">
+                  {categoryBlobs.map((b) => (
+                    <text
+                      key={`cat-${b.id}`}
+                      x={b.labelX}
+                      y={100 - b.labelY}
+                      fontSize={3}
+                      fontWeight={500}
+                      letterSpacing="0.18em"
+                      textAnchor="middle"
+                      fill="hsl(0,0%,35%)"
+                      opacity={0.75}
+                      style={{
+                        paintOrder: "stroke",
+                        stroke: "hsl(31, 64%, 96%)",
+                        strokeWidth: 0.9,
+                      }}
+                    >
+                      {b.displayLabel}
+                    </text>
+                  ))}
+                </g>
+
+                {/* Anywhere halo — soft translucent */}
                 {saunaOptions
                   .filter((o) => o.featured)
                   .map((o) => (
-                    <circle
-                      key={`halo-${o.id}`}
-                      cx={toX(o.complexityScore)}
-                      cy={toY(o.experienceScore)}
-                      r={4.5}
-                      fill="hsl(31, 64%, 55%)"
-                      opacity={0.25}
-                    />
+                    <g key={`halo-${o.id}`}>
+                      <circle
+                        cx={toX(o.complexityScore)}
+                        cy={toY(o.experienceScore)}
+                        r={5}
+                        fill="hsl(31, 64%, 55%)"
+                        opacity={0.18}
+                      />
+                      <circle
+                        cx={toX(o.complexityScore)}
+                        cy={toY(o.experienceScore)}
+                        r={3.2}
+                        fill="none"
+                        stroke="hsl(31, 64%, 45%)"
+                        strokeWidth={0.35}
+                        opacity={0.6}
+                      />
+                    </g>
                   ))}
 
                 {/* Dots + labels */}
@@ -114,8 +148,14 @@ const SaunaMarketMap = () => {
                   const cx = toX(o.complexityScore);
                   const cy = toY(o.experienceScore);
                   const isFeatured = !!o.featured;
-                  const isActive = selectedId === o.id || hoveredId === o.id;
-                  const r = isFeatured ? 2.2 : 1.6;
+                  const isSelected = selectedId === o.id;
+                  const isHovered = hoveredId === o.id;
+                  const isActive = isSelected || isHovered;
+                  // Base radius: featured slightly larger; non-featured reduced ~23%
+                  const baseR = isFeatured ? 2.0 : 1.25;
+                  const r = baseR + (isActive ? 0.5 : 0);
+                  // Show label if featured, selected, or currently hovered/focused
+                  const showLabel = isFeatured || isSelected || isHovered;
                   return (
                     <g
                       key={o.id}
@@ -137,27 +177,56 @@ const SaunaMarketMap = () => {
                       onFocus={() => setHoveredId(o.id)}
                       onBlur={() => setHoveredId(null)}
                       style={{ cursor: "pointer", outline: "none" }}
-                      className="focus-visible:[&>circle]:stroke-foreground"
                     >
+                      {/* Larger invisible hit target for touch */}
+                      <circle cx={cx} cy={cy} r={4} fill="transparent" />
+                      {/* Selected outer ring */}
+                      {isSelected && !isFeatured && (
+                        <circle
+                          cx={cx}
+                          cy={cy}
+                          r={r + 1.2}
+                          fill="none"
+                          stroke="hsl(0,0%,20%)"
+                          strokeWidth={0.35}
+                          opacity={0.55}
+                        />
+                      )}
+                      {isSelected && isFeatured && (
+                        <circle
+                          cx={cx}
+                          cy={cy}
+                          r={r + 1.4}
+                          fill="none"
+                          stroke="hsl(31, 64%, 40%)"
+                          strokeWidth={0.5}
+                          opacity={0.9}
+                        />
+                      )}
                       <circle
                         cx={cx}
                         cy={cy}
-                        r={r + (isActive ? 0.6 : 0)}
-                        fill={isFeatured ? "hsl(31, 64%, 45%)" : "hsl(0, 0%, 20%)"}
-                        stroke={isActive ? "hsl(0,0%,7%)" : "transparent"}
-                        strokeWidth={0.4}
+                        r={r}
+                        fill={isFeatured ? "hsl(31, 64%, 45%)" : "hsl(0, 0%, 25%)"}
+                        opacity={isFeatured ? 1 : isActive ? 1 : 0.78}
                       />
-                      <text
-                        x={cx + o.label.offsetX * 0.1}
-                        y={cy + o.label.offsetY * 0.1}
-                        fontSize={2.6}
-                        fontWeight={isFeatured ? 700 : 500}
-                        textAnchor={o.label.anchor}
-                        fill="hsl(0,0%,11%)"
-                        style={{ paintOrder: "stroke", stroke: "hsl(31, 64%, 96%)", strokeWidth: 0.6 }}
-                      >
-                        {o.name}
-                      </text>
+                      {showLabel && (
+                        <text
+                          x={cx + o.label.offsetX * 0.1}
+                          y={cy + o.label.offsetY * 0.1}
+                          fontSize={2.5}
+                          fontWeight={isSelected || isFeatured ? 600 : 500}
+                          textAnchor={o.label.anchor}
+                          fill="hsl(0,0%,11%)"
+                          style={{
+                            paintOrder: "stroke",
+                            stroke: "hsl(31, 64%, 96%)",
+                            strokeWidth: 0.9,
+                          }}
+                        >
+                          {o.name}
+                        </text>
+                      )}
                     </g>
                   );
                 })}

@@ -35,6 +35,9 @@ export type SaunaOption = {
 export type CategoryBlob = {
   id: string;
   label: string;
+  displayLabel: string;
+  labelX: number;
+  labelY: number;
   centerX: number;
   centerY: number;
   radiusX: number;
@@ -162,7 +165,7 @@ export const saunaOptions: SaunaOption[] = [
         url: "https://www.costco.com/CatalogSearch?dept=All&keyword=sauna",
       },
     ],
-    label: { offsetX: -14, offsetY: 23, anchor: "end" },
+    label: { offsetX: 16, offsetY: -8, anchor: "start" },
   },
   {
     id: "saunalife",
@@ -171,7 +174,7 @@ export const saunaOptions: SaunaOption[] = [
     category: "premium-prefab-sauna",
     classification: "Specific brand",
     experienceScore: 85,
-    complexityScore: 78,
+    complexityScore: 80,
     costs: {
       product: { low: 3500, high: 20000 },
       shipping: { low: 950, high: 950 },
@@ -191,7 +194,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Strong materials", "Excellent sauna potential", "Indoor and outdoor formats"],
     cons: ["High total cost", "Freight and access complexity", "Semi-permanent"],
     examples: [{ brand: "SaunaLife", model: "Representative premium prefab", url: "https://saunalife.com" }],
-    label: { offsetX: 13, offsetY: -12, anchor: "start" },
+    label: { offsetX: 16, offsetY: -6, anchor: "start" },
   },
   {
     id: "plunge-sauna",
@@ -199,8 +202,8 @@ export const saunaOptions: SaunaOption[] = [
     type: "Traditional prefab",
     category: "premium-prefab-sauna",
     classification: "Specific brand",
-    experienceScore: 90,
-    complexityScore: 71,
+    experienceScore: 87,
+    complexityScore: 68,
     costs: {
       product: { low: 10000, high: 20000 },
       shipping: { low: 0, high: 950 },
@@ -220,15 +223,15 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["High heat", "Strong design", "Integrated consumer experience"],
     cons: ["Premium price", "Large footprint", "240 V and delivery complexity"],
     examples: [{ brand: "Plunge", model: "Sauna", url: "https://plunge.com/pages/sauna" }],
-    label: { offsetX: -12, offsetY: -15, anchor: "end" },
+    label: { offsetX: -16, offsetY: -6, anchor: "end" },
   },
   {
     id: "premium-prefab-sauna",
-    name: "Premium Prefab Sauna",
+    name: "Typical Premium Prefab",
     type: "Traditional prefab",
     category: "premium-prefab-sauna",
     classification: "Broad category",
-    experienceScore: 82,
+    experienceScore: 79,
     complexityScore: 83,
     costs: {
       product: { low: 10000, high: 30000 },
@@ -252,7 +255,7 @@ export const saunaOptions: SaunaOption[] = [
       { brand: "Finnleo", model: "Representative model", url: "https://www.finnleo.com" },
       { brand: "TyloHelo", model: "Representative model", url: "https://www.tylohelo.com" },
     ],
-    label: { offsetX: -12, offsetY: 24, anchor: "end" },
+    label: { offsetX: 0, offsetY: 24, anchor: "middle" },
   },
   {
     id: "custom-built-sauna",
@@ -260,8 +263,8 @@ export const saunaOptions: SaunaOption[] = [
     type: "Traditional custom",
     category: "custom-built-sauna",
     classification: "Broad category",
-    experienceScore: 96,
-    complexityScore: 94,
+    experienceScore: 97,
+    complexityScore: 96,
     costs: {
       product: { low: 8000, high: 25000 },
       shipping: { low: 0, high: 5000 },
@@ -281,7 +284,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Best possible ergonomics", "Fully customized", "Architecturally integrated"],
     cons: ["Most expensive", "Contractor quality risk", "Difficult to reverse or move"],
     examples: [],
-    label: { offsetX: -12, offsetY: -14, anchor: "end" },
+    label: { offsetX: -16, offsetY: -6, anchor: "end" },
   },
   {
     id: "infrared-sauna",
@@ -356,13 +359,16 @@ export const categoryBlobs: CategoryBlob[] = [
   {
     id: "plug-in-traditional",
     label: "Plug-in traditional sauna",
+    displayLabel: "PLUG-IN TRADITIONAL",
+    labelX: 22,
+    labelY: 74,
     centerX: 25,
     centerY: 85,
     radiusX: 14,
     radiusY: 12,
     rotation: -8,
     colorFamily: "green",
-    opacity: 0.13,
+    opacity: 0.09,
     includedOptionIds: ["anywhere-sauna"],
     summary: "Traditional sauna experience with unusually low installation complexity.",
     pros: ["High heat", "Low electrical burden", "Moveable"],
@@ -371,13 +377,16 @@ export const categoryBlobs: CategoryBlob[] = [
   {
     id: "barrel-sauna",
     label: "Barrel sauna",
+    displayLabel: "BARREL SAUNAS",
+    labelX: 55,
+    labelY: 46,
     centerX: 55,
     centerY: 62,
     radiusX: 17,
     radiusY: 17,
     rotation: 12,
     colorFamily: "amber",
-    opacity: 0.13,
+    opacity: 0.09,
     includedOptionIds: ["almost-heaven", "costco-barrel-sauna"],
     summary:
       "Outdoor traditional saunas with recognizable aesthetics but uneven heat and meaningful project complexity.",
@@ -387,13 +396,16 @@ export const categoryBlobs: CategoryBlob[] = [
   {
     id: "premium-prefab-sauna",
     label: "Premium prefab sauna",
+    displayLabel: "PREMIUM PREFAB",
+    labelX: 76,
+    labelY: 68,
     centerX: 77,
     centerY: 84,
     radiusX: 18,
     radiusY: 14,
     rotation: -10,
     colorFamily: "blue",
-    opacity: 0.13,
+    opacity: 0.1,
     includedOptionIds: ["saunalife", "plunge-sauna", "premium-prefab-sauna"],
     summary: "High-quality modular saunas with strong experiences and substantial installed cost.",
     pros: ["Strong materials", "High heat", "Polished design"],
@@ -402,13 +414,16 @@ export const categoryBlobs: CategoryBlob[] = [
   {
     id: "custom-built-sauna",
     label: "Custom-built sauna",
+    displayLabel: "CUSTOM BUILD",
+    labelX: 86,
+    labelY: 88,
     centerX: 91,
     centerY: 94,
     radiusX: 10,
     radiusY: 10,
     rotation: 8,
     colorFamily: "purple",
-    opacity: 0.13,
+    opacity: 0.09,
     includedOptionIds: ["custom-built-sauna"],
     summary: "Maximum design freedom and quality ceiling with the largest project burden.",
     pros: ["Best ergonomics", "Custom ventilation", "Architectural integration"],
@@ -417,13 +432,16 @@ export const categoryBlobs: CategoryBlob[] = [
   {
     id: "infrared-sauna",
     label: "Infrared sauna",
+    displayLabel: "INFRARED",
+    labelX: 24,
+    labelY: 22,
     centerX: 24,
     centerY: 34,
     radiusX: 16,
     radiusY: 14,
     rotation: -12,
     colorFamily: "lavender",
-    opacity: 0.13,
+    opacity: 0.09,
     includedOptionIds: ["infrared-sauna"],
     summary: "Easy-to-install radiant heat cabins that differ materially from traditional saunas.",
     pros: ["Plug-in options", "Indoor friendly", "Simple ownership"],
@@ -432,13 +450,16 @@ export const categoryBlobs: CategoryBlob[] = [
   {
     id: "portable-heat-products",
     label: "Portable heat products",
+    displayLabel: "PORTABLE HEAT",
+    labelX: 13,
+    labelY: 5,
     centerX: 10,
     centerY: 14,
     radiusX: 11,
     radiusY: 10,
     rotation: 10,
     colorFamily: "rose",
-    opacity: 0.13,
+    opacity: 0.09,
     includedOptionIds: ["sauna-blanket"],
     summary: "Low-cost personal heating products rather than room saunas.",
     pros: ["Portable", "Inexpensive", "No installation"],
