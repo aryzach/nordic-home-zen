@@ -13,6 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import SaunaMarketMap from "@/components/SaunaMarketMap";
 const nordicaImg = { url: "/images/compare-nordica.png" };
 const barrelImg = { url: "/images/compare-barrel.png" };
 const plungeImg = { url: "/images/compare-plunge.png" };
