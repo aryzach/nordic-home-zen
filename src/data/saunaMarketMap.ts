@@ -252,7 +252,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Best possible ergonomics", "Fully customized", "Architecturally integrated"],
     cons: ["Most expensive", "Contractor quality risk", "Difficult to reverse or move"],
     examples: [],
-    label: { offsetX: -14, offsetY: 10, anchor: "end" },
+    label: { offsetX: -14, offsetY: -30, anchor: "end" },
   },
   {
     id: "infrared-sauna",
@@ -366,7 +366,7 @@ export const categoryBlobs: CategoryBlob[] = [
     label: "Premium prefab sauna",
     displayLabel: "PREMIUM PREFAB",
     labelX: 76,
-    labelY: 68,
+    labelY: 72,
     centerX: 77,
     centerY: 84,
     radiusX: 18,
