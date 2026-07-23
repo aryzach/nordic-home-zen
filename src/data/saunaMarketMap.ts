@@ -35,6 +35,9 @@ export type SaunaOption = {
 export type CategoryBlob = {
   id: string;
   label: string;
+  displayLabel: string;
+  labelX: number;
+  labelY: number;
   centerX: number;
   centerY: number;
   radiusX: number;
