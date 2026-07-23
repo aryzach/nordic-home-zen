@@ -102,16 +102,16 @@ const SaunaMarketMap = () => {
                       key={`cat-${b.id}`}
                       x={b.labelX}
                       y={100 - b.labelY}
-                      fontSize={3}
-                      fontWeight={500}
-                      letterSpacing="0.18em"
+                      fontSize={2.8}
+                      fontWeight={400}
+                      letterSpacing="0.22em"
                       textAnchor="middle"
-                      fill="hsl(0,0%,35%)"
-                      opacity={0.75}
+                      fill="hsl(0,0%,42%)"
+                      opacity={0.7}
                       style={{
                         paintOrder: "stroke",
                         stroke: "hsl(31, 64%, 96%)",
-                        strokeWidth: 0.9,
+                        strokeWidth: 0.8,
                       }}
                     >
                       {b.displayLabel}
@@ -152,10 +152,29 @@ const SaunaMarketMap = () => {
                   const isHovered = hoveredId === o.id;
                   const isActive = isSelected || isHovered;
                   // Base radius: featured slightly larger; non-featured reduced ~23%
-                  const baseR = isFeatured ? 2.0 : 1.25;
-                  const r = baseR + (isActive ? 0.5 : 0);
+                  const baseR = isFeatured ? 2.0 : 1.2;
+                  const r = baseR + (isActive ? 0.55 : 0);
+                  // Suppress the "Traditional Prefab" broad-category label entirely
+                  const suppressLabel = o.id === "premium-prefab-sauna";
                   // Show label if featured, selected, or currently hovered/focused
-                  const showLabel = isFeatured || isSelected || isHovered;
+                  const showLabel =
+                    !suppressLabel && (isFeatured || isSelected || isHovered);
+
+                  // Pill dimensions estimate (fontSize 2.5, char ~1.35 wide)
+                  const labelText = o.name;
+                  const pillW = labelText.length * 1.35 + 2.4;
+                  const pillH = 3.6;
+                  const lx = cx + o.label.offsetX * 0.1;
+                  const ly = cy + o.label.offsetY * 0.1;
+                  const anchor = o.label.anchor;
+                  const pillX =
+                    anchor === "start"
+                      ? lx - 1.2
+                      : anchor === "end"
+                      ? lx - pillW + 1.2
+                      : lx - pillW / 2;
+                  const pillY = ly - pillH + 0.9;
+
                   return (
                     <g
                       key={o.id}
@@ -207,25 +226,32 @@ const SaunaMarketMap = () => {
                         cx={cx}
                         cy={cy}
                         r={r}
-                        fill={isFeatured ? "hsl(31, 64%, 45%)" : "hsl(0, 0%, 25%)"}
-                        opacity={isFeatured ? 1 : isActive ? 1 : 0.78}
+                        fill={isFeatured ? "hsl(31, 64%, 45%)" : "hsl(0, 0%, 30%)"}
+                        opacity={isFeatured ? 1 : isActive ? 0.95 : 0.7}
                       />
                       {showLabel && (
-                        <text
-                          x={cx + o.label.offsetX * 0.1}
-                          y={cy + o.label.offsetY * 0.1}
-                          fontSize={2.5}
-                          fontWeight={isSelected || isFeatured ? 600 : 500}
-                          textAnchor={o.label.anchor}
-                          fill="hsl(0,0%,11%)"
-                          style={{
-                            paintOrder: "stroke",
-                            stroke: "hsl(31, 64%, 96%)",
-                            strokeWidth: 0.9,
-                          }}
-                        >
-                          {o.name}
-                        </text>
+                        <>
+                          <rect
+                            x={pillX}
+                            y={pillY}
+                            width={pillW}
+                            height={pillH}
+                            rx={0.8}
+                            ry={0.8}
+                            fill="hsl(31, 64%, 96%)"
+                            opacity={0.95}
+                          />
+                          <text
+                            x={lx}
+                            y={ly}
+                            fontSize={2.5}
+                            fontWeight={isSelected || isFeatured ? 600 : 500}
+                            textAnchor={anchor}
+                            fill="hsl(0,0%,11%)"
+                          >
+                            {labelText}
+                          </text>
+                        </>
                       )}
                     </g>
                   );
