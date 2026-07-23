@@ -171,7 +171,7 @@ export const saunaOptions: SaunaOption[] = [
     id: "saunalife",
     name: "SaunaLife",
     type: "Traditional prefab",
-    category: "premium-prefab-sauna",
+    category: "traditional-prefab-sauna",
     classification: "Specific brand",
     experienceScore: 85,
     complexityScore: 84,
