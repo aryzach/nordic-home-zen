@@ -102,7 +102,7 @@ const SaunaMarketMap = () => {
                       key={`cat-${b.id}`}
                       x={b.labelX}
                       y={100 - b.labelY}
-                      fontSize={2.8}
+                      fontSize={2}
                       fontWeight={400}
                       letterSpacing="0.22em"
                       textAnchor="middle"
