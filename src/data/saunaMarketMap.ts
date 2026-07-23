@@ -366,7 +366,7 @@ export const categoryBlobs: CategoryBlob[] = [
     label: "Premium prefab sauna",
     displayLabel: "PREMIUM PREFAB",
     labelX: 76,
-    labelY: 68,
+    labelY: 72,
     centerX: 77,
     centerY: 84,
     radiusX: 18,
