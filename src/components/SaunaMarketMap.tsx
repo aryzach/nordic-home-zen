@@ -69,7 +69,7 @@ const SaunaMarketMap = () => {
               style={{ background: "hsl(31, 64%, 96%)" }}
             >
               <svg
-                viewBox={`0 0 ${VB} ${VB}`}
+                viewBox={`0 -8 110 108`}
                 preserveAspectRatio="none"
                 className="w-full aspect-square block"
                 role="img"
