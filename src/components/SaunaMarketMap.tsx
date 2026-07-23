@@ -181,10 +181,11 @@ const SaunaMarketMap = () => {
                       tabIndex={0}
                       role="button"
                       aria-label={`${o.name} — open details`}
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault();
                         setSelectedId(o.id);
-                        detailsRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
                       }}
+
                       onKeyDown={(e) => {
                         if (e.key === "Enter" || e.key === " ") {
                           e.preventDefault();
