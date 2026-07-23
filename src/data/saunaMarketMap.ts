@@ -200,7 +200,7 @@ export const saunaOptions: SaunaOption[] = [
     id: "plunge-sauna",
     name: "Plunge Sauna",
     type: "Traditional prefab",
-    category: "premium-prefab-sauna",
+    category: "traditional-prefab-sauna",
     classification: "Specific brand",
     experienceScore: 84,
     complexityScore: 64,
