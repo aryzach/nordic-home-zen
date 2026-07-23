@@ -165,7 +165,7 @@ export const saunaOptions: SaunaOption[] = [
         url: "https://www.costco.com/CatalogSearch?dept=All&keyword=sauna",
       },
     ],
-    label: { offsetX: -14, offsetY: 23, anchor: "end" },
+    label: { offsetX: 16, offsetY: -8, anchor: "start" },
   },
   {
     id: "saunalife",
