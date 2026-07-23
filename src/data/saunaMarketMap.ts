@@ -174,7 +174,7 @@ export const saunaOptions: SaunaOption[] = [
     category: "premium-prefab-sauna",
     classification: "Specific brand",
     experienceScore: 85,
-    complexityScore: 78,
+    complexityScore: 80,
     costs: {
       product: { low: 3500, high: 20000 },
       shipping: { low: 950, high: 950 },
@@ -194,7 +194,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Strong materials", "Excellent sauna potential", "Indoor and outdoor formats"],
     cons: ["High total cost", "Freight and access complexity", "Semi-permanent"],
     examples: [{ brand: "SaunaLife", model: "Representative premium prefab", url: "https://saunalife.com" }],
-    label: { offsetX: 13, offsetY: -12, anchor: "start" },
+    label: { offsetX: 16, offsetY: -6, anchor: "start" },
   },
   {
     id: "plunge-sauna",
@@ -202,8 +202,8 @@ export const saunaOptions: SaunaOption[] = [
     type: "Traditional prefab",
     category: "premium-prefab-sauna",
     classification: "Specific brand",
-    experienceScore: 90,
-    complexityScore: 71,
+    experienceScore: 87,
+    complexityScore: 68,
     costs: {
       product: { low: 10000, high: 20000 },
       shipping: { low: 0, high: 950 },
@@ -223,15 +223,15 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["High heat", "Strong design", "Integrated consumer experience"],
     cons: ["Premium price", "Large footprint", "240 V and delivery complexity"],
     examples: [{ brand: "Plunge", model: "Sauna", url: "https://plunge.com/pages/sauna" }],
-    label: { offsetX: -12, offsetY: -15, anchor: "end" },
+    label: { offsetX: -16, offsetY: -6, anchor: "end" },
   },
   {
     id: "premium-prefab-sauna",
-    name: "Premium Prefab Sauna",
+    name: "Typical Premium Prefab",
     type: "Traditional prefab",
     category: "premium-prefab-sauna",
     classification: "Broad category",
-    experienceScore: 82,
+    experienceScore: 79,
     complexityScore: 83,
     costs: {
       product: { low: 10000, high: 30000 },
@@ -255,7 +255,7 @@ export const saunaOptions: SaunaOption[] = [
       { brand: "Finnleo", model: "Representative model", url: "https://www.finnleo.com" },
       { brand: "TyloHelo", model: "Representative model", url: "https://www.tylohelo.com" },
     ],
-    label: { offsetX: -12, offsetY: 24, anchor: "end" },
+    label: { offsetX: 0, offsetY: 24, anchor: "middle" },
   },
   {
     id: "custom-built-sauna",
@@ -263,8 +263,8 @@ export const saunaOptions: SaunaOption[] = [
     type: "Traditional custom",
     category: "custom-built-sauna",
     classification: "Broad category",
-    experienceScore: 96,
-    complexityScore: 94,
+    experienceScore: 97,
+    complexityScore: 96,
     costs: {
       product: { low: 8000, high: 25000 },
       shipping: { low: 0, high: 5000 },
@@ -284,7 +284,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Best possible ergonomics", "Fully customized", "Architecturally integrated"],
     cons: ["Most expensive", "Contractor quality risk", "Difficult to reverse or move"],
     examples: [],
-    label: { offsetX: -12, offsetY: -14, anchor: "end" },
+    label: { offsetX: -16, offsetY: -6, anchor: "end" },
   },
   {
     id: "infrared-sauna",
