@@ -147,11 +147,8 @@ const Compare = () => {
             <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-4 text-heading text-center">
               Why The Anywhere Sauna?
             </h2>
-            <p className="text-center text-muted-foreground mb-2 max-w-2xl mx-auto leading-relaxed">
-              Other saunas require expensive electrical work. This one doesn't.
-            </p>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-              Compare the Anywhere Sauna to the other affordable steam saunas on the market.
+              Other traditional saunas require expensive electrical work. This one doesn't.
             </p>
 
             <div className="mb-16">

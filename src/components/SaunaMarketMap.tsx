@@ -39,11 +39,6 @@ const SaunaMarketMap = () => {
 
   return (
     <div className="w-full">
-      <div className="text-center mb-6">
-        <h3 className="text-foreground">{chartConfig.title}</h3>
-        <p className="text-xs text-muted-foreground tracking-wide">{chartConfig.subtitle}</p>
-      </div>
-
       <div className="grid lg:grid-cols-[minmax(0,1fr)_360px] gap-8 lg:gap-12 items-start">
         {/* Chart */}
         <div className="relative">

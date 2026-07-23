@@ -52,8 +52,6 @@ export type CategoryBlob = {
 };
 
 export const chartConfig = {
-  title: "Traditional Sauna Experience",
-  subtitle: "Based on Trumpkin's Principles",
   labels: {
     top: "More Traditional",
     bottom: "Less Traditional",
