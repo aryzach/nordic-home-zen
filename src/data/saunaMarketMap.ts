@@ -126,7 +126,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Real heater and stones", "Recognizable traditional format", "Good outdoor fit"],
     cons: ["Barrel geometry can create cold feet", "Usually requires 240 V", "Hard to move"],
     examples: [{ brand: "Almost Heaven", model: "Representative barrel model", url: "https://almostheaven.com" }],
-    label: { offsetX: 14, offsetY: -10, anchor: "start" },
+    label: { offsetX: 14, offsetY: -12, anchor: "start" },
   },
   {
     id: "costco-barrel-sauna",
@@ -165,7 +165,7 @@ export const saunaOptions: SaunaOption[] = [
         url: "https://www.costco.com/CatalogSearch?dept=All&keyword=sauna",
       },
     ],
-    label: { offsetX: 16, offsetY: -8, anchor: "start" },
+    label: { offsetX: -14, offsetY: 12, anchor: "end" },
   },
   {
     id: "saunalife",
