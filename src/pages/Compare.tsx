@@ -13,6 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import SaunaMarketMap from "@/components/SaunaMarketMap";
 const nordicaImg = { url: "/images/compare-nordica.png" };
 const barrelImg = { url: "/images/compare-barrel.png" };
 const plungeImg = { url: "/images/compare-plunge.png" };
@@ -153,7 +154,12 @@ const Compare = () => {
               Compare the Anywhere Sauna to the other affordable steam saunas on the market.
             </p>
 
+            <div className="mb-16">
+              <SaunaMarketMap />
+            </div>
+
             <ComparisonBlock rows={summaryRows} />
+
 
             <div className="mt-6 flex justify-center">
               <button
