@@ -451,9 +451,10 @@ export const categoryBlobs: CategoryBlob[] = [
     id: "portable-heat-products",
     label: "Portable heat products",
     displayLabel: "PORTABLE HEAT",
-    labelX: 13,
-    labelY: 5,
+    labelX: 14,
+    labelY: 8,
     centerX: 10,
+
     centerY: 14,
     radiusX: 11,
     radiusY: 10,
