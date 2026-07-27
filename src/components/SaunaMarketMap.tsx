@@ -72,14 +72,14 @@ const SaunaMarketMap = () => {
               >
                 {/* Blobs */}
                 <g>
-                  {categoryBlobs.map((b) => (
+                {categoryBlobs.map((b) => (
                     <ellipse
                       key={b.id}
-                      cx={b.centerX}
+                      cx={toX(b.centerX)}
                       cy={100 - b.centerY}
                       rx={b.radiusX}
                       ry={b.radiusY}
-                      transform={`rotate(${b.rotation} ${b.centerX} ${100 - b.centerY})`}
+                      transform={`rotate(${b.rotation} ${toX(b.centerX)} ${100 - b.centerY})`}
                       fill={blobColorMap[b.colorFamily]}
                       opacity={b.opacity}
                     />
@@ -95,7 +95,7 @@ const SaunaMarketMap = () => {
                   {categoryBlobs.map((b) => (
                     <text
                       key={`cat-${b.id}`}
-                      x={b.labelX}
+                      x={toX(b.labelX)}
                       y={100 - b.labelY}
                       fontSize={2}
                       fontWeight={400}
