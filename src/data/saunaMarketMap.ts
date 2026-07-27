@@ -55,8 +55,8 @@ export const chartConfig = {
   labels: {
     top: "More Traditional",
     bottom: "Less Traditional",
-    left: "Simple Project",
-    right: "Complex Project",
+    left: "Complex Project",
+    right: "Simple Project",
   },
   disclaimer:
     "Experience ratings are based on Trumpkin's published sauna design principles and are intended to compare traditional sauna performance, not overall product quality or wellness benefits.",
@@ -90,7 +90,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Traditional high heat", "Low installation burden", "No permanent build-out", "Moveable"],
     cons: ["Smaller than many prefab rooms"],
     examples: [{ brand: "Anywhere Sauna", model: "Anywhere Sauna", url: "https://getanywheresauna.com" }],
-    label: { offsetX: 15, offsetY: -12, anchor: "start" },
+    label: { offsetX: -15, offsetY: -12, anchor: "end" },
     featured: true,
     cta: {
       primary: { label: "See Anywhere Sauna", href: "/specs" },
@@ -250,7 +250,7 @@ export const saunaOptions: SaunaOption[] = [
     pros: ["Best possible ergonomics", "Fully customized", "Architecturally integrated"],
     cons: ["Most expensive", "Contractor quality risk", "Difficult to reverse or move"],
     examples: [],
-    label: { offsetX: -14, offsetY: -30, anchor: "end" },
+    label: { offsetX: 14, offsetY: -30, anchor: "start" },
   },
   {
     id: "infrared-sauna",
@@ -282,7 +282,7 @@ export const saunaOptions: SaunaOption[] = [
       { brand: "Clearlight", model: "Representative 2-person model", url: "https://infraredsauna.com" },
       { brand: "Sunlighten", model: "Representative 2-person model", url: "https://www.sunlighten.com" },
     ],
-    label: { offsetX: 14, offsetY: -10, anchor: "start" },
+    label: { offsetX: -14, offsetY: -10, anchor: "end" },
   },
   {
     id: "sauna-blanket",
@@ -317,7 +317,7 @@ export const saunaOptions: SaunaOption[] = [
         url: "https://higherdose.com/products/infrared-sauna-blanket",
       },
     ],
-    label: { offsetX: 12, offsetY: -10, anchor: "start" },
+    label: { offsetX: -12, offsetY: -10, anchor: "end" },
   },
 ];
 
