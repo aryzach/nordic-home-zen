@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
+import saunaVideoAsset from "@/assets/sauna-video.mp4.asset.json";
 
-const anywhereVideoUrl = `${import.meta.env.BASE_URL}anywhere-design.mp4`;
+const anywhereVideoUrl = saunaVideoAsset.url;
 
 const features = [
   {

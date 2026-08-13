@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { Plug, Users, Flame, Home, ExternalLink } from "lucide-react";
 import { trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
+import saunaVideoAsset from "@/assets/sauna-video.mp4.asset.json";
 
-const anywhereVideoUrl = `${import.meta.env.BASE_URL}anywhere-design.mp4`;
+const anywhereVideoUrl = saunaVideoAsset.url;
 const STRIPE_DEPOSIT_URL = "https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B";
 
 type GalleryItem =
