@@ -111,13 +111,13 @@ const ProductHero = () => {
               Anywhere Sauna
             </h1>
             <p className="text-[20px] font-bold tracking-[0.025em] text-[#1c1d1d] mb-1">
-              $4,599 Delivered
+              $6,500
             </p>
             <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-4">
-              Includes shipping anywhere in the continental US
+              + $950 shipping
             </p>
             <p className="text-[14px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d] mb-6">
-              The only steam sauna designed to run on a standard home outlet — no electrician, no permits, no rewiring.
+              The only traditional sauna designed to run on a standard home outlet.
             </p>
 
             <ul className="border-y border-[#e8e8e1] divide-y divide-[#e8e8e1] mb-6">
@@ -144,7 +144,7 @@ const ProductHero = () => {
                 <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </a>
               <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-3">
-                Fully refundable for 3 weeks. Delivery planned September 2026.{" "}
+                Heater and installation not included.{" "}
                 <Link to="/terms" className="underline hover:no-underline font-medium text-[#1c1d1d]">
                   Terms
                 </Link>

@@ -34,7 +34,7 @@ const summaryRows: Row[] = [
   { label: "Renter Friendly", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no", infrared: "yes" },
   { label: "Traditional Finnish Temps (~176°F)", anywhere: "yes-anywhere", nordica: "yes", barrel: "yes", plunge: "yes", infrared: "no" },
   { label: "No Electrician Required", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no", infrared: "yes" },
-  { label: "All-in Cost", anywhere: "$4,799", nordica: "$6,149+", barrel: "$5,399+", plunge: "$11,089+", infrared: "$2,299+" },
+  { label: "All-in Cost", anywhere: "$7,650+", nordica: "$6,149+", barrel: "$5,399+", plunge: "$11,089+", infrared: "$2,299+" },
 ];
 
 const fullRows: Row[] = [
@@ -52,11 +52,11 @@ const fullRows: Row[] = [
   { label: "Longevity", anywhere: "~30 years", nordica: "~15 years", barrel: "~30 years", plunge: "~30 years", infrared: "Various" },
   { label: "Heater Included", anywhere: "no", nordica: "no", barrel: "yes", plunge: "yes", infrared: "yes" },
   
-  { label: "Unit Cost", anywhere: "$3,649", nordica: "$3,999", barrel: "$4,399", plunge: "$9,590", infrared: "$2,299+" },
+  { label: "Unit Cost", anywhere: "$6,500", nordica: "$3,999", barrel: "$4,399", plunge: "$9,590", infrared: "$2,299+" },
   { label: "Heater Cost", anywhere: "$200 – $900", nordica: "$200 – $900", barrel: "$0", plunge: "$0", infrared: "$0" },
   { label: "Shipping Cost", anywhere: "$950", nordica: "$950", barrel: "$0", plunge: "$499", infrared: "Various" },
   { label: "Electrician Cost", anywhere: "$0", nordica: "$1–3k", barrel: "$1–3k", plunge: "$1–3k", infrared: "$0" },
-  { label: "All-in Cost", anywhere: "$4,799", nordica: "$6,149+", barrel: "$5,399+", plunge: "$11,089+", infrared: "$2,299+" },
+  { label: "All-in Cost", anywhere: "$7,650+", nordica: "$6,149+", barrel: "$5,399+", plunge: "$11,089+", infrared: "$2,299+" },
 ];
 
 const renderCell = (value: Cell, highlight = false) => {
