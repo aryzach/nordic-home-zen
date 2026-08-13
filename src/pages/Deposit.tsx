@@ -42,7 +42,7 @@ const Deposit = () => {
                   $500.00
                 </p>
                 <p className="text-[14px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d] mb-6">
-                  Fully refundable for 3 weeks. Delivery planned September 2026.
+                  Heater and installation not included.
                 </p>
 
                 <div className="flex flex-col mb-3">
@@ -68,7 +68,7 @@ const Deposit = () => {
                   </a>
                 </div>
                 <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-8">
-                  Pay $500 today, remaining $4,099 due before shipment
+                  Pay $500 today, remaining $6,950 due before shipment
                 </p>
               </div>
             </div>

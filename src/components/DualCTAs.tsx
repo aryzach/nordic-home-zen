@@ -15,12 +15,12 @@ const DualCTAs = () => {
             onClick={() =>
               trackAndNavigate(
                 "buy_now_click",
-                { button_text: "Buy now for $4,599", location: "dual_ctas" },
+                { button_text: "Buy now for $6,500", location: "dual_ctas" },
                 () => navigate("/deposit")
               )
             }
           >
-            Buy now for $4,599
+            Buy now for $6,500
             <ArrowRight className="ml-1" size={20} />
           </Button>
           <div className="text-muted-foreground text-xs font-sans">or</div>
