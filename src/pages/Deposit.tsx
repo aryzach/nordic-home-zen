@@ -68,7 +68,7 @@ const Deposit = () => {
                   </a>
                 </div>
                 <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-8">
-                  Pay $500 today, remaining $6,950 due before shipment
+                  Pay $500 today, remaining $8,480 due before shipment
                 </p>
               </div>
             </div>
@@ -109,8 +109,8 @@ const Deposit = () => {
               <div>
                 <h3 className="font-bold mb-1.5">3. Returns</h3>
                 <p>
-                  If you return your sauna, the product purchase price ($6,500) is refundable.
-                  Shipping and delivery charges ($950) are non-refundable because they cover
+                  If you return your sauna, the product purchase price ($8,485) is refundable.
+                  Shipping and delivery charges ($495) are non-refundable because they cover
                   transportation and logistics costs already incurred.
                 </p>
               </div>

@@ -46,7 +46,7 @@ const DepositSuccess = () => {
             </p>
             <p className="text-[14px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-8">
               A representative from SF Sauna will be in touch shortly with next
-              steps. The remaining $6,950 will be due before shipment.
+              steps. The remaining $8,480 will be due before shipment.
             </p>
             <Link
               to="/"
