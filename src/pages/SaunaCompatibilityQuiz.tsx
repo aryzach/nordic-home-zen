@@ -403,7 +403,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
       estInstallCost: "$0 install (standard 120V outlet)",
       useCase: "Steam sauna for apartments, rentals, condos, and homes",
       image: "/images/sauna-type-anywhere.jpg",
-      totalCost: "$6,500 + $950 shipping",
+      totalCost: "$8,485 + $495 shipping",
       plugIn: true,
       isAnywhere: true,
     },
@@ -519,8 +519,8 @@ function buildMatchBullets(rec: Recommendation, a: Answers): string[] {
     if (temp === "200°F" || temp === "230°F" || wantsHigh)
       bullets.push(`Reaches your desired ${temp || "high"} temperature`);
     else if (temp) bullets.push(`Comfortably reaches ${temp}`);
-    if (budgetU5k) bullets.push("Fits inside your budget ($6,500 + $950 shipping)");
-    else if (budget5to8) bullets.push("Well under your budget at $6,500 + $950 shipping");
+    if (budgetU5k) bullets.push("Fits inside your budget ($8,485 + $495 shipping)");
+    else if (budget5to8) bullets.push("Well under your budget at $8,485 + $495 shipping");
   } else if (rec.id === "saunalife") {
     if (a.homeType === "House") bullets.push("Suited for houses with dedicated space");
     if (owner) bullets.push("You own your home — permanent install is realistic");
@@ -1558,7 +1558,7 @@ const ComparisonTable = () => {
     { name: "Traditional custom" },
   ];
   const rows: { label: string; values: string[] }[] = [
-    { label: "Price", values: ["$6,500", "$4,500–$6,000", "$5,000–$8,000", "$15,000+"] },
+    { label: "Price", values: ["$8,485", "$4,500–$6,000", "$5,000–$8,000", "$15,000+"] },
     { label: "Expected install cost", values: ["$0", "$800–$2,500", "$1,500–$4,000", "$5,000–$20,000"] },
     { label: "Electrician needed", values: ["No", "Yes (240V)", "Yes (240V)", "Yes"] },
     { label: "Expected temperature", values: ["170–230°F", "170–230°F", "160–200°F", "180–230°F"] },
@@ -1566,7 +1566,7 @@ const ComparisonTable = () => {
     { label: "Outdoor", values: ["Yes", "Yes", "Yes", "Yes"] },
     { label: "Apartment friendly", values: ["Yes", "No", "No", "No"] },
     { label: "Moveable", values: ["Yes", "No", "No", "No"] },
-    { label: "Est. total installed cost", values: ["$7,450", "$5,300–$8,500", "$6,500–$12,000", "$20,000–$35,000"] },
+    { label: "Est. total installed cost", values: ["$8,980", "$5,300–$8,500", "$6,500–$12,000", "$20,000–$35,000"] },
   ];
   return (
     <div className="mt-12">

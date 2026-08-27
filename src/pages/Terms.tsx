@@ -47,8 +47,8 @@ const Terms = () => {
               <div>
                 <h2 className="font-bold mb-1.5">3. Returns</h2>
                 <p>
-                  If you return your sauna, the product purchase price ($6,500) is refundable.
-                  Shipping and delivery charges ($950) are non-refundable because they cover
+                  If you return your sauna, the product purchase price ($8,485) is refundable.
+                  Shipping and delivery charges ($495) are non-refundable because they cover
                   transportation and logistics costs already incurred.
                 </p>
               </div>

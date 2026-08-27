@@ -112,10 +112,10 @@ const ProductHero = () => {
               Anywhere Sauna
             </h1>
             <p className="text-[20px] font-bold tracking-[0.025em] text-[#1c1d1d] mb-1">
-              $6,500
+              $8,485
             </p>
             <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-4">
-              + $950 shipping
+              + $495 shipping
             </p>
             <p className="text-[14px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d] mb-6">
               The only traditional sauna designed to run on a standard home outlet.
