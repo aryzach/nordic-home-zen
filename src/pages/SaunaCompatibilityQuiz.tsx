@@ -1566,7 +1566,7 @@ const ComparisonTable = () => {
     { label: "Outdoor", values: ["Yes", "Yes", "Yes", "Yes"] },
     { label: "Apartment friendly", values: ["Yes", "No", "No", "No"] },
     { label: "Moveable", values: ["Yes", "No", "No", "No"] },
-    { label: "Est. total installed cost", values: ["$7,450", "$5,300–$8,500", "$8,485–$12,000", "$20,000–$35,000"] },
+    { label: "Est. total installed cost", values: ["$8,980", "$5,300–$8,500", "$6,500–$12,000", "$20,000–$35,000"] },
   ];
   return (
     <div className="mt-12">
