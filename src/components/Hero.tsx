@@ -139,7 +139,7 @@ const Hero = ({ ctaOverride }: HeroProps) => {
         ))}
       </div>
       <a href="https://share.google/bqGJ8MiXfwNgvigwm" target="_blank" rel="noopener noreferrer" className="hover:underline">
-        Enjoyed by 26+ Saunojat
+        Enjoyed by 30+ Saunojat
       </a>
     </div>
   );
