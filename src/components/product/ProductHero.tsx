@@ -4,6 +4,7 @@ import { Plug, Users, Flame, Home, ExternalLink } from "lucide-react";
 import { trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
 const anywhereVideoUrl = "/sauna-video.mp4";
+const anywhereVideoFallbackUrl = "/sauna-video.webm";
 const STRIPE_DEPOSIT_URL = "https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B";
 
 type GalleryItem =
@@ -51,7 +52,6 @@ const ProductHero = () => {
               {current.type === "video" ? (
                 <video
                   key={current.src}
-                  src={current.src}
                   className="w-full h-full object-contain"
                   autoPlay
                   muted
@@ -59,7 +59,10 @@ const ProductHero = () => {
                   playsInline
                   controls
                   aria-label={current.alt}
-                />
+                >
+                  <source src={anywhereVideoFallbackUrl} type="video/webm" />
+                  <source src={current.src} type="video/mp4" />
+                </video>
 
               ) : (
                 <img
@@ -83,12 +86,14 @@ const ProductHero = () => {
                   {g.type === "video" ? (
                     <>
                       <video
-                        src={g.src}
                         className="w-full h-full object-cover"
                         muted
                         playsInline
                         preload="metadata"
-                      />
+                      >
+                        <source src={anywhereVideoFallbackUrl} type="video/webm" />
+                        <source src={g.src} type="video/mp4" />
+                      </video>
                       <span className="absolute inset-0 flex items-center justify-center bg-black/20">
                         <span className="block w-0 h-0 border-y-[6px] border-y-transparent border-l-[10px] border-l-white" />
                       </span>

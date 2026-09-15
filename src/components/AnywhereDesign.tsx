@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
 const anywhereVideoUrl = "/sauna-video.mp4";
+const anywhereVideoFallbackUrl = "/sauna-video.webm";
 
 const features = [
   {
@@ -88,13 +89,15 @@ const AnywhereDesign = () => {
 
         <div className="relative order-1 lg:order-2">
           <video
-            src={anywhereVideoUrl}
             autoPlay
             muted
             loop
             playsInline
             className="w-full aspect-[4/5] object-cover"
-          />
+          >
+            <source src={anywhereVideoFallbackUrl} type="video/webm" />
+            <source src={anywhereVideoUrl} type="video/mp4" />
+          </video>
         </div>
       </div>
     </section>
