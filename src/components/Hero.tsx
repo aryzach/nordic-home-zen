@@ -42,6 +42,7 @@ const Hero = ({ ctaOverride }: HeroProps) => {
       {[
         "180°F - 200°F",
         "Real stones, Finnish löyly",
+        "Zero-hassle delivery + installation",
       ].map((text) => (
         <li key={text} className="flex items-start gap-2">
           <Check className="w-4 h-4 mt-0.5 shrink-0 text-white/90" aria-hidden="true" />
