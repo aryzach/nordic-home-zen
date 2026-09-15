@@ -30,7 +30,7 @@ const fullRows: Row[] = [
   { label: "Works on Any Level Surface (No Site Prep)", anywhere: "yes-anywhere", nordica: "yes", barrel: "no", plunge: "no" },
   { label: "No Electrician Required", anywhere: "yes-anywhere", nordica: "no", barrel: "no", plunge: "no" },
   { label: "Setup Time", anywhere: "~2 hours", nordica: "~8 hours", barrel: "~8 hours", plunge: "~2 hours" },
-  { label: "Exterior Dimensions", anywhere: "TBD", nordica: '54" × 52" × 82"', barrel: '72" × 72" × 78"', plunge: '52" × 57" × 94"' },
+  { label: "Exterior Dimensions", anywhere: '63" W × 49" D × 92" H', nordica: '54" × 52" × 82"', barrel: '72" × 72" × 78"', plunge: '52" × 57" × 94"' },
   { label: "Heated Space", anywhere: "57 cu ft", nordica: "93 cu ft", barrel: "147 cu ft", plunge: "161 cu ft" },
   { label: "Wood Type", anywhere: "Red Cedar", nordica: "Spruce", barrel: "Red Cedar", plunge: "Red Cedar" },
   { label: "Longevity", anywhere: "~30 years", nordica: "~15 years", barrel: "~30 years", plunge: "~30 years" },
