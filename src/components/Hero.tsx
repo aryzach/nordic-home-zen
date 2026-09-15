@@ -193,7 +193,7 @@ const Hero = ({ ctaOverride }: HeroProps) => {
             fetchPriority="high"
             loading="eager"
             decoding="async"
-            className="absolute inset-0 w-full h-full object-cover object-[25%_25%]"
+            className="absolute inset-0 w-full h-full object-cover object-left"
           />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/35 to-black/85" />
