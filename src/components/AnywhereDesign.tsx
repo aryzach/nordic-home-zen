@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
-import saunaVideoAsset from "@/assets/sauna-video.mp4.asset.json";
-
-const anywhereVideoUrl = saunaVideoAsset.url;
+const anywhereVideoUrl = "/sauna-video.mp4";
+const anywhereVideoFallbackUrl = "/sauna-video.webm";
 
 const features = [
   {
     eyebrow: "Fast Heat",
-    title: "Up to 230°F in 60 minutes",
+    title: "Up to 200°F in 60 minutes",
     body: "The only sauna where a 120V stove can heat the sauna to traditional Finnish temps.",
   },
   {
@@ -90,13 +89,15 @@ const AnywhereDesign = () => {
 
         <div className="relative order-1 lg:order-2">
           <video
-            src={anywhereVideoUrl}
             autoPlay
             muted
             loop
             playsInline
             className="w-full aspect-[4/5] object-cover"
-          />
+          >
+            <source src={anywhereVideoFallbackUrl} type="video/webm" />
+            <source src={anywhereVideoUrl} type="video/mp4" />
+          </video>
         </div>
       </div>
     </section>

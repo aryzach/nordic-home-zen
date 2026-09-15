@@ -272,7 +272,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const temp150 = a.temperature === "150°F";
   const temp170 = a.temperature === "170°F";
   const temp200 = a.temperature === "200°F";
-  const temp230 = a.temperature === "230°F";
 
   const budgetU3k = a.budget === "Under $3,000";
   const budget3to5k = a.budget === "$3,000–$5,000";
@@ -281,7 +280,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
   const budget12kPlus = a.budget === "$12,000+";
 
   const electricalAssessmentRecommended =
-    outletNo || outletUnsure || temp230 || wantsHigh;
+    outletNo || outletUnsure || temp200 || wantsHigh;
 
   // ---------- Scoring ----------
   const scores = { anywhere: 0, saunalife: 0, barrel: 0, plunge: 0, infrared: 0 };
@@ -305,7 +304,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (wantsRelax) scores.anywhere += 1;
   if (wantsDaily) scores.anywhere += 2;
   if (temp200) scores.anywhere += 4;
-  if (temp230) scores.anywhere += 4;
   if (temp170) scores.anywhere += 2;
   if (temp150) scores.anywhere -= 2;
   if (budgetU3k) scores.anywhere -= 3;
@@ -338,7 +336,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (backyard) scores.saunalife += 2;
   if (garage) scores.saunalife += 1;
   if (temp200) scores.saunalife += 5;
-  if (temp230) scores.saunalife += 5;
   if (temp170) scores.saunalife += 1;
   if (wantsHigh) scores.saunalife += 3;
   if (wantsRecovery) scores.saunalife += 2;
@@ -353,7 +350,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (backyard) scores.barrel += 5;
   if (temp170) scores.barrel += 5;
   if (temp200) scores.barrel -= 1;
-  if (temp230) scores.barrel -= 8;
   if (wantsAesthetic) scores.barrel += 5;
   if (wantsRelax) scores.barrel += 3;
   if (wantsDaily) scores.barrel += 1;
@@ -365,7 +361,6 @@ function buildRecommendations(a: Answers): RecommendationResult {
   if (owner) scores.plunge += 3;
   if (backyard) scores.plunge += 2;
   if (temp200) scores.plunge += 3;
-  if (temp230) scores.plunge += 5;
   if (temp170) scores.plunge += 1;
   if (wantsAesthetic) scores.plunge += 4;
   if (wantsHigh) scores.plunge += 3;
@@ -398,19 +393,19 @@ function buildRecommendations(a: Answers): RecommendationResult {
     {
       id: "anywhere",
       name: "Anywhere Sauna",
-      tempRange: "170–230°F",
+      tempRange: "170–200°F",
       installComplexity: "Plug-and-play — no electrician",
       estInstallCost: "$0 install (standard 120V outlet)",
       useCase: "Steam sauna for apartments, rentals, condos, and homes",
       image: "/images/sauna-type-anywhere.jpg",
-      totalCost: "$8,485 + $495 shipping",
+      totalCost: "$8,485 with delivery and installation included",
       plugIn: true,
       isAnywhere: true,
     },
     {
       id: "saunalife",
       name: "SaunaLife CL3G Cube",
-      tempRange: "170–230°F",
+      tempRange: "170–200°F",
       installComplexity: "High — 240V dedicated circuit + electrician",
       estInstallCost: "$800–$2,500 for 240V circuit",
       useCase: "Compact prefab traditional sauna for homeowners",
@@ -434,7 +429,7 @@ function buildRecommendations(a: Answers): RecommendationResult {
     {
       id: "plunge",
       name: "Plunge Mini Sauna",
-      tempRange: "170–230°F",
+      tempRange: "170–200°F",
       installComplexity: "High — 240V dedicated circuit",
       estInstallCost: "$800–$2,500 for 240V circuit",
       useCase: "Premium high-heat sauna with designer aesthetic",
@@ -516,15 +511,15 @@ function buildMatchBullets(rec: Recommendation, a: Answers): string[] {
     if (renter || wantsPortable) bullets.push("Renter-friendly — moves with you");
     if (wantsLowInstall) bullets.push("No electrician, permits, or 240V circuit");
     else bullets.push("Runs on a standard 120V outlet");
-    if (temp === "200°F" || temp === "230°F" || wantsHigh)
+    if (temp === "200°F" || wantsHigh)
       bullets.push(`Reaches your desired ${temp || "high"} temperature`);
     else if (temp) bullets.push(`Comfortably reaches ${temp}`);
-    if (budgetU5k) bullets.push("Fits inside your budget ($8,485 + $495 shipping)");
-    else if (budget5to8) bullets.push("Well under your budget at $8,485 + $495 shipping");
+    if (budgetU5k) bullets.push("Includes delivery and installation");
+    else if (budget5to8) bullets.push("Includes delivery and installation");
   } else if (rec.id === "saunalife") {
     if (a.homeType === "House") bullets.push("Suited for houses with dedicated space");
     if (owner) bullets.push("You own your home — permanent install is realistic");
-    if (temp === "200°F" || temp === "230°F" || wantsHigh)
+    if (temp === "200°F" || wantsHigh)
       bullets.push(`Reaches your desired ${temp || "high"} temperature`);
     if (budget5to8 || budget8plus) bullets.push("Fits inside your budget once install is included");
     bullets.push("Requires a 240V circuit and licensed electrician");
@@ -537,7 +532,7 @@ function buildMatchBullets(rec: Recommendation, a: Answers): string[] {
     bullets.push("Requires site prep and 240V electrical");
   } else if (rec.id === "plunge") {
     if (wantsAesthetic) bullets.push("Premium, design-forward aesthetic");
-    if (temp === "200°F" || temp === "230°F" || wantsHigh)
+    if (temp === "200°F" || wantsHigh)
       bullets.push(`Reaches your desired ${temp || "high"} temperature`);
     if (budget8plus) bullets.push("Fits inside your higher budget range");
     bullets.push("Requires a 240V circuit");
@@ -875,7 +870,7 @@ const SaunaCompatibilityQuiz = () => {
               <>
                 <QuestionHeader title="What temperature would you like your sauna to reach?" />
                 <div className="space-y-3">
-                  {["150°F", "170°F", "200°F", "230°F", "Not sure"].map((o) => (
+                  {["150°F", "170°F", "200°F", "Not sure"].map((o) => (
                     <OptionButton
                       key={o}
                       label={o}
@@ -1561,12 +1556,12 @@ const ComparisonTable = () => {
     { label: "Price", values: ["$8,485", "$4,500–$6,000", "$5,000–$8,000", "$15,000+"] },
     { label: "Expected install cost", values: ["$0", "$800–$2,500", "$1,500–$4,000", "$5,000–$20,000"] },
     { label: "Electrician needed", values: ["No", "Yes (240V)", "Yes (240V)", "Yes"] },
-    { label: "Expected temperature", values: ["170–230°F", "170–230°F", "160–200°F", "180–230°F"] },
+    { label: "Expected temperature", values: ["170–200°F", "170–200°F", "160–200°F", "180–200°F"] },
     { label: "Indoor", values: ["Yes", "Yes", "Limited", "Yes"] },
     { label: "Outdoor", values: ["Yes", "Yes", "Yes", "Yes"] },
     { label: "Apartment friendly", values: ["Yes", "No", "No", "No"] },
     { label: "Moveable", values: ["Yes", "No", "No", "No"] },
-    { label: "Est. total installed cost", values: ["$8,980", "$5,300–$8,500", "$6,500–$12,000", "$20,000–$35,000"] },
+    { label: "Est. total installed cost", values: ["$8,485", "$5,300–$8,500", "$6,500–$12,000", "$20,000–$35,000"] },
   ];
   return (
     <div className="mt-12">

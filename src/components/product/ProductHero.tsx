@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { Plug, Users, Flame, Home, ExternalLink } from "lucide-react";
 import { trackAndNavigate } from "@/lib/analytics";
 import { openBookingUrl } from "@/lib/booking";
-import saunaVideoAsset from "@/assets/sauna-video.mp4.asset.json";
-
-const anywhereVideoUrl = saunaVideoAsset.url;
+const anywhereVideoUrl = "/sauna-video.mp4";
+const anywhereVideoFallbackUrl = "/sauna-video.webm";
 const STRIPE_DEPOSIT_URL = "https://buy.stripe.com/8x214ngCrbJA1G451x6Vq0B";
 
 type GalleryItem =
@@ -24,7 +23,7 @@ const gallery: GalleryItem[] = [
 const benefits = [
   { Icon: Plug, label: "Runs on a standard 110/120V outlet" },
   { Icon: Users, label: "Comfortably fits two people" },
-  { Icon: Flame, label: "Reaches up to ~230°F" },
+  { Icon: Flame, label: "Reaches up to ~200°F" },
   { Icon: Home, label: "Designed for indoor or outdoor use" },
 ];
 
@@ -53,7 +52,6 @@ const ProductHero = () => {
               {current.type === "video" ? (
                 <video
                   key={current.src}
-                  src={current.src}
                   className="w-full h-full object-contain"
                   autoPlay
                   muted
@@ -61,7 +59,10 @@ const ProductHero = () => {
                   playsInline
                   controls
                   aria-label={current.alt}
-                />
+                >
+                  <source src={anywhereVideoFallbackUrl} type="video/webm" />
+                  <source src={current.src} type="video/mp4" />
+                </video>
 
               ) : (
                 <img
@@ -85,12 +86,14 @@ const ProductHero = () => {
                   {g.type === "video" ? (
                     <>
                       <video
-                        src={g.src}
                         className="w-full h-full object-cover"
                         muted
                         playsInline
                         preload="metadata"
-                      />
+                      >
+                        <source src={anywhereVideoFallbackUrl} type="video/webm" />
+                        <source src={g.src} type="video/mp4" />
+                      </video>
                       <span className="absolute inset-0 flex items-center justify-center bg-black/20">
                         <span className="block w-0 h-0 border-y-[6px] border-y-transparent border-l-[10px] border-l-white" />
                       </span>
@@ -115,7 +118,7 @@ const ProductHero = () => {
               $8,485
             </p>
             <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-4">
-              + $495 shipping
+              Delivery and installation included
             </p>
             <p className="text-[14px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d] mb-6">
               The only traditional sauna designed to run on a standard home outlet.
@@ -145,7 +148,7 @@ const ProductHero = () => {
                 <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </a>
               <p className="text-[13px] leading-[1.6] tracking-[0.025em] text-[#1c1d1d]/70 mb-3">
-                Heater and installation not included.{" "}
+                Heater not included.{" "}
                 <Link to="/terms" className="underline hover:no-underline font-medium text-[#1c1d1d]">
                   Terms
                 </Link>

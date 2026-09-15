@@ -40,9 +40,8 @@ const Hero = ({ ctaOverride }: HeroProps) => {
   const bullets = (
     <ul className="font-sans text-[15px] md:text-[16px] leading-[1.6] text-white/80 font-normal space-y-1.5">
       {[
-        "180°F - 230°F",
+        "180°F - 200°F",
         "Real stones, Finnish löyly",
-        "30 minute setup time",
       ].map((text) => (
         <li key={text} className="flex items-start gap-2">
           <Check className="w-4 h-4 mt-0.5 shrink-0 text-white/90" aria-hidden="true" />
